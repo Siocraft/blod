@@ -1,6 +1,6 @@
+import { ColorsEnum } from '@theme';
 import { FC } from 'react';
 import { StyleSheet, Text, TextProps } from 'react-native';
-import { ColorsEnum } from '../Theme';
 
 interface BTextProps extends TextProps {
   bold?: boolean;

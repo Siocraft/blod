@@ -1,6 +1,15 @@
 {
   "extends": "expo/tsconfig.base",
+  "exclude": ["node_modules"],
   "compilerOptions": {
-    "strict": true
-  }
+    "strict": true,
+    "baseUrl": "./src",
+    "paths": {
+      "@screens": ["./src/Screens"],
+      "@components": ["./src/Components"],
+      "@theme": ["./src/App"],
+    },
+    "resolveJsonModule": true,
+    "skipLibCheck": true
+  },
 }

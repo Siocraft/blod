@@ -1,8 +1,8 @@
+import { BText } from "@components";
+import { ColorsEnum } from "@theme";
 import React from "react";
 import { FlatList, Image, StyleSheet, View } from "react-native";
-import { BText } from "../../Components";
 import { peopleInNeed } from "../../Data/PeopleInNeed";
-import { ColorsEnum } from "../../Theme";
 
 export const Landing = () => {
   return (

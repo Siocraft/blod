@@ -1,4 +1,4 @@
-import { Landing } from '../Screens';
+import { Landing } from '@screens';
 
 export const App = () => {
   return (
