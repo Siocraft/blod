@@ -3,11 +3,11 @@ import { ColorsEnum } from "@theme";
 import React, { FC } from "react";
 import { Image, StyleSheet, View } from "react-native";
 
-export interface RequestDonationCardProps {
+export interface DonationRequestCardProps {
   requestDonation: any;
 }
 
-export const RequestDonationCard: FC<RequestDonationCardProps> = ({ requestDonation }) => {
+export const DonationRequestCard: FC<DonationRequestCardProps> = ({ requestDonation }) => {
   return <View style={styles.container}>
     <View style={styles.row}>
       <Image source={{

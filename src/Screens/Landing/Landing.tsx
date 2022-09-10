@@ -1,13 +1,13 @@
 import React from "react";
 import { FlatList } from "react-native";
 import { donationRequests } from "../../Data/DonationRequests";
-import { RequestDonationCard } from "./RequestDonationCard";
+import { DonationRequestCard } from "./DonationRequestCard";
 
 export const Landing = () => {
   return (
     <FlatList
       data={donationRequests}
-      renderItem={({ item }) => <RequestDonationCard requestDonation={item} />}
+      renderItem={({ item }) => <DonationRequestCard requestDonation={item} />}
       keyExtractor={(item) => item.id}
     />
   );
