@@ -1,7 +1,7 @@
 import { BText } from "@components";
 import { ColorsEnum } from "@theme";
 import React, { FC } from "react";
-import { Image, StyleSheet, View } from "react-native";
+import { Image, Pressable, StyleSheet, View } from "react-native";
 
 declare interface DonationRequestCardProps {
   requestDonation: DonationRequest;
@@ -23,6 +23,11 @@ export const DonationRequestCard: FC<DonationRequestCardProps> = ({ requestDonat
       </View>
     </View>
     <BText size="large" color="tertiary" style={styles.description}>{requestDonation.description}</BText>
+    <View style={styles.buttonGroup}>
+      <Pressable style={styles.contactButton} onPress={() => console.log("Hello")}>
+        <BText color="black">Contact</BText>
+      </Pressable>
+    </View>
   </View>
 }
 
@@ -49,5 +54,17 @@ const styles = StyleSheet.create({
   row: { flexDirection: "row"},
   description: {
     marginTop: 12,
+  },
+  buttonGroup: {
+    flexDirection: "row",
+    justifyContent: "center",
+    marginTop: 12,
+  },
+  contactButton: {
+    backgroundColor: ColorsEnum.success,
+    borderRadius: 8,
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 8
   }
 })

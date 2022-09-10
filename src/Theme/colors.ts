@@ -11,4 +11,5 @@ export enum ColorsEnum {
   denary = "#C9ABA5",
   white = "#FFFFFF",
   black = "#000000",
+  success = "#81d2c7"
 }
