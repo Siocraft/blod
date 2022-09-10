@@ -1,18 +1,5 @@
 import { faker } from "@faker-js/faker";
 
-export interface DonationRequest {
-  id: string;
-  name: string;
-  age: number;
-  bloodType: string;
-  location: string;
-  hospital?: string;
-  contact: string;
-  litersDonated: number;
-  avatar: string;
-  description?: string;
-}
-
 const createDonationRequest = () => {
   return {
     id: faker.datatype.uuid(),
