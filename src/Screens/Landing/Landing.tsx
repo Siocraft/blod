@@ -1,6 +1,8 @@
 import React from "react";
-import { FlatList, Image, StyleSheet, Text, View } from "react-native";
+import { FlatList, Image, StyleSheet, View } from "react-native";
+import { BText } from "../../Components";
 import { peopleInNeed } from "../../Data/PeopleInNeed";
+import { ColorsEnum } from "../../Theme";
 
 export const Landing = () => {
   return (
@@ -11,9 +13,14 @@ export const Landing = () => {
           <Image source={{
             uri: item.avatar,
           }} style={styles.image} />
-          <Text style={styles.text}>{item.name}</Text>
-          <Text style={styles.text}>{item.age}</Text>
-          <Text style={styles.text}>{item.location}</Text>
+          <View>
+            <View style={styles.nameContainer}>
+              <BText size="large" bold style={{ paddingRight: 8 }}>{item.name}</BText>
+              <BText color="tertiary">{item.age}</BText>
+            </View>
+            {item.hospital && <BText>Hospital: {item.hospital}</BText>}
+            <BText size="small">{item.location}</BText>
+          </View>
         </View>
       )}
     />
@@ -26,16 +33,22 @@ const styles = StyleSheet.create({
   },
   itemContainer: {
     flexDirection: "row",
-    justifyContent: "space-between",
-    padding: 12,
-    borderBottomWidth: 1,
+    margin: 8,
+    padding: 8,
+    marginBottom: 0,
+    borderRadius: 8,
+    backgroundColor: ColorsEnum.secondary,
+    borderColor: ColorsEnum.quinary,
+    borderWidth: 1,
   },
   image: {
     width: 50,
     height: 50,
     borderRadius: 8,
+    marginRight: 12,
   },
-  text: {
-    fontSize: 20,
-  },
+  nameContainer: {
+    flexDirection: "row",
+    alignItems: "flex-end",
+  }
 });
