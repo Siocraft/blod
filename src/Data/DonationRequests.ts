@@ -1,6 +1,6 @@
 import { faker } from "@faker-js/faker";
 
-interface DonationRequest {
+export interface DonationRequest {
   id: string;
   name: string;
   age: number;

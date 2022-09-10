@@ -2,9 +2,10 @@ import { BText } from "@components";
 import { ColorsEnum } from "@theme";
 import React, { FC } from "react";
 import { Image, StyleSheet, View } from "react-native";
+import { DonationRequest } from "src/Data/DonationRequests";
 
 export interface DonationRequestCardProps {
-  requestDonation: any;
+  requestDonation: DonationRequest;
 }
 
 export const DonationRequestCard: FC<DonationRequestCardProps> = ({ requestDonation }) => {
