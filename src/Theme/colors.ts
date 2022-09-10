@@ -1,7 +1,7 @@
 export enum ColorsEnum {
-  primary = "#FA6054",
-  secondary = "#CC0906",
-  tertiary = "#7A2F2A",
+  primary = "#612940",
+  secondary = "#fdecef",
+  tertiary = "#9d6381",
   quaternary = "#7A514E",
   quinary = "#97807C",
   senary = "#E69998",
