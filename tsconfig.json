@@ -3,11 +3,11 @@
   "exclude": ["node_modules"],
   "compilerOptions": {
     "strict": true,
-    "baseUrl": "./src",
+    "baseUrl": "./",
     "paths": {
-      "@screens": ["./src/Screens"],
-      "@components": ["./src/Components"],
-      "@theme": ["./src/App"],
+      "@screens": ["src/Screens"],
+      "@components": ["src/Components"],
+      "@theme": ["src/Theme"],
     },
     "resolveJsonModule": true,
     "skipLibCheck": true
