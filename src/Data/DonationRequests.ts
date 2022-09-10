@@ -1,6 +1,6 @@
 import { faker } from "@faker-js/faker";
 
-interface PeopleInNeed {
+interface DonationRequest {
   id: string;
   name: string;
   age: number;
@@ -10,9 +10,10 @@ interface PeopleInNeed {
   contact: string;
   litersDonated: number;
   avatar: string;
+  description?: string;
 }
 
-const createPeopleInNeed = () => {
+const createDonationRequest = () => {
   return {
     id: faker.datatype.uuid(),
     name: faker.name.fullName(),
@@ -23,7 +24,8 @@ const createPeopleInNeed = () => {
     contact: faker.phone.number(),
     litersDonated: faker.datatype.number({ min: 0, max: 10 }),
     avatar: faker.image.avatar(),
+    description: faker.lorem.paragraph(),
   };
 }
 
-export const peopleInNeed: PeopleInNeed[] = Array.from({ length: 20 }, createPeopleInNeed);
+export const donationRequests: DonationRequest[] = Array.from({ length: 20 }, createDonationRequest);
