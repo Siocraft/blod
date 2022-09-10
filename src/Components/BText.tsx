@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { StyleSheet, Text, TextProps } from 'react-native';
-import { colors } from '../Theme';
+import { ColorsEnum } from '../Theme';
 
 interface BTextProps extends TextProps {
   bold?: boolean;
@@ -47,12 +47,12 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   primary: {
-    color: colors.primary,
+    color: ColorsEnum.primary,
   },
   secondary: {
-    color: colors.secondary,
+    color: ColorsEnum.secondary,
   },
   tertiary: {
-    color: colors.tertiary,
+    color: ColorsEnum.tertiary,
   },
 });
