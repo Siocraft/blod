@@ -12,8 +12,8 @@ export const DonationRequestCard: FC<DonationRequestCardProps> = ({ requestDonat
     <View style={styles.row}>
       <Image source={{
         uri: requestDonation.avatar,
-      }} style={styles.image} />
-      <View>
+      }} style={styles.headerImage} />
+      <View style={styles.headerInfo}>
         <View style={styles.nameContainer}>
           <BText size="title" bold style={{ paddingRight: 8 }}>{requestDonation.name}</BText>
           <BText color="tertiary">{requestDonation.age}</BText>
@@ -21,9 +21,17 @@ export const DonationRequestCard: FC<DonationRequestCardProps> = ({ requestDonat
         {requestDonation.hospital && <BText>Hospital: {requestDonation.hospital}</BText>}
         <BText size="small" style={{ marginTop: 4 }}>{requestDonation.location}</BText>
       </View>
+      <View style={styles.bloodType}>
+        <BText>{requestDonation.bloodType}</BText>
+      </View>
     </View>
-    <BText size="large" color="tertiary" style={styles.description}>{requestDonation.description}</BText>
+    <BText size="large" color="tertiary" style={styles.description}>
+      {requestDonation.description}
+    </BText>
     <View style={styles.buttonGroup}>
+      <Pressable style={styles.contactButton} onPress={() => console.log("Hello")}>
+        <BText color="black">Contact</BText>
+      </Pressable>
       <Pressable style={styles.contactButton} onPress={() => console.log("Hello")}>
         <BText color="black">Contact</BText>
       </Pressable>
@@ -41,7 +49,7 @@ const styles = StyleSheet.create({
     borderColor: ColorsEnum.quinary,
     borderWidth: 1,
   },
-  image: {
+  headerImage: {
     width: 60,
     height: 60,
     borderRadius: 8,
@@ -66,5 +74,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     padding: 8
+  },
+  bloodType: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  headerInfo: {
+    flex: 4
   }
 })

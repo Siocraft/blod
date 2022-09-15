@@ -12,7 +12,7 @@ const createDonationRequest = () => {
     litersDonated: faker.datatype.number({ min: 0, max: 10 }),
     avatar: faker.image.avatar(),
     description: faker.lorem.paragraph(),
-  };
+  } as DonationRequest;
 }
 
 export const donationRequests: DonationRequest[] = Array.from({ length: 20 }, createDonationRequest);
