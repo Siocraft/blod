@@ -4,13 +4,15 @@ import { StyleSheet, Text, TextProps } from 'react-native';
 
 interface BTextProps extends TextProps {
   bold?: boolean;
+  superBold?: boolean;
   size?: "small" | "medium" | "large" | "title";
-  color?: "primary" | "secondary" | "tertiary" | "black" | "white";
+  color?: "primary" | "secondary" | "black" | "white" | "gray";
 }
 
 export const BText: FC<BTextProps> = ({
   style,
   bold,
+  superBold,
   size = "medium",
   color = "primary",
   children,
@@ -20,6 +22,7 @@ export const BText: FC<BTextProps> = ({
     styles[size],
     styles[color],
     bold && styles.bold,
+    superBold && styles.superBold,
     style,
   ]);
 
@@ -52,13 +55,16 @@ const styles = StyleSheet.create({
   secondary: {
     color: ColorsEnum.secondary,
   },
-  tertiary: {
-    color: ColorsEnum.tertiary,
-  },
   black: {
     color: ColorsEnum.black,
   },
   white: {
     color: ColorsEnum.white,
   },
+  gray: {
+    color: ColorsEnum.gray
+  },
+  superBold: {
+    fontWeight: "900"
+  }
 });
