@@ -5,7 +5,7 @@ import { StyleSheet, Text, TextProps } from 'react-native';
 interface BTextProps extends TextProps {
   bold?: boolean;
   size?: "small" | "medium" | "large" | "title";
-  color?: "primary" | "secondary" | "tertiary" | "black";
+  color?: "primary" | "secondary" | "tertiary" | "black" | "white";
 }
 
 export const BText: FC<BTextProps> = ({
@@ -57,5 +57,8 @@ const styles = StyleSheet.create({
   },
   black: {
     color: ColorsEnum.black,
+  },
+  white: {
+    color: ColorsEnum.white,
   },
 });
