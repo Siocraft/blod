@@ -15,12 +15,18 @@ export const DonationRequestCard: FC<DonationRequestCardProps> = ({ requestDonat
       }} style={styles.headerImage} />
       <View style={styles.headerInfo}>
         <View style={styles.nameContainer}>
-          <BText size="title" bold style={{ paddingRight: 8 }} color="black">{requestDonation.name}</BText>
+          <BText size="title" bold style={{ paddingRight: 8 }} color="black">{requestDonation.name.split(" ")[0]}</BText>
           <BText  color="black">{requestDonation.age}</BText>
         </View>
-        {requestDonation.hospital && <View style={{ flexDirection: "row", alignItems: "center" }}>
-          <BText color="secondary" superBold size="large">H  </BText>
-          <BText color="black">{requestDonation.hospital}, {requestDonation.location}</BText>  
+        {requestDonation.hospital && <View>
+          <View style={{ flexDirection: "row", alignItems: "center" }}>
+            <BText color="secondary" superBold size="large">H  </BText>
+            <BText color="black">{requestDonation.hospital}</BText>  
+          </View>
+          <View style={{ flexDirection: "row", alignItems: "center" }}>
+            <BText color="secondary" superBold size="large">L  </BText>
+            <BText color="black">{requestDonation.location}</BText>  
+          </View>
         </View>}
       </View>
       <View style={styles.bloodType}>

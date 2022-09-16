@@ -12,3 +12,4 @@ export enum ColorsEnum {
 
 // Icons,
 // Hospital: https://iconos8.es/icon/set/hospital/ios
+// Animation blod: https://lottiefiles.com/2088-blood-drop
