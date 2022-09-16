@@ -1,7 +1,10 @@
-import { Landing } from '@screens';
+import { NavigationContainer } from '@react-navigation/native';
+import { BottomTabs } from '../Navigators';
 
 export const App = () => {
   return (
-    <Landing />
+    <NavigationContainer>
+      <BottomTabs />
+    </NavigationContainer>
   );
 }
