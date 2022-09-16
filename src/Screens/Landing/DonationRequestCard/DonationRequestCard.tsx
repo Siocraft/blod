@@ -29,11 +29,14 @@ export const DonationRequestCard: FC<DonationRequestCardProps> = ({ requestDonat
       {requestDonation.description}
     </BText>
     <View style={styles.buttonGroup}>
-      <Pressable style={styles.contactButton} onPress={() => console.log("Hello")}>
-        <BText color="black">Contact</BText>
+      <Pressable style={StyleSheet.flatten([
+        styles.button,
+        styles.contactButton
+      ])} onPress={() => console.log("Hello")}>
+        <BText color="primary" bold>Contact</BText>
       </Pressable>
-      <Pressable style={styles.contactButton} onPress={() => console.log("Hello")}>
-        <BText color="black">Contact</BText>
+      <Pressable style={styles.button} onPress={() => console.log("Hello")}>
+        <BText color="primary" bold>Check more info</BText>
       </Pressable>
     </View>
   </View>
@@ -65,15 +68,19 @@ const styles = StyleSheet.create({
   },
   buttonGroup: {
     flexDirection: "row",
-    justifyContent: "center",
+    justifyContent: "space-around",
     marginTop: 12,
   },
-  contactButton: {
+  button: {
     backgroundColor: ColorsEnum.success,
     borderRadius: 8,
     alignItems: "center",
     justifyContent: "center",
-    padding: 8
+    padding: 8,
+    flex: 1,
+  },
+  contactButton: {
+    marginRight: 16
   },
   bloodType: {
     flex: 1,
