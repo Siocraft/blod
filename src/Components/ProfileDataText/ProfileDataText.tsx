@@ -1,6 +1,6 @@
-import { BText } from "@components";
 import React, { FC } from "react";
 import { StyleSheet, View } from "react-native";
+import { BText } from "../BText";
 
 export interface ProfileDataTextProps {
   label: string;
