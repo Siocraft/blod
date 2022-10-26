@@ -1,7 +1,7 @@
 import { BText } from "@components";
 import { ColorsEnum } from "@theme";
 import React from "react";
-import { Image, StyleSheet, View } from "react-native";
+import { Image, Pressable, StyleSheet, View } from "react-native";
 import { users } from "../../Data/Users";
 import { DataText } from "./DataText";
 
@@ -34,6 +34,15 @@ export const Profile = () => {
     <View>
       <BText size="title" bold color="secondary">About</BText>
       <BText color="black" style={{ marginTop: 8 }}>{user.description}</BText>
+    </View>
+
+    <View style={styles.buttonSection}>
+      <Pressable style={styles.contactButton} onPress={() => console.log("Hello")}>
+        <BText color="white" bold>I want to donate blood</BText>
+      </Pressable>
+      <Pressable style={styles.editButton} onPress={() => console.log("Hello")}>
+        <BText color="secondary" bold>Edit profile</BText>
+      </Pressable>
     </View>
   </View>
 }
@@ -69,5 +78,29 @@ const styles = StyleSheet.create({
   dataContainer: {
     width: '100%',
     alignItems: 'flex-start',
+  },
+  contactButton: {
+    borderRadius: 8,
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 8,
+    width: '100%',
+    backgroundColor: ColorsEnum.secondary,
+    marginTop: 16,
+  },
+  editButton: {
+    borderRadius: 8,
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 8,
+    width: '100%',
+    borderColor: ColorsEnum.secondary,
+    marginTop: 8,
+    borderWidth: 2
+  },
+  buttonSection: {
+    position: 'absolute',
+    width: '100%',
+    bottom: 16,
   }
 })
