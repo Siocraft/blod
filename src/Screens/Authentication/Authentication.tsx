@@ -1,5 +1,5 @@
 import { BText } from "@components";
-import { useAppNavigation } from "@hooks";
+import { useAppNavigation, useAuth } from "@hooks";
 import { ColorsEnum } from "@theme";
 import { FC } from "react";
 import { Pressable, StyleSheet, View } from "react-native";
@@ -19,6 +19,10 @@ export const Authentication: FC = () => {
   const onGuestPressed = () => {
     navigateToApp();
   };
+
+  const { user } = useAuth();
+
+  if(user) navigateToApp();
 
   return <View style={styles.loginContainer}>
     <BText color="secondary" bold size="large">

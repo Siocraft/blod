@@ -14,5 +14,7 @@ export const useAuth = () => {
     return unsubscribe;
   }, []);
 
-  return user;
+  return {
+    user
+  };
 }
