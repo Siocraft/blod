@@ -24,7 +24,7 @@ export const Authentication: FC = () => {
 
   if(user) navigateToApp();
 
-  return <View style={styles.loginContainer}>
+  return <View style={styles.authenticationContainer}>
     <BText color="secondary" bold size="large">
       Una aplicación para donar sangre en México.
     </BText>
@@ -48,7 +48,7 @@ export const Authentication: FC = () => {
 }
 
 const styles = StyleSheet.create({
-  loginContainer: {
+  authenticationContainer: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",

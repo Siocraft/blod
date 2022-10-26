@@ -1,5 +1,7 @@
 import { BText, ProfileData, ProfileImage } from "@components";
+import { useAppNavigation } from "@hooks";
 import { ColorsEnum } from "@theme";
+import { getAuth, signOut } from "firebase/auth";
 import React from "react";
 import { Pressable, StyleSheet, View } from "react-native";
 import { users } from "../../Data/Users";
@@ -7,6 +9,19 @@ import { users } from "../../Data/Users";
 const user = users[0];
 
 export const Profile = () => {
+
+  const auth = getAuth();
+
+  const { navigateToAuth } = useAppNavigation();
+  
+  const signOutFromApp = () => {
+    signOut(auth).then(() => {
+      navigateToAuth();
+    }).catch((error) => {
+      throw new Error(error);
+    });
+  }
+
   return <View style={styles.container}>
     <ProfileImage avatar={user.avatar}/>
     <BText size="title" superBold color="secondary">{user.name}, {user.age}</BText>
@@ -32,6 +47,9 @@ export const Profile = () => {
       </Pressable>
       <Pressable style={styles.editButton} onPress={() => console.log("Hello")}>
         <BText color="secondary" bold>Edit profile</BText>
+      </Pressable>
+      <Pressable onPress={signOutFromApp}>
+        <BText color="primary" bold style={{ alignSelf: 'center', marginTop: 8 }}>Cerrar sesión</BText>
       </Pressable>
     </View>
   </View>
