@@ -1,7 +1,7 @@
-import { BText } from "@components";
+import { BText, ProfileImage } from "@components";
 import { ColorsEnum } from "@theme";
 import React from "react";
-import { Image, Pressable, StyleSheet, View } from "react-native";
+import { Pressable, StyleSheet, View } from "react-native";
 import { users } from "../../Data/Users";
 import { DataText } from "./DataText";
 
@@ -9,11 +9,7 @@ const user = users[0];
 
 export const Profile = () => {
   return <View style={styles.container}>
-    <View style={styles.imageContainer}>
-      <Image source={{
-          uri: user.avatar,
-      }} style={styles.profileImage} />
-    </View>
+    <ProfileImage avatar={user.avatar}/>
     <BText size="title" superBold color="secondary">{user.name}, {user.age}</BText>
     <View style={styles.divider} />
     
@@ -54,20 +50,6 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 16,
     alignItems: "center",
-  },
-  imageContainer: {
-    width: imageSize + 8,
-    height: imageSize + 8,
-    borderRadius: (imageSize + 8) / 2,
-    backgroundColor: ColorsEnum.secondary,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: 16,
-  },
-  profileImage: {
-    width: imageSize,
-    height: imageSize,
-    borderRadius: imageSize / 2,
   },
   divider: {
     width: '100%',
