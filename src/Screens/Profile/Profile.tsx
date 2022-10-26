@@ -1,9 +1,8 @@
-import { BText, ProfileImage } from "@components";
+import { BText, ProfileData, ProfileImage } from "@components";
 import { ColorsEnum } from "@theme";
 import React from "react";
 import { Pressable, StyleSheet, View } from "react-native";
 import { users } from "../../Data/Users";
-import { DataText } from "./DataText";
 
 const user = users[0];
 
@@ -14,17 +13,12 @@ export const Profile = () => {
     <View style={styles.divider} />
     
     
-    <View style={styles.dataContainer}>
-      <BText size="title" bold color="secondary" style={{ marginBottom: 16 }}>Data</BText>
-      <View style={{ flexDirection: "row" }}>
-        <DataText left label="Bloodtype: " value={user.bloodType} />
-        <DataText label="Loc: " value={user.location} />
-      </View>
-      <View style={{ flexDirection: "row" }}>
-        <DataText left label="Donated: " value={user.litersDonated + " liters"} />
-        <DataText label="Contact: " value={user.contact} />
-      </View>
-    </View>
+    <ProfileData
+      bloodType={user.bloodType}
+      location={user.location}
+      litersDonated={user.litersDonated}
+      contact={user.contact}
+    />
 
     <View style={styles.divider} />
     <View>
@@ -43,8 +37,6 @@ export const Profile = () => {
   </View>
 }
 
-const imageSize = 200;
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -56,10 +48,6 @@ const styles = StyleSheet.create({
     height: 1,
     backgroundColor: ColorsEnum.secondary,
     marginVertical: 16,
-  },
-  dataContainer: {
-    width: '100%',
-    alignItems: 'flex-start',
   },
   contactButton: {
     borderRadius: 8,

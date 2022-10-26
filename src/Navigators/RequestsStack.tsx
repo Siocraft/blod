@@ -2,7 +2,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Landing, OtherProfile } from "@screens";
 import React from "react";
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<RequestStackParamList>();
 
 export const RequestsStack = () => {
   return (

@@ -1,15 +1,84 @@
-import { BText } from "@components";
-import { useRoute } from "@react-navigation/native";
+import { BText, ProfileData, ProfileImage } from "@components";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { ColorsEnum } from "@theme";
 import React, { FC } from "react";
-import { View } from "react-native";
+import { Pressable, StyleSheet, View } from "react-native";
+import { users } from "../../Data/Users";
 
-export const OtherProfile: FC = () => {
+export type OtherProfileProps = NativeStackScreenProps<RequestStackParamList, 'OtherProfile'>;
 
-  const route = useRoute();
+export const OtherProfile: FC<OtherProfileProps> = ({
+  // route,
+}) => {
 
-  console.log(route);
+  // const { params } = route;
+  // const { userId } = params;
 
-  return <View>
-    <BText>OtherProfile</BText>
-  </View>;
+  const user = users[0];
+
+  if(!user) return null
+
+  return <View style={styles.container}>
+  <ProfileImage avatar={user.avatar}/>
+  <BText size="title" superBold color="secondary">{user.name}, {user.age}</BText>
+  <View style={styles.divider} />
+  
+  
+  <ProfileData
+    bloodType={user.bloodType}
+    location={user.location}
+    litersDonated={user.litersDonated}
+    contact={user.contact}
+  />
+
+  <View style={styles.divider} />
+  <View>
+    <BText size="title" bold color="secondary">About</BText>
+    <BText color="black" style={{ marginTop: 8 }}>{user.description}</BText>
+  </View>
+
+  <View style={styles.buttonSection}>
+    <Pressable style={styles.contactButton} onPress={() => console.log("Hello")}>
+      <BText color="white" bold>Contact</BText>
+    </Pressable>
+  </View>
+</View>
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 16,
+    alignItems: "center",
+  },
+  divider: {
+    width: '100%',
+    height: 1,
+    backgroundColor: ColorsEnum.secondary,
+    marginVertical: 16,
+  },
+  contactButton: {
+    borderRadius: 8,
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 8,
+    width: '100%',
+    backgroundColor: ColorsEnum.secondary,
+    marginTop: 16,
+  },
+  editButton: {
+    borderRadius: 8,
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 8,
+    width: '100%',
+    borderColor: ColorsEnum.secondary,
+    marginTop: 8,
+    borderWidth: 2
+  },
+  buttonSection: {
+    position: 'absolute',
+    width: '100%',
+    bottom: 16,
+  }
+})
