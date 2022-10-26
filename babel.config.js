@@ -11,6 +11,7 @@ module.exports = function(api) {
             '@components': './src/Components',
             '@screens': './src/Screens',
             '@theme': './src/Theme',
+            '@hooks': './src/Hooks',
           },
         },
       ],

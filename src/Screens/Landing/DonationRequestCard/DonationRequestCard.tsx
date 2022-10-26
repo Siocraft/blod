@@ -1,4 +1,5 @@
 import { BText } from "@components";
+import { useAppNavigation } from "@hooks";
 import { ColorsEnum } from "@theme";
 import React, { FC } from "react";
 import { Image, Pressable, StyleSheet, View } from "react-native";
@@ -8,11 +9,20 @@ declare interface DonationRequestCardProps {
 }
 
 export const DonationRequestCard: FC<DonationRequestCardProps> = ({ requestDonation }) => {
+
+  const { navigateToOtherProfile } = useAppNavigation();
+
+  const pushRequestUserProfile = () => {
+    navigateToOtherProfile(requestDonation.id);
+  }
+
   return <View style={styles.container}>
     <View style={styles.row}>
-      <Image source={{
-        uri: requestDonation.avatar,
-      }} style={styles.headerImage} />
+      <Pressable onPress={pushRequestUserProfile}>
+        <Image source={{
+          uri: requestDonation.avatar,
+        }} style={styles.headerImage} />
+      </Pressable>
       <View style={styles.headerInfo}>
         <View style={styles.nameContainer}>
           <BText size="title" bold style={{ paddingRight: 8 }} color="black">{requestDonation.name.split(" ")[0]}</BText>
