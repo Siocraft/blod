@@ -1,5 +1,6 @@
 import { BText, ProfileData, ProfileImage } from "@components";
-import { useAppNavigation } from "@hooks";
+import { useAppNavigation, useAuth } from "@hooks";
+import { getUser } from "@services";
 import { ColorsEnum } from "@theme";
 import { getAuth, signOut } from "firebase/auth";
 import React from "react";
@@ -12,6 +13,8 @@ export const Profile = () => {
 
   const auth = getAuth();
 
+  const { user: authUser } = useAuth();
+
   const { navigateToAuth } = useAppNavigation();
   
   const signOutFromApp = () => {
@@ -21,6 +24,9 @@ export const Profile = () => {
       throw new Error(error);
     });
   }
+  if(!authUser) return null;
+
+  getUser(authUser.uid)
 
   return <View style={styles.container}>
     <ProfileImage avatar={user.avatar}/>

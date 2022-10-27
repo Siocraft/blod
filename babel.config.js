@@ -13,6 +13,7 @@ module.exports = function(api) {
             '@theme': './src/Theme',
             '@hooks': './src/Hooks',
             '@config': './src/Config',
+            '@services': './src/Services',
           },
         },
       ],

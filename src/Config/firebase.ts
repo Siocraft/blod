@@ -6,6 +6,7 @@ import {
   FIREBASE_STORAGE_BUCKET
 } from '@env';
 import { initializeApp } from "firebase/app";
+import { getFirestore } from 'firebase/firestore';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -23,4 +24,5 @@ const firebaseConfig = {
 
 // Initialize Firebase
 export const firebaseApp = initializeApp(firebaseConfig);
+export const firestore = getFirestore(firebaseApp);
 // const analytics = getAnalytics(app);
