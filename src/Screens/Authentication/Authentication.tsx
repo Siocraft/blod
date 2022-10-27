@@ -41,7 +41,7 @@ export const Authentication: FC = () => {
         <BText color="secondary" bold>Registrarse</BText>
       </Pressable>
       <Pressable onPress={onGuestPressed}>
-        <BText color="secondary" size="large" style={{ alignSelf: "center" }}>Continuar como invitado</BText>
+        <BText color="secondary" size="large" bold style={{ alignSelf: "center" }}>Continuar como invitado</BText>
       </Pressable>
     </View>
   </View>;

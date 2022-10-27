@@ -1,10 +1,10 @@
-import { BText } from "@components";
+import { BText, BTextInput } from "@components";
 import { useAppNavigation } from "@hooks";
 import { ColorsEnum } from "@theme";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useFormik } from 'formik';
 import React, { FC } from "react";
-import { Pressable, StyleSheet, TextInput, View } from "react-native";
+import { Pressable, StyleSheet, View } from "react-native";
 
 const auth = getAuth();
 
@@ -29,19 +29,22 @@ export const Login: FC = () => {
   });
 
   return <View style={styles.loginContainer}>
-    <BText size="large" color="black">Ingresa a tu cuenta</BText>
-    <TextInput
-      placeholder="email"
+    <BText size="large" color="black" bold>Ingresa a tu cuenta</BText>
+    <View style={{ height: 16 }}/>
+    <BTextInput
+      placeholder="Correo electrónico"
       onChangeText={handleChange('email')}
       onBlur={handleBlur('email')}
       value={values.email}
     />
-    <TextInput
-      placeholder="password"
+    <View style={{ height: 8 }}/>
+    <BTextInput
+      placeholder="Constraseña"
       onChangeText={handleChange('password')}
       onBlur={handleBlur('password')}
       value={values.password}
     />
+    <View style={{ height: 8 }}/>
     <Pressable style={styles.loginButton} onPress={() => handleSubmit()}>
       <BText color="white">Ingresar</BText>
     </Pressable>
@@ -51,7 +54,7 @@ export const Login: FC = () => {
     </Pressable>
     <View style={{ height: 16 }}/>
     <Pressable onPress={goBack}>
-      <BText color="secondary">Regresar</BText>
+      <BText color="primary">Regresar</BText>
     </Pressable>
   </View>;
 }
