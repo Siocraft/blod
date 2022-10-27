@@ -12,6 +12,7 @@
     "@react-navigation/bottom-tabs": "^6.3.3",
     "@react-navigation/native": "^6.0.13",
     "@react-navigation/native-stack": "^6.9.1",
+    "@tanstack/react-query": "^4.13.0",
     "expo": "~46.0.9",
     "expo-status-bar": "~1.4.0",
     "firebase": "^9.12.1",

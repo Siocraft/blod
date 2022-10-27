@@ -1,19 +1,16 @@
 import { BText, ProfileData, ProfileImage } from "@components";
-import { useAppNavigation, useAuth } from "@hooks";
-import { getUser } from "@services";
+import { useAppNavigation, useAuth, useUser } from "@hooks";
 import { ColorsEnum } from "@theme";
 import { getAuth, signOut } from "firebase/auth";
 import React from "react";
 import { Pressable, StyleSheet, View } from "react-native";
-import { users } from "../../Data/Users";
-
-const user = users[0];
 
 export const Profile = () => {
 
   const auth = getAuth();
 
   const { user: authUser } = useAuth();
+  const { data: user, isLoading: isLoadingUser, isError: isErrorUser } = useUser(authUser?.uid);
 
   const { navigateToAuth } = useAppNavigation();
   
@@ -24,9 +21,34 @@ export const Profile = () => {
       throw new Error(error);
     });
   }
-  if(!authUser) return null;
 
-  getUser(authUser.uid)
+  const handleOnLoginPressed = () => {
+    signOutFromApp();
+  }
+
+  if(!authUser) {
+    return <View style={styles.loginContainer}>
+      <BText color="black" size="large" bold>
+        Ingresa a tu cuenta para ver tu información
+      </BText>
+      <Pressable onPress={handleOnLoginPressed} style={{
+        backgroundColor: ColorsEnum.secondary,
+        padding: 8,
+        borderRadius: 8,
+        marginTop: 16,
+        width: "100%",
+        alignItems: "center"
+      }}>
+        <BText color="white">
+          Ir al inicio de sesión
+        </BText>
+      </Pressable>
+    </View>
+  }
+
+  if(!user) return null;
+  if(isLoadingUser) return <BText>Loading</BText>;
+  if(isErrorUser) return <BText>Error</BText>;
 
   return <View style={styles.container}>
     <ProfileImage avatar={user.avatar}/>
@@ -42,10 +64,10 @@ export const Profile = () => {
     />
 
     <View style={styles.divider} />
-    <View>
+    {user.description && <View>
       <BText size="title" bold color="secondary">About</BText>
       <BText color="black" style={{ marginTop: 8 }}>{user.description}</BText>
-    </View>
+    </View>}
 
     <View style={styles.buttonSection}>
       <Pressable style={styles.contactButton} onPress={() => console.log("Hello")}>
@@ -96,5 +118,11 @@ const styles = StyleSheet.create({
     position: 'absolute',
     width: '100%',
     bottom: 16,
+  },
+  loginContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 16,
   }
 })
