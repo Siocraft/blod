@@ -54,7 +54,7 @@ export const Login: FC = () => {
     </Pressable>
     <View style={{ height: 16 }}/>
     <Pressable onPress={goBack}>
-      <BText color="primary">Regresar</BText>
+      <BText color="primary" bold>Regresar</BText>
     </Pressable>
   </View>;
 }
