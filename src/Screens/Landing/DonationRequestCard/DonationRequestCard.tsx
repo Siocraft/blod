@@ -63,7 +63,14 @@ const styles = StyleSheet.create({
     padding: 8,
     marginBottom: 0,
     borderRadius: 8,
-    backgroundColor: ColorsEnum.backgroundPrimary,
+    backgroundColor: ColorsEnum.white,
+    shadowColor: ColorsEnum.primary,
+    shadowOffset: {
+      width: 4, height: 4
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
+    elevation: 8
   },
   headerImage: {
     width: 60,
