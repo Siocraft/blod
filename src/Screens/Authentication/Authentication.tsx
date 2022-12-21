@@ -1,7 +1,7 @@
 import { BText } from "@components";
 import { useAppNavigation, useAuth } from "@hooks";
 import { ColorsEnum } from "@theme";
-import { FC } from "react";
+import React, { FC } from "react";
 import { Pressable, StyleSheet, View } from "react-native";
 
 export const Authentication: FC = () => {
@@ -30,7 +30,7 @@ export const Authentication: FC = () => {
     </BText>
     <Pressable onPress={navigateToApp}>
       <BText color="black" size="large" style={{ marginTop: 8 }}>
-        Puedes donar sangre o pedir que te donen.
+        Puedes donar o encontrar donadores
       </BText>
     </Pressable>
     <View style={styles.buttonGroup}>
