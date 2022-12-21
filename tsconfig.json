@@ -11,6 +11,7 @@
       "@hooks": ["src/Hooks"],
       "@config": ["src/Config"],
       "@services": ["src/Services"],
+      "@constants": ["src/Constants"],
     },
     "resolveJsonModule": true,
     "skipLibCheck": true

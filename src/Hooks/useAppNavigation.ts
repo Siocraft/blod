@@ -2,7 +2,7 @@ import { StackActions, useNavigation } from "@react-navigation/native";
 
 export const useAppNavigation = () => {
   const navigation = useNavigation();
-  const { navigate, goBack,  } = navigation;
+  const { navigate, goBack } = navigation;
 
   return {
     // @ts-expect-error Some navigation types are wrong
@@ -18,7 +18,7 @@ export const useAppNavigation = () => {
     // @ts-expect-error Some navigation types are wrong
     navigateToLogin: () => navigate("Login"),
     // @ts-expect-error Some navigation types are wrong
-    navigateToSignup: () => navigate("Login"),
+    navigateToSignup: () => navigate("Signup"),
     goBack,
   };
 }

@@ -1,16 +1,32 @@
 import { firestore } from "@config";
-import { collection, doc, getDoc, getDocs } from "firebase/firestore";
+import { FirebaseEnum } from "@constants";
+import { collection, doc, getDoc, getDocs, setDoc } from "firebase/firestore";
 
-export const usersCollection = collection(firestore, "users");
+export const usersCollection = collection(firestore, FirebaseEnum.Firestore.Collections.Users);
 
 export const getUsers = async () => {
   const users = await getDocs(usersCollection);
   return users;
 }
 
-export const getUser = async (id?: string) => {
+export const getUser = async (id: string) => {
   if(!id) return null;
   const user = await getDoc(doc(usersCollection, id));
-  console.log(user.data())
+  return user.data();
+}
+
+export const createUser = async (id: string) => {
+  if(!id) return null;
+
+  await setDoc(doc(usersCollection, id), {
+    age: 18,
+    name: 'John Doe',
+    location: 'Earth',
+    avatar: 'https://i.pravatar.cc/150?img=1',
+    litersDonated: 0,
+    bloodType: 'O+',
+  });
+
+  const user = await getDoc(doc(usersCollection, id));
   return user.data();
 }
