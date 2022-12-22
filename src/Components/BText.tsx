@@ -6,7 +6,7 @@ interface BTextProps extends TextProps {
   bold?: boolean;
   superBold?: boolean;
   size?: "small" | "medium" | "large" | "title";
-  color?: "primary" | "secondary" | "black" | "white" | "gray";
+  color?: "primary" | "secondary" | "black" | "white" | "gray" | "darkGray";
 }
 
 export const BText: FC<BTextProps> = ({
@@ -63,6 +63,9 @@ const styles = StyleSheet.create({
   },
   gray: {
     color: ColorsEnum.gray
+  },
+  darkGray: {
+    color: ColorsEnum.darkGray
   },
   superBold: {
     fontWeight: "900"

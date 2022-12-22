@@ -81,7 +81,7 @@ export const Login: FC = () => {
       ]} 
       onPress={() => handleSubmit()}
     >
-      <BText color="white">Ingresar</BText>
+      <BText color="darkGray">Ingresar</BText>
     </Pressable>
     <View style={{ height: 8 }}/>
     <Pressable style={styles.backButton} onPress={() => handleSubmit()}>
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: ColorsEnum.backgroundSecondary,
+    backgroundColor: ColorsEnum.white,
     padding: 16
   },
   loginButton: {
