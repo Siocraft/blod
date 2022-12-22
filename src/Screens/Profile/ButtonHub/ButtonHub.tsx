@@ -9,10 +9,10 @@ export const ButtonHub: FC = () => {
   const { signOutFromApp } = useSignOut()
 
   return <View style={styles.buttonHubContainer}>
-    <Pressable style={styles.contactButton} onPress={() => console.log("Hello")}>
+    <Pressable style={styles.contactButton} onPress={() => console.log("Donate blood")}>
       <BText color="white" bold>Quiero donar sangre</BText>
     </Pressable>
-    <Pressable style={styles.editButton} onPress={() => console.log("Hello")}>
+    <Pressable style={styles.editButton} onPress={() => console.log("Edit")}>
       <BText color="secondary" bold>Editar perfil</BText>
     </Pressable>
     <Pressable onPress={signOutFromApp}>

@@ -38,7 +38,7 @@ export const OtherProfile: FC<OtherProfileProps> = ({
   </View>
 
   <View style={styles.buttonSection}>
-    <Pressable style={styles.contactButton} onPress={() => console.log("Hello")}>
+    <Pressable style={styles.contactButton} onPress={() => console.log("Contact")}>
       <BText color="white" bold>Contact</BText>
     </Pressable>
   </View>
