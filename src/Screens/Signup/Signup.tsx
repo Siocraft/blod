@@ -62,8 +62,6 @@ export const Signup: FC = () => {
     !!errors.password ||
     !!errors.passwordConfirmation;
 
-  console.log(errors)
-
   const emailError = !!errors.email && !!touched.email && !!values.email;
   const passwordError = !!errors.password && !!touched.password && !!values.password;
   const passwordConfirmationError = !!errors.passwordConfirmation && !!touched.passwordConfirmation && !!values.passwordConfirmation;
