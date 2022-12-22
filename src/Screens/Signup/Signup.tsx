@@ -11,19 +11,19 @@ import * as Yup from 'yup';
 
 const auth = getAuth();
 
+const SignupSchema = Yup.object().shape({
+  password: Yup.string()
+    .min(6, ErrorsEnum.Formik.SignUp.tooShort)
+    .max(50, ErrorsEnum.Formik.SignUp.tooLong)
+    .required(ErrorsEnum.Formik.Required),
+  email: Yup.string().email(ErrorsEnum.Formik.Email).required(ErrorsEnum.Formik.Required),
+  passwordConfirmation: Yup.string()
+   .oneOf([Yup.ref('password'), null], ErrorsEnum.Formik.SignUp.passwordMismatch)
+});
+
 export const Signup: FC = () => {
 
   const { goBack, navigateToLogin } = useAppNavigation();
-
-  const SignupSchema = Yup.object().shape({
-    password: Yup.string()
-      .min(6, ErrorsEnum.Formik.SignUp.tooShort)
-      .max(50, ErrorsEnum.Formik.SignUp.tooLong)
-      .required(ErrorsEnum.Formik.Required),
-    email: Yup.string().email(ErrorsEnum.Formik.Email).required(ErrorsEnum.Formik.Required),
-    passwordConfirmation: Yup.string()
-     .oneOf([Yup.ref('password'), null], ErrorsEnum.Formik.SignUp.passwordMismatch)
-  });
 
   const { handleChange, handleBlur, values, handleSubmit, errors, touched, validateOnBlur } = useFormik({
     initialValues: {
