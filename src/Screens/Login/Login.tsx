@@ -49,6 +49,11 @@ export const Login: FC = () => {
     <BText size="large" color="black" bold>Ingresa a tu cuenta</BText>
     <View style={{ height: 16 }}/>
     <BTextInput
+      textContentType='emailAddress'
+      keyboardType='email-address'
+      autoCapitalize='none'
+      autoCorrect={false}
+      autoComplete='email'
       spellCheck={false}
       placeholder="Correo electrónico"
       onChangeText={handleChange('email')}

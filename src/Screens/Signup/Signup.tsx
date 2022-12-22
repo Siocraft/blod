@@ -70,6 +70,11 @@ export const Signup: FC = () => {
     <BText size="large" color="black" bold>¡Regístrate!</BText>
     <View style={{ height: 16 }}/>
     <BTextInput
+      textContentType='emailAddress'
+      keyboardType='email-address'
+      autoCapitalize='none'
+      autoCorrect={false}
+      autoComplete='email'
       spellCheck={false}
       placeholder="Correo electrónico"
       onChangeText={handleChange('email')}
