@@ -47,11 +47,11 @@ export const DonationRequestCard: FC<DonationRequestCardProps> = ({ requestDonat
       {requestDonation.description}
     </BText>
     <View style={styles.buttonGroup}>
-      <Pressable style={styles.contactButton} onPress={() => console.log("Hello")}>
-        <BText color="white" bold>Contact</BText>
+      <Pressable style={styles.contactButton} onPress={() => console.log("Contact")}>
+        <BText color="white" bold>Contactar</BText>
       </Pressable>
-      <Pressable style={styles.moreInfoButton} onPress={() => console.log("Hello")}>
-        <BText color="primary" bold>Check more info</BText>
+      <Pressable style={styles.moreInfoButton} onPress={() => console.log("More Info")}>
+        <BText color="primary" bold>Ver más</BText>
       </Pressable>
     </View>
   </View>
