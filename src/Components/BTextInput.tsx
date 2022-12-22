@@ -3,22 +3,40 @@ import React, { FC } from "react";
 import { StyleSheet, TextInput, TextInputProps, View } from "react-native";
 import { BText } from "./BText";
 
-interface BTextInputProps extends TextInputProps {
+type BTextInputProps = TextInputProps & {
   icon?: boolean;
+  error?: never;
+  errorMessage?: never;
 }
 
-export const BTextInput: FC<BTextInputProps> = ({
+type BTextInputPropsWithError = Omit<BTextInputProps, 'error' | 'errorMessage'> & {
+  error: boolean;
+  errorMessage?: string;
+}
+
+type Props = BTextInputProps | BTextInputPropsWithError;
+
+export const BTextInput: FC<Props> = ({
   icon = false,
+  error = false,
+  errorMessage,
   ...props
 }) => {
   return (
-    <View style={styles.inputContainer}>
-      {icon && <BText>Icon</BText>}
-      <TextInput
-        placeholderTextColor={ColorsEnum.darkGray}
-        {...props}
-      />
-    </View>
+    <>
+      <View style={[
+        styles.inputContainer,
+        error && { borderColor: ColorsEnum.error }
+      ]}>
+        {icon && <BText>Icon</BText>}
+        <TextInput
+          style={{ flex: 1, marginLeft: icon ? 8 : 0 }}
+          placeholderTextColor={ColorsEnum.darkGray}
+          {...props}
+        />
+      </View>
+      {error && <BText>{errorMessage}</BText>}
+    </>
   );
 }
 

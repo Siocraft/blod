@@ -7,7 +7,9 @@ export enum ColorsEnum {
   backgroundPrimary = "#ffebf4",
   backgroundSecondary = "#DFF2FF",
   gray = "#E1E0E0",
-  darkGray = "#707070"
+  darkGray = "#707070",
+  disabledButton = "#707070",
+  error = "#ff4055",
 }
 
 // Icons,
