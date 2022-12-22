@@ -5,6 +5,7 @@ import React from "react";
 import { StyleSheet, View } from "react-native";
 import { ButtonHub } from "./ButtonHub";
 import { GuestSignedIn } from "./GuestSignedIn";
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export const Profile = () => {
 
@@ -16,7 +17,7 @@ export const Profile = () => {
   if(isLoadingUser) return <BText>Cargando</BText>;
   if(isErrorUser) return <BText>Error</BText>;
 
-  return <View style={styles.container}>
+  return <SafeAreaView style={styles.container}>
     <ProfileImage avatar={user.avatar}/>
     <BText size="title" superBold color="secondary">{user.name}, {user.age}</BText>
     <View style={styles.divider} />
@@ -36,7 +37,7 @@ export const Profile = () => {
     </View>}
 
     <ButtonHub />
-  </View>
+  </SafeAreaView>
 }
 
 const styles = StyleSheet.create({

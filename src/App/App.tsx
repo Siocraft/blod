@@ -4,12 +4,15 @@ import React from 'react';
 import "../Config/firebase";
 import { queryClient } from '../Config/reactQuery';
 import { RootStackNavigator } from '../Navigators';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 export const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <NavigationContainer>
-        <RootStackNavigator />
+        <SafeAreaProvider>
+          <RootStackNavigator />
+        </SafeAreaProvider>
       </NavigationContainer>
     </QueryClientProvider>
   );

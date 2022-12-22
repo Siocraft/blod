@@ -1,28 +1,30 @@
 import { ColorsEnum } from "@theme";
-import { getAuth, signOut } from "firebase/auth";
 import React from "react";
 import { FlatList, StyleSheet, View } from "react-native";
+import { SafeAreaView, useSafeAreaInsets } from "react-native-safe-area-context";
 import { donationRequests } from "../../Data/DonationRequests";
 import { DonationRequestCard } from "./DonationRequestCard";
 
-const auth = getAuth();
-
 export const Landing = () => {
 
-  // signOut(auth)
+  const insets = useSafeAreaInsets();
+
   return (
-    <View style={styles.landingContainer}>
+    <SafeAreaView style={[
+      styles.landingContainer,
+      { paddingBottom: -insets.bottom }
+    ]}>
       <FlatList
         data={donationRequests}
         renderItem={({ item }) => <DonationRequestCard requestDonation={item} />}
         keyExtractor={(item) => item.id}
       />
-    </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   landingContainer: {
-    backgroundColor: ColorsEnum.backgroundPrimary
+    backgroundColor: ColorsEnum.backgroundPrimary,
   }
 })
