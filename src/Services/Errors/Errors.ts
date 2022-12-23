@@ -1,3 +1,3 @@
-export const ErrorReporting = (error: any) => {
+export const ErrorReporting = (error: unknown) => {
   console.log(error);
 };

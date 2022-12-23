@@ -1,6 +1,6 @@
 import { ColorsEnum } from "@theme";
 import React from "react";
-import { FlatList, StyleSheet, View } from "react-native";
+import { FlatList, StyleSheet } from "react-native";
 import {
   SafeAreaView,
   useSafeAreaInsets,

@@ -11,11 +11,7 @@ export type OtherProfileProps = NativeStackScreenProps<
   "OtherProfile"
 >;
 
-export const OtherProfile: FC<OtherProfileProps> = (
-  {
-    // route,
-  }
-) => {
+export const OtherProfile: FC<OtherProfileProps> = () => {
   // const { params } = route;
   // const { userId } = params;
 

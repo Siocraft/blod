@@ -1,5 +1,5 @@
 type RequestStackParamList = {
-  Landing: {};
+  Landing: Record<string, never>;
   OtherProfile: { userId: string };
-  CreateDonationRequest: {};
+  CreateDonationRequest: Record<string, never>;
 };

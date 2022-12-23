@@ -35,7 +35,6 @@ export const Signup: FC = () => {
     handleSubmit,
     errors,
     touched,
-    validateOnBlur,
   } = useFormik({
     initialValues: {
       email: "",

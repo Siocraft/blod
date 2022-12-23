@@ -1,7 +1,7 @@
 import { BText } from "@components";
 import { useAuth, useUser } from "@hooks";
 import React, { FC } from "react";
-import { View, Image } from "react-native";
+import { Image } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export const CreateDonationRequest: FC = () => {
