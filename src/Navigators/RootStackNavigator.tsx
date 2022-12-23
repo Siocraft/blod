@@ -18,4 +18,4 @@ export const RootStackNavigator = () => {
       <Stack.Screen name="App" component={BottomTabs} />
     </Stack.Navigator>
   );
-}
+};

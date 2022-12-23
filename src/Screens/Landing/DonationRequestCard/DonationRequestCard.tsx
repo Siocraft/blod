@@ -8,54 +8,90 @@ declare interface DonationRequestCardProps {
   requestDonation: DonationRequest;
 }
 
-export const DonationRequestCard: FC<DonationRequestCardProps> = ({ requestDonation }) => {
-
+export const DonationRequestCard: FC<DonationRequestCardProps> = ({
+  requestDonation,
+}) => {
   const { navigateToOtherProfile } = useAppNavigation();
 
   const pushRequestUserProfile = () => {
     navigateToOtherProfile(requestDonation.id);
-  }
+  };
 
-  return <View style={styles.container}>
-    <View style={styles.row}>
-      <Pressable onPress={pushRequestUserProfile}>
-        <Image source={{
-          uri: requestDonation.avatar,
-        }} style={styles.headerImage} />
-      </Pressable>
-      <View style={styles.headerInfo}>
-        <View style={styles.nameContainer}>
-          <BText size="title" bold style={{ paddingRight: 8 }} color="black">{requestDonation.name.split(" ")[0]}</BText>
-          <BText  color="black">{requestDonation.age}</BText>
+  return (
+    <View style={styles.container}>
+      <View style={styles.row}>
+        <Pressable onPress={pushRequestUserProfile}>
+          <Image
+            source={{
+              uri: requestDonation.avatar,
+            }}
+            style={styles.headerImage}
+          />
+        </Pressable>
+        <View style={styles.headerInfo}>
+          <View style={styles.nameContainer}>
+            <BText size="title" bold style={{ paddingRight: 8 }} color="black">
+              {requestDonation.name.split(" ")[0]}
+            </BText>
+            <BText color="black">{requestDonation.age}</BText>
+          </View>
+          {requestDonation.hospital && (
+            <View>
+              <View
+                style={{
+                  flexDirection: "row",
+                  alignItems: "center",
+                }}
+              >
+                <BText color="secondary" superBold size="large">
+                  H{" "}
+                </BText>
+                <BText color="black">{requestDonation.hospital}</BText>
+              </View>
+              <View
+                style={{
+                  flexDirection: "row",
+                  alignItems: "center",
+                }}
+              >
+                <BText color="secondary" superBold size="large">
+                  L{" "}
+                </BText>
+                <BText color="black">{requestDonation.location}</BText>
+              </View>
+            </View>
+          )}
         </View>
-        {requestDonation.hospital && <View>
-          <View style={{ flexDirection: "row", alignItems: "center" }}>
-            <BText color="secondary" superBold size="large">H  </BText>
-            <BText color="black">{requestDonation.hospital}</BText>  
-          </View>
-          <View style={{ flexDirection: "row", alignItems: "center" }}>
-            <BText color="secondary" superBold size="large">L  </BText>
-            <BText color="black">{requestDonation.location}</BText>  
-          </View>
-        </View>}
+        <View style={styles.bloodType}>
+          <BText superBold size="title">
+            {requestDonation.bloodType}
+          </BText>
+        </View>
       </View>
-      <View style={styles.bloodType}>
-        <BText superBold size="title">{requestDonation.bloodType}</BText>
+      <BText size="large" color="black" style={styles.description}>
+        {requestDonation.description}
+      </BText>
+      <View style={styles.buttonGroup}>
+        <Pressable
+          style={styles.contactButton}
+          onPress={() => console.log("Contact")}
+        >
+          <BText color="white" bold>
+            Contactar
+          </BText>
+        </Pressable>
+        <Pressable
+          style={styles.moreInfoButton}
+          onPress={() => console.log("More Info")}
+        >
+          <BText color="primary" bold>
+            Ver más
+          </BText>
+        </Pressable>
       </View>
     </View>
-    <BText size="large" color="black" style={styles.description}>
-      {requestDonation.description}
-    </BText>
-    <View style={styles.buttonGroup}>
-      <Pressable style={styles.contactButton} onPress={() => console.log("Contact")}>
-        <BText color="white" bold>Contactar</BText>
-      </Pressable>
-      <Pressable style={styles.moreInfoButton} onPress={() => console.log("More Info")}>
-        <BText color="primary" bold>Ver más</BText>
-      </Pressable>
-    </View>
-  </View>
-}
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -66,11 +102,12 @@ const styles = StyleSheet.create({
     backgroundColor: ColorsEnum.white,
     shadowColor: ColorsEnum.primary,
     shadowOffset: {
-      width: 4, height: 4
+      width: 4,
+      height: 4,
     },
     shadowOpacity: 0.2,
     shadowRadius: 3,
-    elevation: 8
+    elevation: 8,
   },
   headerImage: {
     width: 60,
@@ -82,10 +119,10 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "flex-end",
   },
-  row: { flexDirection: "row"},
+  row: { flexDirection: "row" },
   description: {
     marginTop: 12,
-    color: ColorsEnum.darkGray
+    color: ColorsEnum.darkGray,
   },
   buttonGroup: {
     flexDirection: "row",
@@ -99,7 +136,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     padding: 8,
     flex: 1,
-    backgroundColor: ColorsEnum.primary
+    backgroundColor: ColorsEnum.primary,
   },
   moreInfoButton: {
     borderRadius: 8,
@@ -108,14 +145,14 @@ const styles = StyleSheet.create({
     padding: 8,
     flex: 1,
     borderColor: ColorsEnum.primary,
-    borderWidth: 2
+    borderWidth: 2,
   },
   bloodType: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center'
+    alignItems: "center",
+    justifyContent: "center",
   },
   headerInfo: {
     flex: 4,
-  }
-})
+  },
+});

@@ -6,14 +6,14 @@ export const useAppNavigation = () => {
 
   return {
     // @ts-expect-error Some navigation types are wrong
-    navigateToOtherProfile: (userId: string) => navigate("OtherProfile", { userId }),
-    navigateToApp: () => navigation.dispatch(
-      StackActions.replace('App')
-      ),
-      navigateToAuth: () => navigation.reset({
+    navigateToOtherProfile: (userId: string) =>
+      navigate("OtherProfile", { userId }),
+    navigateToApp: () => navigation.dispatch(StackActions.replace("App")),
+    navigateToAuth: () =>
+      navigation.reset({
         index: 0,
         // @ts-expect-error Some navigation types are wrong
-        routes: [{ name: 'Authentication' }],
+        routes: [{ name: "Authentication" }],
       }),
     // @ts-expect-error Some navigation types are wrong
     navigateToLogin: () => navigate("Login"),
@@ -22,4 +22,4 @@ export const useAppNavigation = () => {
     navigateToCreateDonationRequest: () => navigate("CreateDonationRequest"),
     goBack,
   };
-}
+};

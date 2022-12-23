@@ -13,32 +13,36 @@ export const ProfileImage: FC<ProfileImageProps> = ({
   size = 200,
   borderRadius = 8,
 }) => {
-
   const imageContainerStyle = StyleSheet.flatten([
     styles.imageContainer,
     {
       width: size + borderRadius,
       height: size + borderRadius,
       borderRadius: (size + borderRadius) / 2,
-    }
-  ])
+    },
+  ]);
 
-  return <View style={imageContainerStyle}>
-    <Image source={{
-        uri: avatar,
-    }} style={{
-      width: size,
-      height: size,
-      borderRadius: size / 2,
-    }} />
-  </View>;
+  return (
+    <View style={imageContainerStyle}>
+      <Image
+        source={{
+          uri: avatar,
+        }}
+        style={{
+          width: size,
+          height: size,
+          borderRadius: size / 2,
+        }}
+      />
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({
   imageContainer: {
     backgroundColor: ColorsEnum.secondary,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
     marginBottom: 16,
   },
 });

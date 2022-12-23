@@ -1,5 +1,5 @@
 type RequestStackParamList = {
-  Landing: { };
+  Landing: {};
   OtherProfile: { userId: string };
-  CreateDonationRequest: {}
+  CreateDonationRequest: {};
 };

@@ -5,4 +5,3 @@ export * from "./OtherProfile";
 export * from "./Profile";
 export * from "./CreateDonationRequest";
 export * from "./Signup";
-

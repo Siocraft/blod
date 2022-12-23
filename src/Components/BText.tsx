@@ -1,6 +1,6 @@
-import { ColorsEnum } from '@theme';
-import { FC } from 'react';
-import { StyleSheet, Text, TextProps } from 'react-native';
+import { ColorsEnum } from "@theme";
+import { FC } from "react";
+import { StyleSheet, Text, TextProps } from "react-native";
 
 interface BTextProps extends TextProps {
   bold?: boolean;
@@ -31,7 +31,7 @@ export const BText: FC<BTextProps> = ({
       {children}
     </Text>
   );
-}
+};
 
 const styles = StyleSheet.create({
   small: {
@@ -62,12 +62,12 @@ const styles = StyleSheet.create({
     color: ColorsEnum.white,
   },
   gray: {
-    color: ColorsEnum.gray
+    color: ColorsEnum.gray,
   },
   darkGray: {
-    color: ColorsEnum.darkGray
+    color: ColorsEnum.darkGray,
   },
   superBold: {
-    fontWeight: "900"
-  }
+    fontWeight: "900",
+  },
 });

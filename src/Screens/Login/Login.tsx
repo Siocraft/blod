@@ -3,96 +3,105 @@ import { ErrorsEnum } from "@constants";
 import { useAppNavigation } from "@hooks";
 import { ColorsEnum } from "@theme";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { useFormik } from 'formik';
+import { useFormik } from "formik";
 import React, { FC } from "react";
 import { Pressable, StyleSheet, View } from "react-native";
-import * as Yup from 'yup';
+import * as Yup from "yup";
 
 const auth = getAuth();
 
 const SigninSchema = Yup.object().shape({
   password: Yup.string().required(ErrorsEnum.Formik.Required),
-  email: Yup.string().email(ErrorsEnum.Formik.Email).required(ErrorsEnum.Formik.Required),
+  email: Yup.string()
+    .email(ErrorsEnum.Formik.Email)
+    .required(ErrorsEnum.Formik.Required),
 });
 
 export const Login: FC = () => {
-
   const { goBack } = useAppNavigation();
 
-  const { handleChange, handleBlur, values, handleSubmit, errors, touched } = useFormik({
-    initialValues: {
-      email: '',
-      password: '',
-    },
-    validationSchema: SigninSchema,
-    onSubmit: values => {
-      signInWithEmailAndPassword(auth, values.email, values.password)
-        .then(() => { // userCredentials
-          console.log('User logged in');
-        })
-        .catch(error => {
-          throw new Error(error);
-        });
-    },
-  });
+  const { handleChange, handleBlur, values, handleSubmit, errors, touched } =
+    useFormik({
+      initialValues: {
+        email: "",
+        password: "",
+      },
+      validationSchema: SigninSchema,
+      onSubmit: values => {
+        signInWithEmailAndPassword(auth, values.email, values.password)
+          .then(() => {
+            // userCredentials
+            console.log("User logged in");
+          })
+          .catch(error => {
+            throw new Error(error);
+          });
+      },
+    });
 
-  const isLoginDisabled = 
-    !values.email ||
-    !values.password ||
-    !!errors.email ||
-    !!errors.password
+  const isLoginDisabled =
+    !values.email || !values.password || !!errors.email || !!errors.password;
 
-    const emailError = !!errors.email && !!touched.email && !!values.email;
-    const passwordError = !!errors.password && !!touched.password && !!values.password;
+  const emailError = !!errors.email && !!touched.email && !!values.email;
+  const passwordError =
+    !!errors.password && !!touched.password && !!values.password;
 
-  return <View style={styles.loginContainer}>
-    <BText size="large" color="black" bold>Ingresa a tu cuenta</BText>
-    <View style={{ height: 16 }}/>
-    <BTextInput
-      textContentType='emailAddress'
-      keyboardType='email-address'
-      autoCapitalize='none'
-      autoCorrect={false}
-      autoComplete='email'
-      spellCheck={false}
-      placeholder="Correo electrónico"
-      onChangeText={handleChange('email')}
-      onBlur={handleBlur('email')}
-      value={values.email}
-      error={emailError}
-      errorMessage={errors.email}
-    />
-    <View style={{ height: 8 }}/>
-    <BTextInput
-      secureTextEntry
-      placeholder="Constraseña"
-      onChangeText={handleChange('password')}
-      onBlur={handleBlur('password')}
-      value={values.password}
-      error={passwordError}
-      errorMessage={errors.password}
-    />
-    <View style={{ height: 8 }}/>
-    <Pressable
-      disabled={isLoginDisabled}
-      style={[
-        styles.loginButton,
-        isLoginDisabled && { backgroundColor: ColorsEnum.disabledButton }
-      ]} 
-      onPress={() => handleSubmit()}
-    >
-      <BText color="darkGray">Ingresar</BText>
-    </Pressable>
-    <View style={{ height: 8 }}/>
-    <Pressable style={styles.backButton} onPress={() => handleSubmit()}>
-      <BText color="secondary">Crear una cuenta</BText>
-    </Pressable>
-    <View style={{ height: 16 }}/>
-    <Pressable onPress={goBack}>
-      <BText color="primary" bold>Regresar</BText>
-    </Pressable>
-  </View>;
-}
+  return (
+    <View style={styles.loginContainer}>
+      <BText size="large" color="black" bold>
+        Ingresa a tu cuenta
+      </BText>
+      <View style={{ height: 16 }} />
+      <BTextInput
+        textContentType="emailAddress"
+        keyboardType="email-address"
+        autoCapitalize="none"
+        autoCorrect={false}
+        autoComplete="email"
+        spellCheck={false}
+        placeholder="Correo electrónico"
+        onChangeText={handleChange("email")}
+        onBlur={handleBlur("email")}
+        value={values.email}
+        error={emailError}
+        errorMessage={errors.email}
+      />
+      <View style={{ height: 8 }} />
+      <BTextInput
+        secureTextEntry
+        placeholder="Constraseña"
+        onChangeText={handleChange("password")}
+        onBlur={handleBlur("password")}
+        value={values.password}
+        error={passwordError}
+        errorMessage={errors.password}
+      />
+      <View style={{ height: 8 }} />
+      <Pressable
+        disabled={isLoginDisabled}
+        style={[
+          styles.loginButton,
+          isLoginDisabled && {
+            backgroundColor: ColorsEnum.disabledButton,
+          },
+        ]}
+        onPress={() => handleSubmit()}
+      >
+        <BText color="darkGray">Ingresar</BText>
+      </Pressable>
+      <View style={{ height: 8 }} />
+      <Pressable style={styles.backButton} onPress={() => handleSubmit()}>
+        <BText color="secondary">Crear una cuenta</BText>
+      </Pressable>
+      <View style={{ height: 16 }} />
+      <Pressable onPress={goBack}>
+        <BText color="primary" bold>
+          Regresar
+        </BText>
+      </Pressable>
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   loginContainer: {
@@ -100,7 +109,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: ColorsEnum.white,
-    padding: 16
+    padding: 16,
   },
   loginButton: {
     backgroundColor: ColorsEnum.secondary,

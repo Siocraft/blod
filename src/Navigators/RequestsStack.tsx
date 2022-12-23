@@ -13,7 +13,10 @@ export const RequestsStack = () => {
     >
       <Stack.Screen name="Landing" component={Landing} />
       <Stack.Screen name="OtherProfile" component={OtherProfile} />
-      <Stack.Screen name="CreateDonationRequest" component={CreateDonationRequest} />
+      <Stack.Screen
+        name="CreateDonationRequest"
+        component={CreateDonationRequest}
+      />
     </Stack.Navigator>
   );
-}
+};

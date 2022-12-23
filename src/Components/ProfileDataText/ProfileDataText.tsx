@@ -19,24 +19,26 @@ export const ProfileDataText: FC<ProfileDataTextProps> = ({
     !left && { paddingLeft: 16 },
   ]);
 
-  return <View style={containerStyle}>
-      {value && <>
-        <BText bold color="black">
-          {label}
-        </BText>
-        <BText color="black">
-          {value}
-        </BText>
-      </>}
-  </View>
-}
+  return (
+    <View style={containerStyle}>
+      {value && (
+        <>
+          <BText bold color="black">
+            {label}
+          </BText>
+          <BText color="black">{value}</BText>
+        </>
+      )}
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   dataTextContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    width: '50%',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    width: "50%",
     marginBottom: 8,
-  }
-})
+  },
+});

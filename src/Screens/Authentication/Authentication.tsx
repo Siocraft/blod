@@ -5,8 +5,8 @@ import React, { FC } from "react";
 import { Pressable, StyleSheet, View } from "react-native";
 
 export const Authentication: FC = () => {
-
-  const { navigateToApp, navigateToLogin, navigateToSignup } = useAppNavigation();
+  const { navigateToApp, navigateToLogin, navigateToSignup } =
+    useAppNavigation();
 
   const onSignInPressed = () => {
     navigateToLogin();
@@ -22,37 +22,50 @@ export const Authentication: FC = () => {
 
   const { user } = useAuth();
 
-  if(user) navigateToApp();
+  if (user) navigateToApp();
 
-  return <View style={styles.authenticationContainer}>
-    <BText color="secondary" bold size="large">
-      Una aplicación para donar sangre en México.
-    </BText>
-    <Pressable onPress={navigateToApp}>
-      <BText color="black" size="large" style={{ marginTop: 8 }}>
-        Puedes donar o encontrar donadores
+  return (
+    <View style={styles.authenticationContainer}>
+      <BText color="secondary" bold size="large">
+        Una aplicación para donar sangre en México.
       </BText>
-    </Pressable>
-    <View style={styles.buttonGroup}>
-      <Pressable style={styles.signInButton} onPress={onSignInPressed}>
-        <BText color="white" bold>Ingresar a tu cuenta</BText>
+      <Pressable onPress={navigateToApp}>
+        <BText color="black" size="large" style={{ marginTop: 8 }}>
+          Puedes donar o encontrar donadores
+        </BText>
       </Pressable>
-      <Pressable style={styles.signUpButton} onPress={onSignUpPressed}>
-        <BText color="secondary" bold>Registrarse</BText>
-      </Pressable>
-      <Pressable onPress={onGuestPressed}>
-        <BText color="secondary" size="large" bold style={{ alignSelf: "center" }}>Continuar como invitado</BText>
-      </Pressable>
+      <View style={styles.buttonGroup}>
+        <Pressable style={styles.signInButton} onPress={onSignInPressed}>
+          <BText color="white" bold>
+            Ingresar a tu cuenta
+          </BText>
+        </Pressable>
+        <Pressable style={styles.signUpButton} onPress={onSignUpPressed}>
+          <BText color="secondary" bold>
+            Registrarse
+          </BText>
+        </Pressable>
+        <Pressable onPress={onGuestPressed}>
+          <BText
+            color="secondary"
+            size="large"
+            bold
+            style={{ alignSelf: "center" }}
+          >
+            Continuar como invitado
+          </BText>
+        </Pressable>
+      </View>
     </View>
-  </View>;
-}
+  );
+};
 
 const styles = StyleSheet.create({
   authenticationContainer: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: ColorsEnum.backgroundSecondary
+    backgroundColor: ColorsEnum.backgroundSecondary,
   },
   buttonGroup: {
     justifyContent: "space-around",
@@ -83,4 +96,4 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     marginBottom: 8,
   },
-})
+});

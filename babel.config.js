@@ -1,30 +1,30 @@
-module.exports = function(api) {
+module.exports = function (api) {
   api.cache(true);
   return {
-    presets: ['babel-preset-expo'],
+    presets: ["babel-preset-expo"],
     plugins: [
       [
-        'module-resolver',
+        "module-resolver",
         {
-          extensions: ['.ios.js', '.android.js', '.js', '.ts', '.tsx', '.json'],
+          extensions: [".ios.js", ".android.js", ".js", ".ts", ".tsx", ".json"],
           alias: {
-            '@components': './src/Components',
-            '@screens': './src/Screens',
-            '@theme': './src/Theme',
-            '@hooks': './src/Hooks',
-            '@config': './src/Config',
-            '@services': './src/Services',
-            '@constants': './src/Constants',
+            "@components": "./src/Components",
+            "@screens": "./src/Screens",
+            "@theme": "./src/Theme",
+            "@hooks": "./src/Hooks",
+            "@config": "./src/Config",
+            "@services": "./src/Services",
+            "@constants": "./src/Constants",
           },
         },
       ],
       [
         "module:react-native-dotenv",
         {
-            moduleName: "@env",
-            path: ".env",
+          moduleName: "@env",
+          path: ".env",
         },
-    ],
+      ],
     ],
   };
 };

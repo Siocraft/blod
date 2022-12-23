@@ -6,45 +6,61 @@ import { Pressable, StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { users } from "../../Data/Users";
 
-export type OtherProfileProps = NativeStackScreenProps<RequestStackParamList, 'OtherProfile'>;
+export type OtherProfileProps = NativeStackScreenProps<
+  RequestStackParamList,
+  "OtherProfile"
+>;
 
-export const OtherProfile: FC<OtherProfileProps> = ({
-  // route,
-}) => {
-
+export const OtherProfile: FC<OtherProfileProps> = (
+  {
+    // route,
+  }
+) => {
   // const { params } = route;
   // const { userId } = params;
 
   const user = users[0];
 
-  if(!user) return null
+  if (!user) return null;
 
-  return <SafeAreaView style={styles.container}>
-    <ProfileImage avatar={user.avatar}/>
-    <BText size="title" superBold color="secondary">{user.name}, {user.age}</BText>
-    <View style={styles.divider} />
-    
-    
-    <ProfileData
-      bloodType={user.bloodType}
-      location={user.location}
-      litersDonated={user.litersDonated}
-      contact={user.contact}
-    />
+  return (
+    <SafeAreaView style={styles.container}>
+      <ProfileImage avatar={user.avatar} />
+      <BText size="title" superBold color="secondary">
+        {user.name}, {user.age}
+      </BText>
+      <View style={styles.divider} />
 
-    <View style={styles.divider} />
-    <View>
-      <BText size="title" bold color="secondary">About</BText>
-      <BText color="black" style={{ marginTop: 8 }}>{user.description}</BText>
-    </View>
+      <ProfileData
+        bloodType={user.bloodType}
+        location={user.location}
+        litersDonated={user.litersDonated}
+        contact={user.contact}
+      />
 
-    <View style={styles.buttonSection}>
-      <Pressable style={styles.contactButton} onPress={() => console.log("Contact")}>
-        <BText color="white" bold>Contact</BText>
-      </Pressable>
-    </View>
-  </SafeAreaView>
-}
+      <View style={styles.divider} />
+      <View>
+        <BText size="title" bold color="secondary">
+          About
+        </BText>
+        <BText color="black" style={{ marginTop: 8 }}>
+          {user.description}
+        </BText>
+      </View>
+
+      <View style={styles.buttonSection}>
+        <Pressable
+          style={styles.contactButton}
+          onPress={() => console.log("Contact")}
+        >
+          <BText color="white" bold>
+            Contact
+          </BText>
+        </Pressable>
+      </View>
+    </SafeAreaView>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -53,7 +69,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   divider: {
-    width: '100%',
+    width: "100%",
     height: 1,
     backgroundColor: ColorsEnum.secondary,
     marginVertical: 16,
@@ -63,7 +79,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     padding: 8,
-    width: '100%',
+    width: "100%",
     backgroundColor: ColorsEnum.secondary,
     marginTop: 16,
   },
@@ -72,14 +88,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     padding: 8,
-    width: '100%',
+    width: "100%",
     borderColor: ColorsEnum.secondary,
     marginTop: 8,
-    borderWidth: 2
+    borderWidth: 2,
   },
   buttonSection: {
-    position: 'absolute',
-    width: '100%',
+    position: "absolute",
+    width: "100%",
     bottom: 16,
-  }
-})
+  },
+});

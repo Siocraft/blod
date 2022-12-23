@@ -5,7 +5,6 @@ import React, { FC } from "react";
 import { View, StyleSheet, Pressable } from "react-native";
 
 export const CreateRequestButton: FC = () => {
-
   const { navigateToCreateDonationRequest } = useAppNavigation();
 
   const onCreateRequest = () => {
@@ -15,7 +14,9 @@ export const CreateRequestButton: FC = () => {
   return (
     <View style={styles.container}>
       <Pressable onPress={onCreateRequest} style={styles.button}>
-        <BText size="large" bold style={styles.text}>Crear una petición</BText>
+        <BText size="large" bold style={styles.text}>
+          Crear una petición
+        </BText>
       </Pressable>
     </View>
   );
