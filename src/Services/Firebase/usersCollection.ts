@@ -9,7 +9,7 @@ export const getUsers = async () => {
   return users;
 }
 
-export const getUser = async (id: string) => {
+export const getUser = async (id?: string) => {
   if(!id) return null;
   const user = await getDoc(doc(usersCollection, id));
   return user.data();

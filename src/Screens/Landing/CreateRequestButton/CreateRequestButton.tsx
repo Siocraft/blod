@@ -1,12 +1,15 @@
 import { BText } from "@components";
+import { useAppNavigation } from "@hooks";
 import { ColorsEnum } from "@theme";
 import React, { FC } from "react";
 import { View, StyleSheet, Pressable } from "react-native";
 
 export const CreateRequestButton: FC = () => {
 
+  const { navigateToCreateDonationRequest } = useAppNavigation();
+
   const onCreateRequest = () => {
-    console.log("Create Request");
+    navigateToCreateDonationRequest();
   };
 
   return (
@@ -27,7 +30,7 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   button: {
-    backgroundColor: ColorsEnum.success,
+    backgroundColor: ColorsEnum.secondary,
     height: 50,
     justifyContent: "center",
     alignItems: "center",
