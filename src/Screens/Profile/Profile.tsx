@@ -6,6 +6,7 @@ import { StyleSheet, View } from "react-native";
 import { ButtonHub } from "./ButtonHub";
 import { GuestSignedIn } from "./GuestSignedIn";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { Loading } from "../Loading";
 
 export const Profile = () => {
   const { user: authUser } = useAuth();
@@ -17,7 +18,7 @@ export const Profile = () => {
 
   if (!authUser) return <GuestSignedIn />;
   if (!user) return null;
-  if (isLoadingUser) return <BText>Cargando</BText>;
+  if (isLoadingUser) return <Loading />;
   if (isErrorUser) return <BText>Error</BText>;
 
   return (
