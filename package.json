@@ -15,6 +15,7 @@
     "@react-navigation/native": "^6.0.13",
     "@react-navigation/native-stack": "^6.9.1",
     "@tanstack/react-query": "^4.13.0",
+    "enhanced-fluid-bottom-navigation-bar": "^0.2.4",
     "expo": "~46.0.9",
     "expo-status-bar": "~1.4.0",
     "firebase": "^9.12.1",

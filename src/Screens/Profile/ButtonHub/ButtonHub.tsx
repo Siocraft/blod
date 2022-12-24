@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
   buttonHubContainer: {
     position: "absolute",
     width: "100%",
-    bottom: 16,
+    bottom: 32,
   },
   contactButton: {
     borderRadius: 8,
