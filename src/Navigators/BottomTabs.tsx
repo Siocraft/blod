@@ -1,12 +1,14 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Information, Menu, Profile } from "@screens";
+import { Information, Menu } from "@screens";
 import React, { FC, useState } from "react";
 import { RequestsStack } from "./RequestsStack";
+import { ProfileStack } from "./ProfileStack";
 // @ts-expect-error No typings available
 import TabBar from "enhanced-fluid-bottom-navigation-bar";
 import { View } from "react-native";
 import { ColorsEnum } from "@theme";
 import { useAppNavigation } from "@hooks";
+import { NavigationConstants } from "@constants";
 
 const FluidTabBar: FC = () => {
   const {
@@ -93,10 +95,19 @@ export const BottomTabs: FC = () => {
       }}
       tabBar={() => <FluidTabBar />}
     >
-      <Tab.Screen name="Requests" component={RequestsStack} />
-      <Tab.Screen name="Profile" component={Profile} />
-      <Tab.Screen name="Information" component={Information} />
-      <Tab.Screen name="Menu" component={Menu} />
+      <Tab.Screen
+        name={NavigationConstants.Stacks.RequestStack}
+        component={RequestsStack}
+      />
+      <Tab.Screen
+        name={NavigationConstants.Stacks.ProfileStack}
+        component={ProfileStack}
+      />
+      <Tab.Screen
+        name={NavigationConstants.Screens.Information}
+        component={Information}
+      />
+      <Tab.Screen name={NavigationConstants.Screens.Menu} component={Menu} />
     </Tab.Navigator>
   );
 };

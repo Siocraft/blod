@@ -1,3 +1,4 @@
+import { NavigationConstants } from "@constants";
 import { StackActions, useNavigation } from "@react-navigation/native";
 
 export const useAppNavigation = () => {
@@ -8,27 +9,30 @@ export const useAppNavigation = () => {
     navigateToOtherProfile: (userId: string) =>
       // @ts-expect-error Some navigation types are wrong
       navigate("OtherProfile", { userId }),
-    navigateToApp: () => navigation.dispatch(StackActions.replace("App")),
+    navigateToApp: () =>
+      navigation.dispatch(StackActions.replace(NavigationConstants.Root.App)),
     navigateToAuth: () =>
       navigation.reset({
         index: 0,
         // @ts-expect-error Some navigation types are wrong
-        routes: [{ name: "Authentication" }],
+        routes: [{ name: NavigationConstants.Root.Authentication }],
       }),
     // @ts-expect-error Some navigation types are wrong
-    navigateToLogin: () => navigate("Login"),
+    navigateToLogin: () => navigate(NavigationConstants.Screens.Login),
     // @ts-expect-error Some navigation types are wrong
-    navigateToSignup: () => navigate("Signup"),
+    navigateToSignup: () => navigate(NavigationConstants.Screens.Signup),
     // @ts-expect-error Some navigation types are wrong
-    navigateToRequests: () => navigate("Requests"),
+    navigateToRequests: () => navigate(NavigationConstants.Stacks.RequestStack),
     // @ts-expect-error Some navigation types are wrong
-    navigateToProfile: () => navigate("Profile"),
+    navigateToProfile: () => navigate(NavigationConstants.Stacks.ProfileStack),
     // @ts-expect-error Some navigation types are wrong
-    navigateToInformation: () => navigate("Information"),
+    navigateToInformation: () =>
+      navigate(NavigationConstants.Screens.Information),
     // @ts-expect-error Some navigation types are wrong
-    navigateToMenu: () => navigate("Menu"),
+    navigateToMenu: () => navigate(NavigationConstants.Screens.Menu),
     // @ts-expect-error Some navigation types are wrong
-    navigateToCreateDonationRequest: () => navigate("CreateDonationRequest"),
+    navigateToCreateDonationRequest: () =>
+      navigate(NavigationConstants.Screens.CreateDonationRequest),
     goBack,
   };
 };

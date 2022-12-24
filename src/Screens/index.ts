@@ -1,5 +1,5 @@
 export * from "./Authentication";
-export * from "./Landing";
+export * from "./Requests";
 export * from "./Login";
 export * from "./OtherProfile";
 export * from "./Profile";

@@ -1,5 +1,6 @@
+import { NavigationConstants } from "@constants";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { CreateDonationRequest, Landing, OtherProfile } from "@screens";
+import { CreateDonationRequest, Requests, OtherProfile } from "@screens";
 import React from "react";
 
 const Stack = createNativeStackNavigator<RequestStackParamList>();
@@ -11,7 +12,7 @@ export const RequestsStack = () => {
         header: () => null,
       }}
     >
-      <Stack.Screen name="Landing" component={Landing} />
+      <Stack.Screen name="Requests" component={Requests} />
       <Stack.Screen name="OtherProfile" component={OtherProfile} />
       <Stack.Screen
         name="CreateDonationRequest"

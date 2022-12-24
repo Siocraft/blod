@@ -9,7 +9,7 @@ import { donationRequests } from "../../Data/DonationRequests";
 import { CreateRequestButton } from "./CreateRequestButton";
 import { DonationRequestCard } from "./DonationRequestCard";
 
-export const Landing = () => {
+export const Requests = () => {
   const insets = useSafeAreaInsets();
 
   return (
