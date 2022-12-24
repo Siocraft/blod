@@ -13,31 +13,24 @@ export const CreateRequestButton: FC = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <Pressable onPress={onCreateRequest} style={styles.button}>
-        <Ionicons
-          name="add"
-          size={32}
-          color="white"
-        />
-      </Pressable>
-    </View>
+    <Pressable onPress={onCreateRequest} style={styles.button}>
+      <Ionicons
+        name="add"
+        size={32}
+        color="white"
+      />
+    </Pressable>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 16,
-    position: "absolute",
-    bottom: 0,
-    width: "100%",
-    alignItems: "flex-end",
-  },
   button: {
     backgroundColor: ColorsEnum.secondary,
     height: 50,
     width: 50,
+    position: "absolute",
+    bottom: 16,
+    right: 16,
     borderRadius: 25,
     justifyContent: "center",
     alignItems: "center",
