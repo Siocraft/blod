@@ -1,9 +1,9 @@
 import { BText } from "@components";
-import React from "react";
+import { FC } from "react";
 import { View, StyleSheet } from "react-native";
 import LottieView from "lottie-react-native";
 
-export const Loading = () => {
+export const ErrorScreen: FC = () => {
   return (
     <View style={styles.animationContainer}>
       <LottieView
@@ -15,14 +15,14 @@ export const Loading = () => {
           backgroundColor: "#fff",
         }}
         // Find more Lottie files at https://lottiefiles.com/featured
-        source={require("./Animations/Loader-Blod.json")}
+        source={require("./Animations/Error-Blod.json")}
       />
-      <BText color="secondary" size="large">
-        Cargando...
+      <BText size="large" style={styles.text}>
+        Ha ocurrido un error
       </BText>
     </View>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   animationContainer: {
@@ -31,4 +31,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     flex: 1,
   },
+  text: {
+    marginTop: 16,
+  }
 });
