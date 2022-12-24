@@ -7,3 +7,4 @@ export * from "./CreateDonationRequest";
 export * from "./Signup";
 export * from "./Information";
 export * from "./Menu";
+export * from "./EditProfile";

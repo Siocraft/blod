@@ -1,11 +1,16 @@
 import { BText } from "@components";
-import { useSignOut } from "@hooks";
+import { useAppNavigation, useSignOut } from "@hooks";
 import { ColorsEnum } from "@theme";
 import React, { FC } from "react";
 import { Pressable, View, StyleSheet } from "react-native";
 
 export const ButtonHub: FC = () => {
   const { signOutFromApp } = useSignOut();
+  const { navigateToEditProfile } = useAppNavigation();
+
+  const onPressEditProfile = () => {
+    navigateToEditProfile();
+  };
 
   return (
     <View style={styles.buttonHubContainer}>
@@ -17,7 +22,7 @@ export const ButtonHub: FC = () => {
           Quiero donar sangre
         </BText>
       </Pressable>
-      <Pressable style={styles.editButton} onPress={() => console.log("Edit")}>
+      <Pressable style={styles.editButton} onPress={onPressEditProfile}>
         <BText color="secondary" bold>
           Editar perfil
         </BText>

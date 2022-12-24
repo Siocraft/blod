@@ -1,13 +1,24 @@
-import { BText, BTextInput } from "@components";
+import { BText, BTextInput, ProfileImage } from "@components";
+import { useAuth, useUser } from "@hooks";
 import { useFormik } from "formik";
 import { FC } from "react";
 import { View, StyleSheet } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { ErrorScreen } from "../Error";
+import { Loading } from "../Loading";
+import { GuestSignedIn } from "../Profile/GuestSignedIn";
 
 export const EditProfile: FC = () => {
+  const { user: authUser } = useAuth();
+  const {
+    data: user,
+    isLoading: isLoadingUser,
+    isError: isErrorUser,
+  } = useUser(authUser?.uid);
+
   const { handleChange, handleBlur, values, handleSubmit, errors, touched } =
     useFormik({
       initialValues: {
-        email: "",
         password: "",
       },
       onSubmit: values => {
@@ -15,30 +26,21 @@ export const EditProfile: FC = () => {
       },
     });
 
-  const emailError = !!errors.email && !!touched.email && !!values.email;
+  if (!authUser) return <GuestSignedIn />;
+  if (isLoadingUser) return <Loading />;
+  if (!user || isErrorUser) return <ErrorScreen />;
+
   const passwordError =
     !!errors.password && !!touched.password && !!values.password;
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
+      <ProfileImage avatar={user.avatar} />
       <BText size="large" color="black" bold>
         Editar perfil
       </BText>
       <View style={{ height: 16 }} />
-      <BTextInput
-        textContentType="emailAddress"
-        keyboardType="email-address"
-        autoCapitalize="none"
-        autoCorrect={false}
-        autoComplete="email"
-        spellCheck={false}
-        placeholder="Correo electrónico"
-        onChangeText={handleChange("email")}
-        onBlur={handleBlur("email")}
-        value={values.email}
-        error={emailError}
-        errorMessage={errors.email}
-      />
+      <BTextInput value={authUser.email ?? ""} disabled />
       <View style={{ height: 8 }} />
       <BTextInput
         secureTextEntry
@@ -50,14 +52,14 @@ export const EditProfile: FC = () => {
         errorMessage={errors.password}
       />
       <View style={{ height: 8 }} />
-    </View>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
     alignItems: "center",
+    padding: 16,
   },
 });

@@ -25,6 +25,9 @@ export const useAppNavigation = () => {
     navigateToRequests: () => navigate(NavigationConstants.Stacks.RequestStack),
     // @ts-expect-error Some navigation types are wrong
     navigateToProfile: () => navigate(NavigationConstants.Stacks.ProfileStack),
+    navigateToEditProfile: () =>
+      // @ts-expect-error Some navigation types are wrong
+      navigate(NavigationConstants.Screens.EditProfile),
     navigateToInformation: () =>
       // @ts-expect-error Some navigation types are wrong
       navigate(NavigationConstants.Screens.Information),
