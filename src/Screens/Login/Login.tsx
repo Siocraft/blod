@@ -18,7 +18,7 @@ const SigninSchema = Yup.object().shape({
 });
 
 export const Login: FC = () => {
-  const { goBack } = useAppNavigation();
+  const { goBack, navigateToSignup } = useAppNavigation();
 
   const { handleChange, handleBlur, values, handleSubmit, errors, touched } =
     useFormik({
@@ -38,6 +38,10 @@ export const Login: FC = () => {
           });
       },
     });
+
+  const onPressCreateAccount = () => {
+    navigateToSignup();
+  };
 
   const isLoginDisabled =
     !values.email || !values.password || !!errors.email || !!errors.password;
@@ -87,10 +91,10 @@ export const Login: FC = () => {
         ]}
         onPress={() => handleSubmit()}
       >
-        <BText color="darkGray">Ingresar</BText>
+        <BText color={isLoginDisabled ? "darkGray" : "white"}>Ingresar</BText>
       </Pressable>
       <View style={{ height: 8 }} />
-      <Pressable style={styles.backButton} onPress={() => handleSubmit()}>
+      <Pressable style={styles.backButton} onPress={onPressCreateAccount}>
         <BText color="secondary">Crear una cuenta</BText>
       </Pressable>
       <View style={{ height: 16 }} />

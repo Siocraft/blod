@@ -21,8 +21,8 @@ export const ErrorScreen: FC = () => {
         Ha ocurrido un error
       </BText>
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   animationContainer: {
@@ -33,5 +33,5 @@ const styles = StyleSheet.create({
   },
   text: {
     marginTop: 16,
-  }
+  },
 });

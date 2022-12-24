@@ -123,7 +123,9 @@ export const Signup: FC = () => {
         ]}
         onPress={onCreateAccount}
       >
-        <BText color="darkGray">Crear cuenta</BText>
+        <BText color={isCreateAccountDisabled ? "darkGray" : "white"}>
+          Crear cuenta
+        </BText>
       </Pressable>
       <View style={{ height: 8 }} />
       <Pressable style={styles.backButton} onPress={onAlreadyHaveAnAccount}>
