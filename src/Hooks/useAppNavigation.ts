@@ -15,8 +15,8 @@ export const useAppNavigation = () => {
         // @ts-expect-error Some navigation types are wrong
         routes: [{ name: "Authentication" }],
       }),
-      // @ts-expect-error Some navigation types are wrong
-      navigateToLogin: () => navigate("Login"),
+    // @ts-expect-error Some navigation types are wrong
+    navigateToLogin: () => navigate("Login"),
     // @ts-expect-error Some navigation types are wrong
     navigateToSignup: () => navigate("Signup"),
     // @ts-expect-error Some navigation types are wrong

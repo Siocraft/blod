@@ -1,5 +1,5 @@
 import { ColorsEnum } from "@theme";
-import { FC } from "react";
+import React, { FC } from "react";
 import { StyleSheet, Text, TextProps } from "react-native";
 
 interface BTextProps extends TextProps {
