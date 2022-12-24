@@ -4,6 +4,7 @@ import { StyleSheet, TextInput, TextInputProps, View } from "react-native";
 import { BText } from "./BText";
 
 type BTextInputProps = TextInputProps & {
+  disabled?: boolean;
   icon?: boolean;
   error?: never;
   errorMessage?: never;
@@ -23,6 +24,7 @@ export const BTextInput: FC<Props> = ({
   icon = false,
   error = false,
   errorMessage,
+  disabled,
   ...props
 }) => {
   return (
@@ -31,11 +33,18 @@ export const BTextInput: FC<Props> = ({
         style={[
           styles.inputContainer,
           error && { borderColor: ColorsEnum.error },
+          disabled && {
+            backgroundColor: ColorsEnum.gray,
+            borderColor: ColorsEnum.gray,
+          },
         ]}
       >
         {icon && <BText>Icon</BText>}
         <TextInput
-          style={{ flex: 1, marginLeft: icon ? 8 : 0 }}
+          style={[
+            { flex: 1, marginLeft: icon ? 8 : 0 },
+            disabled && { color: ColorsEnum.darkGray },
+          ]}
           placeholderTextColor={ColorsEnum.darkGray}
           {...props}
         />
