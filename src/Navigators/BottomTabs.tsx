@@ -35,12 +35,12 @@ const FluidTabBar: FC = () => {
       case 2:
         tabsTintColor !== ColorsEnum.secondary &&
           setTabsTintColor(ColorsEnum.secondary);
-          navigateToInformation();
+        navigateToInformation();
         break;
       case 3:
         tabsTintColor !== ColorsEnum.secondary &&
           setTabsTintColor(ColorsEnum.secondary);
-          navigateToMenu();
+        navigateToMenu();
         break;
       default:
         break;

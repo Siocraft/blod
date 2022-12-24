@@ -2,7 +2,7 @@ import { BText } from "@components";
 import { useAppNavigation } from "@hooks";
 import { ColorsEnum } from "@theme";
 import React, { FC } from "react";
-import { View, StyleSheet, Pressable } from "react-native";
+import { StyleSheet, Pressable } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
 export const CreateRequestButton: FC = () => {
@@ -14,11 +14,7 @@ export const CreateRequestButton: FC = () => {
 
   return (
     <Pressable onPress={onCreateRequest} style={styles.button}>
-      <Ionicons
-        name="add"
-        size={32}
-        color="white"
-      />
+      <Ionicons name="add" size={32} color="white" />
     </Pressable>
   );
 };
