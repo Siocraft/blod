@@ -3,7 +3,7 @@ import { useAppNavigation } from "@hooks";
 import { ColorsEnum } from "@theme";
 import React, { FC } from "react";
 import { View, StyleSheet, Pressable } from "react-native";
-import { Ionicons } from '@expo/vector-icons'; 
+import { Ionicons } from "@expo/vector-icons";
 
 export const CreateRequestButton: FC = () => {
   const { navigateToCreateDonationRequest } = useAppNavigation();
@@ -14,9 +14,13 @@ export const CreateRequestButton: FC = () => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.button}>
-        <Ionicons onPress={onCreateRequest} name="add" size={32} color="white" />
-      </View>
+      <Pressable onPress={onCreateRequest} style={styles.button}>
+        <Ionicons
+          name="add"
+          size={32}
+          color="white"
+        />
+      </Pressable>
     </View>
   );
 };

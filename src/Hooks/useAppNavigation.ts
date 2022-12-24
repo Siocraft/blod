@@ -24,6 +24,10 @@ export const useAppNavigation = () => {
     // @ts-expect-error Some navigation types are wrong
     navigateToProfile: () => navigate("Profile"),
     // @ts-expect-error Some navigation types are wrong
+    navigateToInformation: () => navigate("Information"),
+    // @ts-expect-error Some navigation types are wrong
+    navigateToMenu: () => navigate("Menu"),
+    // @ts-expect-error Some navigation types are wrong
     navigateToCreateDonationRequest: () => navigate("CreateDonationRequest"),
     goBack,
   };

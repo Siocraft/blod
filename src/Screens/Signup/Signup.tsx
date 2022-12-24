@@ -28,37 +28,31 @@ const SignupSchema = Yup.object().shape({
 export const Signup: FC = () => {
   const { goBack, navigateToLogin } = useAppNavigation();
 
-  const {
-    handleChange,
-    handleBlur,
-    values,
-    handleSubmit,
-    errors,
-    touched,
-  } = useFormik({
-    initialValues: {
-      email: "",
-      password: "",
-      passwordConfirmation: "",
-    },
-    validationSchema: SignupSchema,
-    onSubmit: values => {
-      createUserWithEmailAndPassword(auth, values.email, values.password)
-        .then(userCredential => {
-          createUser(userCredential.user.uid);
-        })
-        .catch(error => {
-          if (error.code === ErrorsEnum.Firebase.Auth.EmailAlreadyInUse) {
-            console.log("That email address is already in use!");
-          }
-          if (error.code === ErrorsEnum.Firebase.Auth.EmailAlreadyInUse) {
-            console.log("That email address is invalid!");
-          }
+  const { handleChange, handleBlur, values, handleSubmit, errors, touched } =
+    useFormik({
+      initialValues: {
+        email: "",
+        password: "",
+        passwordConfirmation: "",
+      },
+      validationSchema: SignupSchema,
+      onSubmit: values => {
+        createUserWithEmailAndPassword(auth, values.email, values.password)
+          .then(userCredential => {
+            createUser(userCredential.user.uid);
+          })
+          .catch(error => {
+            if (error.code === ErrorsEnum.Firebase.Auth.EmailAlreadyInUse) {
+              console.log("That email address is already in use!");
+            }
+            if (error.code === ErrorsEnum.Firebase.Auth.EmailAlreadyInUse) {
+              console.log("That email address is invalid!");
+            }
 
-          console.error(error);
-        });
-    },
-  });
+            console.error(error);
+          });
+      },
+    });
 
   const onCreateAccount = () => handleSubmit();
 

@@ -5,9 +5,9 @@ import "../Config/firebase";
 import { queryClient } from "../Config/reactQuery";
 import { RootStackNavigator } from "../Navigators";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import { LogBox } from 'react-native';
-LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
-LogBox.ignoreAllLogs();//Ignore all log notifications
+import { LogBox } from "react-native";
+LogBox.ignoreLogs(["Warning: ..."]); // Ignore log notification by message
+LogBox.ignoreAllLogs(); //Ignore all log notifications
 
 export const App = () => {
   return (
