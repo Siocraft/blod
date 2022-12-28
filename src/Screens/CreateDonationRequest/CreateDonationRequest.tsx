@@ -17,8 +17,6 @@ export const CreateDonationRequest: FC = () => {
   if (isErrorUser) return null;
   if (!userData) return null;
 
-  console.log(userData);
-
   return (
     <SafeAreaView>
       <BText size="title" bold color="black" style={{ alignSelf: "center" }}>

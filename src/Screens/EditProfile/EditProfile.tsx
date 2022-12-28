@@ -14,16 +14,13 @@ import { CityModal } from "./CityModal";
 
 export const EditProfile: FC = () => {
   const { user: authUser } = useAuth();
-  const {
-    data: user,
-    isError: isErrorUser,
-  } = useUser(authUser?.uid);
+  const { data: user, isError: isErrorUser } = useUser(authUser?.uid);
 
   const [bloodTypeModalVisible, setBloodTypeModalVisible] = useState(false);
   const [cityModalVisible, setCityModalVisible] = useState(false);
   const { goBack } = useAppNavigation();
 
-  const updateUserMutation = useUpdateUser(authUser?.uid ?? '');
+  const updateUserMutation = useUpdateUser(authUser?.uid ?? "");
 
   const { handleChange, handleBlur, values, handleSubmit, setFieldValue } =
     useFormik({
@@ -35,8 +32,8 @@ export const EditProfile: FC = () => {
       },
       onSubmit: submittedValues => {
         updateUserMutation({
-          id: authUser?.uid ?? '',
-          data: submittedValues
+          id: authUser?.uid ?? "",
+          data: submittedValues,
         });
         goBack();
       },
@@ -83,7 +80,11 @@ export const EditProfile: FC = () => {
         Editar perfil
       </BText>
       <View style={{ height: 16 }} />
-      <BTextInput value={values.name} onChangeText={handleChange("name")} icon={() => <MaterialIcons name="person" size={18} color="black" />} />
+      <BTextInput
+        value={values.name}
+        onChangeText={handleChange("name")}
+        icon={() => <MaterialIcons name="person" size={18} color="black" />}
+      />
       <View style={{ height: 16 }} />
       <BTextInput
         value={authUser.email ?? ""}

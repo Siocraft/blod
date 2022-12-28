@@ -12,10 +12,7 @@ import { queryClient, QueryKeys } from "@config";
 
 export const Profile = () => {
   const { user: authUser } = useAuth();
-  const {
-    data: user,
-    isError: isErrorUser,
-  } = useUser(authUser?.uid);
+  const { data: user, isError: isErrorUser } = useUser(authUser?.uid);
 
   if (!authUser) return <GuestSignedIn />;
   if (!user || isErrorUser) return <ErrorScreen />;
@@ -66,5 +63,5 @@ const styles = StyleSheet.create({
   },
   description: {
     width: "100%",
-  }
+  },
 });

@@ -7,7 +7,6 @@ import { LoadingContext } from "@context";
 import { ColorsEnum } from "@theme";
 
 export const Loading = () => {
-
   const { message } = useContext(LoadingContext);
 
   return (
@@ -23,9 +22,11 @@ export const Loading = () => {
         // Find more Lottie files at https://lottiefiles.com/featured
         source={require("./Animations/Loader-Blod.json")}
       />
-      {!!message && <BText color="secondary" size="large">
-        {message}
-      </BText>}
+      {!!message && (
+        <BText color="secondary" size="large">
+          {message}
+        </BText>
+      )}
     </View>
   );
 };
@@ -41,6 +42,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     flex: 1,
     position: "absolute",
-    zIndex: 10
+    zIndex: 10,
   },
 });

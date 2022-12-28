@@ -31,7 +31,6 @@ export const Login: FC = () => {
         signInWithEmailAndPassword(auth, values.email, values.password)
           .then(() => {
             // userCredentials
-            console.log("User logged in");
           })
           .catch(error => {
             throw new Error(error);

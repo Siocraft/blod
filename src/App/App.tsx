@@ -12,26 +12,27 @@ LogBox.ignoreLogs(["Warning: ..."]); // Ignore log notification by message
 LogBox.ignoreAllLogs(); //Ignore all log notifications
 
 export const App = () => {
-
-  const [ isLoading, setIsLoading ] = useState(false)
-  const [ loadingMessage, setIsLoadingMessage ] = useState('')
+  const [isLoading, setIsLoading] = useState(false);
+  const [loadingMessage, setIsLoadingMessage] = useState("");
 
   return (
     <QueryClientProvider client={queryClient}>
       <NavigationContainer>
         <SafeAreaProvider>
-          <LoadingContext.Provider value={{
-            loading: isLoading,
-            message: loadingMessage,
-            showLoading: (message: string) => {
-              setIsLoading(true)
-              setIsLoadingMessage(message)
-            },
-            hideLoading: () => {
-              setIsLoading(false)
-              setIsLoadingMessage('')
-            }
-          }}>
+          <LoadingContext.Provider
+            value={{
+              loading: isLoading,
+              message: loadingMessage,
+              showLoading: (message: string) => {
+                setIsLoading(true);
+                setIsLoadingMessage(message);
+              },
+              hideLoading: () => {
+                setIsLoading(false);
+                setIsLoadingMessage("");
+              },
+            }}
+          >
             {isLoading && <Loading />}
             <RootStackNavigator />
           </LoadingContext.Provider>

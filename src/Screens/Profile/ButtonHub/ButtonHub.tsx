@@ -1,11 +1,10 @@
 import { BText } from "@components";
-import { useAppNavigation, useSignOut } from "@hooks";
+import { useAppNavigation } from "@hooks";
 import { ColorsEnum } from "@theme";
 import React, { FC } from "react";
 import { Pressable, View, StyleSheet } from "react-native";
 
 export const ButtonHub: FC = () => {
-  const { signOutFromApp } = useSignOut();
   const { navigateToEditProfile } = useAppNavigation();
 
   const onPressEditProfile = () => {
@@ -25,15 +24,6 @@ export const ButtonHub: FC = () => {
       <Pressable style={styles.editButton} onPress={onPressEditProfile}>
         <BText color="secondary" bold>
           Editar perfil
-        </BText>
-      </Pressable>
-      <Pressable onPress={signOutFromApp}>
-        <BText
-          color="primary"
-          bold
-          style={{ alignSelf: "center", marginTop: 8 }}
-        >
-          Cerrar sesión
         </BText>
       </Pressable>
     </View>

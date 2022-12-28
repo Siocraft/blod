@@ -4,30 +4,25 @@ import { useMutation } from "@tanstack/react-query";
 import { LoadingContext } from "@context";
 import { useContext } from "react";
 
-type updateUserMutationParams ={
+type updateUserMutationParams = {
   id: string;
   data: any;
-}
+};
 
 export const useUpdateUser = (uid: string) => {
-
   const { showLoading, hideLoading } = useContext(LoadingContext);
 
   const { mutateAsync } = useMutation(
-    async ({
-      id,
-      data
-    }: updateUserMutationParams
-    ) => {
-      showLoading("Actualizando usuario")
+    async ({ id, data }: updateUserMutationParams) => {
+      showLoading("Actualizando usuario");
       return await updateUser(id, data);
     },
     {
       onSettled: () => {
-        queryClient.invalidateQueries([QueryKeys.USER, uid])
+        queryClient.invalidateQueries([QueryKeys.USER, uid]);
         hideLoading();
       },
     }
-);
+  );
   return mutateAsync;
-}
+};
