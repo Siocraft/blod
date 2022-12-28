@@ -22,8 +22,6 @@ export const Profile = () => {
   if (isLoadingUser) return <Loading />;
   if (!user || isErrorUser) return <ErrorScreen />;
 
-  console.log(user);
-
   return (
     <SafeAreaView style={styles.container}>
       <ProfileImage avatar={user.avatar} />

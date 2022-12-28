@@ -1,8 +1,8 @@
 import { BDropdown, BText, BTextInput, ProfileImage } from "@components";
-import { useAppNavigation, useAuth, useUser } from "@hooks";
+import { useAppNavigation, useAuth, useUpdateUser, useUser } from "@hooks";
 import { useFormik } from "formik";
 import React, { FC, useState } from "react";
-import { View, StyleSheet, Pressable, TextInput } from "react-native";
+import { View, StyleSheet, Pressable } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ErrorScreen } from "../Error";
 import { Loading } from "../Loading";
@@ -11,7 +11,6 @@ import { Fontisto, MaterialIcons, Entypo } from "@expo/vector-icons";
 import { ColorsEnum } from "@theme";
 import { BloodTypeModal } from "./BloodTypeModal";
 import { CityModal } from "./CityModal";
-import { updateUser } from "@services";
 import { queryClient, QueryKeys } from "@config";
 
 export const EditProfile: FC = () => {
@@ -26,6 +25,8 @@ export const EditProfile: FC = () => {
   const [cityModalVisible, setCityModalVisible] = useState(false);
   const { goBack } = useAppNavigation();
 
+  const updateUserMutation = useUpdateUser(authUser?.uid ?? '');
+
   const { handleChange, handleBlur, values, handleSubmit, setFieldValue } =
     useFormik({
       initialValues: {
@@ -35,9 +36,10 @@ export const EditProfile: FC = () => {
         description: user?.description,
       },
       onSubmit: submittedValues => {
-        console.log(submittedValues);
-        updateUser(authUser?.uid, submittedValues);
-        queryClient.invalidateQueries([QueryKeys.USER, authUser?.uid]);
+        updateUserMutation({
+          id: authUser?.uid ?? '',
+          data: submittedValues
+        });
         goBack();
       },
     });
