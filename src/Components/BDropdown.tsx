@@ -17,7 +17,6 @@ export const BDropdown: FC<BDropdownProps> = ({
   iconLeft,
   iconRight,
 }) => {
-
   return (
     <Pressable
       onPress={onPress}

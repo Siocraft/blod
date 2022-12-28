@@ -6,9 +6,7 @@ import { StyleSheet, View } from "react-native";
 import { ButtonHub } from "./ButtonHub";
 import { GuestSignedIn } from "./GuestSignedIn";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Loading } from "../Loading";
 import { ErrorScreen } from "../Error";
-import { queryClient, QueryKeys } from "@config";
 
 export const Profile = () => {
   const { user: authUser } = useAuth();

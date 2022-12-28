@@ -12,7 +12,8 @@
       "@config": ["src/Config"],
       "@services": ["src/Services"],
       "@constants": ["src/Constants"],
-      "@context": ["src/Context"]
+      "@context": ["src/Context"],
+      "@utils": ["src/Utils"]
     },
     "resolveJsonModule": true,
     "skipLibCheck": true

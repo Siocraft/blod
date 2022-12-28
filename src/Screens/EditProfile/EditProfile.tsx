@@ -5,12 +5,13 @@ import React, { FC, useState } from "react";
 import { View, StyleSheet, Pressable } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ErrorScreen } from "../Error";
-import { Loading } from "../Loading";
 import { GuestSignedIn } from "../Profile/GuestSignedIn";
 import { Fontisto, MaterialIcons, Entypo } from "@expo/vector-icons";
 import { ColorsEnum } from "@theme";
 import { BloodTypeModal } from "./BloodTypeModal";
 import { CityModal } from "./CityModal";
+import { BirthDateModal } from "./BirthDateModal";
+import { isoDateToDayMonthYear } from "@utils";
 
 export const EditProfile: FC = () => {
   const { user: authUser } = useAuth();
@@ -18,6 +19,7 @@ export const EditProfile: FC = () => {
 
   const [bloodTypeModalVisible, setBloodTypeModalVisible] = useState(false);
   const [cityModalVisible, setCityModalVisible] = useState(false);
+  const [birthdayModalVisible, setBirthdayModalVisible] = useState(false);
   const { goBack } = useAppNavigation();
 
   const updateUserMutation = useUpdateUser(authUser?.uid ?? "");
@@ -29,6 +31,7 @@ export const EditProfile: FC = () => {
         bloodType: user?.bloodType,
         city: user?.location,
         description: user?.description,
+        birthDate: user?.birthDate,
       },
       onSubmit: submittedValues => {
         updateUserMutation({
@@ -47,6 +50,9 @@ export const EditProfile: FC = () => {
 
   if (values.description === undefined && user?.description)
     setFieldValue("description", user.description);
+
+  if (values.birthDate === undefined && user?.birthDate)
+    setFieldValue("birthDate", user.birthDate);
 
   if (values.name === undefined && user?.name) setFieldValue("name", user.name);
 
@@ -73,6 +79,14 @@ export const EditProfile: FC = () => {
     setCityModalVisible(false);
   };
 
+  const onPressShowBirthDateModal = () => {
+    setBirthdayModalVisible(true);
+  };
+
+  const onPressHideBirthDateModal = () => {
+    setBirthdayModalVisible(false);
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <ProfileImage avatar={user.avatar} />
@@ -83,6 +97,8 @@ export const EditProfile: FC = () => {
       <BTextInput
         value={values.name}
         onChangeText={handleChange("name")}
+        onBlur={handleBlur("name")}
+        placeholder="Nombre"
         icon={() => <MaterialIcons name="person" size={18} color="black" />}
       />
       <View style={{ height: 8 }} />
@@ -91,16 +107,20 @@ export const EditProfile: FC = () => {
         disabled
         icon={() => <Entypo name="email" size={18} color="gray" />}
       />
+
+      <View style={{ height: 8 }} />
+
+      <BDropdown
+        text={isoDateToDayMonthYear(values.birthDate) ?? "Fecha de nacimiento"}
+        onPress={onPressShowBirthDateModal}
+        iconLeft={() => <MaterialIcons name="cake" size={18} color="black" />}
+      />
       <View style={{ height: 8 }} />
       <BDropdown
         text={values.bloodType ?? "Tipo de sangre"}
         onPress={onPressShowBloodTypeModal}
         iconLeft={() => (
-          <Fontisto
-            name="blood-drop"
-            size={18}
-            color={ColorsEnum.black}
-          />
+          <Fontisto name="blood-drop" size={18} color={ColorsEnum.black} />
         )}
       />
       <View style={{ height: 8 }} />
@@ -119,7 +139,7 @@ export const EditProfile: FC = () => {
       <BTextInput
         value={values.description}
         onChangeText={handleChange("description")}
-        placeholder="Descripción"
+        placeholder="Introduce una descripción"
         multiline
         textAlignVertical="top"
         numberOfLines={15}
@@ -146,6 +166,12 @@ export const EditProfile: FC = () => {
         cityValue={values.city}
         setFieldValue={setFieldValue}
         onPressHideCityModal={onPressHideCityModal}
+      />
+      <BirthDateModal
+        isVisible={birthdayModalVisible}
+        birthDateValue={values.birthDate}
+        setFieldValue={setFieldValue}
+        onPressHideBirthDateModal={onPressHideBirthDateModal}
       />
 
       <Pressable onPress={onPressSave} style={styles.save}>
