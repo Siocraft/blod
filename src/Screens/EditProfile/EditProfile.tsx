@@ -97,7 +97,6 @@ export const EditProfile: FC = () => {
         onPress={onPressShowBloodTypeModal}
         iconLeft={() => (
           <Fontisto
-            style={{ marginRight: 8 }}
             name="blood-drop"
             size={18}
             color={ColorsEnum.black}
@@ -122,13 +121,13 @@ export const EditProfile: FC = () => {
         onChangeText={handleChange("description")}
         placeholder="Descripción"
         multiline
+        textAlignVertical="top"
         numberOfLines={15}
         style={{ height: 100 }}
         onBlur={handleBlur("description")}
         maxLength={800}
         icon={() => (
           <MaterialIcons
-            style={{ marginRight: 8 }}
             name="description"
             size={18}
             color={ColorsEnum.black}

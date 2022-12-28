@@ -41,12 +41,13 @@ export const BTextInput: FC<Props> = ({
       >
         {icon && icon()}
         <TextInput
+          placeholderTextColor={ColorsEnum.darkGray}
+          {...props}
           style={[
             { flex: 1, marginLeft: icon ? 8 : 0 },
             disabled && { color: ColorsEnum.darkGray },
+            props.style,
           ]}
-          placeholderTextColor={ColorsEnum.darkGray}
-          {...props}
         />
       </View>
       {error && <BText>{errorMessage}</BText>}
