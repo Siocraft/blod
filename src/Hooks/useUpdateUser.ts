@@ -19,7 +19,7 @@ export const useUpdateUser = (uid: string) => {
       data
     }: updateUserMutationParams
     ) => {
-      showLoading("Lol")
+      showLoading("Actualizando usuario")
       return await updateUser(id, data);
     },
     {
