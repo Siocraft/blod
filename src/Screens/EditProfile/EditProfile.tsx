@@ -85,7 +85,7 @@ export const EditProfile: FC = () => {
         onChangeText={handleChange("name")}
         icon={() => <MaterialIcons name="person" size={18} color="black" />}
       />
-      <View style={{ height: 16 }} />
+      <View style={{ height: 8 }} />
       <BTextInput
         value={authUser.email ?? ""}
         disabled
