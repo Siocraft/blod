@@ -7,9 +7,10 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { ErrorScreen } from "../Error";
 import { Loading } from "../Loading";
 import { GuestSignedIn } from "../Profile/GuestSignedIn";
-import { Fontisto } from "@expo/vector-icons";
+import { Fontisto, MaterialIcons } from "@expo/vector-icons";
 import { ColorsEnum } from "@theme";
 import { BloodTypeModal } from "./BloodTypeModal";
+import { CityModal } from "./CityModal";
 
 export const EditProfile: FC = () => {
   const { user: authUser } = useAuth();
@@ -20,6 +21,7 @@ export const EditProfile: FC = () => {
   } = useUser(authUser?.uid);
 
   const [bloodTypeModalVisible, setBloodTypeModalVisible] = useState(false);
+  const [cityModalVisible, setCityModalVisible] = useState(false);
 
   const {
     handleChange,
@@ -32,6 +34,7 @@ export const EditProfile: FC = () => {
   } = useFormik({
     initialValues: {
       bloodType: user?.bloodType,
+      city: user?.location,
     },
     onSubmit: submittedValues => {
       console.log(submittedValues);
@@ -40,6 +43,9 @@ export const EditProfile: FC = () => {
 
   if (values.bloodType === undefined && user?.bloodType)
     setFieldValue("bloodType", user.bloodType);
+
+  if (values.city === undefined && user?.location)
+    setFieldValue("city", user.location);
 
   if (!authUser) return <GuestSignedIn />;
   if (isLoadingUser) return <Loading />;
@@ -57,8 +63,12 @@ export const EditProfile: FC = () => {
     setBloodTypeModalVisible(false);
   };
 
-  const onPressConfirmBloodType = () => {
-    setBloodTypeModalVisible(false);
+  const onPressShowCityModal = () => {
+    setCityModalVisible(true);
+  };
+
+  const onPressHideCityModal = () => {
+    setCityModalVisible(false);
   };
 
   return (
@@ -78,12 +88,25 @@ export const EditProfile: FC = () => {
         )}
       />
       <View style={{ height: 8 }} />
+      <BDropdown
+        text={values.city ?? "Ciudad"}
+        onPress={onPressShowCityModal}
+        iconLeft={() => (
+          <MaterialIcons name="location-city" size={18} color={ColorsEnum.black} />
+        )}
+      />
+      <View style={{ height: 8 }} />
       <BloodTypeModal
         isVisible={bloodTypeModalVisible}
         onPressHideBloodTypeModal={onPressHideBloodTypeModal}
-        onPressConfirmBloodType={onPressConfirmBloodType}
         bloodTypeValue={values.bloodType}
         setFieldValue={setFieldValue}
+      />
+      <CityModal
+        isVisible={cityModalVisible}
+        cityValue={values.city}
+        setFieldValue={setFieldValue}
+        onPressHideCityModal={onPressHideCityModal}
       />
       <Pressable onPress={onPressSave}>
         <BText color="primary">Guardar cambios</BText>

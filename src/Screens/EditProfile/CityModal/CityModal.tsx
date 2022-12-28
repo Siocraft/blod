@@ -1,39 +1,39 @@
-import { BText } from "@components";
-import { Data } from "@constants";
-import { ColorsEnum } from "@theme";
-import React, { FC, useState } from "react";
-import { Pressable, StyleSheet, View } from "react-native";
+import { FC, useState } from "react";
 import Modal from "react-native-modal";
 import { AntDesign } from "@expo/vector-icons";
+import { Pressable, View } from "react-native";
+import { ColorsEnum } from "@theme";
+import { Data } from "@constants";
+import { BText } from "@components";
 
-interface BloodTypeModalProps {
+interface CityModalProps {
   isVisible: boolean;
-  onPressHideBloodTypeModal: () => void;
-  bloodTypeValue: string;
+  onPressHideCityModal: () => void;
+  cityValue: string;
   setFieldValue: (field: string, value: string) => void;
 }
 
-export const BloodTypeModal: FC<BloodTypeModalProps> = ({
+export const CityModal: FC<CityModalProps> = ({
   isVisible,
-  onPressHideBloodTypeModal,
-  bloodTypeValue,
+  onPressHideCityModal,
+  cityValue,
   setFieldValue,
 }) => {
-  const [selectedBloodType, setSelectedBloodType] = useState(bloodTypeValue);
+  const [selectedCity, setSelectedCity] = useState(cityValue);
 
-  const onPressBloodType = (bloodType: string) => {
-    setSelectedBloodType(bloodType);
+  const onPressCity = (city: string) => {
+    setSelectedCity(city);
   };
 
-  const confirmBloodType = () => {
-    setFieldValue("bloodType", selectedBloodType);
-    onPressHideBloodTypeModal();
+  const confirmCity = () => {
+    setFieldValue("city", selectedCity);
+    onPressHideCityModal();
   };
 
   return (
     <Modal
       isVisible={isVisible}
-      onBackdropPress={onPressHideBloodTypeModal}
+      onBackdropPress={onPressHideCityModal}
       backdropColor="rgba(0, 0, 0, 0.3)"
     >
       <View
@@ -44,37 +44,37 @@ export const BloodTypeModal: FC<BloodTypeModalProps> = ({
         }}
       >
         <AntDesign
-          onPress={onPressHideBloodTypeModal}
+          onPress={onPressHideCityModal}
           style={{ alignSelf: "flex-end", marginBottom: 16 }}
           name="close"
           size={20}
           color="black"
         />
-        {Data.BloodTypes.map((bloodType, index) => (
+        {Data.Cities.map((city, index) => (
           <Pressable
             style={{
               padding: 8,
-              marginBottom: index === Data.BloodTypes.length - 1 ? 32 : 0,
+              marginBottom: index === Data.Cities.length - 1 ? 32 : 0,
               backgroundColor:
-                selectedBloodType === bloodType
+                selectedCity === city
                   ? ColorsEnum.secondary
                   : ColorsEnum.white,
               borderRadius: 8,
             }}
-            onPress={() => onPressBloodType(bloodType)}
-            key={"Bloodtype_modal_option_" + bloodType}
+            onPress={() => onPressCity(city)}
+            key={"City_modal_option_" + city}
           >
             <BText
-              color={selectedBloodType === bloodType ? "white" : "black"}
+              color={selectedCity === city ? "white" : "black"}
               size="large"
             >
-              {bloodType}
+              {city}
             </BText>
           </Pressable>
         ))}
 
         <Pressable
-          onPress={confirmBloodType}
+          onPress={confirmCity}
           style={{
             width: "100%",
             backgroundColor: ColorsEnum.secondary,
