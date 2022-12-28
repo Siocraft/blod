@@ -33,3 +33,10 @@ export const createUser = async (id: string) => {
   const user = await getDoc(doc(usersCollection, id));
   return user.data();
 };
+
+export const updateUser = async (id: string | undefined, data: any) => {
+  if (!id) return null;
+  await setDoc(doc(usersCollection, id), data, { merge: true });
+  const user = await getDoc(doc(usersCollection, id));
+  return user.data();
+};

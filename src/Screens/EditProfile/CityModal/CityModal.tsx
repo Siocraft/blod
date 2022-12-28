@@ -56,9 +56,7 @@ export const CityModal: FC<CityModalProps> = ({
               padding: 8,
               marginBottom: index === Data.Cities.length - 1 ? 32 : 0,
               backgroundColor:
-                selectedCity === city
-                  ? ColorsEnum.secondary
-                  : ColorsEnum.white,
+                selectedCity === city ? ColorsEnum.secondary : ColorsEnum.white,
               borderRadius: 8,
             }}
             onPress={() => onPressCity(city)}

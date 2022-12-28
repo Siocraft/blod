@@ -19,17 +19,17 @@ export const ProfileData: FC<ProfileDataProps> = ({
   return (
     <View style={styles.dataContainer}>
       <BText size="title" bold color="secondary" style={{ marginBottom: 16 }}>
-        Data
+        Información
       </BText>
       <View style={{ flexDirection: "row" }}>
-        <ProfileDataText left label="Bloodtype: " value={bloodType} />
-        <ProfileDataText label="Loc: " value={location} />
+        <ProfileDataText left label="Tipo de sangre: " value={bloodType} />
+        <ProfileDataText label="Cd: " value={location} />
       </View>
       <View style={{ flexDirection: "row" }}>
         <ProfileDataText
           left
-          label="Donated: "
-          value={litersDonated + " liters"}
+          label="Donados: "
+          value={(litersDonated ?? 0) + " liters"}
         />
         <ProfileDataText label="Contact: " value={contact} />
       </View>

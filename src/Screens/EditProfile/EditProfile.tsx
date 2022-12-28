@@ -1,5 +1,5 @@
 import { BDropdown, BText, BTextInput, ProfileImage } from "@components";
-import { useAuth, useUser } from "@hooks";
+import { useAppNavigation, useAuth, useUser } from "@hooks";
 import { useFormik } from "formik";
 import React, { FC, useState } from "react";
 import { View, StyleSheet, Pressable, TextInput } from "react-native";
@@ -7,10 +7,12 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { ErrorScreen } from "../Error";
 import { Loading } from "../Loading";
 import { GuestSignedIn } from "../Profile/GuestSignedIn";
-import { Fontisto, MaterialIcons } from "@expo/vector-icons";
+import { Fontisto, MaterialIcons, Entypo } from "@expo/vector-icons";
 import { ColorsEnum } from "@theme";
 import { BloodTypeModal } from "./BloodTypeModal";
 import { CityModal } from "./CityModal";
+import { updateUser } from "@services";
+import { queryClient, QueryKeys } from "@config";
 
 export const EditProfile: FC = () => {
   const { user: authUser } = useAuth();
@@ -22,25 +24,23 @@ export const EditProfile: FC = () => {
 
   const [bloodTypeModalVisible, setBloodTypeModalVisible] = useState(false);
   const [cityModalVisible, setCityModalVisible] = useState(false);
+  const { goBack } = useAppNavigation();
 
-  const {
-    handleChange,
-    handleBlur,
-    values,
-    handleSubmit,
-    errors,
-    touched,
-    setFieldValue,
-  } = useFormik({
-    initialValues: {
-      bloodType: user?.bloodType,
-      city: user?.location,
-      description: user?.description,
-    },
-    onSubmit: submittedValues => {
-      console.log(submittedValues);
-    },
-  });
+  const { handleChange, handleBlur, values, handleSubmit, setFieldValue } =
+    useFormik({
+      initialValues: {
+        name: user?.name,
+        bloodType: user?.bloodType,
+        city: user?.location,
+        description: user?.description,
+      },
+      onSubmit: submittedValues => {
+        console.log(submittedValues);
+        updateUser(authUser?.uid, submittedValues);
+        queryClient.invalidateQueries([QueryKeys.USER, authUser?.uid]);
+        goBack();
+      },
+    });
 
   if (values.bloodType === undefined && user?.bloodType)
     setFieldValue("bloodType", user.bloodType);
@@ -50,6 +50,8 @@ export const EditProfile: FC = () => {
 
   if (values.description === undefined && user?.description)
     setFieldValue("description", user.description);
+
+  if (values.name === undefined && user?.name) setFieldValue("name", user.name);
 
   if (!authUser) return <GuestSignedIn />;
   if (isLoadingUser) return <Loading />;
@@ -82,13 +84,24 @@ export const EditProfile: FC = () => {
         Editar perfil
       </BText>
       <View style={{ height: 16 }} />
-      <BTextInput value={authUser.email ?? ""} disabled />
+      <BTextInput value={values.name} onChangeText={handleChange("name")} icon={() => <MaterialIcons name="person" size={18} color="black" />} />
+      <View style={{ height: 16 }} />
+      <BTextInput
+        value={authUser.email ?? ""}
+        disabled
+        icon={() => <Entypo name="email" size={18} color="gray" />}
+      />
       <View style={{ height: 8 }} />
       <BDropdown
         text={values.bloodType ?? "Tipo de sangre"}
         onPress={onPressShowBloodTypeModal}
         iconLeft={() => (
-          <Fontisto style={{ marginRight: 8 }} name="blood-drop" size={18} color={ColorsEnum.black} />
+          <Fontisto
+            style={{ marginRight: 8 }}
+            name="blood-drop"
+            size={18}
+            color={ColorsEnum.black}
+          />
         )}
       />
       <View style={{ height: 8 }} />
@@ -96,7 +109,11 @@ export const EditProfile: FC = () => {
         text={values.city ?? "Ciudad"}
         onPress={onPressShowCityModal}
         iconLeft={() => (
-          <MaterialIcons name="location-city" size={18} color={ColorsEnum.black} />
+          <MaterialIcons
+            name="location-city"
+            size={18}
+            color={ColorsEnum.black}
+          />
         )}
       />
       <View style={{ height: 8 }} />
@@ -110,7 +127,12 @@ export const EditProfile: FC = () => {
         onBlur={handleBlur("description")}
         maxLength={100}
         icon={() => (
-          <MaterialIcons style={{ marginRight: 8 }} name="description" size={18} color={ColorsEnum.black} />
+          <MaterialIcons
+            style={{ marginRight: 8 }}
+            name="description"
+            size={18}
+            color={ColorsEnum.black}
+          />
         )}
       />
 
@@ -149,5 +171,5 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     width: "100%",
     alignItems: "center",
-  }
+  },
 });

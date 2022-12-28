@@ -8,6 +8,7 @@ import { GuestSignedIn } from "./GuestSignedIn";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Loading } from "../Loading";
 import { ErrorScreen } from "../Error";
+import { queryClient, QueryKeys } from "@config";
 
 export const Profile = () => {
   const { user: authUser } = useAuth();
@@ -20,6 +21,8 @@ export const Profile = () => {
   if (!authUser) return <GuestSignedIn />;
   if (isLoadingUser) return <Loading />;
   if (!user || isErrorUser) return <ErrorScreen />;
+
+  console.log(user);
 
   return (
     <SafeAreaView style={styles.container}>

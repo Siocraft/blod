@@ -13,5 +13,5 @@ export const Data = {
     "El Salto",
     "Ixtlahuacán de los Membrillos",
     "Juanacatlán",
-  ]
+  ],
 };
