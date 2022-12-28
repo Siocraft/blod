@@ -7,6 +7,7 @@ import { ButtonHub } from "./ButtonHub";
 import { GuestSignedIn } from "./GuestSignedIn";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ErrorScreen } from "../Error";
+import { getAge } from "@utils";
 
 export const Profile = () => {
   const { user: authUser } = useAuth();
@@ -20,7 +21,7 @@ export const Profile = () => {
     <SafeAreaView style={styles.container}>
       <ProfileImage avatar={user.avatar} />
       <BText size="title" superBold color="secondary">
-        {user.name}, {user.age}
+        {user.name}, {getAge(user.birthDate)}
       </BText>
       <View style={styles.divider} />
 
