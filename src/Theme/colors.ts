@@ -10,7 +10,7 @@ export enum ColorsEnum {
   disabledButton = "#E1E0E0",
   error = "#ff4055",
   success = "#00BFA6",
-  overlay = "rgba(255, 255, 255, 0.3)",
+  overlay = "rgba(0, 0, 0, 0.3)",
 }
 
 // Icons,

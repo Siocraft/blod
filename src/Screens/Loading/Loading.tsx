@@ -10,29 +10,30 @@ export const Loading = () => {
   const { message } = useContext(LoadingContext);
 
   return (
-    <View style={styles.animationContainer}>
-      <LottieView
-        autoPlay
-        loop
-        style={{
-          width: 200,
-          height: 200,
-          backgroundColor: "transparent",
-        }}
-        // Find more Lottie files at https://lottiefiles.com/featured
-        source={require("./Animations/Loader-Blod.json")}
-      />
-      {!!message && (
-        <BText color="secondary" size="large">
-          {message}
-        </BText>
-      )}
+    <View style={styles.screenContainer}>
+      <View style={styles.modal}>
+        <LottieView
+          autoPlay
+          loop
+          style={{
+            width: 200,
+            height: 200,
+          }}
+          // Find more Lottie files at https://lottiefiles.com/featured
+          source={require("./Animations/Loader-Blod.json")}
+        />
+        {!!message && (
+          <BText color="secondary" size="large">
+            {message}
+          </BText>
+        )}
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  animationContainer: {
+  screenContainer: {
     backgroundColor: ColorsEnum.overlay,
     bottom: 0,
     left: 0,
@@ -44,4 +45,11 @@ const styles = StyleSheet.create({
     position: "absolute",
     zIndex: 10,
   },
+  modal: {
+    backgroundColor: ColorsEnum.white,
+    borderRadius: 16,
+    padding: 16,
+    alignItems: "center",
+    justifyContent: "center",
+  }
 });
