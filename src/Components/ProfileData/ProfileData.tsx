@@ -31,7 +31,6 @@ export const ProfileData: FC<ProfileDataProps> = ({
           label="Donados: "
           value={(litersDonated ?? 0) + " liters"}
         />
-        <ProfileDataText label="Contact: " value={contact} />
       </View>
     </View>
   );
