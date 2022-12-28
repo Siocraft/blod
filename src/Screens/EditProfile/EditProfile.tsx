@@ -121,10 +121,10 @@ export const EditProfile: FC = () => {
         onChangeText={handleChange("description")}
         placeholder="Descripción"
         multiline
-        numberOfLines={4}
+        numberOfLines={15}
         style={{ height: 100 }}
         onBlur={handleBlur("description")}
-        maxLength={100}
+        maxLength={800}
         icon={() => (
           <MaterialIcons
             style={{ marginRight: 8 }}
