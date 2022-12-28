@@ -108,8 +108,8 @@ export const EditProfile: FC = () => {
         setFieldValue={setFieldValue}
         onPressHideCityModal={onPressHideCityModal}
       />
-      <Pressable onPress={onPressSave}>
-        <BText color="primary">Guardar cambios</BText>
+      <Pressable onPress={onPressSave} style={styles.save}>
+        <BText color="white">Guardar cambios</BText>
       </Pressable>
     </SafeAreaView>
   );
@@ -121,4 +121,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 16,
   },
+  save: {
+    position: "absolute",
+    bottom: 32,
+    right: 16,
+    backgroundColor: ColorsEnum.secondary,
+    padding: 8,
+    borderRadius: 8,
+    width: "100%",
+    alignItems: "center",
+  }
 });
