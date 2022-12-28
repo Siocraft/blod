@@ -2,7 +2,7 @@ import { BDropdown, BText, BTextInput, ProfileImage } from "@components";
 import { useAuth, useUser } from "@hooks";
 import { useFormik } from "formik";
 import React, { FC, useState } from "react";
-import { View, StyleSheet, Pressable } from "react-native";
+import { View, StyleSheet, Pressable, TextInput } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ErrorScreen } from "../Error";
 import { Loading } from "../Loading";
@@ -35,6 +35,7 @@ export const EditProfile: FC = () => {
     initialValues: {
       bloodType: user?.bloodType,
       city: user?.location,
+      description: user?.description,
     },
     onSubmit: submittedValues => {
       console.log(submittedValues);
@@ -46,6 +47,9 @@ export const EditProfile: FC = () => {
 
   if (values.city === undefined && user?.location)
     setFieldValue("city", user.location);
+
+  if (values.description === undefined && user?.description)
+    setFieldValue("description", user.description);
 
   if (!authUser) return <GuestSignedIn />;
   if (isLoadingUser) return <Loading />;
@@ -84,7 +88,7 @@ export const EditProfile: FC = () => {
         text={values.bloodType ?? "Tipo de sangre"}
         onPress={onPressShowBloodTypeModal}
         iconLeft={() => (
-          <Fontisto name="blood-drop" size={18} color={ColorsEnum.black} />
+          <Fontisto style={{ marginRight: 8 }} name="blood-drop" size={18} color={ColorsEnum.black} />
         )}
       />
       <View style={{ height: 8 }} />
@@ -96,6 +100,20 @@ export const EditProfile: FC = () => {
         )}
       />
       <View style={{ height: 8 }} />
+      <BTextInput
+        value={values.description}
+        onChangeText={handleChange("description")}
+        placeholder="Descripción"
+        multiline
+        numberOfLines={4}
+        style={{ height: 100 }}
+        onBlur={handleBlur("description")}
+        maxLength={100}
+        icon={() => (
+          <MaterialIcons style={{ marginRight: 8 }} name="description" size={18} color={ColorsEnum.black} />
+        )}
+      />
+
       <BloodTypeModal
         isVisible={bloodTypeModalVisible}
         onPressHideBloodTypeModal={onPressHideBloodTypeModal}
@@ -108,6 +126,7 @@ export const EditProfile: FC = () => {
         setFieldValue={setFieldValue}
         onPressHideCityModal={onPressHideCityModal}
       />
+
       <Pressable onPress={onPressSave} style={styles.save}>
         <BText color="white">Guardar cambios</BText>
       </Pressable>

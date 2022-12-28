@@ -5,7 +5,7 @@ import { BText } from "./BText";
 
 type BTextInputProps = TextInputProps & {
   disabled?: boolean;
-  icon?: boolean;
+  icon?: () => JSX.Element;
   error?: never;
   errorMessage?: never;
 };
@@ -21,10 +21,10 @@ type BTextInputPropsWithError = Omit<
 type Props = BTextInputProps | BTextInputPropsWithError;
 
 export const BTextInput: FC<Props> = ({
-  icon = false,
   error = false,
   errorMessage,
   disabled,
+  icon,
   ...props
 }) => {
   return (
@@ -39,7 +39,7 @@ export const BTextInput: FC<Props> = ({
           },
         ]}
       >
-        {icon && <BText>Icon</BText>}
+        {icon && icon()}
         <TextInput
           style={[
             { flex: 1, marginLeft: icon ? 8 : 0 },
