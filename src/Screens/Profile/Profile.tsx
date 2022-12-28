@@ -15,7 +15,8 @@ export const Profile = () => {
   const { data: user, isError: isErrorUser } = useUser(authUser?.uid);
 
   if (!authUser) return <GuestSignedIn />;
-  if (!user || isErrorUser) return <ErrorScreen />;
+  if (isErrorUser) return <ErrorScreen />;
+  if (!user) return null;
 
   return (
     <SafeAreaView style={styles.container}>
