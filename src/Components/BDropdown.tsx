@@ -1,8 +1,8 @@
 import { ColorsEnum } from "@theme";
-import React, { FC, useState } from "react";
+import React, { FC } from "react";
 import { Pressable, View } from "react-native";
 import { BText } from "./BText";
-import { Entypo, Fontisto } from "@expo/vector-icons";
+import { Entypo } from "@expo/vector-icons";
 
 type BDropdownProps = {
   iconLeft?: () => JSX.Element;
@@ -17,8 +17,6 @@ export const BDropdown: FC<BDropdownProps> = ({
   iconLeft,
   iconRight,
 }) => {
-  // Create isExpanded state
-  const [isExpanded, setIsExpanded] = useState(false);
 
   return (
     <Pressable
