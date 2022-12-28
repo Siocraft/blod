@@ -37,7 +37,7 @@ export const Profile = () => {
 
       <View style={styles.divider} />
       {user.description && (
-        <View>
+        <View style={styles.description}>
           <BText size="title" bold color="secondary">
             Acerca de
           </BText>
@@ -64,4 +64,7 @@ const styles = StyleSheet.create({
     backgroundColor: ColorsEnum.secondary,
     marginVertical: 16,
   },
+  description: {
+    width: "100%",
+  }
 });
