@@ -11,13 +11,11 @@ import { Fontisto, MaterialIcons, Entypo } from "@expo/vector-icons";
 import { ColorsEnum } from "@theme";
 import { BloodTypeModal } from "./BloodTypeModal";
 import { CityModal } from "./CityModal";
-import { queryClient, QueryKeys } from "@config";
 
 export const EditProfile: FC = () => {
   const { user: authUser } = useAuth();
   const {
     data: user,
-    isLoading: isLoadingUser,
     isError: isErrorUser,
   } = useUser(authUser?.uid);
 
@@ -56,7 +54,6 @@ export const EditProfile: FC = () => {
   if (values.name === undefined && user?.name) setFieldValue("name", user.name);
 
   if (!authUser) return <GuestSignedIn />;
-  if (isLoadingUser) return <Loading />;
   if (!user || isErrorUser) return <ErrorScreen />;
 
   const onPressSave = () => {

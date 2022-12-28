@@ -14,12 +14,10 @@ export const Profile = () => {
   const { user: authUser } = useAuth();
   const {
     data: user,
-    isLoading: isLoadingUser,
     isError: isErrorUser,
   } = useUser(authUser?.uid);
 
   if (!authUser) return <GuestSignedIn />;
-  if (isLoadingUser) return <Loading />;
   if (!user || isErrorUser) return <ErrorScreen />;
 
   return (
