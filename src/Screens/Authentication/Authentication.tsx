@@ -45,7 +45,11 @@ export const Authentication: FC = () => {
           variant="secondary-void"
         />
         <View style={{ height: 16 }} />
-        <BButton title="Continuar como invitado" onPress={onGuestPressed} variant="transparent" />
+        <BButton
+          title="Continuar como invitado"
+          onPress={onGuestPressed}
+          variant="transparent"
+        />
       </View>
     </View>
   );

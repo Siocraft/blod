@@ -1,7 +1,7 @@
 import { ColorsEnum } from "@theme";
 import React, { FC } from "react";
 import { Image, Pressable, StyleSheet, View } from "react-native";
-import { MaterialIcons } from '@expo/vector-icons';
+import { MaterialIcons } from "@expo/vector-icons";
 
 export interface ProfileImageProps {
   avatar: string;
@@ -62,5 +62,5 @@ const styles = StyleSheet.create({
     backgroundColor: ColorsEnum.secondary,
     borderRadius: 100,
     padding: 8,
-  }
+  },
 });

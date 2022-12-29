@@ -20,8 +20,7 @@ export const BButton: FC<BButtonProps> = ({
   variant = "primary",
   ...rest
 }) => {
-
-  let textColor: Pick<BTextProps, 'color'>['color'] = "white";
+  let textColor: BTextProps["color"] = "white";
 
   switch (variant) {
     case "primary":
