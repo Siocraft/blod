@@ -1,19 +1,22 @@
 import { BText } from "@components";
-import { useSignOut } from "@hooks";
+import { useAuth, useSignOut } from "@hooks";
 import { ColorsEnum } from "@theme";
 import { FC } from "react";
 import { View, StyleSheet, Pressable } from "react-native";
 
 export const Menu: FC = () => {
+
+  const { user } = useAuth();
+
   const { signOutFromApp } = useSignOut();
   return (
     <View style={styles.container}>
       <BText style={styles.text}>Menú</BText>
-      <Pressable style={styles.signOutButton} onPress={signOutFromApp}>
+      {user && <Pressable style={styles.signOutButton} onPress={signOutFromApp}>
         <BText color="white" bold>
           Cerrar sesión
         </BText>
-      </Pressable>
+      </Pressable>}
     </View>
   );
 };
@@ -23,7 +26,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: ColorsEnum.white,
   },
   text: {
     fontSize: 24,
