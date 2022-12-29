@@ -1,4 +1,4 @@
-import { BText, BTextInput } from "@components";
+import { BText, BTextInput, GoBack } from "@components";
 import { useAppNavigation } from "@hooks";
 import { ColorsEnum } from "@theme";
 import { useFormik } from "formik";
@@ -76,10 +76,11 @@ export const Signup: FC = () => {
 
   return (
     <View style={styles.loginContainer}>
-      <BText size="large" color="black" bold>
+      <GoBack />
+      <BText size="title" color="black" bold>
         ¡Regístrate!
       </BText>
-      <View style={{ height: 16 }} />
+      <View style={{ height: 24 }} />
       <BTextInput
         textContentType="emailAddress"
         keyboardType="email-address"
@@ -94,7 +95,7 @@ export const Signup: FC = () => {
         error={emailError}
         errorMessage={errors.email}
       />
-      <View style={{ height: 8 }} />
+      <View style={{ height: 16 }} />
       <BTextInput
         secureTextEntry
         placeholder="Constraseña"
@@ -104,7 +105,7 @@ export const Signup: FC = () => {
         error={passwordError}
         errorMessage={errors.password}
       />
-      <View style={{ height: 8 }} />
+      <View style={{ height: 16 }} />
       <BTextInput
         secureTextEntry
         placeholder="Confirmar contraseña"
@@ -114,7 +115,7 @@ export const Signup: FC = () => {
         error={passwordConfirmationError}
         errorMessage={errors.passwordConfirmation}
       />
-      <View style={{ height: 8 }} />
+      <View style={{ height: 16 }} />
       <Pressable
         disabled={isCreateAccountDisabled}
         style={[
@@ -127,15 +128,9 @@ export const Signup: FC = () => {
           Crear cuenta
         </BText>
       </Pressable>
-      <View style={{ height: 8 }} />
+      <View style={{ height: 16 }} />
       <Pressable style={styles.backButton} onPress={onAlreadyHaveAnAccount}>
         <BText color="secondary">Ya tengo una cuenta</BText>
-      </Pressable>
-      <View style={{ height: 16 }} />
-      <Pressable onPress={goBack}>
-        <BText color="primary" bold>
-          Regresar
-        </BText>
       </Pressable>
     </View>
   );

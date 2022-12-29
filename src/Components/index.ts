@@ -4,3 +4,4 @@ export * from "./ProfileData";
 export * from "./ProfileDataText";
 export * from "./ProfileImage";
 export * from "./BDropdown";
+export * from "./GoBack";

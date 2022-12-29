@@ -1,4 +1,4 @@
-import { BText, BTextInput } from "@components";
+import { BText, BTextInput, GoBack } from "@components";
 import { ErrorsEnum } from "@constants";
 import { useAppNavigation } from "@hooks";
 import { ColorsEnum } from "@theme";
@@ -7,6 +7,7 @@ import { useFormik } from "formik";
 import React, { FC } from "react";
 import { Pressable, StyleSheet, View } from "react-native";
 import * as Yup from "yup";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const auth = getAuth();
 
@@ -18,7 +19,7 @@ const SigninSchema = Yup.object().shape({
 });
 
 export const Login: FC = () => {
-  const { goBack, navigateToSignup } = useAppNavigation();
+  const { navigateToSignup } = useAppNavigation();
 
   const { handleChange, handleBlur, values, handleSubmit, errors, touched } =
     useFormik({
@@ -50,11 +51,12 @@ export const Login: FC = () => {
     !!errors.password && !!touched.password && !!values.password;
 
   return (
-    <View style={styles.loginContainer}>
-      <BText size="large" color="black" bold>
+    <SafeAreaView style={styles.loginContainer}>
+      <GoBack />
+      <BText size="title" color="black" bold>
         Ingresa a tu cuenta
       </BText>
-      <View style={{ height: 16 }} />
+      <View style={{ height: 24 }} />
       <BTextInput
         textContentType="emailAddress"
         keyboardType="email-address"
@@ -69,7 +71,7 @@ export const Login: FC = () => {
         error={emailError}
         errorMessage={errors.email}
       />
-      <View style={{ height: 8 }} />
+      <View style={{ height: 16 }} />
       <BTextInput
         secureTextEntry
         placeholder="Constraseña"
@@ -79,7 +81,7 @@ export const Login: FC = () => {
         error={passwordError}
         errorMessage={errors.password}
       />
-      <View style={{ height: 8 }} />
+      <View style={{ height: 16 }} />
       <Pressable
         disabled={isLoginDisabled}
         style={[
@@ -92,17 +94,11 @@ export const Login: FC = () => {
       >
         <BText color={isLoginDisabled ? "darkGray" : "white"}>Ingresar</BText>
       </Pressable>
-      <View style={{ height: 8 }} />
+      <View style={{ height: 16 }} />
       <Pressable style={styles.backButton} onPress={onPressCreateAccount}>
         <BText color="secondary">Crear una cuenta</BText>
       </Pressable>
-      <View style={{ height: 16 }} />
-      <Pressable onPress={goBack}>
-        <BText color="primary" bold>
-          Regresar
-        </BText>
-      </Pressable>
-    </View>
+    </SafeAreaView>
   );
 };
 
