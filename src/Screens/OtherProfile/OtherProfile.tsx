@@ -92,6 +92,6 @@ const styles = StyleSheet.create({
   buttonSection: {
     position: "absolute",
     width: "100%",
-    bottom: 16,
+    bottom: 32,
   },
 });
