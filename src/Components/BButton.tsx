@@ -4,9 +4,14 @@ import { Pressable, PressableProps, StyleSheet } from "react-native";
 import { BText, BTextProps } from "./BText";
 
 interface BButtonProps extends PressableProps {
-  text: BTextProps;
+  text?: BTextProps;
   title: string;
-  variant: "secondary" | "primary";
+  variant?:
+    | "secondary"
+    | "primary"
+    | "secondary-void"
+    | "primary-void"
+    | "transparent";
 }
 
 export const BButton: FC<BButtonProps> = ({
@@ -15,22 +20,49 @@ export const BButton: FC<BButtonProps> = ({
   variant = "primary",
   ...rest
 }) => {
+
+  let textColor: Pick<BTextProps, 'color'>['color'] = "white";
+
+  switch (variant) {
+    case "primary":
+      textColor = "white";
+      break;
+    case "secondary":
+      textColor = "white";
+      break;
+    case "secondary-void":
+      textColor = "secondary";
+      break;
+    case "primary-void":
+      textColor = "primary";
+      break;
+    case "transparent":
+      textColor = "secondary";
+      break;
+    default:
+      textColor = "secondary";
+      break;
+  }
+
+  const pressableStyle = StyleSheet.flatten([
+    styles.button,
+    variant === "secondary" && styles.secondaryButton,
+    variant === "primary" && styles.primaryButton,
+    variant === "secondary-void" && styles.secondaryVoid,
+    variant === "primary-void" && styles.primaryVoid,
+    variant === "transparent" && styles.transparentButton,
+  ]);
+
   return (
-    <Pressable
-      style={
-        StyleSheet.flatten([
-          styles.button,
-          variant === "secondary" && styles.secondaryButton,
-          variant === "primary" && styles.primaryButton
-        ])
-      }
-      {...rest}
-    >
-      {title && <BText color="white" {...text}>{title}</BText>}
+    <Pressable style={pressableStyle} {...rest}>
+      {title && (
+        <BText bold color={textColor} {...text}>
+          {title}
+        </BText>
+      )}
     </Pressable>
-  )
-    
-}
+  );
+};
 
 const styles = StyleSheet.create({
   button: {
@@ -44,6 +76,17 @@ const styles = StyleSheet.create({
   },
   secondaryButton: {
     backgroundColor: ColorsEnum.secondary,
+  },
+  primaryVoid: {
+    borderWidth: 1,
+    borderColor: ColorsEnum.primary,
+  },
+  secondaryVoid: {
+    borderWidth: 1,
+    borderColor: ColorsEnum.secondary,
+  },
+  transparentButton: {
+    backgroundColor: "transparent",
   },
   whiteText: {
     color: ColorsEnum.white,
