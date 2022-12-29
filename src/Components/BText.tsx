@@ -2,7 +2,7 @@ import { ColorsEnum } from "@theme";
 import React, { FC } from "react";
 import { StyleSheet, Text, TextProps } from "react-native";
 
-interface BTextProps extends TextProps {
+export interface BTextProps extends TextProps {
   bold?: boolean;
   superBold?: boolean;
   size?: "small" | "medium" | "large" | "title";
