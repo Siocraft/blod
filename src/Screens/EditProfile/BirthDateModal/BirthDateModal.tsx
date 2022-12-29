@@ -1,5 +1,7 @@
 import React, { FC, useState } from "react";
-import DateTimePicker, { DateTimePickerEvent } from "@react-native-community/datetimepicker";
+import DateTimePicker, {
+  DateTimePickerEvent,
+} from "@react-native-community/datetimepicker";
 import Modal from "react-native-modal";
 import { AntDesign } from "@expo/vector-icons";
 import { ColorsEnum } from "@theme";
@@ -19,10 +21,12 @@ export const BirthDateModal: FC<BirthDateModalProps> = ({
   birthDateValue,
   setFieldValue,
 }) => {
-  const [selectedDate, setSelectedDate] = useState(new Date(birthDateValue ?? Date.now()));
+  const [selectedDate, setSelectedDate] = useState(
+    new Date(birthDateValue ?? Date.now())
+  );
 
   const setDate = (_event: DateTimePickerEvent, date: Date | undefined) => {
-    date && setSelectedDate(date)
+    date && setSelectedDate(date);
   };
 
   const confirmBirthDate = () => {
@@ -40,11 +44,12 @@ export const BirthDateModal: FC<BirthDateModalProps> = ({
           size={20}
           color="black"
         />
-        <DateTimePicker display="spinner" value={selectedDate} onChange={setDate} />
-        <Pressable
-          onPress={confirmBirthDate}
-          style={styles.confirmButton}
-        >
+        <DateTimePicker
+          display="spinner"
+          value={selectedDate}
+          onChange={setDate}
+        />
+        <Pressable onPress={confirmBirthDate} style={styles.confirmButton}>
           <BText color="white">Confirmar</BText>
         </Pressable>
       </View>

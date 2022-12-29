@@ -5,18 +5,19 @@ import { FC } from "react";
 import { View, StyleSheet, Pressable } from "react-native";
 
 export const Menu: FC = () => {
-
   const { user } = useAuth();
 
   const { signOutFromApp } = useSignOut();
   return (
     <View style={styles.container}>
       <BText style={styles.text}>Menú</BText>
-      {user && <Pressable style={styles.signOutButton} onPress={signOutFromApp}>
-        <BText color="white" bold>
-          Cerrar sesión
-        </BText>
-      </Pressable>}
+      {user && (
+        <Pressable style={styles.signOutButton} onPress={signOutFromApp}>
+          <BText color="white" bold>
+            Cerrar sesión
+          </BText>
+        </Pressable>
+      )}
     </View>
   );
 };

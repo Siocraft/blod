@@ -5,3 +5,4 @@ export * from "./ProfileDataText";
 export * from "./ProfileImage";
 export * from "./BDropdown";
 export * from "./GoBack";
+export * from "./BButton";

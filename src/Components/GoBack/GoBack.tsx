@@ -1,6 +1,6 @@
 import { FC } from "react";
-import { View, StyleSheet, Pressable } from "react-native";
-import { MaterialIcons } from '@expo/vector-icons';
+import { StyleSheet, Pressable } from "react-native";
+import { MaterialIcons } from "@expo/vector-icons";
 import { useAppNavigation } from "@hooks";
 import { BText } from "../BText";
 import { ColorsEnum } from "@theme";
@@ -12,23 +12,24 @@ export const GoBack: FC = () => {
 
   const onGoBack = () => {
     goBack();
-  }
+  };
   return (
-    <Pressable onPress={onGoBack} style={[
-      styles.container,
-      { top }
-    ]}>
-      <MaterialIcons name="chevron-left" size={44} color={ColorsEnum.secondary}/>
+    <Pressable onPress={onGoBack} style={[styles.container, { top }]}>
+      <MaterialIcons
+        name="chevron-left"
+        size={44}
+        color={ColorsEnum.secondary}
+      />
       <BText color="secondary">Regresar</BText>
     </Pressable>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    position: 'absolute',
+    flexDirection: "row",
+    alignItems: "center",
+    position: "absolute",
     left: 0,
-  }
+  },
 });
