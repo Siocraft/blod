@@ -19,7 +19,7 @@ export const Profile = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <ProfileImage avatar={user.avatar} />
+      <ProfileImage avatar={user.avatar} editable />
       <BText size="title" superBold color="secondary">
         {user.name}, {getAge(user.birthDate)}
       </BText>

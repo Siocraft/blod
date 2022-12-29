@@ -89,7 +89,7 @@ export const EditProfile: FC = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <ProfileImage avatar={user.avatar} />
+      <ProfileImage avatar={user.avatar} editable />
       <BText size="large" color="black" bold>
         Editar perfil
       </BText>
