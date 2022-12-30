@@ -5,13 +5,21 @@ import LottieView from "lottie-react-native";
 import { useContext } from "react";
 import { LoadingContext } from "@context";
 import { ColorsEnum } from "@theme";
+import { AntDesign } from "@expo/vector-icons";
 
 export const Loading = () => {
-  const { message } = useContext(LoadingContext);
+  const { message, hideLoading } = useContext(LoadingContext);
 
   return (
     <View style={styles.screenContainer}>
       <View style={styles.modal}>
+        <AntDesign
+          onPress={hideLoading}
+          style={{ alignSelf: "flex-end", marginBottom: 16 }}
+          name="close"
+          size={20}
+          color="black"
+        />
         <LottieView
           autoPlay
           loop
