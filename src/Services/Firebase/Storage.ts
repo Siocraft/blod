@@ -1,13 +1,13 @@
 import { firebaseStorage } from "@config";
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { ErrorReporting } from "../Errors";
 
-export const uploadImageAsync = async (uri: string, id: string) => {
+export const uploadImageAsync = async (uri: string, id?: string) => {
   if (!id || !uri) return null;
 
   const blob: Blob = await new Promise((resolve, reject) => {
     const xhr = new XMLHttpRequest();
-    xhr.onload = function () {
+    xhr.onload = () => {
       resolve(xhr.response);
     };
     xhr.onerror = function (e) {
@@ -19,8 +19,9 @@ export const uploadImageAsync = async (uri: string, id: string) => {
     xhr.send(null);
   });
 
-  const fileRef = ref(firebaseStorage, id);
-  const result = await uploadBytes(fileRef, blob);
+  const fileRef = ref(firebaseStorage, "images/" + id);
+
+  await uploadBytesResumable(fileRef, blob);
 
   // @ts-expect-error
   blob.close();

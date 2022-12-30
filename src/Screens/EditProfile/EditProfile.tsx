@@ -34,6 +34,10 @@ export const EditProfile: FC = () => {
         birthDate: user?.birthDate,
       },
       onSubmit: submittedValues => {
+        // @ts-expect-error
+        Object.keys(submittedValues).forEach(key =>
+          submittedValues[key] === undefined ? delete submittedValues[key] : {}
+        );
         updateUserMutation({
           id: authUser?.uid ?? "",
           data: submittedValues,
