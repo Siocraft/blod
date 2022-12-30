@@ -10,6 +10,7 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import { LogBox } from "react-native";
 LogBox.ignoreLogs(["Warning: ..."]); // Ignore log notification by message
 LogBox.ignoreLogs([`Setting a timer for a long period`]);
+LogBox.ignoreLogs(["Animated: `useNativeDriver` was not specified."]);
 LogBox.ignoreAllLogs(); //Ignore all log notifications
 
 export const App = () => {
