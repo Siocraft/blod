@@ -19,6 +19,7 @@ import { ErrorReporting, updateUser, uploadImageAsync } from "@services";
 import { useAuth } from "@hooks";
 import { ConfirmImageModal } from "./ConfirmImageModal";
 import { queryClient, QueryKeys } from "@config";
+import { SeeFullImageModal } from "./SeeFullImageModal";
 
 export interface ProfileImageProps {
   avatar: string;
@@ -35,6 +36,7 @@ export const ProfileImage: FC<ProfileImageProps> = ({
 }) => {
   const { showLoading, hideLoading } = useContext(LoadingContext);
   const [image, setImage] = useState<string | null>(null);
+  const [imageFullScreen, setImageFullScreen] = useState(false);
   const { user: authUser } = useAuth();
 
   const imageContainerStyle = StyleSheet.flatten([
@@ -89,6 +91,14 @@ export const ProfileImage: FC<ProfileImageProps> = ({
     setImage(null);
   };
 
+  const onSeeImageFullScreen = () => {
+    setImageFullScreen(true);
+  };
+
+  const onCancelSeeImageFullScreen = () => {
+    setImageFullScreen(false);
+  };
+
   const onPressConfirmImage = async () => {
     showLoading("Actualizando imagen");
     await updateUser(authUser?.uid, {
@@ -100,7 +110,7 @@ export const ProfileImage: FC<ProfileImageProps> = ({
   };
 
   return (
-    <View style={imageContainerStyle}>
+    <Pressable onPress={onSeeImageFullScreen} style={imageContainerStyle}>
       <Image
         source={{
           uri: avatar,
@@ -116,6 +126,11 @@ export const ProfileImage: FC<ProfileImageProps> = ({
           <MaterialIcons name="camera-alt" size={32} color="white" />
         </Pressable>
       )}
+      <SeeFullImageModal
+        image={avatar}
+        isVisible={imageFullScreen}
+        onClose={onCancelSeeImageFullScreen}
+      />
       <ConfirmImageModal
         isVisible={image !== null}
         image={image}
@@ -123,7 +138,7 @@ export const ProfileImage: FC<ProfileImageProps> = ({
         onCancel={onCancelEditImage}
         imageSize={size}
       />
-    </View>
+    </Pressable>
   );
 };
 
