@@ -3,8 +3,7 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { ErrorReporting } from "../Errors";
 
 export const uploadImageAsync = async (uri: string, id: string) => {
-
-  if(!id || !uri) return null;
+  if (!id || !uri) return null;
 
   const blob: Blob = await new Promise((resolve, reject) => {
     const xhr = new XMLHttpRequest();
@@ -27,4 +26,4 @@ export const uploadImageAsync = async (uri: string, id: string) => {
   blob.close();
 
   return await getDownloadURL(fileRef);
-}
+};
