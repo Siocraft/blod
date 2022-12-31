@@ -37,7 +37,7 @@ export const createUser = async ({
 
   try {
     const avatar = await getDownloadURL(
-      ref(firebaseStorage, `avatars/${0}.png`)
+      ref(firebaseStorage, `avatars/${Math.random() * 3}.png`)
     );
 
     const document = {
