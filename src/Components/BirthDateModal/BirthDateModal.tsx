@@ -1,12 +1,12 @@
-import React, { FC, useState } from "react";
-import DateTimePicker, {
-  DateTimePickerEvent,
-} from "@react-native-community/datetimepicker";
-import Modal from "react-native-modal";
-import { AntDesign } from "@expo/vector-icons";
-import { ColorsEnum } from "@theme";
-import { Pressable, View, StyleSheet } from "react-native";
 import { BText } from "@components";
+import { AntDesign } from "@expo/vector-icons";
+import DateTimePicker, {
+  DateTimePickerEvent
+} from "@react-native-community/datetimepicker";
+import { ColorsEnum } from "@theme";
+import React, { FC, useState } from "react";
+import { Pressable, StyleSheet, View } from "react-native";
+import Modal from "react-native-modal";
 
 interface BirthDateModalProps {
   isVisible: boolean;

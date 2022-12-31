@@ -1,17 +1,16 @@
-import { BDropdown, BText, BTextInput, ProfileImage } from "@components";
+import { BDropdown, BloodTypeModal, BText, BTextInput, ProfileImage } from "@components";
+import { Entypo, Fontisto, MaterialIcons } from "@expo/vector-icons";
 import { useAppNavigation, useAuth, useUpdateUser, useUser } from "@hooks";
+import { ColorsEnum } from "@theme";
+import { isoDateToDayMonthYear } from "@utils";
 import { useFormik } from "formik";
 import React, { FC, useState } from "react";
-import { View, StyleSheet, Pressable } from "react-native";
+import { Pressable, StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { BirthDateModal } from "../../Components/BirthDateModal";
+import { CityModal } from "../../Components/CityModal";
 import { ErrorScreen } from "../Error";
 import { GuestSignedIn } from "../Profile/GuestSignedIn";
-import { Fontisto, MaterialIcons, Entypo } from "@expo/vector-icons";
-import { ColorsEnum } from "@theme";
-import { BloodTypeModal } from "./BloodTypeModal";
-import { CityModal } from "./CityModal";
-import { BirthDateModal } from "./BirthDateModal";
-import { isoDateToDayMonthYear } from "@utils";
 
 export const EditProfile: FC = () => {
   const { user: authUser } = useAuth();
@@ -34,10 +33,6 @@ export const EditProfile: FC = () => {
         birthDate: user?.birthDate,
       },
       onSubmit: submittedValues => {
-        // @ts-expect-error
-        Object.keys(submittedValues).forEach(key =>
-          submittedValues[key] === undefined ? delete submittedValues[key] : {}
-        );
         updateUserMutation({
           id: authUser?.uid ?? "",
           data: submittedValues,

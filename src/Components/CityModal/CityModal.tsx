@@ -11,6 +11,7 @@ interface CityModalProps {
   onPressHideCityModal: () => void;
   cityValue: string;
   setFieldValue: (field: string, value: string) => void;
+  cb?: () => void;
 }
 
 export const CityModal: FC<CityModalProps> = ({
@@ -18,6 +19,7 @@ export const CityModal: FC<CityModalProps> = ({
   onPressHideCityModal,
   cityValue,
   setFieldValue,
+  cb,
 }) => {
   const [selectedCity, setSelectedCity] = useState(cityValue);
 
@@ -27,6 +29,7 @@ export const CityModal: FC<CityModalProps> = ({
 
   const confirmCity = () => {
     setFieldValue("city", selectedCity);
+    cb?.();
     onPressHideCityModal();
   };
 
