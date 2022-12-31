@@ -1,15 +1,17 @@
 import { BText, BTextInput, GoBack } from "@components";
+import { ErrorsEnum } from "@constants";
 import { useAppNavigation } from "@hooks";
 import { ColorsEnum } from "@theme";
 import { useFormik } from "formik";
 import React, { FC } from "react";
-import { Pressable, View, StyleSheet } from "react-native";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { ErrorsEnum } from "@constants";
-import { createUser } from "@services";
+import { Pressable, StyleSheet, View } from "react-native";
 import * as Yup from "yup";
 
-const auth = getAuth();
+export type SignUpFormValues = {
+  email: string;
+  password: string;
+  passwordConfirmation: string;
+};
 
 const SignupSchema = Yup.object().shape({
   password: Yup.string()
@@ -25,32 +27,21 @@ const SignupSchema = Yup.object().shape({
   ),
 });
 
+const initialValues: SignUpFormValues = {
+  email: "",
+  password: "",
+  passwordConfirmation: "",
+};
+
 export const Signup: FC = () => {
-  const { goBack, navigateToLogin } = useAppNavigation();
+  const { navigateToLogin, navigateToCompleteSignup } = useAppNavigation();
 
-  const { handleChange, handleBlur, values, handleSubmit, errors, touched } =
+  const { handleChange, handleBlur, values, errors, touched, handleSubmit } =
     useFormik({
-      initialValues: {
-        email: "",
-        password: "",
-        passwordConfirmation: "",
-      },
+      initialValues,
       validationSchema: SignupSchema,
-      onSubmit: values => {
-        createUserWithEmailAndPassword(auth, values.email, values.password)
-          .then(userCredential => {
-            createUser(userCredential.user.uid);
-          })
-          .catch(error => {
-            if (error.code === ErrorsEnum.Firebase.Auth.EmailAlreadyInUse) {
-              console.log("That email address is already in use!");
-            }
-            if (error.code === ErrorsEnum.Firebase.Auth.EmailAlreadyInUse) {
-              console.log("That email address is invalid!");
-            }
-
-            console.error(error);
-          });
+      onSubmit: submittedValues => {
+        navigateToCompleteSignup(submittedValues);
       },
     });
 

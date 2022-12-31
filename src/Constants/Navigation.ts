@@ -18,5 +18,6 @@ export const NavigationConstants = {
     Menu: "Menu",
     Login: "Login",
     Signup: "Signup",
+    CompleteSignup: "CompleteSignup",
   },
 };

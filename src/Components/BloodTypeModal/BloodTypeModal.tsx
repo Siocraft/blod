@@ -1,10 +1,10 @@
-import { BText } from "@components";
 import { Data } from "@constants";
 import { AntDesign } from "@expo/vector-icons";
 import { ColorsEnum } from "@theme";
 import React, { FC, useState } from "react";
 import { Pressable, View } from "react-native";
 import Modal from "react-native-modal";
+import { BText } from "../BText";
 
 interface BloodTypeModalProps {
   isVisible: boolean;

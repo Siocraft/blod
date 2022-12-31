@@ -1,10 +1,10 @@
-import { FC, useState } from "react";
-import Modal from "react-native-modal";
-import { AntDesign } from "@expo/vector-icons";
-import { Pressable, View } from "react-native";
-import { ColorsEnum } from "@theme";
 import { Data } from "@constants";
-import { BText } from "@components";
+import { AntDesign } from "@expo/vector-icons";
+import { ColorsEnum } from "@theme";
+import { FC, useState } from "react";
+import { Pressable, View } from "react-native";
+import Modal from "react-native-modal";
+import { BText } from "../BText";
 
 interface CityModalProps {
   isVisible: boolean;

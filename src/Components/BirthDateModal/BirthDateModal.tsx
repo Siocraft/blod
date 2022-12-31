@@ -1,4 +1,3 @@
-import { BText } from "@components";
 import { AntDesign } from "@expo/vector-icons";
 import DateTimePicker, {
   DateTimePickerEvent
@@ -7,6 +6,7 @@ import { ColorsEnum } from "@theme";
 import React, { FC, useState } from "react";
 import { Pressable, StyleSheet, View } from "react-native";
 import Modal from "react-native-modal";
+import { BText } from "../BText";
 
 interface BirthDateModalProps {
   isVisible: boolean;

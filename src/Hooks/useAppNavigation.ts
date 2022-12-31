@@ -1,5 +1,6 @@
 import { NavigationConstants } from "@constants";
 import { StackActions, useNavigation } from "@react-navigation/native";
+import { SignUpFormValues } from "@screens";
 
 export const useAppNavigation = () => {
   const navigation = useNavigation();
@@ -8,7 +9,7 @@ export const useAppNavigation = () => {
   return {
     navigateToOtherProfile: (userId: string) =>
       // @ts-expect-error Some navigation types are wrong
-      navigate("OtherProfile", { userId }),
+      navigate(NavigationConstants.Screens.OtherProfile, { userId }),
     navigateToApp: () =>
       navigation.dispatch(StackActions.replace(NavigationConstants.Root.App)),
     navigateToAuth: () =>
@@ -36,6 +37,11 @@ export const useAppNavigation = () => {
     navigateToCreateDonationRequest: () =>
       // @ts-expect-error Some navigation types are wrong
       navigate(NavigationConstants.Screens.CreateDonationRequest),
+    navigateToCompleteSignup: (signupValues: SignUpFormValues) =>
+      // @ts-expect-error Some navigation types are wrong
+      navigate(NavigationConstants.Screens.CompleteSignup, {
+        signupValues,
+      }),
     goBack,
   };
 };

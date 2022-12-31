@@ -13,5 +13,9 @@ export const ErrorsEnum = {
       tooLong: "Contraseña muy larga",
       passwordMismatch: "Las contraseñas no coinciden",
     },
+    CompleteSignup: {
+      tooShort: "Muy corto",
+      tooLong: "Muy largo",
+    }
   },
 };

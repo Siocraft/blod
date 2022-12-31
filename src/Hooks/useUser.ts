@@ -18,7 +18,6 @@ export const useUser = (userId?: string) => {
     },
     onError: e => {
       ErrorReporting(e);
-      hideLoading();
     },
   });
 };
