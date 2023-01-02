@@ -9,16 +9,20 @@ import {
 import { donationRequests } from "../../Data/DonationRequests";
 import { CreateRequestButton } from "./CreateRequestButton";
 import { DonationRequestCard } from "./DonationRequestCard";
+import { Tabs } from "./Tabs";
 
 export const Requests = () => {
   const insets = useSafeAreaInsets();
 
   const [isContactModaVisible, setIsContactModalVisible] = useState(false);
 
+  const [selectedTab, setSelectedTab] = useState<"donators" | "requests">("requests");
+
   return (
     <SafeAreaView
       style={[styles.landingContainer, { paddingBottom: -insets.bottom }]}
     >
+      <Tabs selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
       <FlatList
         data={donationRequests}
         renderItem={({ item }) => (
@@ -30,9 +34,13 @@ export const Requests = () => {
         keyExtractor={item => item.id}
       />
       <CreateRequestButton />
-      <ContactModal onClose={() => {
-        setIsContactModalVisible(false);
-      }} isVisible={isContactModaVisible} variant="primary" />
+      <ContactModal
+        onClose={() => {
+          setIsContactModalVisible(false);
+        }}
+        isVisible={isContactModaVisible}
+        variant="primary"
+      />
     </SafeAreaView>
   );
 };

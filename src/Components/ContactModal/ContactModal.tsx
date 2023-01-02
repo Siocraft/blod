@@ -12,11 +12,13 @@ interface ContactModalProps {
   onClose: () => void;
 }
 
-const contactTitle = "Contacta al donador para recibir su apoyo"
-const requestTitle = "Contacta al solicitante para poder donar"
+const contactTitle = "Contacta al donador para recibir su apoyo";
+const requestTitle = "Contacta al solicitante para poder donar";
 
-const requestTest = "El solicitante deberá brindarte todos los detalles extra que requiere la donación."
-const contactText = "Deberás brindarle como solicitante todos los detalles extra que requiere la donación."
+const requestTest =
+  "El solicitante deberá brindarte todos los detalles extra que requiere la donación.";
+const contactText =
+  "Deberás brindarle como solicitante todos los detalles extra que requiere la donación.";
 
 export const ContactModal: FC<ContactModalProps> = ({
   isVisible,
@@ -37,20 +39,25 @@ export const ContactModal: FC<ContactModalProps> = ({
           {variant === "primary" ? contactTitle : requestTitle}
         </BText>
         <View style={{ height: 16 }} />
-        <View style={{
-          flexDirection: "row",
-          justifyContent: "space-evenly",
-          width: "100%"
-        }}>
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-evenly",
+            width: "100%",
+          }}
+        >
           <WhatsAppSvg variant={variant} />
           <CallSvg variant={variant} />
         </View>
-        <BText style={{
-          marginTop: 16,
-          lineHeight: 21,
-          textAlign: "center",
-          fontWeight: "500"
-        }} color="darkGray">
+        <BText
+          style={{
+            marginTop: 16,
+            lineHeight: 21,
+            textAlign: "center",
+            fontWeight: "500",
+          }}
+          color="darkGray"
+        >
           {variant === "primary" ? contactText : requestTest}
         </BText>
       </View>
