@@ -1,9 +1,8 @@
-import { BText } from "@components";
+import { Ionicons } from "@expo/vector-icons";
 import { useAppNavigation } from "@hooks";
 import { ColorsEnum } from "@theme";
 import React, { FC } from "react";
-import { StyleSheet, Pressable } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import { Pressable, StyleSheet } from "react-native";
 
 export const CreateRequestButton: FC = () => {
   const { navigateToCreateDonationRequest } = useAppNavigation();
@@ -25,7 +24,7 @@ const styles = StyleSheet.create({
     height: 50,
     width: 50,
     position: "absolute",
-    bottom: 16,
+    bottom: 48,
     right: 16,
     borderRadius: 25,
     justifyContent: "center",
