@@ -47,15 +47,18 @@ export const Donors: FC<DonorsProps> = ({ setIsContactModalVisible }) => {
                 <View style={{ flex: 1 }} />
               </View>
               <View style={{ flex: 1 }} />
-              <View style={{ justifyContent: "center", alignItems: "center" }}>
+              <View style={styles.bloodType}>
                 <BloodSvg />
-                <BText size="title" superBold style={{ position: "absolute" }}>
+                <BText
+                  superBold
+                  size="title"
+                  style={{ position: "absolute" }}
+                >
                   {item.bloodType}
                 </BText>
               </View>
             </View>
-            <View style={{ height: 16 }} />
-            <BText color="black">{item.description}</BText>
+            <BText color="black" style={styles.description}>{item.description}</BText>
             <View style={{ height: 16 }} />
             <View style={styles.buttonHub}>
               <View style={styles.button}>
@@ -107,5 +110,14 @@ const styles = StyleSheet.create({
     backgroundColor: ColorsEnum.success,
     paddingHorizontal: 8,
     borderRadius: 8,
+  },
+  bloodType: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  description: {
+    marginTop: 12,
+    color: ColorsEnum.darkGray,
   },
 });

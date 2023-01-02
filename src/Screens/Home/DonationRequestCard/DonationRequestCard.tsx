@@ -1,4 +1,4 @@
-import { BloodSvg } from "@assets";
+import { BloodSvg, HospitalSvg, LocationSvg } from "@assets";
 import { BButton, BText } from "@components";
 import { useAppNavigation } from "@hooks";
 import { ColorsEnum } from "@theme";
@@ -40,26 +40,18 @@ export const DonationRequestCard: FC<DonationRequestCardProps> = ({
           </View>
           {requestDonation.hospital && (
             <View>
-              <View
-                style={{
-                  flexDirection: "row",
-                  alignItems: "center",
-                }}
-              >
-                <BText color="secondary" superBold size="large">
-                  H{" "}
-                </BText>
+              <View style={styles.infoContainer}>
+                <View style={styles.iconContainer}>
+                  <HospitalSvg variant="secondary" />
+                </View>
+                <View style={{ width: 4 }} />
                 <BText color="black">{requestDonation.hospital}</BText>
               </View>
-              <View
-                style={{
-                  flexDirection: "row",
-                  alignItems: "center",
-                }}
-              >
-                <BText color="secondary" superBold size="large">
-                  L{" "}
-                </BText>
+              <View style={styles.infoContainer}>
+                <View style={styles.iconContainer}>
+                  <LocationSvg variant="secondary" />
+                </View>
+                <View style={{ width: 4 }} />
                 <BText color="black">{requestDonation.location}</BText>
               </View>
             </View>
@@ -77,7 +69,7 @@ export const DonationRequestCard: FC<DonationRequestCardProps> = ({
           </BText>
         </View>
       </View>
-      <BText size="large" color="black" style={styles.description}>
+      <BText color="black" style={styles.description}>
         {requestDonation.description}
       </BText>
       <View style={styles.buttonGroup}>
@@ -104,7 +96,7 @@ export const DonationRequestCard: FC<DonationRequestCardProps> = ({
 const styles = StyleSheet.create({
   container: {
     margin: 16,
-    padding: 8,
+    padding: 16,
     marginBottom: 0,
     borderRadius: 8,
     backgroundColor: ColorsEnum.white,
@@ -118,14 +110,14 @@ const styles = StyleSheet.create({
     elevation: 8,
   },
   headerImage: {
-    width: 60,
-    height: 60,
+    width: 64,
+    height: 64,
     borderRadius: 8,
     marginRight: 12,
   },
   nameContainer: {
     flexDirection: "row",
-    alignItems: "flex-end",
+    alignItems: "center",
   },
   row: { flexDirection: "row" },
   description: {
@@ -144,5 +136,15 @@ const styles = StyleSheet.create({
   },
   headerInfo: {
     flex: 4,
+    marginLeft: 8,
+  },
+  infoContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  iconContainer: {
+    width: 20,
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
