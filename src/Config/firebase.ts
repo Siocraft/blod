@@ -6,7 +6,7 @@ import {
   FIREBASE_MEASUREMENT_ID,
   FIREBASE_MESSAGING_SENDER_ID,
   FIREBASE_PROJECT_ID,
-  FIREBASE_STORAGE_BUCKET
+  FIREBASE_STORAGE_BUCKET,
 } from "@env";
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";

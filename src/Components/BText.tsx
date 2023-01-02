@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   bold: {
-    fontWeight: "bold",
+    fontWeight: "700",
   },
   primary: {
     color: ColorsEnum.primary,

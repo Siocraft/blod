@@ -1,4 +1,10 @@
-import { BButton, BDropdown, BloodTypeModal, BTextInput, CityModal } from "@components";
+import {
+  BButton,
+  BDropdown,
+  BloodTypeModal,
+  BTextInput,
+  CityModal,
+} from "@components";
 import { firebaseAuth } from "@config";
 import { ErrorsEnum } from "@constants";
 import { Fontisto, MaterialIcons } from "@expo/vector-icons";
@@ -29,7 +35,15 @@ const SignupSchema = Yup.object().shape({
 export const CompleteSignup: FC<CompleteSignupProps> = ({ route }) => {
   const { signupValues } = route.params;
 
-  const { values, handleChange, handleBlur, errors, touched, setFieldValue, handleSubmit } = useFormik({
+  const {
+    values,
+    handleChange,
+    handleBlur,
+    errors,
+    touched,
+    setFieldValue,
+    handleSubmit,
+  } = useFormik({
     initialValues: {
       name: undefined,
       bloodType: undefined,
@@ -60,10 +74,10 @@ export const CompleteSignup: FC<CompleteSignupProps> = ({ route }) => {
           if (error.code === ErrorsEnum.Firebase.Auth.EmailAlreadyInUse) {
             console.log("That email address is invalid!");
           }
-  
+
           console.error(error);
         });
-    }
+    },
   });
 
   const [bloodTypeModalVisible, setBloodTypeModalVisible] = useState(false);
@@ -140,7 +154,11 @@ export const CompleteSignup: FC<CompleteSignupProps> = ({ route }) => {
         )}
       />
       <View style={styles.submitContainer}>
-        <BButton variant="secondary" title="Finalizar" onPress={onPressSubmit} />
+        <BButton
+          variant="secondary"
+          title="Finalizar"
+          onPress={onPressSubmit}
+        />
       </View>
       <BloodTypeModal
         isVisible={bloodTypeModalVisible}
@@ -175,5 +193,5 @@ const styles = StyleSheet.create({
     bottom: 16,
     left: 16,
     right: 16,
-  }
+  },
 });

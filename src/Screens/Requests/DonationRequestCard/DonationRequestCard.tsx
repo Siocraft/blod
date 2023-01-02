@@ -1,15 +1,17 @@
-import { BText } from "@components";
+import { BButton, BText } from "@components";
 import { useAppNavigation } from "@hooks";
 import { ColorsEnum } from "@theme";
-import React, { FC } from "react";
+import React, { Dispatch, FC, SetStateAction } from "react";
 import { Image, Pressable, StyleSheet, View } from "react-native";
 
 declare interface DonationRequestCardProps {
   requestDonation: DonationRequest;
+  setIsContactModalVisible: Dispatch<SetStateAction<boolean>>;
 }
 
 export const DonationRequestCard: FC<DonationRequestCardProps> = ({
   requestDonation,
+  setIsContactModalVisible,
 }) => {
   const { navigateToOtherProfile } = useAppNavigation();
 
@@ -72,22 +74,20 @@ export const DonationRequestCard: FC<DonationRequestCardProps> = ({
         {requestDonation.description}
       </BText>
       <View style={styles.buttonGroup}>
-        <Pressable
-          style={styles.contactButton}
-          onPress={() => console.log("Contact")}
-        >
-          <BText color="white" bold>
-            Contactar
-          </BText>
-        </Pressable>
-        <Pressable
-          style={styles.moreInfoButton}
-          onPress={() => console.log("More Info")}
-        >
-          <BText color="primary" bold>
-            Ver más
-          </BText>
-        </Pressable>
+        <View style={{ flex: 1 }}>
+          <BButton
+            variant="primary-void"
+            title="Ver más"
+            onPress={() => console.log("More Info")}
+          />
+        </View>
+        <View style={{ width: 16 }} />
+        <View style={{ flex: 1 }}>
+          <BButton
+            title="Contactar"
+            onPress={() => setIsContactModalVisible(true)}
+          />
+        </View>
       </View>
     </View>
   );
@@ -128,24 +128,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-around",
     marginTop: 12,
-  },
-  contactButton: {
-    marginRight: 16,
-    borderRadius: 8,
-    alignItems: "center",
-    justifyContent: "center",
-    padding: 8,
-    flex: 1,
-    backgroundColor: ColorsEnum.primary,
-  },
-  moreInfoButton: {
-    borderRadius: 8,
-    alignItems: "center",
-    justifyContent: "center",
-    padding: 8,
-    flex: 1,
-    borderColor: ColorsEnum.primary,
-    borderWidth: 2,
   },
   bloodType: {
     flex: 1,

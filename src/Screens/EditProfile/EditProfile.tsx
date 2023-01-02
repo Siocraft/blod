@@ -1,4 +1,10 @@
-import { BDropdown, BloodTypeModal, BText, BTextInput, ProfileImage } from "@components";
+import {
+  BDropdown,
+  BloodTypeModal,
+  BText,
+  BTextInput,
+  ProfileImage,
+} from "@components";
 import { Entypo, Fontisto, MaterialIcons } from "@expo/vector-icons";
 import { useAppNavigation, useAuth, useUpdateUser, useUser } from "@hooks";
 import { ColorsEnum } from "@theme";

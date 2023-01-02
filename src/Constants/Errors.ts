@@ -16,6 +16,6 @@ export const ErrorsEnum = {
     CompleteSignup: {
       tooShort: "Muy corto",
       tooLong: "Muy largo",
-    }
+    },
   },
 };

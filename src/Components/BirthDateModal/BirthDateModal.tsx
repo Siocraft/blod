@@ -1,6 +1,6 @@
 import { AntDesign } from "@expo/vector-icons";
 import DateTimePicker, {
-  DateTimePickerEvent
+  DateTimePickerEvent,
 } from "@react-native-community/datetimepicker";
 import { ColorsEnum } from "@theme";
 import React, { FC, useState } from "react";

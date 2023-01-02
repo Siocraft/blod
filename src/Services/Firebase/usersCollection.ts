@@ -25,8 +25,8 @@ export const createUser = async ({
   name,
   location,
   bloodType,
-  // birthDate,
-}: {
+}: // birthDate,
+{
   id: string | undefined;
   name: string;
   location: string;

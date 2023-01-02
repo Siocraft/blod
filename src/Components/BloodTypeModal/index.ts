@@ -1,1 +1,1 @@
-export * from './BloodTypeModal';
+export * from "./BloodTypeModal";

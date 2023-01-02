@@ -1,1 +1,1 @@
-export * from './BirthDateModal';
+export * from "./BirthDateModal";
