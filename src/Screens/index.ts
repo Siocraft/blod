@@ -9,4 +9,3 @@ export * from "./Menu";
 export * from "./OtherProfile";
 export * from "./Profile";
 export * from "./Signup";
-

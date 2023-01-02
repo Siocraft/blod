@@ -1,12 +1,12 @@
 import { BButton, BText } from "@components";
 import { useAppNavigation } from "@hooks";
 import { ColorsEnum } from "@theme";
-import React, { Dispatch, FC, SetStateAction } from "react";
+import React, { FC } from "react";
 import { Image, Pressable, StyleSheet, View } from "react-native";
 
 declare interface DonationRequestCardProps {
   requestDonation: DonationRequest;
-  setIsContactModalVisible: Dispatch<SetStateAction<boolean>>;
+  setIsContactModalVisible: (value: boolean) => void;
 }
 
 export const DonationRequestCard: FC<DonationRequestCardProps> = ({
@@ -65,7 +65,7 @@ export const DonationRequestCard: FC<DonationRequestCardProps> = ({
           )}
         </View>
         <View style={styles.bloodType}>
-          <BText superBold size="title">
+          <BText color="secondary" superBold size="title">
             {requestDonation.bloodType}
           </BText>
         </View>
@@ -76,7 +76,7 @@ export const DonationRequestCard: FC<DonationRequestCardProps> = ({
       <View style={styles.buttonGroup}>
         <View style={{ flex: 1 }}>
           <BButton
-            variant="primary-void"
+            variant="secondary-void"
             title="Ver más"
             onPress={() => console.log("More Info")}
           />
@@ -84,6 +84,7 @@ export const DonationRequestCard: FC<DonationRequestCardProps> = ({
         <View style={{ width: 16 }} />
         <View style={{ flex: 1 }}>
           <BButton
+            variant="secondary"
             title="Contactar"
             onPress={() => setIsContactModalVisible(true)}
           />
@@ -100,7 +101,7 @@ const styles = StyleSheet.create({
     marginBottom: 0,
     borderRadius: 8,
     backgroundColor: ColorsEnum.white,
-    shadowColor: ColorsEnum.primary,
+    shadowColor: ColorsEnum.secondary,
     shadowOffset: {
       width: 4,
       height: 4,

@@ -11,6 +11,8 @@ export enum ColorsEnum {
   error = "#ff4055",
   success = "#00BFA6",
   overlay = "rgba(0, 0, 0, 0.3)",
+  attention = "rgb(252, 243, 49)",
+  purple = "#bcb6ff",
 }
 
 // Icons,

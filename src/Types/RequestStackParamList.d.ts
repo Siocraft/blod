@@ -1,5 +1,7 @@
 type RequestStackParamList = {
-  Home: Record<string, never>;
+  Home: {
+    setTabsTintColor: (color: string) => void;
+  };
   OtherProfile: { userId: string };
   CreateDonationRequest: Record<string, never>;
 };

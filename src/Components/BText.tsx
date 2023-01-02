@@ -36,15 +36,19 @@ export const BText: FC<BTextProps> = ({
 const styles = StyleSheet.create({
   small: {
     fontSize: 12,
+    lineHeight: 16,
   },
   medium: {
     fontSize: 14,
+    lineHeight: 20,
   },
   large: {
     fontSize: 16,
+    lineHeight: 24,
   },
   title: {
     fontSize: 20,
+    lineHeight: 28,
   },
   bold: {
     fontWeight: "700",

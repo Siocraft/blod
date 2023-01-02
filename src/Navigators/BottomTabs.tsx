@@ -1,14 +1,14 @@
+import { NavigationConstants } from "@constants";
+import { useAppNavigation } from "@hooks";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Information, Menu } from "@screens";
+import { ColorsEnum } from "@theme";
 import React, { FC, useState } from "react";
-import { RequestsStack } from "./RequestsStack";
 import { ProfileStack } from "./ProfileStack";
+import { RequestsStack } from "./RequestsStack";
 // @ts-expect-error No typings available
 import TabBar from "enhanced-fluid-bottom-navigation-bar";
 import { View } from "react-native";
-import { ColorsEnum } from "@theme";
-import { useAppNavigation } from "@hooks";
-import { NavigationConstants } from "@constants";
 
 const FluidTabBar: FC = () => {
   const {
@@ -19,14 +19,14 @@ const FluidTabBar: FC = () => {
   } = useAppNavigation();
 
   const [tabsTintColor, setTabsTintColor] = useState<string>(
-    ColorsEnum.primary
+    ColorsEnum.secondary
   );
 
   const handlePress = (tabIndex: number) => {
     switch (tabIndex) {
       case 0:
-        tabsTintColor !== ColorsEnum.primary &&
-          setTabsTintColor(ColorsEnum.primary);
+        tabsTintColor !== ColorsEnum.secondary &&
+          setTabsTintColor(ColorsEnum.secondary);
         navigateToRequests();
         break;
       case 1:
@@ -56,7 +56,7 @@ const FluidTabBar: FC = () => {
         tintColor={tabsTintColor}
         values={[
           {
-            title: "Solicitudes",
+            title: "Inicio",
             icon: "heartbeat",
             iconSet: "FontAwesome5",
             size: 32,
