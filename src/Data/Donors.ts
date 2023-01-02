@@ -2,7 +2,6 @@ import { Data } from "@constants";
 import { faker } from "@faker-js/faker";
 
 const createDonorCard = () => {
-
   return {
     id: faker.datatype.uuid(),
     name: faker.name.fullName(),

@@ -1,4 +1,4 @@
-import { ABPositiveSvg, LocationSvg } from "@assets";
+import { BloodSvg, LocationSvg } from "@assets";
 import { BButton, BText } from "@components";
 import { ColorsEnum } from "@theme";
 import { FC } from "react";
@@ -9,16 +9,14 @@ interface DonorsProps {
   setIsContactModalVisible: (value: boolean) => void;
 }
 
-export const Donors: FC<DonorsProps> = ({
-  setIsContactModalVisible,
-}) => {
-
+export const Donors: FC<DonorsProps> = ({ setIsContactModalVisible }) => {
   const onContact = () => {
     setIsContactModalVisible(true);
-  }
+  };
 
-  return <>
-    <FlatList
+  return (
+    <>
+      <FlatList
         data={donorCards}
         style={{ backgroundColor: ColorsEnum.backgroundPrimary, padding: 16 }}
         renderItem={({ item }) => (
@@ -26,31 +24,38 @@ export const Donors: FC<DonorsProps> = ({
             <View style={styles.header}>
               <Image source={{ uri: item.avatar }} style={styles.avatar} />
               <View style={styles.headerText}>
-                <BText size="title" color="black" bold>{item.name}</BText>
+                <BText size="title" color="black" bold>
+                  {item.name}
+                </BText>
                 <View style={styles.locationContainer}>
                   <LocationSvg />
                   <View style={{ width: 4 }} />
-                  <BText size="large" color="black">{item.city}</BText>
+                  <BText size="large" color="black">
+                    {item.city}
+                  </BText>
                 </View>
-                  {
-                    item.isAvailableToDonate && (
-                      <>
-                        <View style={{ height: 8 }} />
-                        <View style={styles.badge}>
-                          <BText size="small" color="black">Donador</BText>
-                        </View>
-                      </>
-                    )
-                  }
-                  <View style={{ flex: 1}} />
+                {item.isAvailableToDonate && (
+                  <>
+                    <View style={{ height: 8 }} />
+                    <View style={styles.badge}>
+                      <BText size="small" color="black">
+                        Donador
+                      </BText>
+                    </View>
+                  </>
+                )}
+                <View style={{ flex: 1 }} />
               </View>
               <View style={{ flex: 1 }} />
-              <ABPositiveSvg />
+              <View style={{ justifyContent: "center", alignItems: "center" }}>
+                <BloodSvg />
+                <BText size="title" superBold style={{ position: "absolute" }}>
+                  {item.bloodType}
+                </BText>
+              </View>
             </View>
             <View style={{ height: 16 }} />
-            <BText color="black">
-              {item.description}
-            </BText>
+            <BText color="black">{item.description}</BText>
             <View style={{ height: 16 }} />
             <View style={styles.buttonHub}>
               <View style={styles.button}>
@@ -65,8 +70,9 @@ export const Donors: FC<DonorsProps> = ({
         )}
         keyExtractor={item => item.id}
       />
-  </>
-}
+    </>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -101,5 +107,5 @@ const styles = StyleSheet.create({
     backgroundColor: ColorsEnum.success,
     paddingHorizontal: 8,
     borderRadius: 8,
-  }
-})
+  },
+});

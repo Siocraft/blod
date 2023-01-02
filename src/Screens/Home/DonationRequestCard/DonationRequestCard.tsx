@@ -1,3 +1,4 @@
+import { BloodSvg } from "@assets";
 import { BButton, BText } from "@components";
 import { useAppNavigation } from "@hooks";
 import { ColorsEnum } from "@theme";
@@ -65,7 +66,13 @@ export const DonationRequestCard: FC<DonationRequestCardProps> = ({
           )}
         </View>
         <View style={styles.bloodType}>
-          <BText color="secondary" superBold size="title">
+          <BloodSvg variant="secondary" />
+          <BText
+            color="secondary"
+            superBold
+            size="title"
+            style={{ position: "absolute" }}
+          >
             {requestDonation.bloodType}
           </BText>
         </View>

@@ -4,7 +4,7 @@ import React, { FC, useState } from "react";
 import { StyleSheet } from "react-native";
 import {
   SafeAreaView,
-  useSafeAreaInsets
+  useSafeAreaInsets,
 } from "react-native-safe-area-context";
 import { Donors } from "./Donors";
 import { Requests } from "./Requests";
