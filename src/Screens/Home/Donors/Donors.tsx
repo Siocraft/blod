@@ -1,9 +1,9 @@
-import { BloodSvg, LocationSvg } from "@assets";
-import { BButton, BText } from "@components";
+import { FilterButton, Filters } from "@components";
 import { ColorsEnum } from "@theme";
-import { FC } from "react";
-import { FlatList, Image, StyleSheet, View } from "react-native";
+import { FC, useState } from "react";
+import { FlatList, StyleSheet, View } from "react-native";
 import { donorCards } from "../../../Data/Donors";
+import { DonorCard } from "./DonorCard";
 
 interface DonorsProps {
   setIsContactModalVisible: (value: boolean) => void;
@@ -14,110 +14,32 @@ export const Donors: FC<DonorsProps> = ({ setIsContactModalVisible }) => {
     setIsContactModalVisible(true);
   };
 
+  const onToggleFilters = () => {
+    setFiltersVisibility(prev => !prev);
+  };
+
+  const [filtersVisibility, setFiltersVisibility] = useState(false);
+
   return (
-    <>
-      <FlatList
-        data={donorCards}
-        style={{ backgroundColor: ColorsEnum.backgroundPrimary, padding: 16 }}
-        renderItem={({ item }) => (
-          <View style={styles.donorCard}>
-            <View style={styles.header}>
-              <Image source={{ uri: item.avatar }} style={styles.avatar} />
-              <View style={styles.headerText}>
-                <BText size="title" color="black" bold>
-                  {item.name}
-                </BText>
-                <View style={styles.locationContainer}>
-                  <LocationSvg />
-                  <View style={{ width: 4 }} />
-                  <BText size="large" color="black">
-                    {item.city}
-                  </BText>
-                </View>
-                {item.isAvailableToDonate && (
-                  <>
-                    <View style={{ height: 8 }} />
-                    <View style={styles.badge}>
-                      <BText size="small" color="black">
-                        Donador
-                      </BText>
-                    </View>
-                  </>
-                )}
-                <View style={{ flex: 1 }} />
-              </View>
-              <View style={{ flex: 1 }} />
-              <View style={styles.bloodType}>
-                <BloodSvg />
-                <BText
-                  superBold
-                  size="title"
-                  style={{ position: "absolute" }}
-                >
-                  {item.bloodType}
-                </BText>
-              </View>
-            </View>
-            <BText color="black" style={styles.description}>{item.description}</BText>
-            <View style={{ height: 16 }} />
-            <View style={styles.buttonHub}>
-              <View style={styles.button}>
-                <BButton title="Ver más" variant="primary-void" />
-              </View>
-              <View style={{ width: 16 }} />
-              <View style={styles.button}>
-                <BButton title="Contactar" onPress={onContact} />
-              </View>
-            </View>
-          </View>
-        )}
-        keyExtractor={item => item.id}
-      />
-    </>
+    <View style={styles.container}>
+      <FilterButton onPress={onToggleFilters} />
+      {filtersVisibility ? (
+        <Filters
+          variant="primary"
+        />
+      ) : (
+        <FlatList
+          data={donorCards}
+          renderItem={({ item }) => (
+            <DonorCard onContact={onContact} donor={item} />
+          )}
+          keyExtractor={item => "Donor_card_" + item.id}
+        />
+      )}
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: ColorsEnum.backgroundPrimary,
-  },
-  donorCard: {
-    backgroundColor: ColorsEnum.white,
-    marginBottom: 16,
-    borderRadius: 8,
-    padding: 16,
-  },
-  avatar: { height: 64, width: 64, borderRadius: 8 },
-  header: {
-    flexDirection: "row",
-  },
-  headerText: {
-    marginLeft: 16,
-    alignItems: "flex-start",
-  },
-  locationContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  buttonHub: {
-    flexDirection: "row",
-  },
-  button: {
-    flex: 1,
-  },
-  badge: {
-    backgroundColor: ColorsEnum.success,
-    paddingHorizontal: 8,
-    borderRadius: 8,
-  },
-  bloodType: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  description: {
-    marginTop: 12,
-    color: ColorsEnum.darkGray,
-  },
+  container: { backgroundColor: ColorsEnum.backgroundPrimary, padding: 16 },
 });

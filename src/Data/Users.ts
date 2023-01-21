@@ -1,3 +1,4 @@
+import { Data } from "@constants";
 import { faker } from "@faker-js/faker";
 
 const createUser = () => {
@@ -5,7 +6,7 @@ const createUser = () => {
     id: faker.datatype.uuid(),
     name: faker.name.firstName(),
     age: faker.datatype.number({ min: 18, max: 60 }),
-    bloodType: ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"][
+    bloodType: Data.BloodTypes[
       faker.datatype.number({ min: 0, max: 7 })
     ],
     location: faker.address.city(),

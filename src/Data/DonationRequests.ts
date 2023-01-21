@@ -2,9 +2,8 @@ import { Data } from "@constants";
 import { faker } from "@faker-js/faker";
 
 const createDonationRequest = () => {
-  const avatar = `https://firebasestorage.googleapis.com/v0/b/blod-5bfde.appspot.com/o/avatars%2F${faker.datatype.number(
-    { min: 0, max: 3 }
-  )}.png?alt=media&token=ac5db24f-c123-4f5b-bcc3-f55e081eccfc`;
+
+  const avatar = faker.image.avatar();
 
   return {
     id: faker.datatype.uuid(),

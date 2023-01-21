@@ -95,9 +95,8 @@ export const DonationRequestCard: FC<DonationRequestCardProps> = ({
 
 const styles = StyleSheet.create({
   container: {
-    margin: 16,
     padding: 16,
-    marginBottom: 0,
+    marginBottom: 16,
     borderRadius: 8,
     backgroundColor: ColorsEnum.white,
     shadowColor: ColorsEnum.secondary,
