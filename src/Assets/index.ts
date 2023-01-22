@@ -4,3 +4,7 @@ export * from "./FilterSvg";
 export * from "./HospitalSvg";
 export * from "./LocationSvg";
 export * from "./WhatsAppSvg";
+export * from "./IDSvg";
+export * from "./AgeSvg";
+export * from "./BodyWeightSvg";
+export * from "./NoFoodSvg";
