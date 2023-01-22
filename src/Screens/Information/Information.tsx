@@ -1,10 +1,15 @@
 import { AgeSvg, AlcoholSvg, BodyWeightSvg, HeartBeatSvg, IDSvg, NoFoodSvg, PillSvg, SurgerySvg, TattooSvg, VaccineSvg, VirusSvg } from "@assets";
 import { BText } from "@components";
+import { ColorsEnum } from "@theme";
 import React, { FC } from "react";
 import { View, StyleSheet, ScrollView, SafeAreaView } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 // import { SafeAreaView } from "react-native-safe-area-context";
 
 export const Information: FC = () => {
+
+  const { bottom } = useSafeAreaInsets();
+
   return (
     <SafeAreaView style={styles.safeAreaView}>
       <ScrollView style={styles.container}>
@@ -55,6 +60,12 @@ export const Information: FC = () => {
           <View style={styles.icon}>
             <HeartBeatSvg />
           </View>
+          <View style={styles.bottomTextContainer}>
+            <BText color="black" size="small">
+              Consulta más datos en <BText color="darkGray" size="small">https://www.gob.mx/cnts/acciones-y-programas/donacion-de-sangre-79985</BText>
+            </BText>
+          </View>
+          <View style={{ height: bottom }} />
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -64,6 +75,7 @@ export const Information: FC = () => {
 const styles = StyleSheet.create({
   safeAreaView: {
     flex: 1,
+    backgroundColor: ColorsEnum.white,
   },
   container: {
     padding: 16,
@@ -79,4 +91,10 @@ const styles = StyleSheet.create({
   infoText: {
     textAlign: "center",
   },
+  bottomTextContainer: {
+    backgroundColor: ColorsEnum.backgroundSecondary,
+    padding: 16,
+    width: "100%",
+    borderRadius: 8,
+  }
 });
