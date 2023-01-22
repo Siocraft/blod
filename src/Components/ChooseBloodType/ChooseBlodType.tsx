@@ -1,17 +1,19 @@
 import { BRadioButton, BText } from "@components";
 import { Data } from "@constants";
-import { FC, useState } from "react";
+import { FC } from "react";
 import { View, StyleSheet } from "react-native";
 
 interface ChooseBloodTypeProps {
   variant: "primary" | "secondary";
+  selectedBloodType: string;
+  setSelectedBloodType: (value: string) => void;
 }
 
 export const ChooseBloodType: FC<ChooseBloodTypeProps> = ({
   variant,
+  selectedBloodType,
+  setSelectedBloodType,
 }) => {
-
-  const [selectedBloodType, setSelectedBloodType] = useState("");
   
   return <View>
     <BText size="large" bold color={variant}>Tipo de sangre</BText>
