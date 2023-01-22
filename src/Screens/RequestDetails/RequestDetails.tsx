@@ -4,6 +4,7 @@ import { FC } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StyleSheet, View } from "react-native";
 import { ColorsEnum } from "@theme";
+import { InformationPiece } from "./InformationPiece";
 
 export type RequestDetailsProps = NativeStackScreenProps<
   RequestStackParamList,
@@ -23,6 +24,13 @@ export const RequestDetails: FC<RequestDetailsProps> = ({
       <BText bold size="title" color="black">
         Detalles de la solicitud
       </BText>
+      <InformationPiece title="Paciente" value="Santiago González Siordia" />
+      <InformationPiece title="Tipo de donación" value="Sangre completa" />
+      <InformationPiece title="Tipo de sangre" value="B+" />
+      <InformationPiece title="Hospital" value="Puerta de Hierro" />
+      <InformationPiece title="Ubicación" value="Tlajomulco de Zuñiga" />
+      <InformationPiece title="Fechas" value="1 - 10 de Enero 2023" />
+      <InformationPiece title="Horarios" value="6 am - 10 am" />
     </View>
   </SafeAreaView>;
 };
