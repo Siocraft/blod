@@ -1,8 +1,9 @@
 type Data = {
-  BloodTypes: BloodTypes[];
+  BloodTypes: `${BloodTypes}`[];
+  Cities: string[];
 };
 
-export const Data = {
+export const Data: Data = {
   BloodTypes: ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"],
   Cities: [
     "Guadalajara",
