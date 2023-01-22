@@ -15,3 +15,4 @@ export * from "./SurgerySvg";
 export * from "./VaccineSvg";
 export * from "./VirusSvg";
 export * from "./TattooSvg";
+export * from "./DonorHeartSvg";
