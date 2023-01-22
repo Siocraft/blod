@@ -41,5 +41,9 @@ export const Donors: FC<DonorsProps> = ({ setIsContactModalVisible }) => {
 };
 
 const styles = StyleSheet.create({
-  container: { backgroundColor: ColorsEnum.backgroundPrimary, padding: 16 },
+  container: {
+    backgroundColor: ColorsEnum.backgroundPrimary,
+    padding: 16,
+    height: "100%",
+  },
 });

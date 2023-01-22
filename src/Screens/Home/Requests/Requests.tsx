@@ -27,5 +27,9 @@ export const Requests: FC<RequestsProps> = ({ setIsContactModalVisible }) => {
 };
 
 const styles = StyleSheet.create({
-  container: { backgroundColor: ColorsEnum.backgroundSecondary, padding: 16 },
+  container: {
+    backgroundColor: ColorsEnum.backgroundSecondary,
+    padding: 16,
+    height: "100%",
+  },
 });
