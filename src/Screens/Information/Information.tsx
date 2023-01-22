@@ -1,4 +1,4 @@
-import { AgeSvg, BodyWeightSvg, IDSvg, NoFoodSvg } from "@assets";
+import { AgeSvg, AlcoholSvg, BodyWeightSvg, HeartBeatSvg, IDSvg, NoFoodSvg, PillSvg, SurgerySvg, TattooSvg, VaccineSvg, VirusSvg } from "@assets";
 import { BText } from "@components";
 import React, { FC } from "react";
 import { View, StyleSheet, ScrollView, SafeAreaView } from "react-native";
@@ -25,35 +25,35 @@ export const Information: FC = () => {
           </View>
           <BText size="large" color="black" style={styles.infoText}>Deberás tener un ayuno mínimo de 4 hrs y mantenerte hidratado</BText>
           <View style={styles.icon}>
-            <BodyWeightSvg />
+            <NoFoodSvg />
           </View>
           <BText size="large" color="black" style={styles.infoText}>No haber consumido alcohol en las últimas 72 hrs</BText>
           <View style={styles.icon}>
-            <IDSvg />
+            <AlcoholSvg />
           </View>
           <BText size="large" color="black" style={styles.infoText}>No haber estado enfermo los últimos 14 días</BText>
           <View style={styles.icon}>
-            <IDSvg />
+            <VirusSvg />
           </View>
           <BText size="large" color="black" style={styles.infoText}>No haber tomado medicamentos en los últimos 5 días</BText>
           <View style={styles.icon}>
-            <IDSvg />
+            <PillSvg />
           </View>
           <BText size="large" color="black" style={styles.infoText}>No contar con perforaciones, ni tatuajes en los últimos 12 meses</BText>
           <View style={styles.icon}>
-            <IDSvg />
+            <TattooSvg />
           </View>
           <BText size="large" color="black" style={styles.infoText}>No haber sido operado en los ultimos 6 meses</BText>
           <View style={styles.icon}>
-            <IDSvg />
+            <SurgerySvg />
           </View>
           <BText size="large" color="black" style={styles.infoText}>No haber sido vacunado en los últimos 30 días</BText>
           <View style={styles.icon}>
-            <IDSvg />
+            <VaccineSvg />
           </View>
           <BText size="large" color="black" style={styles.infoText}>En caso de presión arterial alta, será necesario tenerla controlada</BText>
           <View style={styles.icon}>
-            <IDSvg />
+            <HeartBeatSvg />
           </View>
         </View>
       </ScrollView>
