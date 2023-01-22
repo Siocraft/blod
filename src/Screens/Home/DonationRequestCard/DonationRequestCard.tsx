@@ -52,7 +52,7 @@ export const DonationRequestCard: FC<DonationRequestCardProps> = ({
                   <LocationSvg variant="secondary" />
                 </View>
                 <View style={{ width: 4 }} />
-                <BText color="black">{requestDonation.location}</BText>
+                <BText color="black">{requestDonation.city}</BText>
               </View>
             </View>
           )}
