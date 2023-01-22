@@ -7,6 +7,7 @@ export const NavigationConstants = {
   Stacks: {
     RequestStack: "RequestStack",
     ProfileStack: "ProfileStack",
+    InformationStack: "InformationStack",
   },
   Screens: {
     Profile: "Profile",
@@ -19,5 +20,6 @@ export const NavigationConstants = {
     Login: "Login",
     Signup: "Signup",
     CompleteSignup: "CompleteSignup",
+    DonationRequirements: "DonationRequirements",
   },
 };

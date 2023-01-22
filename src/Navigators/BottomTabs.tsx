@@ -9,6 +9,7 @@ import { RequestsStack } from "./RequestsStack";
 // @ts-expect-error No typings available
 import TabBar from "enhanced-fluid-bottom-navigation-bar";
 import { View } from "react-native";
+import { InformationStack } from "./InformationStack";
 
 const FluidTabBar: FC = () => {
   const {
@@ -104,8 +105,8 @@ export const BottomTabs: FC = () => {
         component={ProfileStack}
       />
       <Tab.Screen
-        name={NavigationConstants.Screens.Information}
-        component={Information}
+        name={NavigationConstants.Stacks.InformationStack}
+        component={InformationStack}
       />
       <Tab.Screen name={NavigationConstants.Screens.Menu} component={Menu} />
     </Tab.Navigator>

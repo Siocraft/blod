@@ -16,3 +16,5 @@ export * from "./VaccineSvg";
 export * from "./VirusSvg";
 export * from "./TattooSvg";
 export * from "./DonorHeartSvg";
+export * from "./ArrowRightSvg";
+export * from "./ArrowLeftSvg";

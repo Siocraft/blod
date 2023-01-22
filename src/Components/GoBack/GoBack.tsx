@@ -1,35 +1,20 @@
 import { FC } from "react";
-import { StyleSheet, Pressable } from "react-native";
-import { MaterialIcons } from "@expo/vector-icons";
+import { Pressable, View } from "react-native";
 import { useAppNavigation } from "@hooks";
 import { BText } from "../BText";
-import { ColorsEnum } from "@theme";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { ArrowLeftSvg } from "@assets";
 
 export const GoBack: FC = () => {
   const { goBack } = useAppNavigation();
-  const { top } = useSafeAreaInsets();
 
   const onGoBack = () => {
     goBack();
   };
   return (
-    <Pressable onPress={onGoBack} style={[styles.container, { top }]}>
-      <MaterialIcons
-        name="chevron-left"
-        size={44}
-        color={ColorsEnum.secondary}
-      />
-      <BText color="secondary">Regresar</BText>
+    <Pressable style={{ flexDirection: 'row' }} onPress={onGoBack}>
+      <ArrowLeftSvg />
+      <View  style={{ width: 8 }} />
+      <BText color="secondary" bold>Regresar</BText>
     </Pressable>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: "row",
-    alignItems: "center",
-    position: "absolute",
-    left: 0,
-  },
-});

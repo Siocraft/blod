@@ -4,7 +4,7 @@ import { SignUpFormValues } from "@screens";
 
 export const useAppNavigation = () => {
   const navigation = useNavigation();
-  const { navigate, goBack } = navigation;
+  const { navigate, goBack, canGoBack } = navigation;
 
   return {
     navigateToOtherProfile: (userId: string) =>
@@ -31,7 +31,7 @@ export const useAppNavigation = () => {
       navigate(NavigationConstants.Screens.EditProfile),
     navigateToInformation: () =>
       // @ts-expect-error Some navigation types are wrong
-      navigate(NavigationConstants.Screens.Information),
+      navigate(NavigationConstants.Stacks.InformationStack),
     // @ts-expect-error Some navigation types are wrong
     navigateToMenu: () => navigate(NavigationConstants.Screens.Menu),
     navigateToCreateDonationRequest: () =>
@@ -42,6 +42,9 @@ export const useAppNavigation = () => {
       navigate(NavigationConstants.Screens.CompleteSignup, {
         signupValues,
       }),
+      // @ts-expect-error Some navigation types are wrong
+    navigateToDonationRequirements: () => navigate(NavigationConstants.Screens.DonationRequirements),
     goBack,
+    canGoBack,
   };
 };
