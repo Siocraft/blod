@@ -1,9 +1,10 @@
 interface DonationRequest {
   id: string;
   name: string;
+  firstname: string;
   age: number;
   bloodType: `${BloodTypes}`;
-  location: string;
+  city: string;
   hospital?: string;
   contact: string;
   litersDonated: number;

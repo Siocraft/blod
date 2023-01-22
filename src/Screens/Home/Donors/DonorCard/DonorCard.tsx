@@ -16,7 +16,7 @@ export const DonorCard: FC<DonorCardProps> = ({ donor, onContact }) => {
         <Image source={{ uri: donor.avatar }} style={styles.avatar} />
         <View style={styles.headerText}>
           <BText size="title" color="black" bold>
-            {donor.name}
+            {donor.firstName}
           </BText>
           <View style={styles.locationContainer}>
             <LocationSvg />

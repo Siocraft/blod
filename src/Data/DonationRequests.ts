@@ -8,9 +8,10 @@ const createDonationRequest = () => {
   return {
     id: faker.datatype.uuid(),
     name: faker.name.fullName(),
+    firstname: faker.name.firstName(),
     age: faker.datatype.number({ min: 18, max: 60 }),
     bloodType: Data.BloodTypes[faker.datatype.number({ min: 0, max: 7 })],
-    location: faker.address.city(),
+    city: faker.address.city(),
     hospital: faker.company.name(),
     contact: faker.phone.number(),
     litersDonated: faker.datatype.number({ min: 0, max: 10 }),

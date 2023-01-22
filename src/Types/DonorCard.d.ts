@@ -1,6 +1,7 @@
 interface DonorCard {
   id: string;
   name: string;
+  firstName: string;
   avatar: string;
   bloodType: `${BloodTypes}`;
   city: string;
