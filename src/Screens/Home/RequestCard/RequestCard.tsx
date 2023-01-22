@@ -36,7 +36,6 @@ export const RequestCard: FC<RequestCardProps> = ({
             <BText size="title" bold style={{ paddingRight: 8 }} color="black">
               {requestDonation.name.split(" ")[0]}
             </BText>
-            <BText color="black">{requestDonation.age}</BText>
           </View>
           {requestDonation.hospital && (
             <View>
