@@ -4,4 +4,5 @@ type RequestStackParamList = {
   };
   OtherProfile: { userId: string };
   CreateDonationRequest: Record<string, never>;
+  RequestDetails: { requestId: string };
 };

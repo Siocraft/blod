@@ -14,10 +14,14 @@ export const RequestCard: FC<RequestCardProps> = ({
   requestDonation,
   setIsContactModalVisible,
 }) => {
-  const { navigateToOtherProfile } = useAppNavigation();
+  const { navigateToOtherProfile, navigateToRequestDetails } = useAppNavigation();
 
   const pushRequestUserProfile = () => {
     navigateToOtherProfile(requestDonation.id);
+  };
+
+  const navigateToRequestDetailsScreen = () => {
+    navigateToRequestDetails(requestDonation.id);
   };
 
   return (
@@ -76,7 +80,7 @@ export const RequestCard: FC<RequestCardProps> = ({
           <BButton
             variant="secondary-void"
             title="Ver más"
-            onPress={() => console.log("More Info")}
+            onPress={navigateToRequestDetailsScreen}
           />
         </View>
         <View style={{ width: 16 }} />

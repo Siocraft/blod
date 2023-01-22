@@ -1,5 +1,5 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { CreateDonationRequest, Home, OtherProfile } from "@screens";
+import { CreateDonationRequest, Home, OtherProfile, RequestDetails } from "@screens";
 import React from "react";
 
 const Stack = createNativeStackNavigator<RequestStackParamList>();
@@ -13,6 +13,7 @@ export const RequestsStack = () => {
     >
       <Stack.Screen name="Home" component={Home} />
       <Stack.Screen name="OtherProfile" component={OtherProfile} />
+      <Stack.Screen name="RequestDetails" component={RequestDetails} />
       <Stack.Screen
         name="CreateDonationRequest"
         component={CreateDonationRequest}
