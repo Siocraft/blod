@@ -1,9 +1,9 @@
 import { FilterButton, Filters } from "@components";
 import { ColorsEnum } from "@theme";
-import { FC, useState } from "react";
+import React, { FC, useState } from "react";
 import { FlatList, StyleSheet, View } from "react-native";
 import { donationRequests } from "../../../Data/DonationRequests";
-import { DonationRequestCard } from "../DonationRequestCard";
+import { RequestCard } from "../RequestCard";
 
 interface RequestsProps {
   setIsContactModalVisible: (value: boolean) => void;
@@ -34,7 +34,7 @@ export const Requests: FC<RequestsProps> = ({ setIsContactModalVisible }) => {
           data={donationRequests}
           contentContainerStyle={{ padding: 16, paddingTop: 0 }}
           renderItem={({ item }) => (
-            <DonationRequestCard
+            <RequestCard
               requestDonation={item}
               setIsContactModalVisible={onContact}
             />

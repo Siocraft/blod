@@ -5,12 +5,12 @@ import { ColorsEnum } from "@theme";
 import React, { FC } from "react";
 import { Image, Pressable, StyleSheet, View } from "react-native";
 
-declare interface DonationRequestCardProps {
+declare interface RequestCardProps {
   requestDonation: DonationRequest;
   setIsContactModalVisible: (value: boolean) => void;
 }
 
-export const DonationRequestCard: FC<DonationRequestCardProps> = ({
+export const RequestCard: FC<RequestCardProps> = ({
   requestDonation,
   setIsContactModalVisible,
 }) => {
