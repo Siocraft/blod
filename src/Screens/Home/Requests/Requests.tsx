@@ -3,7 +3,7 @@ import { ColorsEnum } from "@theme";
 import { FC, useState } from "react";
 import { FlatList, StyleSheet, View } from "react-native";
 import { donationRequests } from "../../../Data/DonationRequests";
-import { RequestCard } from "./RequestCard";
+import { DonationRequestCard } from "../DonationRequestCard";
 
 interface RequestsProps {
   setIsContactModalVisible: (value: boolean) => void;
@@ -34,9 +34,9 @@ export const Requests: FC<RequestsProps> = ({ setIsContactModalVisible }) => {
           data={donationRequests}
           contentContainerStyle={{ padding: 16, paddingTop: 0 }}
           renderItem={({ item }) => (
-            <RequestCard
-              request={item}
-              onContact={onContact}
+            <DonationRequestCard
+              requestDonation={item}
+              setIsContactModalVisible={onContact}
             />
           )}
           keyExtractor={item => "Donor_card_" + item.id}
