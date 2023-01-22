@@ -2,9 +2,11 @@ import { BText, GoBack } from "@components";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { FC } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { StyleSheet, View } from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
 import { ColorsEnum } from "@theme";
 import { InformationPiece } from "./InformationPiece";
+import MapView from 'react-native-maps';
+import { Marker } from 'react-native-maps';
 
 export type RequestDetailsProps = NativeStackScreenProps<
   RequestStackParamList,
@@ -18,7 +20,7 @@ export const RequestDetails: FC<RequestDetailsProps> = ({
 }) => {
 
   return <SafeAreaView style={styles.safeAreaView}>
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <GoBack />
       <View style={{ height: 16 }} />
       <BText bold size="title" color="black">
@@ -31,7 +33,23 @@ export const RequestDetails: FC<RequestDetailsProps> = ({
       <InformationPiece title="Ubicación" value="Tlajomulco de Zuñiga" />
       <InformationPiece title="Fechas" value="1 - 10 de Enero 2023" />
       <InformationPiece title="Horarios" value="6 am - 10 am" />
-    </View>
+
+      <View style={styles.mapContainer}>
+        <BText bold color="secondary" style={styles.mapText}>
+          Mapa
+        </BText>
+        <MapView style={styles.map} showsUserLocation loadingEnabled>
+        <Marker
+          coordinate={{
+            latitude: 20.685801,
+            longitude: -103.344467,
+          }}
+          title={"Hospital Civil"}
+          description="Presentarse de 6 am a 10 am"
+        />
+        </MapView>
+      </View>
+    </ScrollView>
   </SafeAreaView>;
 };
 
@@ -42,5 +60,20 @@ const styles = StyleSheet.create({
   },
   container: {
     padding: 16
+  },
+  mapContainer: {
+    marginTop: 32,
+    borderRadius: 8,
+    backgroundColor: ColorsEnum.backgroundSecondary,
+    alignItems: "center",
+  },
+  mapText: {
+    padding: 8,
+  },
+  map: {
+    height: 200,
+    width: "100%",
+    borderRadius: 8,
+    
   }
 })
