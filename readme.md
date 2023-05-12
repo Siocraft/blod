@@ -4,4 +4,6 @@
 
 ## To start the project
 
+You'll need an `.env` file with the correct keys
+
 Run `npx expo start`
