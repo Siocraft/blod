@@ -1,5 +1,5 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { EditProfile, Information, Profile, Requirements } from "@screens";
+import { Information, Requirements } from "@screens";
 import React from "react";
 
 const Stack = createNativeStackNavigator<InformationStackParamList>();
