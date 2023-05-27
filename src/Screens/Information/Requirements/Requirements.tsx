@@ -1,6 +1,5 @@
-import { AgeSvg, AlcoholSvg, ArrowLeftSvg, BodyWeightSvg, HeartBeatSvg, IDSvg, NoFoodSvg, PillSvg, SurgerySvg, TattooSvg, VaccineSvg, VirusSvg } from "@assets";
+import { AgeSvg, AlcoholSvg, BodyWeightSvg, HeartBeatSvg, IDSvg, NoFoodSvg, PillSvg, SurgerySvg, TattooSvg, VaccineSvg, VirusSvg } from "@assets";
 import { BText, GoBack } from "@components";
-import { useAppNavigation } from "@hooks";
 import { ColorsEnum } from "@theme";
 import React, { FC } from "react";
 import { View, StyleSheet, ScrollView, SafeAreaView } from "react-native";
@@ -9,7 +8,6 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 export const Requirements: FC = () => {
 
   const { bottom } = useSafeAreaInsets();
-  const { canGoBack } = useAppNavigation();
 
   return (
     <SafeAreaView style={styles.safeAreaView}>
