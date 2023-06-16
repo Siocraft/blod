@@ -1,8 +1,8 @@
-import { BButton, BText } from "@components";
+import { BButton } from "@components";
 import { useAppNavigation } from "@hooks";
 import { ColorsEnum } from "@theme";
 import React, { FC } from "react";
-import { Pressable, View, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
 
 export const ButtonHub: FC = () => {
   const { navigateToEditProfile } = useAppNavigation();
