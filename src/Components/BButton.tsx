@@ -18,6 +18,7 @@ export const BButton: FC<BButtonProps> = ({
   title,
   text,
   variant = "primary",
+  style,
   ...rest
 }) => {
   let textColor: BTextProps["color"] = "white";
@@ -50,6 +51,7 @@ export const BButton: FC<BButtonProps> = ({
     variant === "secondary-void" && styles.secondaryVoid,
     variant === "primary-void" && styles.primaryVoid,
     variant === "transparent" && styles.transparentButton,
+    style,
   ]);
 
   return (
