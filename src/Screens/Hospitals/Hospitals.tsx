@@ -1,25 +1,16 @@
 import { BText, SignOutButton } from "@components";
 import { useHospitals } from "@hooks";
-import { FC, useContext, useEffect } from "react";
+import { FC } from "react";
 import { StyleSheet, ScrollView, View } from "react-native";
 import { SafeAreaView, useSafeAreaInsets } from "react-native-safe-area-context";
 import { HospitalCard } from "./HospitalCard";
-import { LoadingContext } from "@context";
 import { LinearGradient } from 'expo-linear-gradient';
+import { HospitalCardSkeleton } from "./HospitalCardSkeleton";
 
 export const Hospitals: FC = () => {
 
-  const { data: hospitals, isFetching: isFetchingHospitals } = useHospitals()
-  const { showLoading, hideLoading } = useContext(LoadingContext);
+  const { data: hospitals, isLoading: isLoadingHospitals } = useHospitals()
   const { top } = useSafeAreaInsets();
-
-  useEffect(() => {
-    if(isFetchingHospitals) {
-      showLoading("Cargando hospitales...")
-    } else {
-      hideLoading()
-    }
-  }, [isFetchingHospitals])
 
   return (
     <SafeAreaView style={styles.container}>
@@ -41,12 +32,15 @@ export const Hospitals: FC = () => {
       </LinearGradient>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={{ height: 56 }} />
-        {hospitals?.map(hospital => (
-          <HospitalCard
-            key={hospital.id}
-            {...hospital}
-          />
-        ))}
+        <HospitalCardSkeleton />
+        {isLoadingHospitals
+          ? null
+          : hospitals?.map(hospital => (
+            <HospitalCard
+              key={hospital.id}
+              {...hospital}
+            />
+          ))}
       </ScrollView>
       <View style={{ height: 32 }} />
       <SignOutButton />
