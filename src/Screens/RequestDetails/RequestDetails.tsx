@@ -39,14 +39,14 @@ export const RequestDetails: FC<RequestDetailsProps> = ({
           Mapa
         </BText>
         <MapView style={styles.map} showsUserLocation loadingEnabled>
-        <Marker
-          coordinate={{
-            latitude: 20.685801,
-            longitude: -103.344467,
-          }}
-          title={"Hospital Civil"}
-          description="Presentarse de 6 am a 10 am"
-        />
+          <Marker
+            coordinate={{
+              latitude: 20.685801,
+              longitude: -103.344467,
+            }}
+            title={"Hospital Civil"}
+            description="Presentarse de 6 am a 10 am"
+          />
         </MapView>
       </View>
     </ScrollView>
@@ -74,6 +74,5 @@ const styles = StyleSheet.create({
     height: 200,
     width: "100%",
     borderRadius: 8,
-    
   }
 })
