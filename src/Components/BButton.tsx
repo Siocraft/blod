@@ -12,7 +12,8 @@ interface BButtonProps extends PressableProps {
     | "primary"
     | "secondary-void"
     | "primary-void"
-    | "transparent";
+    | "transparent"
+    | "transparent-primary";
 }
 
 export const BButton: FC<BButtonProps> = ({
@@ -39,6 +40,9 @@ export const BButton: FC<BButtonProps> = ({
       break;
     case "transparent":
       textColor = "secondary";
+      break;
+    case "transparent-primary":
+      textColor = "primary";
       break;
     default:
       textColor = "secondary";
@@ -107,6 +111,9 @@ const styles = StyleSheet.create({
   transparent: {
     backgroundColor: "transparent",
   },
+  "transparent-primary": {
+    backgroundColor: "transparent",
+  },
   whiteText: {
     color: ColorsEnum.white,
   },
@@ -132,6 +139,9 @@ const pressedStyles = StyleSheet.create({
   transparent: {
     backgroundColor: ColorsEnum.secondary,
   },
+  "transparent-primary": {
+    backgroundColor: ColorsEnum.primary,
+  }
 });
 
 const pressedTextStyles = StyleSheet.create({
@@ -148,6 +158,9 @@ const pressedTextStyles = StyleSheet.create({
     color: ColorsEnum.white,
   },
   transparent: {
+    color: ColorsEnum.white,
+  },
+  "transparent-primary": {
     color: ColorsEnum.white,
   },
 });
