@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
     height: 12,
   },
   animatedView: {
-    width: '70%',
+    width: '30%',
     height: '100%',
     opacity: 0.8,
   }
