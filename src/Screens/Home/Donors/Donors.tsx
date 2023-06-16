@@ -22,7 +22,9 @@ export const Donors: FC<DonorsProps> = ({ setIsContactModalVisible }) => {
 
   return (
     <View style={styles.container}>
-      <FilterButton onPress={onToggleFilters} />
+      <View style={styles.filterContainer}>
+        <FilterButton onPress={onToggleFilters} />
+      </View>
       {filtersVisibility ? (
         <Filters
           variant="primary"
@@ -43,7 +45,10 @@ export const Donors: FC<DonorsProps> = ({ setIsContactModalVisible }) => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: ColorsEnum.backgroundPrimary,
-    padding: 16,
+    paddingVertical: 16,
     height: "100%",
   },
+  filterContainer: {
+    marginLeft: 16,
+  }
 });
