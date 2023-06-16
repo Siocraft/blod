@@ -69,30 +69,33 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.5,
     shadowRadius: 3,
     elevation: 8,
+    borderWidth: 1,
   },
   primary: {
     backgroundColor: ColorsEnum.primary,
     shadowColor: ColorsEnum.primary,
+    borderColor: ColorsEnum.whiteTransparent,
   },
   secondary: {
     backgroundColor: ColorsEnum.secondary,
     shadowColor: ColorsEnum.secondary,
+    borderColor: ColorsEnum.whiteTransparent,
   },
   "primary-void": {
-    borderWidth: 1,
     borderColor: ColorsEnum.primary,
     shadowColor: ColorsEnum.primary,
   },
   "secondary-void": {
-    borderWidth: 1,
     borderColor: ColorsEnum.secondary,
     shadowColor: ColorsEnum.secondary,
   },
   transparent: {
     backgroundColor: "transparent",
+    borderColor: ColorsEnum.whiteTransparent,
   },
   "transparent-primary": {
     backgroundColor: "transparent",
+    borderColor: ColorsEnum.whiteTransparent,
   },
   disabled: {
     backgroundColor: ColorsEnum.darkGray,
@@ -100,7 +103,6 @@ const styles = StyleSheet.create({
   "disabled-void": {
     backgroundColor: "transparent",
     borderColor: ColorsEnum.darkGray,
-    borderWidth: 1,
   },
   "disabled-transparent": {
     backgroundColor: "transparent",
