@@ -1,7 +1,7 @@
 import { BText, SignOutButton } from "@components";
 import { useHospitals } from "@hooks";
 import { FC, useContext, useEffect } from "react";
-import { View, StyleSheet, ScrollView } from "react-native";
+import { StyleSheet, ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { HospitalCard } from "./HospitalCard";
 import { LoadingContext } from "@context";
