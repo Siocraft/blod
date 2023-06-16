@@ -40,6 +40,10 @@ export const HospitalCard: FC<HospitalCardProps> = ({
     Linking.openURL(url ?? "");
   }, [hospital])
 
+  const showHospitalDonationRequests = () => {
+
+  }
+
   return <View style={styles.cardContainer}>
     <BText color="black" bold>{hospital.name}</BText>
     <MapView
@@ -52,6 +56,15 @@ export const HospitalCard: FC<HospitalCardProps> = ({
         latitudeDelta: LATITUDE_DELTA,
         longitudeDelta: LONGITUDE_DELTA
       }}
+      zoomControlEnabled={false}
+      zoomEnabled={false}
+      rotateEnabled={false}
+      scrollEnabled={false}
+      pitchEnabled={false}
+      zoomTapEnabled={false}
+      toolbarEnabled={false}
+      moveOnMarkerPress={false}
+      cacheEnabled={true}
     >
       <Marker
         coordinate={coordinates}
@@ -61,8 +74,14 @@ export const HospitalCard: FC<HospitalCardProps> = ({
     </MapView>
     <BButton
       style={{ marginTop: 16 }}
+      title="Mostrar solicitudes de este hospital"
+      onPress={showHospitalDonationRequests}
+    />
+    <BButton
+      style={{ marginTop: 16 }}
       title="Abrir mapas"
       onPress={openMaps}
+      variant="primary-void"
     />
   </View>
 }
@@ -71,6 +90,7 @@ const styles = StyleSheet.create({
   cardContainer: {
     padding: 16,
     marginBottom: 16,
+    marginHorizontal: 16,
     borderRadius: 8,
     backgroundColor: ColorsEnum.white,
     shadowColor: ColorsEnum.darkGray,
