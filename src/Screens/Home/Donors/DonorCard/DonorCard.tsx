@@ -1,5 +1,5 @@
 import { BloodSvg, DonorHeartSvg, LocationSvg } from "@assets";
-import { BButton, BText } from "@components";
+import { BButton, BCard, BText } from "@components";
 import { ColorsEnum } from "@theme";
 import { FC } from "react";
 import { Image, StyleSheet, View } from "react-native";
@@ -11,7 +11,7 @@ interface DonorCardProps {
 
 export const DonorCard: FC<DonorCardProps> = ({ donor, onContact }) => {
   return (
-    <View style={styles.donorCard}>
+    <BCard variant="primary">
       <View style={styles.header}>
         <Image source={{ uri: donor.avatar }} style={styles.avatar} />
         <View style={styles.headerText}>
@@ -64,7 +64,7 @@ export const DonorCard: FC<DonorCardProps> = ({ donor, onContact }) => {
           <BButton title="Contactar" onPress={onContact} />
         </View>
       </View>
-    </View>
+    </BCard>
   );
 };
 
@@ -72,21 +72,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: ColorsEnum.backgroundPrimary,
-  },
-  donorCard: {
-    backgroundColor: ColorsEnum.white,
-    marginBottom: 16,
-    borderRadius: 8,
-    padding: 16,
-    shadowColor: ColorsEnum.primary,
-    shadowOffset: {
-      width: 4,
-      height: 4,
-    },
-    shadowOpacity: 0.2,
-    shadowRadius: 3,
-    elevation: 8,
-    marginHorizontal: 16,
   },
   avatar: { height: 64, width: 64, borderRadius: 8 },
   header: {

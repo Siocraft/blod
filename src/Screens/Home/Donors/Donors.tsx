@@ -39,7 +39,9 @@ export const Donors: FC<DonorsProps> = ({ setIsContactModalVisible }) => {
       ) : (
         <FlatList
           data={donorCards}
+          showsVerticalScrollIndicator={false}
           ListHeaderComponent={() => <View style={{ height: 40 }} />}
+          contentContainerStyle={{ padding: 16, paddingTop: 0 }}
           renderItem={({ item }) => (
             <DonorCard onContact={onContact} donor={item} />
           )}

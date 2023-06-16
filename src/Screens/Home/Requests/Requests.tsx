@@ -39,6 +39,7 @@ export const Requests: FC<RequestsProps> = ({ setIsContactModalVisible }) => {
           </View>
         ) : <FlatList
           data={donationRequests}
+          showsVerticalScrollIndicator={false}
           ListHeaderComponent={() => <View style={{ height: 40 }} />}
           contentContainerStyle={{ padding: 16, paddingTop: 0 }}
           renderItem={({ item }) => (

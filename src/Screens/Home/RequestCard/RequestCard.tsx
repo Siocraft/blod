@@ -1,5 +1,5 @@
 import { BloodSvg, HospitalSvg, LocationSvg } from "@assets";
-import { BButton, BText } from "@components";
+import { BButton, BCard, BText } from "@components";
 import { useAppNavigation } from "@hooks";
 import { ColorsEnum } from "@theme";
 import React, { FC } from "react";
@@ -25,7 +25,7 @@ export const RequestCard: FC<RequestCardProps> = ({
   };
 
   return (
-    <View style={styles.container}>
+    <BCard variant="secondary">
       <View style={styles.row}>
         <Pressable onPress={pushRequestUserProfile}>
           <Image
@@ -92,25 +92,11 @@ export const RequestCard: FC<RequestCardProps> = ({
           />
         </View>
       </View>
-    </View>
+    </BCard>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    padding: 16,
-    marginBottom: 16,
-    borderRadius: 8,
-    backgroundColor: ColorsEnum.white,
-    shadowColor: ColorsEnum.secondary,
-    shadowOffset: {
-      width: 4,
-      height: 4,
-    },
-    shadowOpacity: 0.2,
-    shadowRadius: 3,
-    elevation: 8,
-  },
   headerImage: {
     width: 64,
     height: 64,
