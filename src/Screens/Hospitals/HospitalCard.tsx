@@ -44,8 +44,16 @@ export const HospitalCard: FC<HospitalCardProps> = ({
 
   }
 
+  const callHospital = () => {
+    const url = Platform.select({ ios: 'telprompt', android: 'tel' });
+    Linking.openURL(`${url}:${hospital.phone}`)
+  }
+
   return <View style={styles.cardContainer}>
-    <BText color="black" bold>{hospital.name}</BText>
+    <BText color="black" bold style={{ marginBottom: 8 }}>{hospital.name}</BText>
+    <BText color="black">{hospital.address}</BText>
+    <BText color="black">Código Postal {hospital.zipCode}</BText>
+    <BText color="black">Teléfono {hospital.phone}</BText>
     <MapView
       style={styles.map}
       showsUserLocation
@@ -79,9 +87,15 @@ export const HospitalCard: FC<HospitalCardProps> = ({
     />
     <BButton
       style={{ marginTop: 16 }}
+      title="Llamar"
+      onPress={callHospital}
+      variant="primary-void"
+    />
+    <BButton
+      style={{ marginTop: 16 }}
       title="Abrir mapas"
       onPress={openMaps}
-      variant="primary-void"
+      variant="transparent-primary"
     />
   </View>
 }
