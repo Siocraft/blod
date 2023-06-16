@@ -6,6 +6,9 @@ import { SafeAreaView, useSafeAreaInsets } from "react-native-safe-area-context"
 import { HospitalCard } from "./HospitalCard";
 import { LinearGradient } from 'expo-linear-gradient';
 import { HospitalCardSkeleton } from "./HospitalCardSkeleton";
+import { ColorsEnum } from "@theme";
+
+const skeletonArray = Array.from({ length: 3 }, (_, i) => i);
 
 export const Hospitals: FC = () => {
 
@@ -15,10 +18,10 @@ export const Hospitals: FC = () => {
   return (
     <SafeAreaView style={styles.container}>
       <LinearGradient colors={[
-        'whitesmoke',
-        'whitesmoke',
-        'whitesmoke',
-        'rgba(255,255,255,0.0)',
+        ColorsEnum.whitesmoke,
+        ColorsEnum.whitesmoke,
+        ColorsEnum.whitesmoke,
+        ColorsEnum.whiteTransparent,
       ]} style={[
         styles.titleTextContainer,
         { top }
@@ -32,7 +35,11 @@ export const Hospitals: FC = () => {
       </LinearGradient>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={{ height: 56 }} />
-        <HospitalCardSkeleton />
+        {
+          isLoadingHospitals && skeletonArray.map((_, i) => (
+            <HospitalCardSkeleton key={"Hospital_Skeleton_Card_" + i} />
+          ))
+        }
         {isLoadingHospitals
           ? null
           : hospitals?.map(hospital => (

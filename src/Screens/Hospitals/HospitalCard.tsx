@@ -52,8 +52,9 @@ export const HospitalCard: FC<HospitalCardProps> = ({
   return <View style={styles.cardContainer}>
     <BText color="black" bold style={{ marginBottom: 8 }}>{hospital.name}</BText>
     <BText color="black">{hospital.address}</BText>
-    <BText color="black">Código Postal {hospital.zipCode}</BText>
-    <BText color="black">Teléfono {hospital.phone}</BText>
+    {hospital.zipCode ? <BText color="black">Código Postal {hospital.zipCode}</BText> : null}
+    {hospital.phone ? <BText color="black">Teléfono {hospital.phone}</BText> : null}
+    {hospital.email ? <BText color="black">Email {hospital.email}</BText> : null}
     <MapView
       style={styles.map}
       showsUserLocation

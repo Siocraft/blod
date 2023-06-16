@@ -69,11 +69,11 @@ export const Skeleton: FC<SkeletonProps> = ({
     ])}>
       <LinearGradient
         colors={[
-          ColorsEnum.whiteOverlay,
-          ColorsEnum.whiteOverlay,
+          ColorsEnum.whiteTransparent,
+          ColorsEnum.whiteTransparent,
           ColorsEnum.white,
-          ColorsEnum.whiteOverlay,
-          ColorsEnum.whiteOverlay,
+          ColorsEnum.whiteTransparent,
+          ColorsEnum.whiteTransparent,
         ]}
         style={{ height: '100%' }}
         start={[0, 1]} end={[1, 1]}
