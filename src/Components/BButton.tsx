@@ -26,40 +26,6 @@ export const BButton: FC<BButtonProps> = ({
   style,
   ...rest
 }) => {
-  let textColor: BTextProps["color"] = "white";
-
-  switch (variant) {
-    case "primary":
-      textColor = "white";
-      break;
-    case "secondary":
-      textColor = "white";
-      break;
-    case "secondary-void":
-      textColor = "secondary";
-      break;
-    case "primary-void":
-      textColor = "primary";
-      break;
-    case "transparent":
-      textColor = "secondary";
-      break;
-    case "transparent-primary":
-      textColor = "primary";
-      break;
-    case "disabled":
-      textColor = "white";
-      break;
-    case "disabled-void":
-      textColor = "darkGray";
-      break;
-    case "disabled-transparent":
-      textColor = "darkGray";
-      break;
-    default:
-      textColor = "secondary";
-      break;
-  }
 
   const pressableStyle: (state: PressableStateCallbackType) => StyleProp<ViewStyle>  = ({ pressed }) => StyleSheet.flatten([
     styles.button,
@@ -75,9 +41,11 @@ export const BButton: FC<BButtonProps> = ({
           return title ? (
             <BText
               bold
-              color={textColor}
               {...text}
-              style={pressed && pressedTextStyles[variant]}
+              style={StyleSheet.flatten([
+                textStyles[variant],
+                pressed && pressedTextStyles[variant],
+              ])}
             >
               {title}
             </BText>
@@ -104,11 +72,11 @@ const styles = StyleSheet.create({
   },
   primary: {
     backgroundColor: ColorsEnum.primary,
-    shadowColor: ColorsEnum.darkGray,
+    shadowColor: ColorsEnum.primary,
   },
   secondary: {
     backgroundColor: ColorsEnum.secondary,
-    shadowColor: ColorsEnum.darkGray,
+    shadowColor: ColorsEnum.secondary,
   },
   "primary-void": {
     borderWidth: 1,
@@ -169,6 +137,36 @@ const pressedStyles = StyleSheet.create({
   "disabled-void": {},
   "disabled-transparent": {},
 });
+
+const textStyles = StyleSheet.create({
+  primary: {
+    color: ColorsEnum.white,
+  },
+  secondary: {
+    color: ColorsEnum.white,
+  },
+  "primary-void": {
+    color: ColorsEnum.primary,
+  },
+  "secondary-void": {
+    color: ColorsEnum.secondary,
+  },
+  transparent: {
+    color: ColorsEnum.secondary,
+  },
+  "transparent-primary": {
+    color: ColorsEnum.primary,
+  },
+  disabled: {
+    color: ColorsEnum.white,
+  },
+  "disabled-void": {
+    color: ColorsEnum.darkGray,
+  },
+  "disabled-transparent": {
+    color: ColorsEnum.darkGray,
+  },
+})
 
 const pressedTextStyles = StyleSheet.create({
   primary: {
