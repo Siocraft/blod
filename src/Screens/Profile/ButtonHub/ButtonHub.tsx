@@ -21,7 +21,7 @@ export const ButtonHub: FC = () => {
         variant="secondary"
         title="Quiero donar sangre"
         onPress={() => console.log("Donate blood")}
-        />
+      />
       <BButton
         style={{ marginTop: 8 }}
         title="Crear una petición de donación"
