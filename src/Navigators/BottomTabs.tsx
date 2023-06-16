@@ -31,9 +31,9 @@ const FluidTabBar: FC = () => {
         navigateToRequests();
         break;
       case 1:
-        tabsTintColor !== ColorsEnum.secondary &&
-          setTabsTintColor(ColorsEnum.secondary);
-        navigateToProfile();
+        tabsTintColor !== ColorsEnum.primary &&
+          setTabsTintColor(ColorsEnum.primary);
+        navigateToHospitals();
         break;
       case 2:
         tabsTintColor !== ColorsEnum.secondary &&
@@ -41,9 +41,9 @@ const FluidTabBar: FC = () => {
         navigateToInformation();
         break;
       case 3:
-        tabsTintColor !== ColorsEnum.primary &&
-          setTabsTintColor(ColorsEnum.primary);
-          navigateToHospitals();
+        tabsTintColor !== ColorsEnum.secondary &&
+          setTabsTintColor(ColorsEnum.secondary);
+        navigateToProfile();
         break;
       default:
         break;
@@ -63,8 +63,8 @@ const FluidTabBar: FC = () => {
             size: 32,
           },
           {
-            title: "Perfil",
-            icon: "user-alt",
+            title: "Hospitales",
+            icon: "hospital",
             iconSet: "FontAwesome5",
             size: 32,
           },
@@ -75,8 +75,8 @@ const FluidTabBar: FC = () => {
             size: 32,
           },
           {
-            title: "Hospitales",
-            icon: "hospital",
+            title: "Perfil",
+            icon: "user-alt",
             iconSet: "FontAwesome5",
             size: 32,
           },
@@ -101,14 +101,17 @@ export const BottomTabs: FC = () => {
         component={RequestsStack}
       />
       <Tab.Screen
-        name={NavigationConstants.Stacks.ProfileStack}
-        component={ProfileStack}
+        name={NavigationConstants.Screens.Hospitals}
+        component={Hospitals}
       />
       <Tab.Screen
         name={NavigationConstants.Stacks.InformationStack}
         component={InformationStack}
       />
-      <Tab.Screen name={NavigationConstants.Screens.Hospitals} component={Hospitals} />
+      <Tab.Screen
+        name={NavigationConstants.Stacks.ProfileStack}
+        component={ProfileStack}
+      />
     </Tab.Navigator>
   );
 };
