@@ -13,4 +13,5 @@ export * from "./ProfileData";
 export * from "./ProfileDataText";
 export * from "./ProfileImage";
 export * from "./BRadioButton";
+export * from "./FloatingInformation";
 

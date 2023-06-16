@@ -22,5 +22,6 @@ export const NavigationConstants = {
     CompleteSignup: "CompleteSignup",
     DonationRequirements: "DonationRequirements",
     RequestDetails: "RequestDetails",
+    DonationTypes: "DonationTypes",
   },
 };
