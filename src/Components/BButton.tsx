@@ -99,6 +99,7 @@ const styles = StyleSheet.create({
   },
   disabled: {
     backgroundColor: ColorsEnum.darkGray,
+    borderColor: "transparent",
   },
   "disabled-void": {
     backgroundColor: "transparent",
@@ -106,6 +107,7 @@ const styles = StyleSheet.create({
   },
   "disabled-transparent": {
     backgroundColor: "transparent",
+    borderColor: "transparent",
   },
   whiteText: {
     color: ColorsEnum.white,
