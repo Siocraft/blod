@@ -13,7 +13,10 @@ interface BButtonProps extends PressableProps {
     | "secondary-void"
     | "primary-void"
     | "transparent"
-    | "transparent-primary";
+    | "transparent-primary"
+    | "disabled"
+    | "disabled-void"
+    | "disabled-transparent";
 }
 
 export const BButton: FC<BButtonProps> = ({
@@ -43,6 +46,15 @@ export const BButton: FC<BButtonProps> = ({
       break;
     case "transparent-primary":
       textColor = "primary";
+      break;
+    case "disabled":
+      textColor = "white";
+      break;
+    case "disabled-void":
+      textColor = "darkGray";
+      break;
+    case "disabled-transparent":
+      textColor = "darkGray";
       break;
     default:
       textColor = "secondary";
@@ -114,6 +126,17 @@ const styles = StyleSheet.create({
   "transparent-primary": {
     backgroundColor: "transparent",
   },
+  disabled: {
+    backgroundColor: ColorsEnum.darkGray,
+  },
+  "disabled-void": {
+    backgroundColor: "transparent",
+    borderColor: ColorsEnum.darkGray,
+    borderWidth: 1,
+  },
+  "disabled-transparent": {
+    backgroundColor: "transparent",
+  },
   whiteText: {
     color: ColorsEnum.white,
   },
@@ -141,7 +164,10 @@ const pressedStyles = StyleSheet.create({
   },
   "transparent-primary": {
     backgroundColor: ColorsEnum.primary,
-  }
+  },
+  disabled: {},
+  "disabled-void": {},
+  "disabled-transparent": {},
 });
 
 const pressedTextStyles = StyleSheet.create({
@@ -163,4 +189,7 @@ const pressedTextStyles = StyleSheet.create({
   "transparent-primary": {
     color: ColorsEnum.white,
   },
+  disabled: {},
+  "disabled-void": {},
+  "disabled-transparent": {},
 });
