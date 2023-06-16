@@ -1,12 +1,11 @@
 import { BText } from "@components";
 import { FC } from "react";
 import { View, StyleSheet } from "react-native";
-import LottieView from "lottie-react-native";
 
 export const ErrorScreen: FC = () => {
   return (
     <View style={styles.animationContainer}>
-      <LottieView
+      {/* <LottieView
         autoPlay
         loop
         style={{
@@ -16,7 +15,7 @@ export const ErrorScreen: FC = () => {
         }}
         // Find more Lottie files at https://lottiefiles.com/featured
         source={require("./Animations/Error-Blod.json")}
-      />
+      /> */}
       <BText size="large" style={styles.text}>
         Ha ocurrido un error
       </BText>
