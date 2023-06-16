@@ -29,6 +29,7 @@ export const ButtonHub: FC = () => {
         onPress={navigateToCreateDonationRequest}
       />
       <BButton
+        style={{ marginTop: 8 }}
         title="Editar perfil"
         variant="transparent"
         onPress={onPressEditProfile}
