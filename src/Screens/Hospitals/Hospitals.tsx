@@ -1,4 +1,4 @@
-import { BText, SignOutButton } from "@components";
+import { BText } from "@components";
 import { useHospitals } from "@hooks";
 import { FC } from "react";
 import { StyleSheet, ScrollView, View } from "react-native";
@@ -13,10 +13,15 @@ const skeletonArray = Array.from({ length: 3 }, (_, i) => i);
 export const Hospitals: FC = () => {
 
   const { data: hospitals, isLoading: isLoadingHospitals } = useHospitals()
-  const { top } = useSafeAreaInsets();
+  const { top, bottom } = useSafeAreaInsets();
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={StyleSheet.flatten([
+      styles.container,
+      {
+        marginBottom: -bottom,
+      }
+    ])}>
       <LinearGradient colors={[
         ColorsEnum.whitesmoke,
         ColorsEnum.whitesmoke,
@@ -49,8 +54,6 @@ export const Hospitals: FC = () => {
             />
           ))}
       </ScrollView>
-      <View style={{ height: 32 }} />
-      <SignOutButton />
     </SafeAreaView>
   );
 };
