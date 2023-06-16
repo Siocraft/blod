@@ -4,6 +4,7 @@ import { FC, useState } from "react";
 import { FlatList, StyleSheet, View } from "react-native";
 import { donorCards } from "../../../Data/Donors";
 import { DonorCard } from "./DonorCard";
+import { LinearGradient } from "expo-linear-gradient";
 
 interface DonorsProps {
   setIsContactModalVisible: (value: boolean) => void;
@@ -22,9 +23,15 @@ export const Donors: FC<DonorsProps> = ({ setIsContactModalVisible }) => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.filterContainer}>
+      <LinearGradient colors={[
+        ColorsEnum.backgroundPrimary,
+        ColorsEnum.backgroundPrimary,
+        ColorsEnum.backgroundPrimary,
+        ColorsEnum.backgroundPrimary,
+        ColorsEnum.backgroundPrimaryTransparent,
+      ]} style={styles.filterContainer}>
         <FilterButton onPress={onToggleFilters} />
-      </View>
+      </LinearGradient>
       {filtersVisibility ? (
         <Filters
           variant="primary"
@@ -32,6 +39,7 @@ export const Donors: FC<DonorsProps> = ({ setIsContactModalVisible }) => {
       ) : (
         <FlatList
           data={donorCards}
+          ListHeaderComponent={() => <View style={{ height: 40 }} />}
           renderItem={({ item }) => (
             <DonorCard onContact={onContact} donor={item} />
           )}
@@ -49,6 +57,11 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   filterContainer: {
-    marginLeft: 16,
+    paddingLeft: 16,
+    position: 'absolute',
+    zIndex: 1,
+    width: '100%',
+    height: 48,
+    top: 8
   }
 });
