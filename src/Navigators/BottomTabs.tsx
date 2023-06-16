@@ -1,7 +1,7 @@
 import { NavigationConstants } from "@constants";
 import { useAppNavigation } from "@hooks";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Information, Menu } from "@screens";
+import { Hospitals } from "@screens";
 import { ColorsEnum } from "@theme";
 import React, { FC, useState } from "react";
 import { ProfileStack } from "./ProfileStack";
@@ -15,7 +15,7 @@ const FluidTabBar: FC = () => {
   const {
     navigateToProfile,
     navigateToRequests,
-    navigateToMenu,
+    navigateToHospitals,
     navigateToInformation,
   } = useAppNavigation();
 
@@ -41,9 +41,9 @@ const FluidTabBar: FC = () => {
         navigateToInformation();
         break;
       case 3:
-        tabsTintColor !== ColorsEnum.secondary &&
-          setTabsTintColor(ColorsEnum.secondary);
-        navigateToMenu();
+        tabsTintColor !== ColorsEnum.primary &&
+          setTabsTintColor(ColorsEnum.primary);
+          navigateToHospitals();
         break;
       default:
         break;
@@ -75,9 +75,9 @@ const FluidTabBar: FC = () => {
             size: 32,
           },
           {
-            title: "Menú",
-            icon: "menu",
-            iconSet: "Feather",
+            title: "Hospitales",
+            icon: "hospital",
+            iconSet: "FontAwesome5",
             size: 32,
           },
         ]}
@@ -108,7 +108,7 @@ export const BottomTabs: FC = () => {
         name={NavigationConstants.Stacks.InformationStack}
         component={InformationStack}
       />
-      <Tab.Screen name={NavigationConstants.Screens.Menu} component={Menu} />
+      <Tab.Screen name={NavigationConstants.Screens.Hospitals} component={Hospitals} />
     </Tab.Navigator>
   );
 };

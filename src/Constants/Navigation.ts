@@ -16,7 +16,7 @@ export const NavigationConstants = {
     Requests: "Requests",
     CreateDonationRequest: "CreateDonationRequest",
     Information: "Information",
-    Menu: "Menu",
+    Hospitals: "Hospitals",
     Login: "Login",
     Signup: "Signup",
     CompleteSignup: "CompleteSignup",

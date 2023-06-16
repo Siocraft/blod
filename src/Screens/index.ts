@@ -5,7 +5,7 @@ export * from "./EditProfile";
 export * from "./Home";
 export * from "./Information";
 export * from "./Login";
-export * from "./Menu";
+export * from "./Hospitals";
 export * from "./OtherProfile";
 export * from "./Profile";
 export * from "./Signup";
