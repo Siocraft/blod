@@ -5,15 +5,11 @@ import React, { FC } from "react";
 import { View, StyleSheet } from "react-native";
 
 export const ButtonHub: FC = () => {
-  const { navigateToEditProfile } = useAppNavigation();
+  const { navigateToEditProfile, navigateToCreateDonationRequest } = useAppNavigation();
 
   const onPressEditProfile = () => {
     navigateToEditProfile();
   };
-
-  const navigateToCreateDonationRequest = () => {
-    console.log("Create donation request");
-  }
 
   return (
     <View style={styles.buttonHubContainer}>
