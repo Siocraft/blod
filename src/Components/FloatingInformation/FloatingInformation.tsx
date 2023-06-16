@@ -19,10 +19,11 @@ const styles = StyleSheet.create({
   floatingContainer: {
     position: "absolute",
     bottom: 38,
-    marginHorizontal: 20,
+    marginHorizontal: 32,
     backgroundColor: ColorsEnum.backgroundSecondary,
     flex: 1,
     borderRadius: 8,
+    padding: 16
   },
   text: {
     color: ColorsEnum.black,
