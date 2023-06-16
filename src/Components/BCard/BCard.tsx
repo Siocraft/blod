@@ -1,18 +1,21 @@
 import { ColorsEnum } from "@theme";
 import { FC, PropsWithChildren } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleProp, StyleSheet, View, ViewStyle } from "react-native";
 
 interface BCard extends PropsWithChildren {
   variant?: "regular" | "primary" | "secondary";
+  style?: StyleProp<ViewStyle>;
 }
 
 export const BCard: FC<BCard> = ({
   children,
   variant = "regular",
+  style,
 }) => {
   return <View style={StyleSheet.flatten([
     styles.card,
-    styles[variant]
+    styles[variant],
+    style
   ])}>
     {children}
   </View>
