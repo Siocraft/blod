@@ -1,6 +1,7 @@
 import { BText } from "@components";
+import { LoadingContext } from "@context";
 import { useAuth, useUser } from "@hooks";
-import React, { FC } from "react";
+import React, { FC, useContext, useEffect } from "react";
 import { Image } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -11,6 +12,15 @@ export const CreateDonationRequest: FC = () => {
     isLoading: isLoadingUser,
     isError: isErrorUser,
   } = useUser(user?.uid);
+  const { showLoading, hideLoading } = useContext(LoadingContext);
+  
+  useEffect(() => {
+    if(isLoadingUser) {
+      showLoading("Cargando información del usuario...")
+    } else {
+      hideLoading()
+    }
+  }, [isLoadingUser])
 
   if (!user) return null;
   if (isLoadingUser) return null;

@@ -1,41 +1,32 @@
 import { BText } from "@components";
 import React from "react";
 import { View, StyleSheet } from "react-native";
-import LottieView from "lottie-react-native";
 import { useContext } from "react";
 import { LoadingContext } from "@context";
 import { ColorsEnum } from "@theme";
-import { AntDesign } from "@expo/vector-icons";
+// @ts-expect-error
+import BouncingPreloader from "react-native-bouncing-preloader";
+
+const icons = [
+  "https://www.shareicon.net/data/128x128/2016/10/05/839072_medical_512x512.png",
+  "https://www.shareicon.net/data/128x128/2016/08/18/814533_medical_512x512.png",
+  "https://www.shareicon.net/data/128x128/2016/10/05/839073_medical_512x512.png",
+  "https://www.shareicon.net/data/128x128/2016/05/21/768517_medical_512x512.png",
+  "https://www.shareicon.net/data/128x128/2016/05/21/768503_syringe_512x512.png",
+  "https://www.shareicon.net/data/128x128/2016/05/21/768506_science_512x512.png"
+];
 
 export const Loading = () => {
-  const { message, hideLoading } = useContext(LoadingContext);
-
+  const { message } = useContext(LoadingContext);
   return (
     <View style={styles.screenContainer}>
-      <View style={styles.modal}>
-        <AntDesign
-          onPress={hideLoading}
-          style={{ alignSelf: "flex-end", marginBottom: 16 }}
-          name="close"
-          size={20}
-          color="black"
+      <BouncingPreloader
+          icons={icons}
+          leftDistance={-100}
+          rightDistance={-150}
+          speed={1000}
         />
-        <LottieView
-          autoPlay
-          loop
-          style={{
-            width: 200,
-            height: 200,
-          }}
-          // Find more Lottie files at https://lottiefiles.com/featured
-          source={require("./Animations/Loader-Blod.json")}
-        />
-        {!!message && (
-          <BText color="secondary" size="large">
-            {message}
-          </BText>
-        )}
-      </View>
+      <BText bold style={styles.loadingText}>{message}</BText>
     </View>
   );
 };
@@ -53,11 +44,9 @@ const styles = StyleSheet.create({
     position: "absolute",
     zIndex: 10,
   },
-  modal: {
-    backgroundColor: ColorsEnum.white,
-    borderRadius: 16,
-    padding: 16,
-    alignItems: "center",
-    justifyContent: "center",
-  },
+  loadingText: {
+    color: ColorsEnum.white,
+    fontSize: 20,
+    lineHeight: 24,
+  }
 });
