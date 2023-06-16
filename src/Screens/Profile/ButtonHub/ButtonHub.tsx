@@ -1,4 +1,4 @@
-import { BButton } from "@components";
+import { BButton, SignOutButton } from "@components";
 import { useAppNavigation } from "@hooks";
 import { ColorsEnum } from "@theme";
 import React, { FC } from "react";
@@ -34,6 +34,7 @@ export const ButtonHub: FC = () => {
         variant="transparent"
         onPress={onPressEditProfile}
       />
+      <SignOutButton style={{ marginTop: 8 }} variant="transparent-primary" />
     </View>
   );
 };
