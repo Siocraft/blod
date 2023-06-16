@@ -15,4 +15,5 @@ export * from "./ProfileImage";
 export * from "./BRadioButton";
 export * from "./FloatingInformation";
 export * from "./SignOutButton";
+export * from "./Skeleton";
 
