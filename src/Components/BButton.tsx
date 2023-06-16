@@ -3,7 +3,7 @@ import { FC } from "react";
 import { Pressable, PressableProps, PressableStateCallbackType, StyleProp, StyleSheet, ViewStyle } from "react-native";
 import { BText, BTextProps } from "./BText";
 
-interface BButtonProps extends PressableProps {
+export interface BButtonProps extends PressableProps {
   text?: BTextProps;
   title: string;
   style?: StyleProp<ViewStyle>,
