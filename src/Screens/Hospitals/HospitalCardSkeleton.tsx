@@ -21,19 +21,20 @@ export const HospitalCardSkeleton: FC = () => {
     <BButton
       style={{ marginTop: 16 }}
       title="Mostrar solicitudes de este hospital"
-      onPress={() => null}
+      disabled
+      variant="disabled"
     />
     <BButton
       style={{ marginTop: 16 }}
       title="Llamar"
-      onPress={() => null}
-      variant="primary-void"
+      disabled
+      variant="disabled-void"
     />
     <BButton
       style={{ marginTop: 16 }}
       title="Abrir mapas"
-      onPress={() => null}
-      variant="transparent-primary"
+      disabled
+      variant="disabled-transparent"
     />
   </View>
 }
