@@ -31,7 +31,7 @@ export const BTextInput: FC<Props> = ({
 }) => {
   return (
     <>
-      {label ? <BText style={{ marginBottom: 4 }} color="black">{label}</BText> : null}
+      {label ? <BText style={{ marginBottom: 4 }} color={error ? "primary" : "black"}>{label}</BText> : null}
       <View
         style={[
           styles.inputContainer,
