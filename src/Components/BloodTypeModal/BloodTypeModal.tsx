@@ -5,6 +5,7 @@ import React, { FC, useState } from "react";
 import { Pressable, View } from "react-native";
 import Modal from "react-native-modal";
 import { BText } from "../BText";
+import { BButton } from "../BButton";
 
 interface BloodTypeModalProps {
   isVisible: boolean;
@@ -75,20 +76,11 @@ export const BloodTypeModal: FC<BloodTypeModalProps> = ({
             </BText>
           </Pressable>
         ))}
-
-        <Pressable
+        <BButton
+          title="Confirmar"
           onPress={confirmBloodType}
-          style={{
-            width: "100%",
-            backgroundColor: ColorsEnum.secondary,
-            borderRadius: 8,
-            padding: 8,
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <BText color="white">Confirmar</BText>
-        </Pressable>
+          variant="secondary"
+        />
       </View>
     </Modal>
   );
