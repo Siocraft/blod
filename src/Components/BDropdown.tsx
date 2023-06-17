@@ -57,7 +57,7 @@ export const BDropdown: FC<BDropdownProps> = ({
           <Entypo name="chevron-down" size={18} color="black" />
         )}
       </Pressable>
-      {errorMessage && <BText>{errorMessage}</BText>}
+      {error && <BText>{errorMessage}</BText>}
     </>
   );
 };
