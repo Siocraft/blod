@@ -9,6 +9,7 @@ type BDropdownProps = {
   iconRight?: () => JSX.Element;
   text: string;
   onPress: () => void;
+  label?: string;
 };
 
 export const BDropdown: FC<BDropdownProps> = ({
@@ -16,36 +17,42 @@ export const BDropdown: FC<BDropdownProps> = ({
   onPress,
   iconLeft,
   iconRight,
+  label,
 }) => {
   return (
-    <Pressable
-      onPress={onPress}
-      style={{
-        width: "100%",
-        borderRadius: 8,
-        padding: 8,
-        borderColor: ColorsEnum.secondary,
-        borderWidth: 1,
-        flexDirection: "row",
-        justifyContent: "space-between",
-        alignItems: "center",
-      }}
-    >
-      <View
+    <>
+      {label ? <BText style={{ marginBottom: 4 }} color="black">{label}</BText> : null}
+      <Pressable
+        onPress={onPress}
         style={{
+          width: "100%",
+          borderRadius: 8,
+          padding: 8,
+          borderColor: ColorsEnum.secondary,
+          borderWidth: 1,
           flexDirection: "row",
+          justifyContent: "space-between",
           alignItems: "center",
         }}
       >
-        {iconLeft && iconLeft()}
-        <View style={{ width: 8 }} />
-        <BText color="black">{text}</BText>
-      </View>
-      {iconRight ? (
-        iconRight()
-      ) : (
-        <Entypo name="chevron-down" size={18} color="black" />
-      )}
-    </Pressable>
+        <View
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+            flexWrap: "wrap",
+            flex: 1
+          }}
+        >
+          {iconLeft && iconLeft()}
+          <View style={{ width: 8 }} />
+          <BText color="black">{text}</BText>
+        </View>
+        {iconRight ? (
+          iconRight()
+        ) : (
+          <Entypo name="chevron-down" size={18} color="black" />
+        )}
+      </Pressable>
+    </>
   );
 };
