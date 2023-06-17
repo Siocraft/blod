@@ -8,11 +8,13 @@ import { Image, Pressable, StyleSheet, View } from "react-native";
 declare interface RequestCardProps {
   requestDonation: DonationRequest;
   setIsContactModalVisible: (value: boolean) => void;
+  disabled?: boolean;
 }
 
 export const RequestCard: FC<RequestCardProps> = ({
   requestDonation,
   setIsContactModalVisible,
+  disabled = false,
 }) => {
   const { navigateToOtherProfile, navigateToRequestDetails } = useAppNavigation();
 
@@ -38,7 +40,7 @@ export const RequestCard: FC<RequestCardProps> = ({
         <View style={styles.headerInfo}>
           <View style={styles.nameContainer}>
             <BText size="title" bold style={{ paddingRight: 8 }} color="black">
-              {requestDonation.name.split(" ")[0]}
+              {requestDonation.name.split(" ")[0]}, {requestDonation.age}
             </BText>
           </View>
           {requestDonation.hospital && (
@@ -48,7 +50,7 @@ export const RequestCard: FC<RequestCardProps> = ({
                   <HospitalSvg variant="secondary" />
                 </View>
                 <View style={{ width: 4 }} />
-                <BText color="black">{requestDonation.hospital}</BText>
+                <BText numberOfLines={1} color="black" style={{ maxWidth: "85%" }}>{requestDonation.hospital}</BText>
               </View>
               <View style={styles.infoContainer}>
                 <View style={styles.iconContainer}>
@@ -80,6 +82,7 @@ export const RequestCard: FC<RequestCardProps> = ({
           <BButton
             variant="secondary-void"
             title="Ver más"
+            disabled={disabled}
             onPress={navigateToRequestDetailsScreen}
           />
         </View>
@@ -88,6 +91,7 @@ export const RequestCard: FC<RequestCardProps> = ({
           <BButton
             variant="secondary"
             title="Contactar"
+            disabled={disabled}
             onPress={() => setIsContactModalVisible(true)}
           />
         </View>
