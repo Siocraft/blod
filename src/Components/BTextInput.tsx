@@ -8,6 +8,7 @@ type BTextInputProps = TextInputProps & {
   icon?: () => JSX.Element;
   error?: never;
   errorMessage?: never;
+  label?: string;
 };
 
 type BTextInputPropsWithError = Omit<
@@ -25,10 +26,12 @@ export const BTextInput: FC<Props> = ({
   errorMessage,
   disabled,
   icon,
+  label,
   ...props
 }) => {
   return (
     <>
+      {label ? <BText style={{ marginBottom: 4 }} color="black">{label}</BText> : null}
       <View
         style={[
           styles.inputContainer,
