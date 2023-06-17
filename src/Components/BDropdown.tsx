@@ -10,6 +10,8 @@ type BDropdownProps = {
   text: string;
   onPress: () => void;
   label?: string;
+  error?: boolean;
+  errorMessage?: string;
 };
 
 export const BDropdown: FC<BDropdownProps> = ({
@@ -18,17 +20,19 @@ export const BDropdown: FC<BDropdownProps> = ({
   iconLeft,
   iconRight,
   label,
+  error,
+  errorMessage,
 }) => {
   return (
     <>
-      {label ? <BText style={{ marginBottom: 4 }} color="black">{label}</BText> : null}
+      {label ? <BText style={{ marginBottom: 4 }} color={error ? "primary" : "black"}>{label}</BText> : null}
       <Pressable
         onPress={onPress}
         style={{
           width: "100%",
           borderRadius: 8,
           padding: 8,
-          borderColor: ColorsEnum.secondary,
+          borderColor: error ? ColorsEnum.error : ColorsEnum.secondary,
           borderWidth: 1,
           flexDirection: "row",
           justifyContent: "space-between",
@@ -53,6 +57,7 @@ export const BDropdown: FC<BDropdownProps> = ({
           <Entypo name="chevron-down" size={18} color="black" />
         )}
       </Pressable>
+      {errorMessage && <BText>{errorMessage}</BText>}
     </>
   );
 };
