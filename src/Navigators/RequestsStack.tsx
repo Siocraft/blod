@@ -14,10 +14,6 @@ export const RequestsStack = () => {
       <Stack.Screen name="Home" component={Home} />
       <Stack.Screen name="OtherProfile" component={OtherProfile} />
       <Stack.Screen name="RequestDetails" component={RequestDetails} />
-      <Stack.Screen
-        name="CreateDonationRequest"
-        component={CreateDonationRequest}
-      />
     </Stack.Navigator>
   );
 };

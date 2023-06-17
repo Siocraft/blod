@@ -1,5 +1,5 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { EditProfile, Profile } from "@screens";
+import { CreateDonationRequest, EditProfile, Profile } from "@screens";
 import React from "react";
 
 const Stack = createNativeStackNavigator<ProfileStackParamList>();
@@ -13,6 +13,10 @@ export const ProfileStack = () => {
     >
       <Stack.Screen name="Profile" component={Profile} />
       <Stack.Screen name="EditProfile" component={EditProfile} />
+      <Stack.Screen
+        name="CreateDonationRequest"
+        component={CreateDonationRequest}
+      />
     </Stack.Navigator>
   );
 };
