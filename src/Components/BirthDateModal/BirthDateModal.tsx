@@ -11,7 +11,7 @@ import { BText } from "../BText";
 interface BirthDateModalProps {
   isVisible: boolean;
   onPressHideBirthDateModal: () => void;
-  birthDateValue: string;
+  birthDateValue?: string;
   setFieldValue: (field: string, value: string) => void;
 }
 
