@@ -1,5 +1,5 @@
 import { QueryKeys } from "@config"
-import { appAxios } from "@services"
+import { ApiQueryKeys, appAxios } from "@services"
 import { useQuery } from "@tanstack/react-query"
 
 export interface HospitalFromAPI {
@@ -15,7 +15,7 @@ export interface HospitalFromAPI {
 }
 
 const getHospitals = async () => {
-  const { data: hospitals } = await appAxios.get<HospitalFromAPI[]>("/Hospital")
+  const { data: hospitals } = await appAxios.get<HospitalFromAPI[]>(ApiQueryKeys.Hospital)
   return hospitals
 }
 
