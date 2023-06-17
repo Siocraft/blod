@@ -1,6 +1,6 @@
-import { BButton, BCard, BDropdown, BText, BTextInput, BirthDateModal, BloodTypeModal, HospitalModal } from "@components";
+import { BButton, BCard, BDropdown, BText, BTextInput, BirthDateModal, BloodTypeModal, GoBack, HospitalModal } from "@components";
 import { LoadingContext } from "@context";
-import { useAuth, useHospitals, useUser } from "@hooks";
+import { useAuth, useCreateDonationRequest, useHospitals, useUser } from "@hooks";
 import React, { FC, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -8,7 +8,25 @@ import { RequestCard } from "../Home/RequestCard";
 import { useFormik } from "formik";
 import { Ionicons, MaterialIcons, Fontisto } from '@expo/vector-icons';
 import { ColorsEnum } from "@theme";
-import { appAxios } from "@services";
+import * as yup from "yup"
+
+const requestSchema = yup.object().shape({
+  firstname: yup.string().required("Este campo es requerido"),
+  lastname: yup.string().required("Este campo es requerido"),
+  birthDate: yup.string().required("Este campo es requerido"),
+  bloodType: yup.string()
+  .required('Este campo es requerido')
+  .test('valid-rh-factor', 'RH Inválido', (value) => {
+    if (!value) return true; // Skip validation if blood type is not selected
+    return /^(A|B|AB|O)(\+|-)$/.test(value);
+  }),
+  city: yup.string().required("Este campo es requerido"),
+  hospital: yup.string().required("Este campo es requerido"),
+  contact: yup.string().required("Este campo es requerido"),
+  litersDonated: yup.string().required("Este campo es requerido"),
+  avatar: yup.string().required("Este campo es requerido"),
+  description: yup.string().required("Este campo es requerido"),
+})
 
 export const CreateDonationRequest: FC = () => {
   const { user } = useAuth();
@@ -21,7 +39,6 @@ export const CreateDonationRequest: FC = () => {
   const [bloodTypeModalVisible, setBloodTypeModalVisible] = useState(false);
   const [hospitalModalVisible, setHospitalModalVisible] = useState(false);
   const [birthdateModalVisible, setBirthDateModalVisible] = useState(false);
-
   const { data: hospitals } = useHospitals();
 
   const onPressShowBloodTypeModal = () => {
@@ -57,30 +74,40 @@ export const CreateDonationRequest: FC = () => {
   }, [isLoadingUser])
 
   const {
+    mutate: createDonationRequest,
+  } = useCreateDonationRequest();
+
+  const {
     setValues,
     values,
     setFieldValue,
-    handleSubmit
+    handleSubmit,
+    resetForm,
+    errors
   } = useFormik({
+    validationSchema: requestSchema,
     initialValues: {
-      lastname: undefined,
+      lastname: "",
       firstname: userData?.name,
       birthDate: undefined,
       bloodType: "A+",
-      city: undefined,
-      hospital: undefined,
-      contact: undefined,
-      litersDonated: 2,
+      city: "",
+      hospital: "",
+      contact: "",
+      litersDonated: 0,
       avatar: "https://www.w3schools.com/howto/img_avatar.png",
-      description: undefined
+      description: ""
     },
     onSubmit: async (submittedValues) => {
-      const response = await appAxios.post("/DonationRequest", {
+      createDonationRequest({
         ...submittedValues,
-        id: undefined
+        age,
+        bloodType: submittedValues.bloodType as DonationRequest["bloodType"],
       })
 
-      console.log(response)
+      // resetForm()
+
+      console.log(submittedValues)
     }
   })
 
@@ -121,6 +148,7 @@ export const CreateDonationRequest: FC = () => {
 
   return (
     <SafeAreaView>
+      <GoBack float />
       <BText size="title" bold color="secondary" style={{ alignSelf: "center" }}>
         Crear una solicitud
       </BText>
@@ -171,58 +199,72 @@ export const CreateDonationRequest: FC = () => {
 
         <BCard>
           <BTextInput
+            error={!!errors.firstname}
+            errorMessage={errors.firstname as string}
             label="Nombre"
             placeholder="Nombre"
             value={values.firstname}
             onChangeText={(text) => setValues({ ...values, firstname: text })}
-            icon={() => <Ionicons name="person-circle" size={24} color={ColorsEnum.secondary} />}
+            icon={() => <Ionicons name="person-circle" size={24} color={!!errors.firstname ? ColorsEnum.error : ColorsEnum.secondary} />}
           />
           <View style={{ height: 8 }} />
           <BTextInput
+            error={!!errors.lastname}
+            errorMessage={errors.lastname}
             label="Apellido"
             placeholder="Apellido"
             value={values.lastname}
             onChangeText={(text) => setValues({ ...values, lastname: text })}
-            icon={() => <Ionicons name="person-circle" size={24} color={ColorsEnum.secondary} />}
+            icon={() => <Ionicons name="person-circle" size={24} color={!!errors.lastname ? ColorsEnum.error : ColorsEnum.secondary} />}
           />
           <View style={{ height: 8 }} />
           <BTextInput
+            error={!!errors.contact}
+            errorMessage={errors.contact}
             label="Teléfono"
             placeholder="Teléfono"
             value={values.contact}
             onChangeText={(text) => setValues({ ...values, contact: text })}
-            icon={() => <Ionicons name="phone-portrait" size={24} color={ColorsEnum.secondary} />}
+            icon={() => <Ionicons name="phone-portrait" size={24} color={!!errors.contact ? ColorsEnum.error : ColorsEnum.secondary} />}
           />
           <View style={{ height: 8 }} />
           <BTextInput
+            error={!!errors.description}
+            errorMessage={errors.description}
             label="Descripción"
             multiline
             placeholder="Escribe una descripción aquí para darle a las personas un poco de más información"
             value={values.description}
             onChangeText={(text) => setValues({ ...values, description: text })}
             style={{ height: 100 }}
-            icon={() => <MaterialIcons name="description" size={24} color={ColorsEnum.secondary} />}
+            icon={() => <MaterialIcons name="description" size={24} color={!!errors.description ? ColorsEnum.error : ColorsEnum.secondary} />}
           />
           <View style={{ height: 8 }} />
           <BDropdown
+            error={!!errors.birthDate}
+            errorMessage={errors.birthDate}
             label="Fecha de Nacimiento"
             text={displayBirthDate ?? "Fecha de nacimiento"}
             onPress={onPressShowBirthDateModal}
-            iconLeft={() => <Fontisto name="date" size={24} color={ColorsEnum.secondary} />}
+            iconLeft={() => <Fontisto name="date" size={24} color={!!errors.birthDate ? ColorsEnum.error : ColorsEnum.secondary} />}
           />
           <View style={{ height: 8 }} />
           <BDropdown
+            error={!!errors.bloodType}
+            errorMessage={errors.bloodType}
             label="Tipo de sangre"
             text={values.bloodType}
             onPress={onPressShowBloodTypeModal}
-            iconLeft={() => <Fontisto name="blood-drop" size={24} color={ColorsEnum.secondary} />}
+            iconLeft={() => <Fontisto name="blood-drop" size={24} color={!!errors.bloodType ? ColorsEnum.error : ColorsEnum.secondary} />}
           />
           <View style={{ height: 8 }} />
           <BDropdown
+            error={!!errors.hospital}
+            errorMessage={errors.hospital}
             label="Hospital"
             text={values.hospital}
             onPress={onPressShowHospitalModal}
-            iconLeft={() => <Fontisto name="blood-drop" size={24} color={ColorsEnum.secondary} />}
+            iconLeft={() => <Fontisto name="blood-drop" size={24} color={!!errors.hospital ? ColorsEnum.error : ColorsEnum.secondary} />}
           />
           <View style={{ height: 16 }} />
           <BButton
