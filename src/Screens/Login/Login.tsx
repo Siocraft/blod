@@ -1,13 +1,14 @@
-import { BText, BTextInput, GoBack } from "@components";
+import { BButton, BText, BTextInput, GoBack } from "@components";
 import { ErrorsEnum } from "@constants";
 import { useAppNavigation } from "@hooks";
 import { ColorsEnum } from "@theme";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useFormik } from "formik";
 import React, { FC } from "react";
-import { Pressable, StyleSheet, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import * as Yup from "yup";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { Entypo, MaterialCommunityIcons } from '@expo/vector-icons';
 
 const auth = getAuth();
 
@@ -53,11 +54,12 @@ export const Login: FC = () => {
   return (
     <SafeAreaView style={styles.loginContainer}>
       <GoBack />
-      <BText size="title" color="black" bold>
+      <BText style={{ alignSelf: "center", marginTop: 16 }} size="title" color="black" bold>
         Ingresa a tu cuenta
       </BText>
       <View style={{ height: 24 }} />
       <BTextInput
+        label="Correo electrónico"
         textContentType="emailAddress"
         keyboardType="email-address"
         autoCapitalize="none"
@@ -70,9 +72,11 @@ export const Login: FC = () => {
         value={values.email}
         error={emailError}
         errorMessage={errors.email}
+        icon={() => <Entypo name="email" size={16} color={emailError ? ColorsEnum.error : ColorsEnum.secondary} />}
       />
       <View style={{ height: 16 }} />
       <BTextInput
+        label="Contraseña"
         secureTextEntry
         placeholder="Constraseña"
         onChangeText={handleChange("password")}
@@ -80,24 +84,21 @@ export const Login: FC = () => {
         value={values.password}
         error={passwordError}
         errorMessage={errors.password}
+        icon={() => <MaterialCommunityIcons name="form-textbox-password" size={16} color={passwordError ? ColorsEnum.error : ColorsEnum.secondary} />}
       />
       <View style={{ height: 16 }} />
-      <Pressable
+      <BButton
+        title="Ingresar"
         disabled={isLoginDisabled}
-        style={[
-          styles.loginButton,
-          isLoginDisabled && {
-            backgroundColor: ColorsEnum.disabledButton,
-          },
-        ]}
+        variant={isLoginDisabled ? "disabled" : "secondary"}
         onPress={() => handleSubmit()}
-      >
-        <BText color={isLoginDisabled ? "darkGray" : "white"}>Ingresar</BText>
-      </Pressable>
+      />
       <View style={{ height: 16 }} />
-      <Pressable style={styles.backButton} onPress={onPressCreateAccount}>
-        <BText color="secondary">Crear una cuenta</BText>
-      </Pressable>
+      <BButton
+        title="Crear una cuenta"
+        variant="secondary-void"
+        onPress={onPressCreateAccount}
+      />
     </SafeAreaView>
   );
 };
@@ -105,8 +106,6 @@ export const Login: FC = () => {
 const styles = StyleSheet.create({
   loginContainer: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
     backgroundColor: ColorsEnum.white,
     padding: 16,
   },
