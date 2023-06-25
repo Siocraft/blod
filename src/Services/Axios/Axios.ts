@@ -7,6 +7,7 @@ import { URL } from 'react-native-url-polyfill';
 export const ApiQueryKeys = {
   Hospital: "/Hospital",
   DonationRequest: "/DonationRequest",
+  GetDonationRequest: (id: string) => `/DonationRequest/${id}`,
 } as const;
 
 export const appAxios = axios.create({
