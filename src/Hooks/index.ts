@@ -6,3 +6,4 @@ export * from "./useDonationRequest";
 export * from "./useSignOut";
 export * from "./useHospitals";
 export * from "./useCreateDonationRequest";
+export * from "./useDonationRequests";
