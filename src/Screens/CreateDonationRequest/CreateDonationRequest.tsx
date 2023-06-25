@@ -91,8 +91,8 @@ export const CreateDonationRequest: FC = () => {
     validationSchema: requestSchema,
     validateOnBlur: true,
     initialValues: {
-      lastname: "",
-      firstname: userData?.name,
+      lastName: "",
+      firstName: userData?.name,
       birthDate: undefined,
       bloodType: "A+",
       city: "",
@@ -100,7 +100,9 @@ export const CreateDonationRequest: FC = () => {
       contact: "",
       litersDonated: 0,
       avatar: "https://www.w3schools.com/howto/img_avatar.png",
-      description: ""
+      description: "",
+      createdAt: new Date().toISOString(),
+      hospitalId: "",
     },
     onSubmit: async (submittedValues) => {
       createDonationRequest({
@@ -114,9 +116,11 @@ export const CreateDonationRequest: FC = () => {
     }
   })
 
-  const getCityFromHospitalName = useCallback((hospitalName: string) => {
+  const getDataFromHospitalName = useCallback((hospitalName: string) => {
     const city = hospitals?.find(hospital => hospital.name === hospitalName)?.city ?? ''
+    const id = hospitals?.find(hospital => hospital.name === hospitalName)?.id ?? ''
     setFieldValue("city", city)
+    setFieldValue("hospitalId", id)
   }, [hospitals])
 
   const displayBirthDate = useMemo(() => {
@@ -165,16 +169,18 @@ export const CreateDonationRequest: FC = () => {
           setIsContactModalVisible={() => null}
           requestDonation={{
             id: "New Donation Request",
-            name: values.firstname ?? "Nombre",
+            firstName: values.firstName ?? "Nombre",
             avatar: values.avatar,
             bloodType: values.bloodType as DonationRequest["bloodType"],
             hospital: values.hospital ?? "Hospital",
             city: values.city ?? "Ciudad",
             description: values.description ?? "La descripción siempre tiene información útil para quien vea tu petición",
-            firstname: values.firstname,
+            lastName: values.firstName,
             contact: values.contact ?? "",
             age,
             litersDonated: 2,
+            createdAt: new Date().toISOString(),
+            hospitalId: ""
           }}
         />
 
@@ -190,7 +196,7 @@ export const CreateDonationRequest: FC = () => {
           onPressHideHospitalModal={onPressHideHospitalModal}
           hospitalValue={values.hospital ?? "Hospital"}
           setFieldValue={setFieldValue}
-          cb={getCityFromHospitalName}
+          cb={getDataFromHospitalName}
         />
 
         <BirthDateModal
@@ -202,23 +208,23 @@ export const CreateDonationRequest: FC = () => {
 
         <BCard>
           <BTextInput
-            error={!!errors.firstname && !!touched.firstname}
-            errorMessage={errors.firstname as string}
+            error={!!errors.firstName && !!touched.firstName}
+            errorMessage={errors.firstName as string}
             label="Nombre"
             placeholder="Nombre"
-            value={values.firstname}
-            onChangeText={(text) => setValues({ ...values, firstname: text })}
-            icon={() => <Ionicons name="person-circle" size={24} color={!!errors.firstname && !!touched.firstname ? ColorsEnum.error : ColorsEnum.secondary} />}
+            value={values.firstName}
+            onChangeText={(text) => setValues({ ...values, firstName: text })}
+            icon={() => <Ionicons name="person-circle" size={24} color={!!errors.firstName && !!touched.firstName ? ColorsEnum.error : ColorsEnum.secondary} />}
           />
           <View style={{ height: 8 }} />
           <BTextInput
-            error={!!errors.lastname && !!touched.lastname}
-            errorMessage={errors.lastname}
+            error={!!errors.lastName && !!touched.lastName}
+            errorMessage={errors.lastName}
             label="Apellido"
             placeholder="Apellido"
-            value={values.lastname}
-            onChangeText={(text) => setValues({ ...values, lastname: text })}
-            icon={() => <Ionicons name="person-circle" size={24} color={!!errors.lastname && !!touched.lastname ? ColorsEnum.error : ColorsEnum.secondary} />}
+            value={values.lastName}
+            onChangeText={(text) => setValues({ ...values, lastName: text })}
+            icon={() => <Ionicons name="person-circle" size={24} color={!!errors.lastName && !!touched.lastName ? ColorsEnum.error : ColorsEnum.secondary} />}
           />
           <View style={{ height: 8 }} />
           <BTextInput

@@ -23,7 +23,7 @@ export const RequestCard: FC<RequestCardProps> = ({
   };
 
   const navigateToRequestDetailsScreen = () => {
-    navigateToRequestDetails(requestDonation.id);
+    navigateToRequestDetails("648d24ec165fb0235ac082f8");
   };
 
   return (
@@ -40,7 +40,7 @@ export const RequestCard: FC<RequestCardProps> = ({
         <View style={styles.headerInfo}>
           <View style={styles.nameContainer}>
             <BText size="title" bold style={{ paddingRight: 8 }} color="black">
-              {requestDonation.name.split(" ")[0]}, {requestDonation.age}
+              {requestDonation.firstName}, {requestDonation.age}
             </BText>
           </View>
           {requestDonation.hospital && (
