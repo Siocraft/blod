@@ -1,10 +1,11 @@
 import { QueryKeys } from "@config"
 import { ApiQueryKeys, appAxios } from "@services"
 import { useMutation } from "@tanstack/react-query"
+import { useAppNavigation } from "./useAppNavigation"
 
 interface CreateDonationRequestParams {
-  lastname: string,
-  firstname: string,
+  lastName: string,
+  firstName: string,
   age: number,
   bloodType: `${BloodTypes}`,
   city: string,
@@ -24,8 +25,15 @@ const createDonationRequest = async (donationRequest: CreateDonationRequestParam
 }
 
 export const useCreateDonationRequest = () => {
+
+  const { navigateToRequestDetails } = useAppNavigation()
+
   return useMutation({
     mutationKey: [QueryKeys.DONATION_REQUESTS, QueryKeys.CREATE],
     mutationFn: createDonationRequest,
+    onSuccess: (data) => {
+      console.log(data.id)
+      navigateToRequestDetails(data.id)
+    }
   })
 }
