@@ -8,4 +8,5 @@ export enum QueryKeys {
   HOSPITALS = "hospitals",
   DONATION_REQUESTS = "donationRequests",
   CREATE = "create",
+  GET_ALL = "getAll"
 }
