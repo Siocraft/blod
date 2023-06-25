@@ -1,11 +1,13 @@
-import { BText, BTextInput, GoBack } from "@components";
+import { BButton, BText, BTextInput, GoBack } from "@components";
 import { ErrorsEnum } from "@constants";
 import { useAppNavigation } from "@hooks";
 import { ColorsEnum } from "@theme";
 import { useFormik } from "formik";
 import React, { FC } from "react";
 import { Pressable, StyleSheet, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import * as Yup from "yup";
+import { Entypo, MaterialCommunityIcons } from '@expo/vector-icons';
 
 export type SignUpFormValues = {
   email: string;
@@ -66,13 +68,14 @@ export const Signup: FC = () => {
     !!values.passwordConfirmation;
 
   return (
-    <View style={styles.loginContainer}>
+    <SafeAreaView style={styles.loginContainer}>
       <GoBack />
-      <BText size="title" color="black" bold>
+      <BText style={{ alignSelf: "center", marginTop: 16 }} size="title" color="black" bold>
         ¡Regístrate!
       </BText>
       <View style={{ height: 24 }} />
       <BTextInput
+        label="Correo Electrónico"
         textContentType="emailAddress"
         keyboardType="email-address"
         autoCapitalize="none"
@@ -85,9 +88,11 @@ export const Signup: FC = () => {
         value={values.email}
         error={emailError}
         errorMessage={errors.email}
+        icon={() => <Entypo name="email" size={16} color={emailError ? ColorsEnum.error : ColorsEnum.secondary} />}
       />
       <View style={{ height: 16 }} />
       <BTextInput
+        label="Contraseña"
         secureTextEntry
         placeholder="Constraseña"
         onChangeText={handleChange("password")}
@@ -95,9 +100,11 @@ export const Signup: FC = () => {
         value={values.password}
         error={passwordError}
         errorMessage={errors.password}
+        icon={() => <MaterialCommunityIcons name="form-textbox-password" size={16} color={passwordError ? ColorsEnum.error : ColorsEnum.secondary} />}
       />
       <View style={{ height: 16 }} />
       <BTextInput
+        label="Confirmar contraseña"
         secureTextEntry
         placeholder="Confirmar contraseña"
         onChangeText={handleChange("passwordConfirmation")}
@@ -105,33 +112,28 @@ export const Signup: FC = () => {
         value={values.passwordConfirmation}
         error={passwordConfirmationError}
         errorMessage={errors.passwordConfirmation}
+        icon={() => <MaterialCommunityIcons name="form-textbox-password" size={16} color={passwordConfirmationError ? ColorsEnum.error : ColorsEnum.secondary} />}
       />
       <View style={{ height: 16 }} />
-      <Pressable
+      <BButton
+        title="Crear cuenta"
         disabled={isCreateAccountDisabled}
-        style={[
-          styles.createAccountButton,
-          isCreateAccountDisabled && styles.createAccountButtonDisabled,
-        ]}
+        variant={isCreateAccountDisabled ? "disabled" : "secondary"}
         onPress={onCreateAccount}
-      >
-        <BText color={isCreateAccountDisabled ? "darkGray" : "white"}>
-          Crear cuenta
-        </BText>
-      </Pressable>
+      />
       <View style={{ height: 16 }} />
-      <Pressable style={styles.backButton} onPress={onAlreadyHaveAnAccount}>
-        <BText color="secondary">Ya tengo una cuenta</BText>
-      </Pressable>
-    </View>
+      <BButton
+        title="Ya tengo una cuenta"
+        variant="secondary-void"
+        onPress={onAlreadyHaveAnAccount}
+      />
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   loginContainer: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
     backgroundColor: ColorsEnum.white,
     padding: 16,
   },
