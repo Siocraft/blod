@@ -2,9 +2,9 @@ import { FilterButton, Filters } from "@components";
 import { ColorsEnum } from "@theme";
 import React, { FC, useState } from "react";
 import { FlatList, StyleSheet, View } from "react-native";
-import { donationRequests } from "../../../Data/DonationRequests";
 import { RequestCard } from "../RequestCard";
 import { LinearGradient } from "expo-linear-gradient";
+import { useDonationRequests } from "@hooks";
 
 interface RequestsProps {
   setIsContactModalVisible: (value: boolean) => void;
@@ -21,6 +21,9 @@ export const Requests: FC<RequestsProps> = ({ setIsContactModalVisible }) => {
   const onContact = () => {
     setIsContactModalVisible(true);
   };
+
+  const { data: donationRequests, fetchNextPage } = useDonationRequests()
+
   return (
     <View style={styles.container}>
       <LinearGradient colors={[
@@ -38,7 +41,7 @@ export const Requests: FC<RequestsProps> = ({ setIsContactModalVisible }) => {
             <Filters variant="secondary" />
           </View>
         ) : <FlatList
-          data={donationRequests}
+          data={donationRequests?.pages.flatMap(page => page.pageDonationRequests)}
           showsVerticalScrollIndicator={false}
           ListHeaderComponent={() => <View style={{ height: 40 }} />}
           contentContainerStyle={{ padding: 16, paddingTop: 0 }}
@@ -48,7 +51,9 @@ export const Requests: FC<RequestsProps> = ({ setIsContactModalVisible }) => {
               setIsContactModalVisible={onContact}
             />
           )}
+          ListFooterComponent={() => <View style={{ height: 80 }} />}
           keyExtractor={item => "Donor_card_" + item.id}
+          onEndReached={() => fetchNextPage()}
         />
       }
     </View>
