@@ -16,7 +16,7 @@ export const Filters: FC<FiltersProps> = ({
   const [selectedBloodType, setSelectedBloodType] = useState("");
   const [selectedCity, setSelectedCity] = useState("");
 
-  return <View>
+  return <View style={styles.modalContainer}>
     <View style={styles.triangle} />
     <ScrollView style={styles.container}>
       <ChooseBloodType
@@ -34,6 +34,11 @@ export const Filters: FC<FiltersProps> = ({
 }
 
 const styles = StyleSheet.create({
+  modalContainer: {
+    zIndex: 1,
+    marginTop: 40,
+    paddingHorizontal: 16,
+  },
   container: {
     backgroundColor: "white",
     borderRadius: 8,

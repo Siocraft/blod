@@ -37,9 +37,7 @@ export const Requests: FC<RequestsProps> = ({ setIsContactModalVisible }) => {
       </LinearGradient>
       {
         filtersVisibility ? (
-          <View style={styles.filterContainer}>
-            <Filters variant="secondary" />
-          </View>
+          <Filters variant="secondary" />
         ) : <FlatList
           data={donationRequests?.pages.flatMap(page => page.pageDonationRequests)}
           showsVerticalScrollIndicator={false}
@@ -63,7 +61,7 @@ export const Requests: FC<RequestsProps> = ({ setIsContactModalVisible }) => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: ColorsEnum.backgroundSecondary,
-    paddingTop: 16,
+    paddingVertical: 16,
     height: "100%",
   },
   filterContainer: {
@@ -72,6 +70,6 @@ const styles = StyleSheet.create({
     zIndex: 1,
     width: '100%',
     height: 48,
-    top: 8
+    top: 8,
   }
 });

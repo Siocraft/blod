@@ -32,18 +32,19 @@ export const Donors: FC<DonorsProps> = ({ setIsContactModalVisible }) => {
       ]} style={styles.filterContainer}>
         <FilterButton onPress={onToggleFilters} />
       </LinearGradient>
-      {filtersVisibility ? (
-        <Filters
-          variant="primary"
-        />
-      ) : (
-        <FlatList
+      {
+        filtersVisibility ? (
+          <Filters variant="primary" />
+      ) : ( <FlatList
           data={donorCards}
           showsVerticalScrollIndicator={false}
           ListHeaderComponent={() => <View style={{ height: 40 }} />}
           contentContainerStyle={{ padding: 16, paddingTop: 0 }}
           renderItem={({ item }) => (
-            <DonorCard onContact={onContact} donor={item} />
+            <DonorCard
+              onContact={onContact}
+              donor={item}
+            />
           )}
           keyExtractor={item => "Donor_card_" + item.id}
         />
