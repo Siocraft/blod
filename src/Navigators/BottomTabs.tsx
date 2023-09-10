@@ -25,28 +25,28 @@ const FluidTabBar: FC = () => {
 
   const handlePress = (tabIndex: number) => {
     switch (tabIndex) {
-      case 0:
-        tabsTintColor !== ColorsEnum.secondary &&
+    case 0:
+      tabsTintColor !== ColorsEnum.secondary &&
           setTabsTintColor(ColorsEnum.secondary);
-        navigateToRequests();
-        break;
-      case 1:
-        tabsTintColor !== ColorsEnum.primary &&
+      navigateToRequests();
+      break;
+    case 1:
+      tabsTintColor !== ColorsEnum.primary &&
           setTabsTintColor(ColorsEnum.primary);
-        navigateToHospitals();
-        break;
-      case 2:
-        tabsTintColor !== ColorsEnum.secondary &&
+      navigateToHospitals();
+      break;
+    case 2:
+      tabsTintColor !== ColorsEnum.secondary &&
           setTabsTintColor(ColorsEnum.secondary);
-        navigateToInformation();
-        break;
-      case 3:
-        tabsTintColor !== ColorsEnum.secondary &&
+      navigateToInformation();
+      break;
+    case 3:
+      tabsTintColor !== ColorsEnum.secondary &&
           setTabsTintColor(ColorsEnum.secondary);
-        navigateToProfile();
-        break;
-      default:
-        break;
+      navigateToProfile();
+      break;
+    default:
+      break;
     }
   };
 

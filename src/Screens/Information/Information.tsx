@@ -2,12 +2,12 @@ import { BText } from "@components";
 import { useAppNavigation } from "@hooks";
 import { ColorsEnum } from "@theme";
 import React, { FC } from "react";
-import { View, StyleSheet, SafeAreaView, ScrollView } from "react-native";
+import { SafeAreaView, ScrollView, StyleSheet, View } from "react-native";
 import { InformationButton } from "./InformationButton";
 
 export const Information: FC = () => {
 
-  const { navigateToDonationRequirements, navigateToDonationTypes } = useAppNavigation()
+  const { navigateToDonationRequirements, navigateToDonationTypes } = useAppNavigation();
 
   return <SafeAreaView style={styles.safeAreaView}>
     <ScrollView style={styles.container}>
@@ -26,11 +26,11 @@ export const Information: FC = () => {
       <View style={{ height: 16 }} />
       <InformationButton onPress={navigateToDonationTypes} title="Tipos de donación de sangre" />
       <View style={{ height: 16 }} />
-      <InformationButton onPress={() => {}} title="Proceso de donación" />
+      <InformationButton onPress={() => { return; }} title="Proceso de donación" />
       <View style={{ height: 16 }} />
-      <InformationButton onPress={() => {}} title="Preguntas frecuentes al donar" />
+      <InformationButton onPress={() => { return; }} title="Preguntas frecuentes al donar" />
     </ScrollView>
-  </SafeAreaView>
+  </SafeAreaView>;
 };
 
 const styles = StyleSheet.create({
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     padding: 42
   },
   text: {
-    fontWeight: '500',
+    fontWeight: "500",
     lineHeight: 32,
   }
 });

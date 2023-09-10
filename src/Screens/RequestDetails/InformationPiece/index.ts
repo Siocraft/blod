@@ -1,1 +1,1 @@
-export * from "./InformationPiece"
+export * from "./InformationPiece";

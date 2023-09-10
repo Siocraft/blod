@@ -3,6 +3,6 @@ import { createContext } from "react";
 export const LoadingContext = createContext({
   loading: false,
   message: "",
-  showLoading: (message: string) => {},
-  hideLoading: () => {},
+  showLoading: ( /* _message: string */ ) => { return; },
+  hideLoading: () => { return; },
 });

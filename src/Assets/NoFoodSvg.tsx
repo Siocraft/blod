@@ -1,4 +1,4 @@
-import { FC } from "react";
+import React, { FC } from "react";
 import Svg, { Circle, Path } from "react-native-svg";
 
 export const NoFoodSvg: FC = () => {
@@ -10,5 +10,5 @@ export const NoFoodSvg: FC = () => {
     <Path d="M42.0918 24.4644C43.3147 28.9488 43.8311 33.5965 43.6224 38.2399H29.8469" stroke="#106BFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
     <Path d="M29.8469 24.4645V9.15836C33.1005 10.8526 35.8946 13.3106 37.9898 16.3216" stroke="#106BFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
     <Path d="M29.8469 48.9542V35.1787" stroke="#106BFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-  </Svg>
-}
+  </Svg>;
+};

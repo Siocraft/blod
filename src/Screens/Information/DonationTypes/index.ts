@@ -1,1 +1,1 @@
-export * from "./DonationTypes"
+export * from "./DonationTypes";

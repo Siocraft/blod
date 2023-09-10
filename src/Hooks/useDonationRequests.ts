@@ -1,6 +1,6 @@
-import { QueryKeys } from "@config"
-import { ApiQueryKeys, appAxios } from "@services"
-import { useInfiniteQuery } from "@tanstack/react-query"
+import { QueryKeys } from "@config";
+import { ApiQueryKeys, appAxios } from "@services";
+import { useInfiniteQuery } from "@tanstack/react-query";
 
 const getDonationRequestsByPage = async ({
   pageParam = 0
@@ -16,18 +16,18 @@ const getDonationRequestsByPage = async ({
           page: pageParam
         }
       }
-    )
+    );
 
   return {
     pageDonationRequests,
     nextPage: pageParam + 1
-  }
-}
+  };
+};
 
 export const useDonationRequests = () => {
   return useInfiniteQuery({
     queryKey: [QueryKeys.DONATION_REQUESTS, QueryKeys.GET_ALL],
     queryFn: ({ pageParam }) => getDonationRequestsByPage({ pageParam }),
     getNextPageParam: (lastPage) => lastPage.nextPage,
-  })
-}
+  });
+};

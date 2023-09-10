@@ -12,8 +12,8 @@ export const FloatingInformation: FC<FloatingInformationProps> = ({ link }) => {
     <BText style={styles.text}>
       Consulta más en <BText style={styles.link}>{link}</BText>
     </BText>
-  </View>
-}
+  </View>;
+};
 
 const styles = StyleSheet.create({
   floatingContainer: {
@@ -37,4 +37,4 @@ const styles = StyleSheet.create({
     lineHeight: 18,
     fontWeight: "500",
   },
-})
+});

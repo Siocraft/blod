@@ -1,6 +1,6 @@
-import { FloatingInformation } from "@components";
-import { BText, GoBack } from "@components";
+import { BText, FloatingInformation, GoBack } from "@components";
 import { ColorsEnum } from "@theme";
+import React from "react";
 import { SafeAreaView, ScrollView, StyleSheet, View } from "react-native";
 
 interface DonationTypeSection {
@@ -8,7 +8,7 @@ interface DonationTypeSection {
   text: string;
 }
 
-const DONATION_TYPE_SECTION_KEY = "DONATION_TYPE_SECTION_KEY_"
+const DONATION_TYPE_SECTION_KEY = "DONATION_TYPE_SECTION_KEY_";
 
 const donationTypeSections: DonationTypeSection[] = [
   {
@@ -23,35 +23,35 @@ const donationTypeSections: DonationTypeSection[] = [
     title: "Donación de plasma",
     text: "Con una máquina se extrae el plasma, esta es la parte líquida de la sangre, para después devolver al cuerpo los glóbulos y las plaquetas."
   }
-]
+];
 
 export const DonationTypes = () => {
   return <SafeAreaView style={styles.safeAreaView}>
     <ScrollView style={styles.container}>
-        <GoBack />
-        <View style={styles.donationTypesContainer}>
-          <View style={{ height: 16 }} />
-          <BText size="title" bold color="black">
+      <GoBack />
+      <View style={styles.donationTypesContainer}>
+        <View style={{ height: 16 }} />
+        <BText size="title" bold color="black">
             Tipos de donación de sangre
-          </BText>
-          <View style={{ height: 40 }} />
-          {
-            donationTypeSections.map((section, index) => {
-              return <View key={DONATION_TYPE_SECTION_KEY + index}>
-                <BText style={styles.donationTypeTitleText}>
-                  {section.title}
-                </BText>
-                <BText style={styles.donationTypeText}>
-                  {section.text}
-                </BText>
-              </View>
-            })
-          }
-        </View>
-      </ScrollView>
-      <FloatingInformation link="https://www.hhs.gov/givingequalsliving/es/donasangre/tipos-de-donacion" />
-  </SafeAreaView>
-}
+        </BText>
+        <View style={{ height: 40 }} />
+        {
+          donationTypeSections.map((section, index) => {
+            return <View key={DONATION_TYPE_SECTION_KEY + index}>
+              <BText style={styles.donationTypeTitleText}>
+                {section.title}
+              </BText>
+              <BText style={styles.donationTypeText}>
+                {section.text}
+              </BText>
+            </View>;
+          })
+        }
+      </View>
+    </ScrollView>
+    <FloatingInformation link="https://www.hhs.gov/givingequalsliving/es/donasangre/tipos-de-donacion" />
+  </SafeAreaView>;
+};
 
 const styles = StyleSheet.create({
   safeAreaView: {

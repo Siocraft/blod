@@ -1,13 +1,13 @@
 import { BButton, BText, BTextInput, GoBack } from "@components";
 import { ErrorsEnum } from "@constants";
+import { Entypo, MaterialCommunityIcons } from "@expo/vector-icons";
 import { useAppNavigation } from "@hooks";
 import { ColorsEnum } from "@theme";
 import { useFormik } from "formik";
 import React, { FC } from "react";
-import { Pressable, StyleSheet, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import * as Yup from "yup";
-import { Entypo, MaterialCommunityIcons } from '@expo/vector-icons';
 
 export type SignUpFormValues = {
   email: string;

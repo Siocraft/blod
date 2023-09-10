@@ -1,10 +1,9 @@
 import { BText } from "@components";
-import React from "react";
-import { View, StyleSheet } from "react-native";
-import { useContext } from "react";
 import { LoadingContext } from "@context";
 import { ColorsEnum } from "@theme";
-// @ts-expect-error
+import React, { useContext } from "react";
+import { StyleSheet, View } from "react-native";
+// @ts-expect-error - BouncingPreloader has no types
 import BouncingPreloader from "react-native-bouncing-preloader";
 
 const icons = [
@@ -21,11 +20,11 @@ export const Loading = () => {
   return (
     <View style={styles.screenContainer}>
       <BouncingPreloader
-          icons={icons}
-          leftDistance={-100}
-          rightDistance={-150}
-          speed={1000}
-        />
+        icons={icons}
+        leftDistance={-100}
+        rightDistance={-150}
+        speed={1000}
+      />
       <BText bold style={styles.loadingText}>{message}</BText>
     </View>
   );

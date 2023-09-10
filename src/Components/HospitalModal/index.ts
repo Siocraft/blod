@@ -1,1 +1,1 @@
-export * from "./HospitalModal"
+export * from "./HospitalModal";

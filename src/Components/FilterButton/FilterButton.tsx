@@ -1,6 +1,6 @@
 import { FilterSvg } from "@assets";
 import { ColorsEnum } from "@theme";
-import { FC } from "react";
+import React, { FC } from "react";
 import { Pressable, StyleSheet, View } from "react-native";
 import { BText } from "../BText";
 

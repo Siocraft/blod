@@ -1,12 +1,11 @@
-import { Data } from "@constants";
 import { AntDesign } from "@expo/vector-icons";
+import { useHospitals } from "@hooks";
 import { ColorsEnum } from "@theme";
 import React, { FC, useState } from "react";
 import { Pressable, View } from "react-native";
 import Modal from "react-native-modal";
-import { BText } from "../BText";
-import { useHospitals } from "@hooks";
 import { BButton } from "../BButton";
+import { BText } from "../BText";
 
 interface HospitalModalProps {
   isVisible: boolean;

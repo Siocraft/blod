@@ -14,7 +14,6 @@ export const ProfileData: FC<ProfileDataProps> = ({
   bloodType,
   location,
   litersDonated,
-  contact,
 }) => {
   return (
     <View style={styles.dataContainer}>

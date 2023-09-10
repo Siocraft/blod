@@ -1,5 +1,5 @@
 import { ColorsEnum } from "@theme";
-import { FC, PropsWithChildren } from "react";
+import React, { FC, PropsWithChildren } from "react";
 import { StyleProp, StyleSheet, View, ViewStyle } from "react-native";
 
 interface BCard extends PropsWithChildren {
@@ -18,8 +18,8 @@ export const BCard: FC<BCard> = ({
     style
   ])}>
     {children}
-  </View>
-}
+  </View>;
+};
 
 const styles = StyleSheet.create({
   card: {
@@ -44,4 +44,4 @@ const styles = StyleSheet.create({
   primary: {
     shadowColor: ColorsEnum.primary,
   },
-})
+});

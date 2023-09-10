@@ -1,13 +1,12 @@
 import { BText, GoBack } from "@components";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { FC } from "react";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { ScrollView, StyleSheet, View } from "react-native";
-import { ColorsEnum } from "@theme";
-import { InformationPiece } from "./InformationPiece";
-import MapView from 'react-native-maps';
-import { Marker } from 'react-native-maps';
 import { useDonationRequest } from "@hooks";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { ColorsEnum } from "@theme";
+import React, { FC } from "react";
+import { ScrollView, StyleSheet, View } from "react-native";
+import MapView, { Marker } from "react-native-maps";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { InformationPiece } from "./InformationPiece";
 
 export type RequestDetailsProps = NativeStackScreenProps<
   RequestStackParamList,
@@ -80,4 +79,4 @@ const styles = StyleSheet.create({
     width: "100%",
     borderRadius: 8,
   }
-})
+});

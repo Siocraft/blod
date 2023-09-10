@@ -1,6 +1,6 @@
-import { QueryKeys } from "@config"
-import { ApiQueryKeys, appAxios } from "@services"
-import { useQuery } from "@tanstack/react-query"
+import { QueryKeys } from "@config";
+import { ApiQueryKeys, appAxios } from "@services";
+import { useQuery } from "@tanstack/react-query";
 
 export interface HospitalFromAPI {
   address: string
@@ -15,9 +15,9 @@ export interface HospitalFromAPI {
 }
 
 const getHospitals = async () => {
-  const { data: hospitals } = await appAxios.get<HospitalFromAPI[]>(ApiQueryKeys.Hospital)
-  return hospitals
-}
+  const { data: hospitals } = await appAxios.get<HospitalFromAPI[]>(ApiQueryKeys.Hospital);
+  return hospitals;
+};
 
 export const useHospitals = () => {
   return useQuery({
@@ -25,5 +25,5 @@ export const useHospitals = () => {
     queryFn: getHospitals,
     staleTime: 1000 * 60 * 60 * 24,
     cacheTime: 1000 * 60 * 60 * 24,
-  })
-}
+  });
+};

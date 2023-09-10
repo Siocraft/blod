@@ -1,24 +1,23 @@
+import { QueryKeys, queryClient } from "@config";
+import { LoadingContext } from "@context";
+import { MaterialIcons } from "@expo/vector-icons";
+import { useAuth } from "@hooks";
+import { ErrorReporting, updateUser, uploadImageAsync } from "@services";
 import { ColorsEnum } from "@theme";
+import {
+  ImageInfo,
+  ImagePickerCancelledResult,
+  MediaTypeOptions,
+  launchImageLibraryAsync,
+} from "expo-image-picker";
 import React, { FC, useContext, useState } from "react";
 import {
   Image,
   ImagePickerResult,
   Pressable,
-  StyleSheet,
-  View,
+  StyleSheet
 } from "react-native";
-import { MaterialIcons } from "@expo/vector-icons";
-import {
-  ImageInfo,
-  ImagePickerCancelledResult,
-  launchImageLibraryAsync,
-  MediaTypeOptions,
-} from "expo-image-picker";
-import { LoadingContext } from "@context";
-import { ErrorReporting, updateUser, uploadImageAsync } from "@services";
-import { useAuth } from "@hooks";
 import { ConfirmImageModal } from "./ConfirmImageModal";
-import { queryClient, QueryKeys } from "@config";
 import { SeeFullImageModal } from "./SeeFullImageModal";
 
 export interface ProfileImageProps {

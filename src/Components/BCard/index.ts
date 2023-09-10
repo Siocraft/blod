@@ -1,1 +1,1 @@
-export * from "./BCard"
+export * from "./BCard";

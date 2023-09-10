@@ -1,5 +1,5 @@
 import { ColorsEnum } from "@theme";
-import { FC } from "react";
+import React, { FC } from "react";
 import { Pressable, PressableProps, PressableStateCallbackType, StyleProp, StyleSheet, ViewStyle } from "react-native";
 import { BText, BTextProps } from "./BText";
 
@@ -49,7 +49,7 @@ export const BButton: FC<BButtonProps> = ({
             >
               {title}
             </BText>
-          ) : null
+          ) : null;
         }
       }
     </Pressable>
@@ -170,7 +170,7 @@ const textStyles = StyleSheet.create({
   "disabled-transparent": {
     color: ColorsEnum.darkGray,
   },
-})
+});
 
 const pressedTextStyles = StyleSheet.create({
   primary: {

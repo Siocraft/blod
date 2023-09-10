@@ -1,12 +1,11 @@
 import { ColorsEnum } from "@theme";
 import { LinearGradient } from "expo-linear-gradient";
-import { FC, useEffect } from "react";
-import { Animated, StyleProp, StyleSheet, View, ViewStyle } from "react-native";
-import { BText } from "../BText";
+import React, { FC, useEffect } from "react";
+import { Animated, StyleProp, StyleSheet, ViewStyle } from "react-native";
 
 interface SkeletonProps {
-  variant: 'smallText' | 'text' 
-  color?: 'primary' | 'secondary' | 'gray'
+  variant: "smallText" | "text" 
+  color?: "primary" | "secondary" | "gray"
   style?: StyleProp<ViewStyle>
 }
 
@@ -14,18 +13,18 @@ const skeletonColors = {
   primary: ColorsEnum.primary,
   secondary: ColorsEnum.secondary,
   gray: ColorsEnum.white
-} as const
+} as const;
 
 export const Skeleton: FC<SkeletonProps> = ({
   variant,
-  color = 'gray',
+  color = "gray",
   style
 }) => {
 
-  const animatedValue = new Animated.Value(0)
+  const animatedValue = new Animated.Value(0);
 
   const animated = () => {
-    animatedValue.setValue(0)
+    animatedValue.setValue(0);
     Animated.timing(
       animatedValue,
       {
@@ -35,19 +34,19 @@ export const Skeleton: FC<SkeletonProps> = ({
       }
     ).start(() => {
       setTimeout(() => {
-        animated()
+        animated();
       }, 500);
-    })
-  }
+    });
+  };
 
   const translateX = animatedValue.interpolate({
     inputRange: [0, 1],
     outputRange: [-300, 400]
-  })
+  });
 
   useEffect(() => {
-    animated()
-  }, [])
+    animated();
+  }, []);
   
   return <LinearGradient
     colors={[
@@ -75,16 +74,16 @@ export const Skeleton: FC<SkeletonProps> = ({
           ColorsEnum.whiteTransparent,
           ColorsEnum.whiteTransparent,
         ]}
-        style={{ height: '100%' }}
+        style={{ height: "100%" }}
         start={[0, 1]} end={[1, 1]}
       />
     </Animated.View>
-  </LinearGradient>
-}
+  </LinearGradient>;
+};
 
 const styles = StyleSheet.create({
   container: {
-    overflow: 'hidden',
+    overflow: "hidden",
     borderRadius: 4
   },
   text: {
@@ -94,8 +93,8 @@ const styles = StyleSheet.create({
     height: 12,
   },
   animatedView: {
-    width: '30%',
-    height: '100%',
+    width: "30%",
+    height: "100%",
     opacity: 0.8,
   }
-})
+});

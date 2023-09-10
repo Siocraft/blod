@@ -1,5 +1,5 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { CreateDonationRequest, Home, OtherProfile, RequestDetails } from "@screens";
+import { Home, OtherProfile, RequestDetails } from "@screens";
 import React from "react";
 
 const Stack = createNativeStackNavigator<RequestStackParamList>();

@@ -1,1 +1,1 @@
-export * from "./ChooseBlodType"
+export * from "./ChooseBlodType";

@@ -1,7 +1,6 @@
 import { ColorsEnum } from "@theme";
-import { FC } from "react";
+import React, { FC } from "react";
 import { StyleSheet, TouchableWithoutFeedback, View } from "react-native";
-import { Colors } from "react-native/Libraries/NewAppScreen";
 import { BText } from "./BText";
 
 interface BRadioButtonProps {

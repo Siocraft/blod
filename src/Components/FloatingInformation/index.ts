@@ -1,1 +1,1 @@
-export * from "./FloatingInformation"
+export * from "./FloatingInformation";

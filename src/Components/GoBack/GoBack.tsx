@@ -1,9 +1,9 @@
-import { FC } from "react";
-import { Pressable, View, StyleSheet } from "react-native";
-import { useAppNavigation } from "@hooks";
-import { BText } from "../BText";
 import { ArrowLeftSvg } from "@assets";
+import { useAppNavigation } from "@hooks";
+import React, { FC } from "react";
+import { Pressable, StyleSheet, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { BText } from "../BText";
 
 type GoBackProps = {
   float?: boolean;
@@ -21,7 +21,7 @@ export const GoBack: FC<GoBackProps> = ({
 
   return (
     <Pressable style={StyleSheet.flatten([
-      { flexDirection: 'row' },
+      { flexDirection: "row" },
       float && {
         ...styles.float,
         top: top,
@@ -37,8 +37,8 @@ export const GoBack: FC<GoBackProps> = ({
 
 const styles = StyleSheet.create({
   float: {
-    position: 'absolute',
+    position: "absolute",
     top: 0,
     left: 0,
   }
-})
+});

@@ -1,7 +1,7 @@
 import { ArrowRightSvg } from "@assets";
 import { BText } from "@components";
 import { ColorsEnum } from "@theme";
-import { FC } from "react";
+import React, { FC } from "react";
 import { Pressable, StyleSheet, View } from "react-native";
 
 declare interface InformationButtonProps {
@@ -18,7 +18,7 @@ export const InformationButton: FC<InformationButtonProps> = ({
     <BText size="large" bold color="black">{title}</BText>
     <View style={{ flex: 1 }} />
     <ArrowRightSvg />
-  </Pressable>
+  </Pressable>;
 };
 
 const styles = StyleSheet.create({
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     borderColor: ColorsEnum.backgroundSecondary,
     borderRadius: 8,
     padding: 8,
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
   }
 });

@@ -1,1 +1,1 @@
-export * from "./Axios"
+export * from "./Axios";

@@ -1,4 +1,4 @@
-import { FC } from "react";
+import React, { FC } from "react";
 import Svg, { ClipPath, Defs, G, Path, Rect } from "react-native-svg";
 
 interface FilterSvgProps {

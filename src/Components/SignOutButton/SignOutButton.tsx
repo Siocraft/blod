@@ -1,8 +1,8 @@
 import { useAuth, useSignOut } from "@hooks";
-import { FC } from "react";
+import React, { FC } from "react";
 import { BButton, BButtonProps } from "../BButton";
 
-type SignOutButtonProps = Omit<BButtonProps, 'title'>
+type SignOutButtonProps = Omit<BButtonProps, "title">
 
 export const SignOutButton: FC<SignOutButtonProps> = ({
   ...buttonProps
@@ -17,5 +17,5 @@ export const SignOutButton: FC<SignOutButtonProps> = ({
       {...buttonProps}
       title="Cerrar sesión"
     />
-  ) : null
-}
+  ) : null;
+};

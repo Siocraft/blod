@@ -8,7 +8,7 @@ import React, { FC } from "react";
 import { StyleSheet, View } from "react-native";
 import * as Yup from "yup";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Entypo, MaterialCommunityIcons } from '@expo/vector-icons';
+import { Entypo, MaterialCommunityIcons } from "@expo/vector-icons";
 
 const auth = getAuth();
 
