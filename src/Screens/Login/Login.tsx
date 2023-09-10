@@ -1,14 +1,14 @@
 import { BButton, BText, BTextInput, GoBack } from "@components";
 import { ErrorsEnum } from "@constants";
+import { Entypo, MaterialCommunityIcons } from "@expo/vector-icons";
 import { useAppNavigation } from "@hooks";
 import { ColorsEnum } from "@theme";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useFormik } from "formik";
 import React, { FC } from "react";
 import { StyleSheet, View } from "react-native";
-import * as Yup from "yup";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Entypo, MaterialCommunityIcons } from "@expo/vector-icons";
+import * as Yup from "yup";
 
 const auth = getAuth();
 
@@ -53,7 +53,9 @@ export const Login: FC = () => {
 
   return (
     <SafeAreaView style={styles.loginContainer}>
-      <GoBack />
+      <View style={{ marginLeft: -16 }}>
+        <GoBack />
+      </View>
       <BText style={{ alignSelf: "center", marginTop: 16 }} size="title" color="black" bold>
         Ingresa a tu cuenta
       </BText>

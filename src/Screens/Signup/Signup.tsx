@@ -69,7 +69,9 @@ export const Signup: FC = () => {
 
   return (
     <SafeAreaView style={styles.loginContainer}>
-      <GoBack />
+      <View style={{ marginLeft: -16 }}>
+        <GoBack />
+      </View>
       <BText style={{ alignSelf: "center", marginTop: 16 }} size="title" color="black" bold>
         ¡Regístrate!
       </BText>

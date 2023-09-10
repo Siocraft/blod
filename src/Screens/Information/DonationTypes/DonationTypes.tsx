@@ -27,8 +27,8 @@ const donationTypeSections: DonationTypeSection[] = [
 
 export const DonationTypes = () => {
   return <SafeAreaView style={styles.safeAreaView}>
+    <GoBack />
     <ScrollView style={styles.container}>
-      <GoBack />
       <View style={styles.donationTypesContainer}>
         <View style={{ height: 16 }} />
         <BText size="title" bold color="black">

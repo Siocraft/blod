@@ -155,7 +155,7 @@ export const CreateDonationRequest: FC = () => {
 
   return (
     <SafeAreaView>
-      <GoBack float />
+      <GoBack />
       <BText size="title" bold color="secondary" style={{ alignSelf: "center" }}>
         Crear una solicitud
       </BText>
