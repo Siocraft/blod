@@ -1,7 +1,8 @@
-import { BRadioButton, BText } from "@components";
 import { Data } from "@constants";
-import { FC, useState } from "react";
-import { View, StyleSheet } from "react-native";
+import React, { FC } from "react";
+import { StyleSheet, View } from "react-native";
+import { BRadioButton } from "../BRadioButton";
+import { BText } from "../BText";
 
 interface ChooseCityProps {
   variant: "primary" | "secondary";
@@ -20,7 +21,7 @@ export const ChooseCity: FC<ChooseCityProps> = ({
 
     {
       Data.Cities.map((city) => {
-        return <View style={styles.cityContainer}>
+        return <View style={styles.cityContainer} key={city}>
           <BRadioButton
             label={city}
             value={city}
@@ -28,12 +29,12 @@ export const ChooseCity: FC<ChooseCityProps> = ({
             onChange={setSelectedCity}
             variant={variant}
           />
-        </View>
+        </View>;
       })
     }
     
   </View>;
-}
+};
 
 const styles = StyleSheet.create({
   row: {

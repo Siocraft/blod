@@ -1,7 +1,5 @@
-import { FC, useState } from "react";
-import { View, StyleSheet, ScrollView } from "react-native";
-
-import { BText } from "../BText";
+import React, { FC, useState } from "react";
+import { ScrollView, StyleSheet, View } from "react-native";
 import { ChooseBloodType } from "../ChooseBloodType";
 import { ChooseCity } from "../ChooseCity";
 
@@ -31,7 +29,7 @@ export const Filters: FC<FiltersProps> = ({
       />
     </ScrollView>
   </View>;
-}
+};
 
 const styles = StyleSheet.create({
   modalContainer: {

@@ -1,7 +1,8 @@
-import { BRadioButton, BText } from "@components";
 import { Data } from "@constants";
-import { FC } from "react";
-import { View, StyleSheet } from "react-native";
+import React, { FC } from "react";
+import { StyleSheet, View } from "react-native";
+import { BRadioButton } from "../BRadioButton";
+import { BText } from "../BText";
 
 interface ChooseBloodTypeProps {
   variant: "primary" | "secondary";
@@ -21,7 +22,7 @@ export const ChooseBloodType: FC<ChooseBloodTypeProps> = ({
     {
       Data.BloodTypes.map((bloodType, index) => {
         if(index % 2 === 1) return null;
-        return <View style={styles.row}>
+        return <View style={styles.row} key={bloodType}>
           <View style={styles.bloodTypeContainer}>
             <BRadioButton
               label={bloodType}
@@ -41,12 +42,12 @@ export const ChooseBloodType: FC<ChooseBloodTypeProps> = ({
               variant={variant}
             />
           </View>
-        </View>
+        </View>;
       })
     }
     
   </View>;
-}
+};
 
 const styles = StyleSheet.create({
   row: {
