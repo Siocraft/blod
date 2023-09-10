@@ -30,6 +30,7 @@ export const BButton: FC<BButtonProps> = ({
   const pressableStyle: (state: PressableStateCallbackType) => StyleProp<ViewStyle>  = ({ pressed }) => StyleSheet.flatten([
     styles.button,
     styles[variant],
+    styles.shadow,
     style,
     pressed && pressedStyles[variant],
   ]);
@@ -44,7 +45,7 @@ export const BButton: FC<BButtonProps> = ({
               {...text}
               style={StyleSheet.flatten([
                 textStyles[variant],
-                pressed && pressedTextStyles[variant],
+                pressed && pressedTextStyles[variant]
               ])}
             >
               {title}
@@ -62,6 +63,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     padding: 8,
+    borderWidth: 1,
+  },
+  shadow: {
     shadowOffset: {
       width: 4,
       height: 4,
@@ -69,7 +73,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.5,
     shadowRadius: 3,
     elevation: 8,
-    borderWidth: 1,
   },
   primary: {
     backgroundColor: ColorsEnum.primary,
