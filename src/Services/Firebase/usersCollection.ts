@@ -51,7 +51,7 @@ export const createUser = async ({
     };
 
     Object.keys(document).forEach(key =>
-      // @ts-expect-error
+      // @ts-expect-error - This is a bug in the firebase types
       document[key] === undefined ? delete document[key] : {}
     );
 
