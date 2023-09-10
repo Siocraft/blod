@@ -1,6 +1,6 @@
 import { BText } from "@components";
 import { ColorsEnum } from "@theme";
-import { FC } from "react";
+import React, { FC } from "react";
 import { Pressable, StyleSheet, View } from "react-native";
 
 interface TabsProps {

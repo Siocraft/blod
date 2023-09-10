@@ -1,6 +1,5 @@
 import { BButton, BText } from "@components";
 import { useAppNavigation, useAuth } from "@hooks";
-import { ColorsEnum } from "@theme";
 import React, { FC } from "react";
 import { StyleSheet, View } from "react-native";
 

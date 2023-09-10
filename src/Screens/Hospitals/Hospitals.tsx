@@ -1,18 +1,18 @@
 import { BText } from "@components";
 import { useHospitals } from "@hooks";
-import { FC } from "react";
-import { StyleSheet, ScrollView, View } from "react-native";
+import { ColorsEnum } from "@theme";
+import { LinearGradient } from "expo-linear-gradient";
+import React, { FC } from "react";
+import { ScrollView, StyleSheet, View } from "react-native";
 import { SafeAreaView, useSafeAreaInsets } from "react-native-safe-area-context";
 import { HospitalCard } from "./HospitalCard";
-import { LinearGradient } from 'expo-linear-gradient';
 import { HospitalCardSkeleton } from "./HospitalCardSkeleton";
-import { ColorsEnum } from "@theme";
 
 const skeletonArray = Array.from({ length: 3 }, (_, i) => i);
 
 export const Hospitals: FC = () => {
 
-  const { data: hospitals, isLoading: isLoadingHospitals } = useHospitals()
+  const { data: hospitals, isLoading: isLoadingHospitals } = useHospitals();
   const { top, bottom } = useSafeAreaInsets();
 
   return (
@@ -64,15 +64,15 @@ const styles = StyleSheet.create({
   },
   titleTextContainer: {
     paddingHorizontal: 16,
-    backgroundColor: 'transparent',
-    position: 'absolute',
+    backgroundColor: "transparent",
+    position: "absolute",
     zIndex: 1,
     height: 56,
-    width: '100%',
+    width: "100%",
   },
   text: {
     fontSize: 24,
     lineHeight: 40,
-    backgroundColor: 'transparent',
+    backgroundColor: "transparent",
   }
 });

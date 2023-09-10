@@ -1,10 +1,10 @@
 import { FilterButton, Filters } from "@components";
+import { useDonationRequests } from "@hooks";
 import { ColorsEnum } from "@theme";
+import { LinearGradient } from "expo-linear-gradient";
 import React, { FC, useState } from "react";
 import { FlatList, StyleSheet, View } from "react-native";
 import { RequestCard } from "../RequestCard";
-import { LinearGradient } from "expo-linear-gradient";
-import { useDonationRequests } from "@hooks";
 
 interface RequestsProps {
   setIsContactModalVisible: (value: boolean) => void;
@@ -22,7 +22,7 @@ export const Requests: FC<RequestsProps> = ({ setIsContactModalVisible }) => {
     setIsContactModalVisible(true);
   };
 
-  const { data: donationRequests, fetchNextPage } = useDonationRequests()
+  const { data: donationRequests, fetchNextPage } = useDonationRequests();
 
   return (
     <View style={styles.container}>
@@ -66,9 +66,9 @@ const styles = StyleSheet.create({
   },
   filterContainer: {
     paddingLeft: 16,
-    position: 'absolute',
+    position: "absolute",
     zIndex: 1,
-    width: '100%',
+    width: "100%",
     height: 48,
     top: 8,
   }

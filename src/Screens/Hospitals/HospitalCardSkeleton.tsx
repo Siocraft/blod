@@ -1,20 +1,20 @@
 import { BButton, Skeleton } from "@components";
 import { ColorsEnum } from "@theme";
-import { FC } from "react";
-import { View, StyleSheet } from "react-native";
+import React, { FC } from "react";
+import { StyleSheet, View } from "react-native";
 
 export const HospitalCardSkeleton: FC = () => {
 
   return <View style={styles.cardContainer}>
     <Skeleton variant="text" />
     <View style={{ height: 8 }} />
-    <Skeleton variant="text" style={{ width: '70%' }} />
+    <Skeleton variant="text" style={{ width: "70%" }} />
     <View style={{ height: 16 }} />
-    <Skeleton variant="smallText" style={{ width: '90%' }} />
+    <Skeleton variant="smallText" style={{ width: "90%" }} />
     <View style={{ height: 4 }} />
-    <Skeleton variant="smallText" style={{ width: '50%' }} />
+    <Skeleton variant="smallText" style={{ width: "50%" }} />
     <View style={{ height: 4 }} />
-    <Skeleton variant="smallText" style={{ width: '30%' }} />
+    <Skeleton variant="smallText" style={{ width: "30%" }} />
     <View style={{ height: 16 }} />
     <Skeleton variant="smallText" style={{ height: 250, borderRadius: 8 }} />
 
@@ -36,8 +36,8 @@ export const HospitalCardSkeleton: FC = () => {
       disabled
       variant="disabled-transparent"
     />
-  </View>
-}
+  </View>;
+};
 
 const styles = StyleSheet.create({
   cardContainer: {
@@ -63,4 +63,4 @@ const styles = StyleSheet.create({
     borderColor: ColorsEnum.primary,
     borderWidth: 2,
   }
-})
+});

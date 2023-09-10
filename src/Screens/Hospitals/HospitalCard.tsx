@@ -1,36 +1,33 @@
 import { BButton, BText } from "@components";
 import { HospitalFromAPI } from "@hooks";
 import { ColorsEnum } from "@theme";
-import { FC, useCallback, useMemo } from "react";
-import { View, StyleSheet, Platform, Linking } from "react-native";
+import React, { FC, useCallback, useMemo } from "react";
+import { Dimensions, Linking, Platform, StyleSheet, View } from "react-native";
 import MapView, { Marker } from "react-native-maps";
-import { Dimensions } from 'react-native';
-const { height, width } = Dimensions.get( 'window' );
+const { height, width } = Dimensions.get( "window" );
 
-interface HospitalCardProps extends HospitalFromAPI {
-  
-}
+type HospitalCardProps = HospitalFromAPI
 
 export const HospitalCard: FC<HospitalCardProps> = ({
   ...hospital
 }) => {
 
-  const [ latitude, longitude ] = hospital.coordinates.split(",")
+  const [ latitude, longitude ] = hospital.coordinates.split(",");
 
   const coordinates = useMemo(() => ({
     latitude: parseFloat(latitude),
     longitude: parseFloat(longitude),
-  }), [hospital])
+  }), [hospital]);
 
   const [ LATITUDE_DELTA, LONGITUDE_DELTA ] = useMemo(() => {
     const LATITUDE_DELTA = 0.1;
     const LONGITUDE_DELTA = LATITUDE_DELTA * (width / height);
-    return [ LATITUDE_DELTA, LONGITUDE_DELTA ]
-  }, [hospital])
+    return [ LATITUDE_DELTA, LONGITUDE_DELTA ];
+  }, [hospital]);
 
   const openMaps = useCallback(() => {
     const coordinatesString = `${coordinates.latitude},${coordinates.longitude}`;
-    const scheme = Platform.select({ ios: 'maps://0,0?q=', android: 'geo:0,0?q=' });
+    const scheme = Platform.select({ ios: "maps://0,0?q=", android: "geo:0,0?q=" });
     const label = "BLOD: " + hospital.name;
     const url = Platform.select({
       ios: `${scheme}${label}@${coordinatesString}`,
@@ -38,16 +35,16 @@ export const HospitalCard: FC<HospitalCardProps> = ({
     });
 
     Linking.openURL(url ?? "");
-  }, [hospital])
+  }, [hospital]);
 
   const showHospitalDonationRequests = () => {
-
-  }
+    return;
+  };
 
   const callHospital = () => {
-    const url = Platform.select({ ios: 'telprompt', android: 'tel' });
-    Linking.openURL(`${url}:${hospital.phone}`)
-  }
+    const url = Platform.select({ ios: "telprompt", android: "tel" });
+    Linking.openURL(`${url}:${hospital.phone}`);
+  };
 
   return <View style={styles.cardContainer}>
     <BText color="black" bold style={{ marginBottom: 8 }}>{hospital.name}</BText>
@@ -98,8 +95,8 @@ export const HospitalCard: FC<HospitalCardProps> = ({
       onPress={openMaps}
       variant="transparent-primary"
     />
-  </View>
-}
+  </View>;
+};
 
 const styles = StyleSheet.create({
   cardContainer: {
@@ -125,4 +122,4 @@ const styles = StyleSheet.create({
     borderColor: ColorsEnum.primary,
     borderWidth: 2,
   }
-})
+});

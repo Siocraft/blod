@@ -13,7 +13,7 @@ import { createUser } from "@services";
 import { ColorsEnum } from "@theme";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useFormik } from "formik";
-import { FC, useState } from "react";
+import React, { FC, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import * as Yup from "yup";

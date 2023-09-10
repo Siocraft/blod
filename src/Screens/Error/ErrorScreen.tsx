@@ -1,6 +1,6 @@
 import { BText } from "@components";
-import { FC } from "react";
-import { View, StyleSheet } from "react-native";
+import React, { FC } from "react";
+import { StyleSheet, View } from "react-native";
 
 export const ErrorScreen: FC = () => {
   return (

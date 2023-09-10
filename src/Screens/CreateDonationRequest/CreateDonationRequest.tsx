@@ -1,32 +1,32 @@
 import { BButton, BCard, BDropdown, BText, BTextInput, BirthDateModal, BloodTypeModal, GoBack, HospitalModal } from "@components";
 import { LoadingContext } from "@context";
+import { Fontisto, Ionicons, MaterialIcons } from "@expo/vector-icons";
 import { useAppNavigation, useAuth, useCreateDonationRequest, useHospitals, useUser } from "@hooks";
+import { ColorsEnum } from "@theme";
+import { useFormik } from "formik";
 import React, { FC, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import * as yup from "yup";
 import { RequestCard } from "../Home/RequestCard";
-import { useFormik } from "formik";
-import { Ionicons, MaterialIcons, Fontisto } from '@expo/vector-icons';
-import { ColorsEnum } from "@theme";
-import * as yup from "yup"
 
 const requestSchema = yup.object().shape({
   firstname: yup.string().required("Este campo es requerido"),
   lastname: yup.string().required("Este campo es requerido"),
   birthDate: yup.string().required("Este campo es requerido"),
   bloodType: yup.string()
-  .required('Este campo es requerido')
-  .test('valid-rh-factor', 'RH Inválido', (value) => {
-    if (!value) return true; // Skip validation if blood type is not selected
-    return /^(A|B|AB|O)(\+|-)$/.test(value);
-  }),
+    .required("Este campo es requerido")
+    .test("valid-rh-factor", "RH Inválido", (value) => {
+      if (!value) return true; // Skip validation if blood type is not selected
+      return /^(A|B|AB|O)(\+|-)$/.test(value);
+    }),
   city: yup.string().required("Este campo es requerido"),
   hospital: yup.string().required("Este campo es requerido"),
-  contact: yup.string().matches(/^\d{10}$/, 'Número de 10 dígitos').required("Este campo es requerido"),
+  contact: yup.string().matches(/^\d{10}$/, "Número de 10 dígitos").required("Este campo es requerido"),
   litersDonated: yup.string().required("Este campo es requerido"),
   avatar: yup.string().required("Este campo es requerido"),
   description: yup.string().required("Este campo es requerido"),
-})
+});
 
 export const CreateDonationRequest: FC = () => {
   const { user } = useAuth();
@@ -51,33 +51,33 @@ export const CreateDonationRequest: FC = () => {
 
   const onPressShowHospitalModal = () => {
     setHospitalModalVisible(true);
-  }
+  };
 
   const onPressHideHospitalModal = () => {
     setHospitalModalVisible(false);
-  }
+  };
 
   const onPressShowBirthDateModal = () => {
     setBirthDateModalVisible(true);
-  }
+  };
 
   const onPressHideBirthDateModal = () => {
     setBirthDateModalVisible(false);
-  }
+  };
 
   useEffect(() => {
     if(isLoadingUser) {
-      showLoading("Cargando información del usuario...")
+      showLoading("Cargando información del usuario...");
     } else {
-      hideLoading()
+      hideLoading();
     }
-  }, [isLoadingUser])
+  }, [isLoadingUser]);
 
   const {
     mutate: createDonationRequest,
   } = useCreateDonationRequest();
 
-  const { goBack } = useAppNavigation()
+  const { goBack } = useAppNavigation();
 
   const {
     setValues,
@@ -109,44 +109,44 @@ export const CreateDonationRequest: FC = () => {
         ...submittedValues,
         age,
         bloodType: submittedValues.bloodType as DonationRequest["bloodType"],
-      })
+      });
 
-      resetForm()
-      goBack()
+      resetForm();
+      goBack();
     }
-  })
+  });
 
   const getDataFromHospitalName = useCallback((hospitalName: string) => {
-    const city = hospitals?.find(hospital => hospital.name === hospitalName)?.city ?? ''
-    const id = hospitals?.find(hospital => hospital.name === hospitalName)?.id ?? ''
-    setFieldValue("city", city)
-    setFieldValue("hospitalId", id)
-  }, [hospitals])
+    const city = hospitals?.find(hospital => hospital.name === hospitalName)?.city ?? "";
+    const id = hospitals?.find(hospital => hospital.name === hospitalName)?.id ?? "";
+    setFieldValue("city", city);
+    setFieldValue("hospitalId", id);
+  }, [hospitals]);
 
   const displayBirthDate = useMemo(() => {
     if(values.birthDate !== undefined) {
-      const date = new Date(values.birthDate)
-      const day = date.getDate()
-      const month = date.getMonth() + 1
-      const year = date.getFullYear()
-      return `${day}/${month}/${year}`
+      const date = new Date(values.birthDate);
+      const day = date.getDate();
+      const month = date.getMonth() + 1;
+      const year = date.getFullYear();
+      return `${day}/${month}/${year}`;
     }
-    return undefined
-  }, [values.birthDate])
+    return undefined;
+  }, [values.birthDate]);
 
   const age = useMemo(() => {
     if(values.birthDate !== undefined) {
-      const date = new Date(values.birthDate)
-      const today = new Date()
-      const age = today.getFullYear() - date.getFullYear()
-      const month = today.getMonth() - date.getMonth()
+      const date = new Date(values.birthDate);
+      const today = new Date();
+      const age = today.getFullYear() - date.getFullYear();
+      const month = today.getMonth() - date.getMonth();
       if(month < 0 || (month === 0 && today.getDate() < date.getDate())) {
-        return age - 1
+        return age - 1;
       }
-      return age
+      return age;
     }
-    return 0
-  }, [values.birthDate])
+    return 0;
+  }, [values.birthDate]);
 
   if (!user) return null;
   if (isLoadingUser) return null;
@@ -161,7 +161,7 @@ export const CreateDonationRequest: FC = () => {
       </BText>
       <ScrollView style={styles.container}>
 
-        <BText style={{ alignSelf: 'center', marginBottom: 16 }} color="black">
+        <BText style={{ alignSelf: "center", marginBottom: 16 }} color="black">
           Así verían otros esta nueva <BText bold color="secondary">solicitud</BText>
         </BText>
         <RequestCard
