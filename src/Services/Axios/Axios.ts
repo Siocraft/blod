@@ -1,7 +1,7 @@
-import axios from "axios";
 import {
   SERVER_URL
 } from "@env";
+import axios from "axios";
 import { URL } from "react-native-url-polyfill";
 
 export const ApiQueryKeys = {
