@@ -23,7 +23,7 @@ export const uploadImageAsync = async (uri: string, id?: string) => {
 
   await uploadBytesResumable(fileRef, blob);
 
-  // @ts-expect-error
+  // @ts-expect-error - This is a bug in the firebase types
   blob.close();
 
   return await getDownloadURL(fileRef);
