@@ -2,7 +2,7 @@ import { AgeSvg, AlcoholSvg, BodyWeightSvg, HeartBeatSvg, IDSvg, NoFoodSvg, Pill
 import { BText, GoBack } from "@components";
 import { ColorsEnum } from "@theme";
 import React, { FC } from "react";
-import { View, StyleSheet, ScrollView, SafeAreaView } from "react-native";
+import { SafeAreaView, ScrollView, StyleSheet, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export const Requirements: FC = () => {
@@ -11,8 +11,8 @@ export const Requirements: FC = () => {
 
   return (
     <SafeAreaView style={styles.safeAreaView}>
+      <GoBack/>
       <ScrollView style={styles.container}>
-        <GoBack />
         <View style={{ height: 16 }} />
         <BText size="title" bold color="black">Requisitos para poder donar sangre</BText>
         <View style={{ height: 40 }} />
@@ -80,6 +80,7 @@ const styles = StyleSheet.create({
   },
   container: {
     padding: 16,
+    paddingTop: 0
   },
   infoContainer: {
     alignItems: "center",
