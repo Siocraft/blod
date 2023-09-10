@@ -46,7 +46,7 @@ export const Donors: FC<DonorsProps> = ({ setIsContactModalVisible }) => {
               donor={item}
             />
           )}
-          keyExtractor={item => "Donor_card_" + item.id}
+          keyExtractor={item => "Donors_Donor_card_" + item.id}
         />
         )}
     </View>
