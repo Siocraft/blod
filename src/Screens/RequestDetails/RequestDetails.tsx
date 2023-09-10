@@ -24,8 +24,8 @@ export const RequestDetails: FC<RequestDetailsProps> = ({
   if(!donationRequest) return null;
 
   return <SafeAreaView style={styles.safeAreaView}>
+    <GoBack />
     <ScrollView style={styles.container}>
-      <GoBack />
       <View style={{ height: 16 }} />
       <BText bold size="title" color="black">
         Detalles de la solicitud
