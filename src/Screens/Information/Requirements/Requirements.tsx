@@ -63,6 +63,7 @@ export const Requirements: FC = () => {
           </View>
           <View style={{ height: bottom }} />
         </View>
+        <View style={styles.bottomWhiteSpace} />
       </ScrollView>
       <FloatingInformation
         link="https://www.gob.mx/cnts/acciones-y-programas/donacion-de-sangre-79985"
@@ -79,8 +80,7 @@ const styles = StyleSheet.create({
   },
   container: {
     padding: 16,
-    paddingTop: 0,
-    marginBottom: 56
+    paddingTop: 0
   },
   infoContainer: {
     alignItems: "center",
@@ -93,10 +93,7 @@ const styles = StyleSheet.create({
   infoText: {
     textAlign: "center",
   },
-  bottomTextContainer: {
-    backgroundColor: ColorsEnum.backgroundSecondary,
-    padding: 16,
-    width: "100%",
-    borderRadius: 8,
+  bottomWhiteSpace: {
+    height: 56,
   }
 });
