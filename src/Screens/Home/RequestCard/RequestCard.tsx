@@ -1,7 +1,7 @@
 import { BloodSvg, HospitalSvg, LocationSvg } from "@assets";
 import { BButton, BCard, BText } from "@components";
 import { useAppNavigation } from "@hooks";
-import { ColorsEnum } from "@theme";
+import moment from "moment";
 import React, { FC } from "react";
 import { Image, Pressable, StyleSheet, View } from "react-native";
 
@@ -77,6 +77,9 @@ export const RequestCard: FC<RequestCardProps> = ({
       <BText color="black" style={styles.description}>
         {requestDonation.description}
       </BText>
+      <BText color="darkGray">
+        {moment(requestDonation.createdAt).fromNow()}
+      </BText>
       <View style={styles.buttonGroup}>
         <View style={{ flex: 1 }}>
           <BButton
@@ -114,7 +117,6 @@ const styles = StyleSheet.create({
   row: { flexDirection: "row" },
   description: {
     marginTop: 12,
-    color: ColorsEnum.darkGray,
   },
   buttonGroup: {
     flexDirection: "row",
