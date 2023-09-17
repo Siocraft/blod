@@ -22,7 +22,7 @@ export const Requests: FC<RequestsProps> = ({ setIsContactModalVisible }) => {
     setIsContactModalVisible(true);
   };
 
-  const { data: donationRequests, fetchNextPage } = useDonationRequests();
+  const { data: donationRequests, fetchNextPage, isFetching, refetch } = useDonationRequests();
 
   return (
     <View style={styles.container}>
@@ -39,6 +39,8 @@ export const Requests: FC<RequestsProps> = ({ setIsContactModalVisible }) => {
         filtersVisibility ? (
           <Filters variant="secondary" />
         ) : <FlatList
+          onRefresh={refetch}
+          refreshing={isFetching}
           data={donationRequests?.pages.flatMap(page => page.pageDonationRequests)}
           showsVerticalScrollIndicator={false}
           ListHeaderComponent={() => <View style={{ height: 40 }} />}
