@@ -23,7 +23,7 @@ export const RequestCard: FC<RequestCardProps> = ({
   };
 
   const navigateToRequestDetailsScreen = () => {
-    navigateToRequestDetails("648d24ec165fb0235ac082f8");
+    navigateToRequestDetails(requestDonation.id);
   };
 
   return (
