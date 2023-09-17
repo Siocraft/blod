@@ -27,22 +27,22 @@ const FluidTabBar: FC = () => {
     switch (tabIndex) {
     case 0:
       tabsTintColor !== ColorsEnum.secondary &&
-          setTabsTintColor(ColorsEnum.secondary);
+        setTabsTintColor(ColorsEnum.secondary);
       navigateToRequests();
       break;
     case 1:
       tabsTintColor !== ColorsEnum.primary &&
-          setTabsTintColor(ColorsEnum.primary);
+        setTabsTintColor(ColorsEnum.primary);
       navigateToHospitals();
       break;
     case 2:
       tabsTintColor !== ColorsEnum.secondary &&
-          setTabsTintColor(ColorsEnum.secondary);
+        setTabsTintColor(ColorsEnum.secondary);
       navigateToInformation();
       break;
     case 3:
       tabsTintColor !== ColorsEnum.secondary &&
-          setTabsTintColor(ColorsEnum.secondary);
+        setTabsTintColor(ColorsEnum.secondary);
       navigateToProfile();
       break;
     default:
