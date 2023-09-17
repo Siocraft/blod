@@ -1,5 +1,5 @@
 import { BText, GoBack } from "@components";
-import { useDonationRequest } from "@hooks";
+import { useDonationRequest, useHospital } from "@hooks";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { ColorsEnum } from "@theme";
 import React, { FC } from "react";
@@ -20,8 +20,13 @@ export const RequestDetails: FC<RequestDetailsProps> = ({
 }) => {
 
   const { data: donationRequest } = useDonationRequest(requestId);
+  const { data: hospital } = useHospital(donationRequest?.hospitalId ?? "");
 
-  if(!donationRequest) return null;
+  if(!donationRequest || !hospital) return null;
+
+  const { coordinates } = hospital;
+
+  const [ latitude, longitude ] = coordinates.split(", ").map((coordinate) => parseFloat(coordinate));
 
   return <SafeAreaView style={styles.safeAreaView}>
     <GoBack />
@@ -33,8 +38,8 @@ export const RequestDetails: FC<RequestDetailsProps> = ({
       <InformationPiece title="Paciente" value={donationRequest.firstName + " " + donationRequest.lastName} />
       <InformationPiece title="Tipo de donación" value="Sangre completa" />
       <InformationPiece title="Tipo de sangre" value={donationRequest.bloodType} />
-      <InformationPiece title="Hospital" value={donationRequest.hospital} />
-      <InformationPiece title="Ubicación" value={donationRequest.city} />
+      <InformationPiece title="Hospital" value={hospital.name} />
+      <InformationPiece title="Ubicación" value={hospital.city} />
       <InformationPiece title="Fechas" value="1 - 10 de Enero 2023" />
       <InformationPiece title="Horarios" value="6 am - 10 am" />
 
@@ -42,13 +47,18 @@ export const RequestDetails: FC<RequestDetailsProps> = ({
         <BText bold color="secondary" style={styles.mapText}>
           Mapa
         </BText>
-        <MapView style={styles.map} showsUserLocation loadingEnabled>
+        <MapView style={styles.map} region={{
+          latitude,
+          longitude,
+          latitudeDelta: 0.0922,
+          longitudeDelta: 0.0421,
+        }} showsUserLocation loadingEnabled>
           <Marker
             coordinate={{
-              latitude: 20.685801,
-              longitude: -103.344467,
+              latitude,
+              longitude,
             }}
-            title={"Hospital Civil"}
+            title={hospital.name}
             description="Presentarse de 6 am a 10 am"
           />
         </MapView>
