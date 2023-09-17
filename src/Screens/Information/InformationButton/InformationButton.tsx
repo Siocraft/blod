@@ -2,7 +2,7 @@ import { ArrowRightSvg } from "@assets";
 import { BText } from "@components";
 import { ColorsEnum } from "@theme";
 import React, { FC } from "react";
-import { Pressable, StyleSheet, View } from "react-native";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 
 declare interface InformationButtonProps {
   onPress: () => void;
@@ -14,11 +14,11 @@ export const InformationButton: FC<InformationButtonProps> = ({
   title,
 }) => {
 
-  return <Pressable style={styles.container} onPress={onPress}>
+  return <TouchableOpacity style={styles.container} onPress={onPress}>
     <BText size="large" bold color="black">{title}</BText>
     <View style={{ flex: 1 }} />
     <ArrowRightSvg />
-  </Pressable>;
+  </TouchableOpacity>;
 };
 
 const styles = StyleSheet.create({
