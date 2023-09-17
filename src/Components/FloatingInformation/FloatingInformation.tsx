@@ -1,27 +1,31 @@
 import { ColorsEnum } from "@theme";
 import React, { FC } from "react";
-import { View, StyleSheet } from "react-native";
+import { StyleSheet, TouchableOpacity, Linking } from "react-native";
 import { BText } from "../BText";
 
 interface FloatingInformationProps {
   link: string;
+  text: string;
 }
 
-export const FloatingInformation: FC<FloatingInformationProps> = ({ link }) => {
-  return <View style={styles.floatingContainer}>
+const navigateToURL = (URL: string) => Linking.openURL(URL);
+
+export const FloatingInformation: FC<FloatingInformationProps> = ({ link, text }) => {
+  return <TouchableOpacity style={styles.floatingContainer} onPress={() => navigateToURL(link)}>
     <BText style={styles.text}>
-      Consulta más en <BText style={styles.link}>{link}</BText>
+      {text} <BText style={styles.link}>{link}</BText>
     </BText>
-  </View>;
+  </TouchableOpacity>;
 };
 
 const styles = StyleSheet.create({
   floatingContainer: {
     position: "absolute",
     bottom: 38,
+    right: 0,
+    left: 0,
     marginHorizontal: 32,
     backgroundColor: ColorsEnum.backgroundSecondary,
-    flex: 1,
     borderRadius: 8,
     padding: 16
   },

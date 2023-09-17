@@ -1,5 +1,5 @@
 import { AgeSvg, AlcoholSvg, BodyWeightSvg, HeartBeatSvg, IDSvg, NoFoodSvg, PillSvg, SurgerySvg, TattooSvg, VaccineSvg, VirusSvg } from "@assets";
-import { BText, GoBack } from "@components";
+import { BText, FloatingInformation, GoBack } from "@components";
 import { ColorsEnum } from "@theme";
 import React, { FC } from "react";
 import { SafeAreaView, ScrollView, StyleSheet, View } from "react-native";
@@ -61,14 +61,13 @@ export const Requirements: FC = () => {
           <View style={styles.icon}>
             <HeartBeatSvg />
           </View>
-          <View style={styles.bottomTextContainer}>
-            <BText color="black" size="small">
-              Consulta más datos en <BText color="darkGray" size="small">https://www.gob.mx/cnts/acciones-y-programas/donacion-de-sangre-79985</BText>
-            </BText>
-          </View>
           <View style={{ height: bottom }} />
         </View>
       </ScrollView>
+      <FloatingInformation
+        link="https://www.gob.mx/cnts/acciones-y-programas/donacion-de-sangre-79985"
+        text="Consulta más datos en "
+      />
     </SafeAreaView>
   );
 };
@@ -80,7 +79,8 @@ const styles = StyleSheet.create({
   },
   container: {
     padding: 16,
-    paddingTop: 0
+    paddingTop: 0,
+    marginBottom: 56
   },
   infoContainer: {
     alignItems: "center",

@@ -49,7 +49,10 @@ export const DonationTypes = () => {
         }
       </View>
     </ScrollView>
-    <FloatingInformation link="https://www.hhs.gov/givingequalsliving/es/donasangre/tipos-de-donacion" />
+    <FloatingInformation
+      link="https://www.hhs.gov/givingequalsliving/es/donasangre/tipos-de-donacion"
+      text="Conoce más en:"
+    />
   </SafeAreaView>;
 };
 
