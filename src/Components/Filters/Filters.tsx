@@ -34,7 +34,7 @@ export const Filters: FC<FiltersProps> = ({
 const styles = StyleSheet.create({
   modalContainer: {
     zIndex: 1,
-    marginTop: 40,
+    marginTop: 48,
     paddingHorizontal: 16,
   },
   container: {
