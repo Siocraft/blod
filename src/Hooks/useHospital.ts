@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { HospitalFromAPI } from "./useHospitals";
 
 const getHospital = async (id: string) => {
-  if(id === "") return undefined;
+  if(id === "") return null;
   const { data: hospital } = await appAxios.get<HospitalFromAPI>(ApiQueryKeys.GetHospital(id));
   return hospital;
 };
