@@ -50,7 +50,7 @@ export const Requests: FC<RequestsProps> = ({ setIsContactModalVisible }) => {
             />
           )}
           ListFooterComponent={() => <View style={{ height: 80 }} />}
-          keyExtractor={item => "Requests_Donor_card_" + item.id}
+          keyExtractor={item => "Requests_Donor_Card_" + item.id}
           onEndReached={() => fetchNextPage()}
         />
       }
