@@ -11,8 +11,8 @@ import * as yup from "yup";
 import { RequestCard } from "../Home/RequestCard";
 
 const requestSchema = yup.object().shape({
-  firstname: yup.string().required("Este campo es requerido"),
-  lastname: yup.string().required("Este campo es requerido"),
+  firstName: yup.string().required("Este campo es requerido"),
+  lastName: yup.string().required("Este campo es requerido"),
   birthDate: yup.string().required("Este campo es requerido"),
   bloodType: yup.string()
     .required("Este campo es requerido")
@@ -154,7 +154,7 @@ export const CreateDonationRequest: FC = () => {
   if (!userData) return null;
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.safeAreaView}>
       <GoBack />
       <BText size="title" bold color="secondary" style={{ alignSelf: "center" }}>
         Crear una solicitud
@@ -283,13 +283,16 @@ export const CreateDonationRequest: FC = () => {
             onPress={() => handleSubmit()}
           />
         </BCard>
-
+        <View style={styles.bottomWhiteSpace} />
       </ScrollView>
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
+  safeAreaView: {
+    backgroundColor: ColorsEnum.white,
+  },
   container: {
     paddingHorizontal: 16,
     marginTop: 16,
@@ -301,5 +304,8 @@ const styles = StyleSheet.create({
   },
   cardContainer: {
     flexDirection: "row",
+  },
+  bottomWhiteSpace: {
+    height: 64,
   }
 });
