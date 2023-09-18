@@ -29,14 +29,8 @@ export const Login: FC = () => {
         password: "",
       },
       validationSchema: SigninSchema,
-      onSubmit: values => {
-        signInWithEmailAndPassword(auth, values.email, values.password)
-          .then(() => {
-            // userCredentials
-          })
-          .catch(error => {
-            throw new Error(error);
-          });
+      onSubmit: (values) => {
+        /* const userCredentials = */ signInWithEmailAndPassword(auth, values.email, values.password);
       },
     });
 
