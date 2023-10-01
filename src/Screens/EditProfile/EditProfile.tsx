@@ -20,7 +20,7 @@ import { GuestSignedIn } from "../Profile/GuestSignedIn";
 
 export const EditProfile: FC = () => {
   const { user: authUser } = useAuth();
-  const { data: user, isError: isErrorUser } = useUser(authUser?.uid);
+  const { data: user, isError: isErrorUser, error } = useUser(authUser?.uid);
 
   const [bloodTypeModalVisible, setBloodTypeModalVisible] = useState(false);
   const [cityModalVisible, setCityModalVisible] = useState(false);
@@ -62,7 +62,7 @@ export const EditProfile: FC = () => {
   if (values.name === undefined && user?.name) setFieldValue("name", user.name);
 
   if (!authUser) return <GuestSignedIn />;
-  if (!user || isErrorUser) return <ErrorScreen />;
+  if (!user || isErrorUser) return <ErrorScreen errorMessage={error as string} />;
 
   const onPressSave = () => {
     handleSubmit();
