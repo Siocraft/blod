@@ -9,7 +9,7 @@ import { firebaseAuth } from "@config";
 import { ErrorsEnum } from "@constants";
 import { Fontisto, MaterialIcons } from "@expo/vector-icons";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { createUser } from "@services";
+import { createUser, ErrorReporting } from "@services";
 import { ColorsEnum } from "@theme";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useFormik } from "formik";
@@ -75,7 +75,7 @@ export const CompleteSignup: FC<CompleteSignupProps> = ({ route }) => {
             console.log("That email address is invalid!");
           }
 
-          console.error(error);
+          ErrorReporting(error);
         });
     },
   });
