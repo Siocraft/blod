@@ -1,7 +1,6 @@
-import { firebaseStorage, firestore } from "@config";
+import { firestore } from "@config";
 import { FirebaseEnum } from "@constants";
 import { collection, doc, getDoc, getDocs, setDoc } from "firebase/firestore";
-import { getDownloadURL, ref } from "firebase/storage";
 import { ErrorReporting } from "../Errors";
 
 export const usersCollection = collection(
@@ -36,14 +35,11 @@ export const createUser = async ({
   if (!id) return null;
 
   try {
-    const avatar = await getDownloadURL(
-      ref(firebaseStorage, `avatars/${Math.random() * 3}.png`)
-    );
 
     const document = {
       age: 18,
       litersDonated: 0,
-      avatar,
+      avatar: "https://i.pravatar.cc/300",
       name,
       location,
       bloodType,
