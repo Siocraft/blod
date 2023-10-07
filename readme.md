@@ -10,5 +10,7 @@ Run `npx expo start`
 
 ## Some important links to have handy
 
-### Figma File
+### Useful Links
 - [Blod App](https://www.figma.com/file/c44xbAYVzL9BMFPvRqpmYC/Untitled?type=design&node-id=114-735&t=YCaUaQpO13hnO8xY-0)
+- [Jira](https://santiagosiordia.atlassian.net/jira/software/projects/BLOD/boards/1)https://santiagosiordia.atlassian.net/jira/software/projects/BLOD/boards/1
+- [Blod Server](https://github.com/SantiagoSiordia/blod-server)https://github.com/SantiagoSiordia/blod-server
