@@ -65,7 +65,7 @@ export const RequestCard: FC<RequestCardProps> = ({
       </View>
       <View style={{ flexDirection: "row", paddingTop: 8 }}>
         {/* This part is fucking ugly */}
-        {requestDonation.bloodType.map((
+        {Array.isArray(requestDonation.bloodType) && requestDonation.bloodType.map((
           singleBloodType,
         ) => {
           return <View key={
