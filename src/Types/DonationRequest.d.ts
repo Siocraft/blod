@@ -3,7 +3,7 @@ interface DonationRequest {
   lastName: string;
   firstName: string;
   age: number;
-  bloodType: `${BloodTypes}`;
+  bloodType: `${BloodTypes}`[];
   city: string;
   hospital: string;
   contact: string;
