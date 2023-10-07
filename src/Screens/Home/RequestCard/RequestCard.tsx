@@ -62,17 +62,26 @@ export const RequestCard: FC<RequestCardProps> = ({
             </View>
           )}
         </View>
-        <View style={styles.bloodType}>
-          <BloodSvg variant="secondary" />
-          <BText
-            color="secondary"
-            superBold
-            size="title"
-            style={{ position: "absolute" }}
-          >
-            {requestDonation.bloodType}
-          </BText>
-        </View>
+      </View>
+      <View style={{ flexDirection: "row", paddingTop: 8 }}>
+        {/* This part is fucking ugly */}
+        {requestDonation.bloodType.map((
+          singleBloodType,
+        ) => {
+          return <View key={
+            requestDonation.id + "_" + singleBloodType
+          } style={styles.bloodType}>
+            <BloodSvg variant="secondary" />
+            <BText
+              color="secondary"
+              superBold
+              size="title"
+              style={{ position: "absolute" }}
+            >
+              {singleBloodType}
+            </BText>
+          </View>;
+        })}
       </View>
       <BText color="black" style={styles.description}>
         {requestDonation.description}
@@ -124,9 +133,8 @@ const styles = StyleSheet.create({
     marginTop: 12,
   },
   bloodType: {
-    flex: 1,
-    alignItems: "center",
     justifyContent: "center",
+    width: 46
   },
   headerInfo: {
     flex: 4,

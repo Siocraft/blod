@@ -8,7 +8,7 @@ interface BloodSvgProps {
 export const BloodSvg: FC<BloodSvgProps> = ({ variant = "primary" }) => {
   if (variant === "secondary")
     return (
-      <Svg width="32" height="45" viewBox="0 0 32 45" fill="none">
+      <Svg width="40" height="40" viewBox="0 0 40 45">
         <Path
           d="M5.30008 33.0228C5.33122 33.0927 5.36507 33.1598 5.39756 33.2338C5.35913 33.1295 5.3139 33.0279 5.26218 32.9296C5.26218 32.946 5.27301 32.9611 5.27978 32.9776L5.30008 33.0228Z"
           fill="#DFF2FF"
