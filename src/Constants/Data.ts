@@ -1,5 +1,5 @@
 type Data = {
-  BloodTypes: `${BloodTypes}`[];
+  BloodTypes: BloodTypesArray;
   Cities: string[];
 };
 

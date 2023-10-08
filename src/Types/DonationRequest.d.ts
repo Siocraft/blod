@@ -1,9 +1,11 @@
+type BloodTypesArray = BloodType[]
+
 interface DonationRequest {
   id: string;
   lastName: string;
   firstName: string;
   age: number;
-  bloodType: `${BloodTypes}`[];
+  bloodType: BloodTypesArray;
   city: string;
   hospital: string;
   contact: string;

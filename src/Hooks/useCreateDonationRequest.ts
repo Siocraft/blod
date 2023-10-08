@@ -7,7 +7,7 @@ interface CreateDonationRequestParams {
   lastName: string,
   firstName: string,
   age: number,
-  bloodType: `${BloodTypes}`,
+  bloodType: BloodTypesArray,
   city: string,
   hospital: string,
   contact: string,
@@ -32,7 +32,6 @@ export const useCreateDonationRequest = () => {
     mutationKey: [QueryKeys.DONATION_REQUESTS, QueryKeys.CREATE],
     mutationFn: createDonationRequest,
     onSuccess: (data) => {
-      console.log(data.id);
       navigateToRequestDetails(data.id);
     }
   });
