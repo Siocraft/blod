@@ -2,7 +2,7 @@ interface User {
   id: string;
   name: string;
   age: number;
-  bloodType: `${BloodTypes}`;
+  bloodType: BloodType;
   location: string;
   hospital?: string;
   contact?: string;

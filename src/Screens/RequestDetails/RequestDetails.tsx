@@ -37,7 +37,9 @@ export const RequestDetails: FC<RequestDetailsProps> = ({
       </BText>
       <InformationPiece title="Paciente" value={donationRequest.firstName + " " + donationRequest.lastName} />
       <InformationPiece title="Tipo de donación" value="Sangre completa" />
-      <InformationPiece title="Tipo de sangre" value={donationRequest.bloodType} />
+      <InformationPiece title="Tipo de sangre" value={
+        Array.isArray(donationRequest.bloodType) ? donationRequest.bloodType.join(", ") : donationRequest.bloodType
+      } />
       <InformationPiece title="Hospital" value={hospital.name} />
       <InformationPiece title="Ubicación" value={hospital.city} />
       <InformationPiece title="Fechas" value="1 - 10 de Enero 2023" />

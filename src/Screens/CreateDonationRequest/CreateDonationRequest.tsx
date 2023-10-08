@@ -14,11 +14,17 @@ const requestSchema = yup.object().shape({
   firstName: yup.string().required("Este campo es requerido"),
   lastName: yup.string().required("Este campo es requerido"),
   birthDate: yup.string().required("Este campo es requerido"),
-  bloodType: yup.string()
-    .required("Este campo es requerido")
-    .test("valid-rh-factor", "RH Inválido", (value) => {
-      if (!value) return true; // Skip validation if blood type is not selected
-      return /^(A|B|AB|O)(\+|-)$/.test(value);
+  bloodType: yup.mixed()
+    .when("isArray", {
+      is: Array.isArray,
+      then: yup.array().of(
+        yup.string()
+          .required("Este campo es requerido")
+          .test("valid-rh-factor", "RH Inválido", (value) => {
+            if (!value) return true; // Skip validation if blood type is not selected
+            return /^(A|B|AB|O)(\+|-)$/.test(value);
+          })
+      ),
     }),
   city: yup.string().required("Este campo es requerido"),
   hospital: yup.string().required("Este campo es requerido"),
@@ -94,7 +100,7 @@ export const CreateDonationRequest: FC = () => {
       lastName: "",
       firstName: userData?.name,
       birthDate: undefined,
-      bloodType: "A+",
+      bloodType: [],
       city: "",
       hospital: "",
       contact: "",
@@ -108,7 +114,6 @@ export const CreateDonationRequest: FC = () => {
       createDonationRequest({
         ...submittedValues,
         age,
-        bloodType: submittedValues.bloodType as DonationRequest["bloodType"],
       });
 
       resetForm();
@@ -185,6 +190,7 @@ export const CreateDonationRequest: FC = () => {
         />
 
         <BloodTypeModal
+          chooseMultipleBloodTypes
           isVisible={bloodTypeModalVisible}
           onPressHideBloodTypeModal={onPressHideBloodTypeModal}
           bloodTypeValue={values.bloodType ?? "Tipo de sangre"}
@@ -261,9 +267,13 @@ export const CreateDonationRequest: FC = () => {
           <View style={{ height: 8 }} />
           <BDropdown
             error={!!errors.bloodType && !!touched.bloodType}
-            errorMessage={errors.bloodType}
+            errorMessage={errors.bloodType as string}
             label="Tipo de sangre"
-            text={values.bloodType}
+            text={
+              (Array.isArray(values.bloodType)
+                ? values.bloodType.join(", ")
+                : values.bloodType) || "Elige un tipo de sangre"
+            }
             onPress={onPressShowBloodTypeModal}
             iconLeft={() => <Fontisto name="blood-drop" size={24} color={!!errors.bloodType && touched.bloodType ? ColorsEnum.error : ColorsEnum.secondary} />}
           />
@@ -272,7 +282,7 @@ export const CreateDonationRequest: FC = () => {
             error={!!errors.hospital && !!touched.hospital}
             errorMessage={errors.hospital}
             label="Hospital"
-            text={values.hospital}
+            text={values.hospital || "Elige un hospital"}
             onPress={onPressShowHospitalModal}
             iconLeft={() => <Fontisto name="blood-drop" size={24} color={!!errors.hospital && touched.hospital ? ColorsEnum.error : ColorsEnum.secondary} />}
           />

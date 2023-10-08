@@ -8,3 +8,5 @@ enum BloodTypes {
   "O+" = "O+",
   "O-" = "O-",
 }
+
+type BloodType = keyof typeof BloodTypes;

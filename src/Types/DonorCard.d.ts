@@ -3,7 +3,7 @@ interface DonorCard {
   name: string;
   firstName: string;
   avatar: string;
-  bloodType: `${BloodTypes}`;
+  bloodType: BloodType;
   city: string;
   description: string;
   litersDonated: number;
