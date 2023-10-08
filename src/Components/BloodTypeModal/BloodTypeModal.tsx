@@ -4,15 +4,16 @@ import { ColorsEnum } from "@theme";
 import React, { FC, useState } from "react";
 import { Pressable, View } from "react-native";
 import Modal from "react-native-modal";
-import { BText } from "../BText";
 import { BButton } from "../BButton";
+import { BText } from "../BText";
 
 interface BloodTypeModalProps {
   isVisible: boolean;
   onPressHideBloodTypeModal: () => void;
-  bloodTypeValue: string;
-  setFieldValue: (field: string, value: string) => void;
+  bloodTypeValue: BloodTypesArray | BloodType;
+  setFieldValue: (field: string, value: BloodTypesArray | BloodType) => void;
   cb?: () => void;
+  chooseMultipleBloodTypes?: boolean;
 }
 
 export const BloodTypeModal: FC<BloodTypeModalProps> = ({
@@ -21,11 +22,18 @@ export const BloodTypeModal: FC<BloodTypeModalProps> = ({
   bloodTypeValue,
   setFieldValue,
   cb,
+  chooseMultipleBloodTypes = false,
 }) => {
-  const [selectedBloodType, setSelectedBloodType] = useState(bloodTypeValue);
+  const [selectedBloodType, setSelectedBloodType] = useState<BloodTypesArray | BloodType>(bloodTypeValue);
 
-  const onPressBloodType = (bloodType: string) => {
-    setSelectedBloodType(bloodType);
+  const onPressBloodType = (bloodType: BloodType) => {
+    if (!chooseMultipleBloodTypes) {
+      setSelectedBloodType(bloodType);
+    } else if (Array.isArray(selectedBloodType) && selectedBloodType.includes(bloodType)) {
+      setSelectedBloodType(selectedBloodType.filter((bt) => bt !== bloodType));
+    } else if (Array.isArray(selectedBloodType)) {
+      setSelectedBloodType([...selectedBloodType, bloodType]);
+    }
   };
 
   const confirmBloodType = () => {
@@ -58,9 +66,9 @@ export const BloodTypeModal: FC<BloodTypeModalProps> = ({
           <Pressable
             style={{
               padding: 8,
-              marginBottom: index === Data.BloodTypes.length - 1 ? 32 : 0,
+              marginBottom: index === Data.BloodTypes.length - 1 ? 32 : 8,
               backgroundColor:
-                selectedBloodType === bloodType
+                (selectedBloodType === bloodType || (Array.isArray(selectedBloodType) && selectedBloodType.includes(bloodType)))
                   ? ColorsEnum.secondary
                   : ColorsEnum.white,
               borderRadius: 8,
@@ -69,7 +77,7 @@ export const BloodTypeModal: FC<BloodTypeModalProps> = ({
             key={"Bloodtype_modal_option_" + bloodType}
           >
             <BText
-              color={selectedBloodType === bloodType ? "white" : "black"}
+              color={selectedBloodType === bloodType || (Array.isArray(selectedBloodType) && selectedBloodType.includes(bloodType)) ? "white" : "black"}
               size="large"
             >
               {bloodType}
