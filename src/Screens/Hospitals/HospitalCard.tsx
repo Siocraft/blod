@@ -6,7 +6,7 @@ import { Dimensions, Linking, Platform, StyleSheet, View } from "react-native";
 import MapView, { Marker } from "react-native-maps";
 const { height, width } = Dimensions.get( "window" );
 
-type HospitalCardProps = HospitalFromAPI
+type HospitalCardProps = Pick<HospitalFromAPI, "name" | "address" | "coordinates" | "city" | "coordinates">;
 
 export const HospitalCard: FC<HospitalCardProps> = ({
   ...hospital
@@ -41,17 +41,10 @@ export const HospitalCard: FC<HospitalCardProps> = ({
     return;
   };
 
-  const callHospital = () => {
-    const url = Platform.select({ ios: "telprompt", android: "tel" });
-    Linking.openURL(`${url}:${hospital.phone}`);
-  };
 
   return <View style={styles.cardContainer}>
     <BText color="black" bold style={{ marginBottom: 8 }}>{hospital.name}</BText>
     <BText color="black">{hospital.address}</BText>
-    {hospital.zipCode ? <BText color="black">Código Postal {hospital.zipCode}</BText> : null}
-    {hospital.phone ? <BText color="black">Teléfono {hospital.phone}</BText> : null}
-    {hospital.email ? <BText color="black">Email {hospital.email}</BText> : null}
     <MapView
       style={styles.map}
       showsUserLocation
@@ -82,12 +75,6 @@ export const HospitalCard: FC<HospitalCardProps> = ({
       style={{ marginTop: 16 }}
       title="Mostrar solicitudes de este hospital"
       onPress={showHospitalDonationRequests}
-    />
-    <BButton
-      style={{ marginTop: 16 }}
-      title="Llamar"
-      onPress={callHospital}
-      variant="primary-void"
     />
     <BButton
       style={{ marginTop: 16 }}
