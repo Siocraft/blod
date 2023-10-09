@@ -9,6 +9,7 @@ export const ApiQueryKeys = {
   GetHospital: (id: string) => `/Hospital/${id}`,
   DonationRequest: "/DonationRequest",
   DonationRequests: "/DonationRequests",
+  ThirdPartyHospitals: "/Third-party/Hospital",
   GetDonationRequest: (id: string) => `/DonationRequest/${id}`,
 } as const;
 
