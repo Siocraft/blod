@@ -1,9 +1,9 @@
 import { BText } from "@components";
-import { useHospitals } from "@hooks";
+import { useThirdPartyHospitals } from "@hooks";
 import { ColorsEnum } from "@theme";
 import { LinearGradient } from "expo-linear-gradient";
 import React, { FC } from "react";
-import { ScrollView, StyleSheet, View } from "react-native";
+import { FlatList, StyleSheet, View } from "react-native";
 import { SafeAreaView, useSafeAreaInsets } from "react-native-safe-area-context";
 import { HospitalCard } from "./HospitalCard";
 import { HospitalCardSkeleton } from "./HospitalCardSkeleton";
@@ -11,8 +11,8 @@ import { HospitalCardSkeleton } from "./HospitalCardSkeleton";
 const skeletonArray = Array.from({ length: 3 }, (_, i) => i);
 
 export const Hospitals: FC = () => {
+  const { data: thirdPartyHospitals, isLoading: isLoadingHospitals, fetchNextPage, isFetching, refetch } = useThirdPartyHospitals();
 
-  const { data: hospitals, isLoading: isLoadingHospitals } = useHospitals();
   const { top, bottom } = useSafeAreaInsets();
 
   return (
@@ -38,22 +38,39 @@ export const Hospitals: FC = () => {
             Hospitales cerca de ti
         </BText>
       </LinearGradient>
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <View style={{ height: 56 }} />
-        {
-          isLoadingHospitals && skeletonArray.map((_, i) => (
-            <HospitalCardSkeleton key={"Hospital_Skeleton_Card_" + i} />
-          ))
-        }
-        {isLoadingHospitals
-          ? null
-          : hospitals?.map(hospital => (
+      <View style={{ height: 56 }} />
+      {
+        isLoadingHospitals && skeletonArray.map((_, i) => (
+          <HospitalCardSkeleton key={"Hospital_Skeleton_Card_" + i} />
+        ))
+      }
+      <FlatList
+        onRefresh={refetch}
+        refreshing={isFetching}
+        data={thirdPartyHospitals?.pages.flatMap(page => page.pageThirdPartyHospitals)}
+        showsVerticalScrollIndicator={true}
+        // ListHeaderComponent={() => <View style={{ height: 40 }} />}
+        contentContainerStyle={{ paddingBottom: 16 }}
+        renderItem={({ item: hospital }) => {
+
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
+          const [_street, _neighborhood, zipAndCity, _state ] = hospital.formatted_address.split(", ");
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
+          const [ _zipCode, city ] = zipAndCity.split(" ");
+          return (
             <HospitalCard
-              key={hospital.id}
-              {...hospital}
+              key={hospital.place_id}
+              address={hospital.formatted_address}
+              name={hospital.name}
+              city={city}
+              coordinates={hospital.geometry.location.lat + "," + hospital.geometry.location.lng}
             />
-          ))}
-      </ScrollView>
+          );
+        }}
+        ListFooterComponent={() => <View style={{ height: 80 }} />}
+        keyExtractor={item => "Hospital_Card_" + item.place_id}
+        onEndReached={() => fetchNextPage()}
+      />
     </SafeAreaView>
   );
 };
