@@ -1,6 +1,6 @@
 import { ColorsEnum } from "@theme";
 import React, { FC } from "react";
-import { Pressable, PressableProps, PressableStateCallbackType, StyleProp, StyleSheet, ViewStyle } from "react-native";
+import { Pressable, PressableProps, PressableStateCallbackType, StyleProp, StyleSheet, ViewStyle, Platform } from "react-native";
 import { BText, BTextProps } from "./BText";
 
 export interface BButtonProps extends PressableProps {
@@ -27,10 +27,12 @@ export const BButton: FC<BButtonProps> = ({
   ...rest
 }) => {
 
+  const isAndroid = Platform.OS === "android"
+
   const pressableStyle: (state: PressableStateCallbackType) => StyleProp<ViewStyle>  = ({ pressed }) => StyleSheet.flatten([
     styles.button,
     styles[variant],
-    styles.shadow,
+    !isAndroid && styles.shadow,
     style,
     pressed && pressedStyles[variant],
   ]);
