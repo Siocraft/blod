@@ -43,52 +43,22 @@ export const HospitalCard: FC<HospitalCardProps> = ({
 
 
   return <View style={styles.cardContainer}>
-    <BText color="black" bold style={{ marginBottom: 8 }}>{hospital.name}</BText>
-    <BText color="black">{hospital.address}</BText>
-    <MapView
-      style={styles.map}
-      showsUserLocation
-      loadingEnabled
-      initialRegion={{
-        latitude: coordinates.latitude,
-        longitude: coordinates.longitude,
-        latitudeDelta: LATITUDE_DELTA,
-        longitudeDelta: LONGITUDE_DELTA
-      }}
-      zoomControlEnabled={false}
-      zoomEnabled={false}
-      rotateEnabled={false}
-      scrollEnabled={false}
-      pitchEnabled={false}
-      zoomTapEnabled={false}
-      toolbarEnabled={false}
-      moveOnMarkerPress={false}
-      cacheEnabled={true}
-    >
-      <Marker
-        coordinate={coordinates}
-        title={hospital.name}
-        description="Presentarse de 6 am a 10 am"
-      />
-    </MapView>
-    <BButton
-      style={{ marginTop: 16 }}
-      title="Mostrar solicitudes de este hospital"
-      onPress={showHospitalDonationRequests}
-    />
-    <BButton
-      style={{ marginTop: 16 }}
-      title="Abrir mapas"
-      onPress={openMaps}
-      variant="transparent-primary"
-    />
+    <BText color="black" bold style={{ marginBottom: 1 }}>{hospital.name}</BText>
+    <BText color="secondary">2 km</BText> 
+   
+   
+    
   </View>;
 };
 
 const styles = StyleSheet.create({
   cardContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between", 
+    marginTop: 8,
     padding: 16,
-    marginBottom: 16,
+    fontWeight: 17,
+    marginBottom: 10, 
     marginHorizontal: 16,
     borderRadius: 8,
     backgroundColor: ColorsEnum.white,
@@ -101,12 +71,4 @@ const styles = StyleSheet.create({
     shadowRadius: 3,
     elevation: 8,
   },
-  map: {
-    height: 200,
-    width: "100%",
-    borderRadius: 8,
-    marginTop: 16,
-    borderColor: ColorsEnum.primary,
-    borderWidth: 2,
-  }
 });

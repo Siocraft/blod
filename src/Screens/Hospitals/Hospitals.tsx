@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   titleTextContainer: {
-    paddingHorizontal: 16,
+  paddingHorizontal: 8,
     backgroundColor: "transparent",
     position: "absolute",
     zIndex: 1,
