@@ -1,6 +1,6 @@
 import { HospitalSvg } from "@assets";
 import { BText, BTextInput } from "@components";
-import { useThirdPartyHospitals } from "@hooks";
+import { useSearchHospitals, useThirdPartyHospitals } from "@hooks";
 import { ColorsEnum } from "@theme";
 import { LinearGradient } from "expo-linear-gradient";
 import React, { FC, useMemo } from "react";
@@ -23,7 +23,9 @@ export const Hospitals: FC = () => {
     return searchString.length < 3 ? allHospitals : allHospitals.filter(hospital => hospital.name.toLowerCase().includes(searchString.toLowerCase()));
   }, [ searchString, thirdPartyHospitals ]);
 
-  const noHospitalsFound = flatListData.length === 0 && searchString.length >= 3;
+  const noHospitalsFound = searchString.length === 0 && searchString.length >= 3;
+
+  const { data: searchedHospitals } = useSearchHospitals(searchString);
 
   return (
     <SafeAreaView style={StyleSheet.flatten([
@@ -81,7 +83,7 @@ export const Hospitals: FC = () => {
       {!noHospitalsFound && <FlatList
         onRefresh={refetch}
         refreshing={isFetching}
-        data={flatListData}
+        data={searchString.length > 2 ? searchedHospitals : flatListData}
         showsVerticalScrollIndicator={true}
         // ListHeaderComponent={() => <View style={{ height: 40 }} />}
         contentContainerStyle={{ paddingBottom: 16 }}
