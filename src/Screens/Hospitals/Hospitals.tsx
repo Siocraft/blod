@@ -23,9 +23,9 @@ export const Hospitals: FC = () => {
     return searchString.length < 3 ? allHospitals : allHospitals.filter(hospital => hospital.name.toLowerCase().includes(searchString.toLowerCase()));
   }, [ searchString, thirdPartyHospitals ]);
 
-  const noHospitalsFound = searchString.length === 0 && searchString.length >= 3;
-
   const { data: searchedHospitals } = useSearchHospitals(searchString);
+
+  const noHospitalsFound = searchedHospitals?.length === 0 && searchString.length >= 3;
 
   return (
     <SafeAreaView style={StyleSheet.flatten([
