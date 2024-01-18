@@ -37,6 +37,12 @@
           "//": "Disables the microphone permission",
           "microphonePermission": false
         }
+      ],
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Allow $(PRODUCT_NAME) to use your location."
+        }
       ]
     ]
   }

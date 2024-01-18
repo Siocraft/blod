@@ -1,6 +1,7 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { QueryClientProvider } from "@tanstack/react-query";
-import React, { useState } from "react";
+import { useForegroundPermissions } from "expo-location";
+import React, { useEffect, useState } from "react";
 import { LogBox } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import "../Config/firebase";
@@ -16,6 +17,13 @@ LogBox.ignoreAllLogs(); //Ignore all log notifications
 export const App = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [loadingMessage, setIsLoadingMessage] = useState("");
+  const [status, requestPermission] = useForegroundPermissions();
+
+  useEffect(() => {
+    if (status !== null && status.canAskAgain && !status.granted) {
+      requestPermission();
+    }
+  }, []);
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -28,6 +36,7 @@ export const App = () => {
               showLoading: (message: string) => {
                 setIsLoading(true);
                 setIsLoadingMessage(message);
+                return "";
               },
               hideLoading: () => {
                 setIsLoading(false);
