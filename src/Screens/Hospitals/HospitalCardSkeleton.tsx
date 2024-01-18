@@ -6,36 +6,32 @@ import { StyleSheet, View } from "react-native";
 export const HospitalCardSkeleton: FC = () => {
 
   return <View style={styles.cardContainer}>
-    <Skeleton variant="text" />
+    <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+      <Skeleton variant="text" style={{ width: "60%" }}/>
+      <Skeleton variant="text" style={{ width: 60 }}/>
+    </View>
     <View style={{ height: 8 }} />
     <Skeleton variant="text" style={{ width: "70%" }} />
     <View style={{ height: 16 }} />
     <Skeleton variant="smallText" style={{ width: "90%" }} />
     <View style={{ height: 4 }} />
-    <Skeleton variant="smallText" style={{ width: "50%" }} />
-    <View style={{ height: 4 }} />
     <Skeleton variant="smallText" style={{ width: "30%" }} />
-    <View style={{ height: 16 }} />
-    <Skeleton variant="smallText" style={{ height: 250, borderRadius: 8 }} />
 
-    <BButton
-      style={{ marginTop: 16 }}
-      title="Mostrar solicitudes de este hospital"
-      disabled
-      variant="disabled"
-    />
-    <BButton
-      style={{ marginTop: 16 }}
-      title="Llamar"
-      disabled
-      variant="disabled-void"
-    />
-    <BButton
-      style={{ marginTop: 16 }}
-      title="Abrir mapas"
-      disabled
-      variant="disabled-transparent"
-    />
+    <View style={{ flexDirection: "row" }}>
+      <BButton
+        style={{ marginTop: 16, flex: 1 }}
+        title="Ver peticiones"
+        disabled
+        variant="disabled-void"
+      />
+      <View style={styles.width16} />
+      <BButton
+        style={{ marginTop: 16, flex: 1 }}
+        title="Ver mapa"
+        disabled
+        variant="disabled"
+      />
+    </View>
   </View>;
 };
 
@@ -62,5 +58,8 @@ const styles = StyleSheet.create({
     marginTop: 16,
     borderColor: ColorsEnum.primary,
     borderWidth: 2,
+  },
+  width16: {
+    width: 16
   }
 });

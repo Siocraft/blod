@@ -8,7 +8,7 @@ import { SafeAreaView, useSafeAreaInsets } from "react-native-safe-area-context"
 import { HospitalCard } from "./HospitalCard";
 import { HospitalCardSkeleton } from "./HospitalCardSkeleton";
 
-const skeletonArray = Array.from({ length: 3 }, (_, i) => i);
+const skeletonArray = Array.from({ length: 6 }, (_, i) => i);
 
 export const Hospitals: FC = () => {
   const { data: thirdPartyHospitals, isLoading: isLoadingHospitals, fetchNextPage, isFetching, refetch } = useThirdPartyHospitals();
@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   titleTextContainer: {
-  paddingHorizontal: 8,
+    paddingHorizontal: 8,
     backgroundColor: "transparent",
     position: "absolute",
     zIndex: 1,
