@@ -1,8 +1,9 @@
-import { BText } from "@components";
+import { HospitalSvg } from "@assets";
+import { BText, BTextInput } from "@components";
 import { useThirdPartyHospitals } from "@hooks";
 import { ColorsEnum } from "@theme";
 import { LinearGradient } from "expo-linear-gradient";
-import React, { FC } from "react";
+import React, { FC, useMemo } from "react";
 import { FlatList, StyleSheet, View } from "react-native";
 import { SafeAreaView, useSafeAreaInsets } from "react-native-safe-area-context";
 import { HospitalCard } from "./HospitalCard";
@@ -14,6 +15,15 @@ export const Hospitals: FC = () => {
   const { data: thirdPartyHospitals, isLoading: isLoadingHospitals, fetchNextPage, isFetching, refetch } = useThirdPartyHospitals();
 
   const { top, bottom } = useSafeAreaInsets();
+
+  const [ searchString, setSearchString ] = React.useState<string>("");
+
+  const flatListData = useMemo(() => {
+    const allHospitals = thirdPartyHospitals?.pages.flatMap(page => page.pageThirdPartyHospitals) ?? [];
+    return searchString.length < 3 ? allHospitals : allHospitals.filter(hospital => hospital.name.toLowerCase().includes(searchString.toLowerCase()));
+  }, [ searchString, thirdPartyHospitals ]);
+
+  const noHospitalsFound = flatListData.length === 0 && searchString.length >= 3;
 
   return (
     <SafeAreaView style={StyleSheet.flatten([
@@ -44,10 +54,34 @@ export const Hospitals: FC = () => {
           <HospitalCardSkeleton key={"Hospital_Skeleton_Card_" + i} />
         ))
       }
-      <FlatList
+      <View style={styles.inputContainer}>
+        <BTextInput
+          variant="primary"
+          placeholder="Buscar hospital por nombre"
+          icon={() => <HospitalSvg />}
+          onChangeText={setSearchString}
+          value={searchString}
+          autoCorrect={false}
+          autoComplete="off"
+          onClear={() => setSearchString("")}
+        />
+      </View>
+      {
+        noHospitalsFound && (
+          <View style={{
+            paddingHorizontal: 16,
+            paddingVertical: 8,
+            justifyContent: "center",
+            alignItems: "center",
+          }}>
+            <BText color="primary" bold>No se encontraron hospitales</BText>
+          </View>
+        )
+      }
+      {!noHospitalsFound && <FlatList
         onRefresh={refetch}
         refreshing={isFetching}
-        data={thirdPartyHospitals?.pages.flatMap(page => page.pageThirdPartyHospitals)}
+        data={flatListData}
         showsVerticalScrollIndicator={true}
         // ListHeaderComponent={() => <View style={{ height: 40 }} />}
         contentContainerStyle={{ paddingBottom: 16 }}
@@ -70,7 +104,7 @@ export const Hospitals: FC = () => {
         ListFooterComponent={() => <View style={{ height: 80 }} />}
         keyExtractor={item => "Hospital_Card_" + item.place_id}
         onEndReached={() => fetchNextPage()}
-      />
+      />}
     </SafeAreaView>
   );
 };
@@ -91,5 +125,9 @@ const styles = StyleSheet.create({
     fontSize: 24,
     lineHeight: 40,
     backgroundColor: "transparent",
+  },
+  inputContainer: {
+    paddingHorizontal: 16,
+    marginBottom: 16,
   }
 });
