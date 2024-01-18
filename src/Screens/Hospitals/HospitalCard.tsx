@@ -1,8 +1,8 @@
 import { BButton, BText } from "@components";
 import { HospitalFromAPI, useDistanceFromTwoCoordinates, useUserLocation } from "@hooks";
 import { ColorsEnum } from "@theme";
-import React, { FC, useMemo, useState } from "react";
-import { Dimensions, StyleSheet, View } from "react-native";
+import React, { FC, useCallback, useMemo, useState } from "react";
+import { Dimensions, Linking, Platform, StyleSheet, View } from "react-native";
 import MapView, { Marker } from "react-native-maps";
 const { height, width } = Dimensions.get( "window" );
 
@@ -35,17 +35,17 @@ export const HospitalCard: FC<HospitalCardProps> = ({
 
   const distance = useDistanceFromTwoCoordinates(hospitalCoordinates, userCoordinates);
 
-  // const openMaps = useCallback(() => {
-  //   const coordinatesString = `${hospitalCoordinates.latitude},${hospitalCoordinates.longitude}`;
-  //   const scheme = Platform.select({ ios: "maps://0,0?q=", android: "geo:0,0?q=" });
-  //   const label = "BLOD: " + hospital.name;
-  //   const url = Platform.select({
-  //     ios: `${scheme}${label}@${coordinatesString}`,
-  //     android: `${scheme}${coordinatesString}(${label})`
-  //   });
+  const openMaps = useCallback(() => {
+    const coordinatesString = `${hospitalCoordinates.latitude},${hospitalCoordinates.longitude}`;
+    const scheme = Platform.select({ ios: "maps://0,0?q=", android: "geo:0,0?q=" });
+    const label = "BLOD: " + hospital.name;
+    const url = Platform.select({
+      ios: `${scheme}${label}@${coordinatesString}`,
+      android: `${scheme}${coordinatesString}(${label})`
+    });
 
-  //   Linking.openURL(url ?? "");
-  // }, [hospital]);
+    Linking.openURL(url ?? "");
+  }, [hospital]);
 
   const [ LATITUDE_DELTA, LONGITUDE_DELTA ] = useMemo(() => {
     const LATITUDE_DELTA = 0.1;
@@ -101,7 +101,7 @@ export const HospitalCard: FC<HospitalCardProps> = ({
             description="Presentarse de 6 am a 10 am"
           />
         </MapView>
-        <BButton variant="primary-void" style={styles.openMapsButton} title="Ver en mapas" />
+        <BButton onPress={openMaps} variant="primary-void" style={styles.openMapsButton} title="Ver en mapas" />
       </>
     )}
 
