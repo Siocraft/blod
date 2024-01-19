@@ -62,7 +62,7 @@ export const EditProfile: FC = () => {
   if (values.name === undefined && user?.name) setFieldValue("name", user.name);
 
   if (!authUser) return <GuestSignedIn />;
-  if (!user || isErrorUser) return <ErrorScreen errorMessage={error as string} />;
+  if (!user || isErrorUser) return <ErrorScreen />;
 
   const onPressSave = () => {
     handleSubmit();

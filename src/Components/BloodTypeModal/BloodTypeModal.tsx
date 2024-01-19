@@ -1,6 +1,7 @@
 import { Data } from "@constants";
 import { AntDesign } from "@expo/vector-icons";
 import { ColorsEnum } from "@theme";
+import { isBloodType } from "@utils";
 import React, { FC, useState } from "react";
 import { Pressable, View } from "react-native";
 import Modal from "react-native-modal";
@@ -10,7 +11,7 @@ import { BText } from "../BText";
 interface BloodTypeModalProps {
   isVisible: boolean;
   onPressHideBloodTypeModal: () => void;
-  bloodTypeValue: BloodTypesArray | BloodType;
+  bloodTypeValue: BloodType[] | BloodType | "Tipo de sangre";
   setFieldValue: (field: string, value: BloodTypesArray | BloodType) => void;
   cb?: () => void;
   chooseMultipleBloodTypes?: boolean;
@@ -24,7 +25,7 @@ export const BloodTypeModal: FC<BloodTypeModalProps> = ({
   cb,
   chooseMultipleBloodTypes = false,
 }) => {
-  const [selectedBloodType, setSelectedBloodType] = useState<BloodTypesArray | BloodType>(bloodTypeValue);
+  const [selectedBloodType, setSelectedBloodType] = useState<BloodTypesArray | BloodType | "Tipo de sangre">(bloodTypeValue);
 
   const onPressBloodType = (bloodType: BloodType) => {
     if (!chooseMultipleBloodTypes) {
@@ -37,7 +38,7 @@ export const BloodTypeModal: FC<BloodTypeModalProps> = ({
   };
 
   const confirmBloodType = () => {
-    setFieldValue("bloodType", selectedBloodType);
+    isBloodType(selectedBloodType) && setFieldValue("bloodType", selectedBloodType);
     cb?.();
     onPressHideBloodTypeModal();
   };
