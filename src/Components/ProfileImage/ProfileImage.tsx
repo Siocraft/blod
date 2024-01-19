@@ -73,7 +73,6 @@ export const ProfileImage: FC<ProfileImageProps> = ({
 
       if (pickerResult.cancelled === false) {
         const uploadUrl = await uploadImageAsync(
-          // @ts-expect-error - pickerResult is not ImagePickerCancelledResult
           pickerResult.uri,
           authUser?.uid
         );
