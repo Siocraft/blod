@@ -1,4 +1,4 @@
-import { LocationObjectCoords, getCurrentPositionAsync } from "expo-location";
+import { LocationObjectCoords, getCurrentPositionAsync, useForegroundPermissions } from "expo-location";
 import { useEffect, useState } from "react";
 
 export const useUserLocation = () => {
@@ -12,12 +12,14 @@ export const useUserLocation = () => {
     altitudeAccuracy: 0,
   });
 
+  const [status] = useForegroundPermissions();
+
   useEffect(() => {
     (async () => {
       const { coords } = await getCurrentPositionAsync();
       setLocation(coords);
     })();
-  }, []);
+  }, [status]);
 
   return location;
 };
