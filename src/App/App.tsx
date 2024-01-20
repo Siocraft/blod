@@ -12,6 +12,7 @@ import { Loading } from "../Screens/Loading";
 LogBox.ignoreLogs(["Warning: ..."]); // Ignore log notification by message
 LogBox.ignoreLogs(["Setting a timer for a long period"]);
 LogBox.ignoreLogs(["Animated: `useNativeDriver` was not specified."]);
+LogBox.ignoreLogs(["(ADVICE) View ..."]);
 LogBox.ignoreAllLogs(); //Ignore all log notifications
 
 export const App = () => {
@@ -23,7 +24,7 @@ export const App = () => {
     if (status !== null && status.canAskAgain && !status.granted) {
       requestPermission();
     }
-  }, []);
+  }, [status]);
 
   return (
     <QueryClientProvider client={queryClient}>
