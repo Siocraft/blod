@@ -1,9 +1,11 @@
 import { FilterButton, Filters } from "@components";
-import { useDonationRequests } from "@hooks";
+import { AntDesign } from "@expo/vector-icons";
+import { useAppNavigation, useDonationRequests } from "@hooks";
 import { ColorsEnum } from "@theme";
 import { LinearGradient } from "expo-linear-gradient";
 import React, { FC, useState } from "react";
-import { FlatList, StyleSheet, View } from "react-native";
+import { FlatList, StyleSheet, TouchableOpacity, View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { RequestCard } from "../RequestCard";
 
 interface RequestsProps {
@@ -13,6 +15,7 @@ interface RequestsProps {
 export const Requests: FC<RequestsProps> = ({ setIsContactModalVisible }) => {
   
   const [filtersVisibility, setFiltersVisibility] = useState(false);
+  const { navigateToCreateDonationRequest } = useAppNavigation();
 
   const onToggleFilters = () => {
     setFiltersVisibility(prev => !prev);
@@ -23,6 +26,8 @@ export const Requests: FC<RequestsProps> = ({ setIsContactModalVisible }) => {
   };
 
   const { data: donationRequests, fetchNextPage, isFetching, refetch } = useDonationRequests();
+
+  const { bottom } = useSafeAreaInsets();
 
   return (
     <View style={styles.container}>
@@ -56,6 +61,15 @@ export const Requests: FC<RequestsProps> = ({ setIsContactModalVisible }) => {
           onEndReached={() => fetchNextPage()}
         />
       }
+      <AntDesign name="plus" size={32} color={ColorsEnum.white} />
+      <TouchableOpacity style={[
+        styles.floatingButton,
+        {
+          bottom: bottom + 54,
+        }
+      ]} onPress={navigateToCreateDonationRequest}>
+        <AntDesign name="plus" size={32} color={ColorsEnum.white} />
+      </TouchableOpacity>
     </View>
   );
 };
@@ -73,5 +87,12 @@ const styles = StyleSheet.create({
     width: "100%",
     height: 48,
     top: 8,
+  },
+  floatingButton: {
+    position: "absolute",
+    right: 16,
+    backgroundColor: ColorsEnum.secondary,
+    padding: 8,
+    borderRadius: 40,
   }
 });
