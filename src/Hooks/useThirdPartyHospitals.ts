@@ -17,8 +17,12 @@ const getThirdPartyHospitalsByPage = async ({
 }: GetThirdPartyHospitalsByPage) => {
   try {
 
-    if (longitude === 0 || latitude === 0)
-      return Promise.reject("In getThirdPartyHospitalsByPage: No location");
+    if (longitude === 0 || latitude === 0) {
+      return {
+        pageThirdPartyHospitals: [],
+        nextPage: pageParam
+      };
+    }
 
     const { data: pageThirdPartyHospitals } =
       await appAxios.get<ThirdPartyHospital[]>(

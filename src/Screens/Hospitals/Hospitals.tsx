@@ -44,6 +44,7 @@ export const Hospitals: FC = () => {
   const { data: searchedHospitals } = useSearchHospitals(searchString);
 
   const noHospitalsFound = searchedHospitals?.length === 0 && searchString.length >= 3;
+  const noHospitalsInRange = flatListData.length === 0 && searchString.length < 3;
 
   return (
     <SafeAreaView>
@@ -100,7 +101,7 @@ export const Hospitals: FC = () => {
           </View>
         )
       }
-      {!noHospitalsFound && <FlatList
+      {!noHospitalsFound && flatListData.length > 0 ? <FlatList
         maxToRenderPerBatch={10}
         onRefresh={refetch}
         refreshing={isFetching}
@@ -127,8 +128,8 @@ export const Hospitals: FC = () => {
         ListFooterComponent={() => <View style={{ height: bottom + 100 }} />}
         keyExtractor={(item, index) => "Hospital_Card_" + item.place_id + "_" + index}
         onEndReached={() => hasNextPage && fetchNextPage()}
-        
-      />}
+        onEndReachedThreshold={0.5}
+      /> : null}
     </SafeAreaView>
   );
 };
