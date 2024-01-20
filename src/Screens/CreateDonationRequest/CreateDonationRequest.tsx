@@ -272,7 +272,7 @@ export const CreateDonationRequest: FC = () => {
             text={
               (Array.isArray(values.bloodType)
                 ? values.bloodType.join(", ")
-                : values.bloodType) || "Elige un tipo de sangre"
+                : values.bloodType) || "Elige el tipo de sangre"
             }
             onPress={onPressShowBloodTypeModal}
             iconLeft={() => <Fontisto name="blood-drop" size={24} color={!!errors.bloodType && touched.bloodType ? ColorsEnum.error : ColorsEnum.secondary} />}
