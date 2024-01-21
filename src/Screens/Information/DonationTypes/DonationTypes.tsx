@@ -30,16 +30,17 @@ export const DonationTypes = () => {
     <GoBack />
     <ScrollView style={styles.container}>
       <View style={styles.donationTypesContainer}>
-        <View style={{ height: 16 }} />
         <BText size="title" bold color="black">
             Tipos de donación de sangre
         </BText>
-        <View style={{ height: 40 }} />
+        <BText style={styles.subText}>
+          Hay <BText bold size="large">{donationTypeSections.length}</BText> tipos de donación de sangre
+        </BText>
         {
           donationTypeSections.map((section, index) => {
             return <View key={DONATION_TYPE_SECTION_KEY + index}>
               <BText style={styles.donationTypeTitleText}>
-                {section.title}
+                <BText bold size="title">{index + 1}. </BText> {section.title}
               </BText>
               <BText style={styles.donationTypeText}>
                 {section.text}
@@ -79,6 +80,13 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     lineHeight: 24,
     color: ColorsEnum.black,
-    marginBottom: 60
+    marginBottom: 44
+  },
+  subText: {
+    fontSize: 16,
+    fontWeight: "600",
+    lineHeight: 24,
+    color: ColorsEnum.black,
+    marginVertical: 32
   }
 });
