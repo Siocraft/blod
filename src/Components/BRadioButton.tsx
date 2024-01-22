@@ -21,7 +21,7 @@ export const BRadioButton: FC<BRadioButtonProps> = ({
 
   const isSelected = value === selectedValue;
   const onPress = () => {
-    onChange(value);
+    onChange(isSelected ? "" : value);
   };
 
   return (
@@ -30,13 +30,13 @@ export const BRadioButton: FC<BRadioButtonProps> = ({
         <View style={[
           styles.radio,
           {
-            borderColor: ColorsEnum[variant || "primary"],
+            borderColor: ColorsEnum[variant ?? "primary"],
           }
         ]}>
           {isSelected ? <View style={[
             styles.radioInner,
             {
-              backgroundColor: ColorsEnum[variant || "primary"],
+              backgroundColor: ColorsEnum[variant ?? "primary"],
             }
           ]} /> : null}
         </View>
