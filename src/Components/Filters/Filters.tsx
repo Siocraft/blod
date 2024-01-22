@@ -1,32 +1,68 @@
-import React, { FC, useState } from "react";
+import { useAppDispatch, useAppSelector } from "@hooks";
+import { setBloodTypeDonationRequestsFilter, setCityDonationRequestsFilter } from "@services";
+import { useFormik } from "formik";
+import React, { FC } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { BButton } from "../BButton";
 import { ChooseBloodType } from "../ChooseBloodType";
 import { ChooseCity } from "../ChooseCity";
 
 interface FiltersProps {
   variant: "primary" | "secondary";
+  setFiltersVisibility?: (value: boolean) => void;
 }
 
 export const Filters: FC<FiltersProps> = ({
   variant,
+  setFiltersVisibility,
 }) => {
 
-  const [selectedBloodType, setSelectedBloodType] = useState("");
-  const [selectedCity, setSelectedCity] = useState("");
+  const { city, bloodType } = useAppSelector(state => state.donationRequestsFilter);
+  const dispatch = useAppDispatch();
+  const { bottom } = useSafeAreaInsets();
 
-  return <View style={styles.modalContainer}>
+  const { values, setFieldValue, handleSubmit } = useFormik({
+    initialValues: {
+      bloodType,
+      city,
+    },
+    onSubmit: (values) => {
+      dispatch(setBloodTypeDonationRequestsFilter(values.bloodType));
+      dispatch(setCityDonationRequestsFilter(values.city));
+    },
+  });
+
+  const onSave = () => {
+    handleSubmit();
+    setFiltersVisibility?.(false);
+  };
+
+  const disableSaveButton = values.bloodType === bloodType && values.city === city;
+
+  return <View style={[
+    styles.modalContainer,
+    { marginBottom: bottom + 64 }
+  ]}>
     <View style={styles.triangle} />
     <ScrollView style={styles.container}>
       <ChooseBloodType
         variant={variant}
-        selectedBloodType={selectedBloodType}
-        setSelectedBloodType={setSelectedBloodType}
+        selectedBloodType={values.bloodType}
+        setSelectedBloodType={(bloodType) => setFieldValue("bloodType", bloodType)}
       />
       <ChooseCity
         variant={variant}
-        selectedCity={selectedCity}
-        setSelectedCity={setSelectedCity}
+        selectedCity={values.city}
+        setSelectedCity={(bloodType) => setFieldValue("city", bloodType)}
       />
+      <BButton
+        disabled={disableSaveButton}
+        onPress={onSave}
+        style={styles.saveButton}
+        variant={disableSaveButton ? "disabled" : "secondary"} title="Save"
+      />
+      <View style={{ height: 30 }} />
     </ScrollView>
   </View>;
 };
@@ -57,4 +93,7 @@ const styles = StyleSheet.create({
     top: -12,
     left: 32,
   },
+  saveButton: {
+    marginTop: 16,
+  }
 });
