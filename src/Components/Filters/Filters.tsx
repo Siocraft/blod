@@ -6,7 +6,6 @@ import { ScrollView, StyleSheet, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { BButton } from "../BButton";
 import { ChooseBloodType } from "../ChooseBloodType";
-import { ChooseCity } from "../ChooseCity";
 
 interface FiltersProps {
   variant: "primary" | "secondary";
@@ -33,12 +32,21 @@ export const Filters: FC<FiltersProps> = ({
     },
   });
 
-  const onSave = () => {
+  const onSaveFilters = () => {
+    handleSubmit();
+    setFiltersVisibility?.(false);
+  };
+
+  const onClearFilters = () => {
+    setFieldValue("bloodType", "");
+    setFieldValue("city", "");
     handleSubmit();
     setFiltersVisibility?.(false);
   };
 
   const disableSaveButton = values.bloodType === bloodType && values.city === city;
+
+  const clearFiltersButtonTestVisible = disableSaveButton && (values.bloodType !== "" || values.city !== "");
 
   return <View style={[
     styles.modalContainer,
@@ -51,17 +59,24 @@ export const Filters: FC<FiltersProps> = ({
         selectedBloodType={values.bloodType}
         setSelectedBloodType={(bloodType) => setFieldValue("bloodType", bloodType)}
       />
-      <ChooseCity
+      {/* <ChooseCity
         variant={variant}
         selectedCity={values.city}
         setSelectedCity={(bloodType) => setFieldValue("city", bloodType)}
-      />
-      <BButton
+      /> */}
+      {clearFiltersButtonTestVisible ? null : <BButton
         disabled={disableSaveButton}
-        onPress={onSave}
+        onPress={onSaveFilters}
         style={styles.saveButton}
-        variant={disableSaveButton ? "disabled" : "secondary"} title="Save"
-      />
+        variant={disableSaveButton ? "disabled" : "secondary"}
+        title="Guardar"
+      />}
+      {clearFiltersButtonTestVisible ? <BButton
+        onPress={onClearFilters}
+        style={styles.saveButton}
+        variant="secondary"
+        title="Quitar filtros"
+      /> : null}
       <View style={{ height: 30 }} />
     </ScrollView>
   </View>;
