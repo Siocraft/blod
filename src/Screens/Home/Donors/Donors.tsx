@@ -47,6 +47,7 @@ export const Donors: FC<DonorsProps> = ({ setIsContactModalVisible }) => {
             />
           )}
           keyExtractor={item => "Donors_Donor_card_" + item.id}
+          ListFooterComponent={() => <View style={{ height: 80 }} />}
         />
         )}
     </View>
