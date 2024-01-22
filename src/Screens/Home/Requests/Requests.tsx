@@ -42,7 +42,7 @@ export const Requests: FC<RequestsProps> = ({ setIsContactModalVisible }) => {
       </LinearGradient>
       {
         filtersVisibility ? (
-          <Filters variant="secondary" />
+          <Filters variant="secondary" setFiltersVisibility={setFiltersVisibility} />
         ) : <FlatList
           onRefresh={refetch}
           refreshing={isFetching}
@@ -62,14 +62,14 @@ export const Requests: FC<RequestsProps> = ({ setIsContactModalVisible }) => {
         />
       }
       <AntDesign name="plus" size={32} color={ColorsEnum.white} />
-      <TouchableOpacity style={[
+      {filtersVisibility ? null : <TouchableOpacity style={[
         styles.floatingButton,
         {
           bottom: bottom + 54,
         }
       ]} onPress={navigateToCreateDonationRequest}>
         <AntDesign name="plus" size={32} color={ColorsEnum.white} />
-      </TouchableOpacity>
+      </TouchableOpacity>}
     </View>
   );
 };
