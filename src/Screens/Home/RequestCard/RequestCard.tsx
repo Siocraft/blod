@@ -1,9 +1,11 @@
 import { BloodSvg, HospitalSvg, LocationSvg } from "@assets";
 import { BButton, BCard, BText } from "@components";
 import { useAppNavigation } from "@hooks";
+import { createBlodAvatar } from "@services";
 import moment from "moment";
 import React, { FC } from "react";
-import { Image, Pressable, StyleSheet, View } from "react-native";
+import { Pressable, StyleSheet, View } from "react-native";
+import { SvgXml } from "react-native-svg";
 
 declare interface RequestCardProps {
   requestDonation: DonationRequest;
@@ -30,10 +32,8 @@ export const RequestCard: FC<RequestCardProps> = ({
     <BCard variant="secondary">
       <View style={styles.row}>
         <Pressable onPress={pushRequestUserProfile}>
-          <Image
-            source={{
-              uri: requestDonation.avatar,
-            }}
+          <SvgXml
+            xml={createBlodAvatar(requestDonation.firstName)}
             style={styles.headerImage}
           />
         </Pressable>
@@ -116,7 +116,6 @@ const styles = StyleSheet.create({
   headerImage: {
     width: 64,
     height: 64,
-    borderRadius: 8,
     marginRight: 12,
   },
   nameContainer: {

@@ -1,8 +1,10 @@
 import { BloodSvg, DonorHeartSvg, LocationSvg } from "@assets";
 import { BButton, BCard, BText } from "@components";
+import { createBlodAvatar } from "@services";
 import { ColorsEnum } from "@theme";
 import React, { FC } from "react";
-import { Image, StyleSheet, View } from "react-native";
+import { StyleSheet, View } from "react-native";
+import { SvgXml } from "react-native-svg";
 
 interface DonorCardProps {
   donor: DonorCard;
@@ -13,7 +15,10 @@ export const DonorCard: FC<DonorCardProps> = ({ donor, onContact }) => {
   return (
     <BCard variant="primary">
       <View style={styles.header}>
-        <Image source={{ uri: donor.avatar }} style={styles.avatar} />
+        <SvgXml
+          xml={createBlodAvatar(donor.name)}
+          style={styles.avatar}
+        />
         <View style={styles.headerText}>
           <View style={{ flexDirection: "row" }}>
             <BText size="title" color="black" bold>
