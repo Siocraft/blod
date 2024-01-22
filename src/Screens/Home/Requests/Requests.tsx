@@ -1,6 +1,6 @@
 import { FilterButton, Filters } from "@components";
 import { AntDesign } from "@expo/vector-icons";
-import { useAppNavigation, useDonationRequests } from "@hooks";
+import { useAppNavigation, useAppSelector, useDonationRequests } from "@hooks";
 import { ColorsEnum } from "@theme";
 import { LinearGradient } from "expo-linear-gradient";
 import React, { FC, useState } from "react";
@@ -13,6 +13,8 @@ interface RequestsProps {
 }
 
 export const Requests: FC<RequestsProps> = ({ setIsContactModalVisible }) => {
+
+  const { bloodType } = useAppSelector(state => state.donationRequestsFilter);
   
   const [filtersVisibility, setFiltersVisibility] = useState(false);
   const { navigateToCreateDonationRequest } = useAppNavigation();
@@ -25,7 +27,7 @@ export const Requests: FC<RequestsProps> = ({ setIsContactModalVisible }) => {
     setIsContactModalVisible(true);
   };
 
-  const { data: donationRequests, fetchNextPage, isFetching, refetch } = useDonationRequests();
+  const { data: donationRequests, fetchNextPage, isFetching, refetch } = useDonationRequests(bloodType);
 
   const { bottom } = useSafeAreaInsets();
 
@@ -48,7 +50,7 @@ export const Requests: FC<RequestsProps> = ({ setIsContactModalVisible }) => {
           refreshing={isFetching}
           data={donationRequests?.pages.flatMap(page => page.pageDonationRequests)}
           showsVerticalScrollIndicator={false}
-          ListHeaderComponent={() => <View style={{ height: 40 }} />}
+          ListHeaderComponent={() => <View style={{ height: 48 }} />}
           contentContainerStyle={{ padding: 16, paddingTop: 0 }}
           renderItem={({ item }) => (
             <RequestCard
@@ -86,7 +88,7 @@ const styles = StyleSheet.create({
     zIndex: 1,
     width: "100%",
     height: 48,
-    top: 8,
+    top: 8
   },
   floatingButton: {
     position: "absolute",

@@ -3,9 +3,11 @@ import { ApiQueryKeys, appAxios } from "@services";
 import { useInfiniteQuery } from "@tanstack/react-query";
 
 const getDonationRequestsByPage = async ({
-  pageParam = 0
+  pageParam = 0,
+  bloodType,
 }: {
-  pageParam: number
+  pageParam: number;
+  bloodType?: string;
 }) => {
 
   const { data: pageDonationRequests} =
@@ -13,7 +15,8 @@ const getDonationRequestsByPage = async ({
       ApiQueryKeys.DonationRequests,
       {
         params: {
-          page: pageParam
+          page: pageParam,
+          bloodType,
         }
       }
     );
@@ -24,10 +27,10 @@ const getDonationRequestsByPage = async ({
   };
 };
 
-export const useDonationRequests = () => {
+export const useDonationRequests = (bloodType?: string) => {
   return useInfiniteQuery({
-    queryKey: [QueryKeys.DONATION_REQUESTS, QueryKeys.GET_ALL],
-    queryFn: ({ pageParam }) => getDonationRequestsByPage({ pageParam }),
+    queryKey: [QueryKeys.DONATION_REQUESTS, QueryKeys.GET_ALL, bloodType],
+    queryFn: ({ pageParam }) => getDonationRequestsByPage({ pageParam, bloodType }),
     getNextPageParam: (lastPage) => lastPage.nextPage,
   });
 };
