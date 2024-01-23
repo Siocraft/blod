@@ -4,7 +4,7 @@ import { ColorsEnum } from "@theme";
 import React, { FC, useCallback, useMemo, useState } from "react";
 import { Dimensions, Linking, Platform, StyleSheet, View } from "react-native";
 import MapView, { Marker } from "react-native-maps";
-const { height, width } = Dimensions.get( "window" );
+const { height, width } = Dimensions.get("window");
 
 type HospitalCardProps = Pick<HospitalFromAPI, "name" | "address" | "coordinates" | "city" | "coordinates">;
 
@@ -13,14 +13,14 @@ export const HospitalCard: FC<HospitalCardProps> = ({
 }) => {
 
   const userLocation = useUserLocation();
-  const [showMap, setShowMap] = useState(false);
+  const [ showMap, setShowMap ] = useState(false);
 
   const [ latitude, longitude ] = hospital.coordinates.split(",");
   const splittedAddress = hospital.address.split(",");
 
   const city = splittedAddress.at(-3)?.replace(/\d/g, "").trim();
 
-  const [hospitalCoordinates, userCoordinates] = useMemo<Coordinates[]>(() => {
+  const [ hospitalCoordinates, userCoordinates ] = useMemo<Coordinates[]>(() => {
     return [
       {
         latitude: parseFloat(latitude),
@@ -31,7 +31,7 @@ export const HospitalCard: FC<HospitalCardProps> = ({
         longitude: userLocation?.longitude ?? 0,
       }
     ];
-  }, [hospital, userLocation]);
+  }, [ hospital, userLocation ]);
 
   const distance = useDistanceFromTwoCoordinates(hospitalCoordinates, userCoordinates);
 
@@ -45,13 +45,13 @@ export const HospitalCard: FC<HospitalCardProps> = ({
     });
 
     Linking.openURL(url ?? "");
-  }, [hospital]);
+  }, [ hospital ]);
 
   const [ LATITUDE_DELTA, LONGITUDE_DELTA ] = useMemo(() => {
     const LATITUDE_DELTA = 0.1;
     const LONGITUDE_DELTA = LATITUDE_DELTA * (width / height);
     return [ LATITUDE_DELTA, LONGITUDE_DELTA ];
-  }, [hospital]);
+  }, [ hospital ]);
 
   const toggleMap = () => {
     setShowMap(prevShowMap => !prevShowMap);

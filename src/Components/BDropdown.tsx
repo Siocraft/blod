@@ -1,8 +1,8 @@
+import { Entypo } from "@expo/vector-icons";
 import { ColorsEnum } from "@theme";
 import React, { FC } from "react";
 import { Pressable, View } from "react-native";
 import { BText } from "./BText";
-import { Entypo } from "@expo/vector-icons";
 
 type BDropdownProps = {
   iconLeft?: () => JSX.Element;
@@ -32,7 +32,7 @@ export const BDropdown: FC<BDropdownProps> = ({
           width: "100%",
           borderRadius: 8,
           padding: 8,
-          borderColor: error ? ColorsEnum.error : ColorsEnum.secondary,
+          borderColor: error ? ColorsEnum.primary : ColorsEnum.secondary,
           borderWidth: 1,
           flexDirection: "row",
           justifyContent: "space-between",

@@ -21,7 +21,7 @@ export const CityModal: FC<CityModalProps> = ({
   setFieldValue,
   cb,
 }) => {
-  const [selectedCity, setSelectedCity] = useState(cityValue);
+  const [ selectedCity, setSelectedCity ] = useState(cityValue);
 
   const onPressCity = (city: string) => {
     setSelectedCity(city);

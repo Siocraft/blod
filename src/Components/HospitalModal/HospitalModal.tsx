@@ -22,7 +22,7 @@ export const HospitalModal: FC<HospitalModalProps> = ({
   setFieldValue,
   cb,
 }) => {
-  const [selectedHospital, setSelectedHospital] = useState(hospitalValue);
+  const [ selectedHospital, setSelectedHospital ] = useState(hospitalValue);
 
   const onPressHospital = (hospital: string) => {
     setSelectedHospital(hospital);

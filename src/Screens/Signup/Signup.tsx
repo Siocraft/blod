@@ -24,7 +24,7 @@ const SignupSchema = Yup.object().shape({
     .email(ErrorsEnum.Formik.Email)
     .required(ErrorsEnum.Formik.Required),
   passwordConfirmation: Yup.string().oneOf(
-    [Yup.ref("password"), null],
+    [ Yup.ref("password"), null ],
     ErrorsEnum.Formik.SignUp.passwordMismatch
   ),
 });
@@ -90,7 +90,7 @@ export const Signup: FC = () => {
         value={values.email}
         error={emailError}
         errorMessage={errors.email}
-        icon={() => <Entypo name="email" size={16} color={emailError ? ColorsEnum.error : ColorsEnum.secondary} />}
+        icon={() => <Entypo name="email" size={16} color={emailError ? ColorsEnum.primary : ColorsEnum.secondary} />}
       />
       <View style={{ height: 16 }} />
       <BTextInput
@@ -102,7 +102,7 @@ export const Signup: FC = () => {
         value={values.password}
         error={passwordError}
         errorMessage={errors.password}
-        icon={() => <MaterialCommunityIcons name="form-textbox-password" size={16} color={passwordError ? ColorsEnum.error : ColorsEnum.secondary} />}
+        icon={() => <MaterialCommunityIcons name="form-textbox-password" size={16} color={passwordError ? ColorsEnum.primary : ColorsEnum.secondary} />}
       />
       <View style={{ height: 16 }} />
       <BTextInput
@@ -114,7 +114,7 @@ export const Signup: FC = () => {
         value={values.passwordConfirmation}
         error={passwordConfirmationError}
         errorMessage={errors.passwordConfirmation}
-        icon={() => <MaterialCommunityIcons name="form-textbox-password" size={16} color={passwordConfirmationError ? ColorsEnum.error : ColorsEnum.secondary} />}
+        icon={() => <MaterialCommunityIcons name="form-textbox-password" size={16} color={passwordConfirmationError ? ColorsEnum.primary : ColorsEnum.secondary} />}
       />
       <View style={{ height: 16 }} />
       <BButton
@@ -157,6 +157,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   createAccountButtonDisabled: {
-    backgroundColor: ColorsEnum.disabledButton,
+    backgroundColor: ColorsEnum.gray,
   },
 });

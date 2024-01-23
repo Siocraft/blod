@@ -80,8 +80,8 @@ export const CompleteSignup: FC<CompleteSignupProps> = ({ route }) => {
     },
   });
 
-  const [bloodTypeModalVisible, setBloodTypeModalVisible] = useState(false);
-  const [cityModalVisible, setCityModalVisible] = useState(false);
+  const [ bloodTypeModalVisible, setBloodTypeModalVisible ] = useState(false);
+  const [ cityModalVisible, setCityModalVisible ] = useState(false);
   // const [birthdayModalVisible, setBirthdayModalVisible] = useState(false);
 
   const onPressShowBloodTypeModal = () => {

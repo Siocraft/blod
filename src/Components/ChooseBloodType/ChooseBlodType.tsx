@@ -21,7 +21,7 @@ export const ChooseBloodType: FC<ChooseBloodTypeProps> = ({
 
     {
       Data.BloodTypes.map((bloodType, index) => {
-        if(index % 2 === 1) return null;
+        if (index % 2 === 1) return null;
         return <View style={styles.row} key={bloodType}>
           <View style={styles.bloodTypeContainer}>
             <BRadioButton

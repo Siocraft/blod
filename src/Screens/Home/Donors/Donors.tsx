@@ -19,7 +19,7 @@ export const Donors: FC<DonorsProps> = ({ setIsContactModalVisible }) => {
     setFiltersVisibility(prev => !prev);
   };
 
-  const [filtersVisibility, setFiltersVisibility] = useState(false);
+  const [ filtersVisibility, setFiltersVisibility ] = useState(false);
 
   return (
     <View style={styles.container}>
@@ -35,7 +35,7 @@ export const Donors: FC<DonorsProps> = ({ setIsContactModalVisible }) => {
       {
         filtersVisibility ? (
           <Filters variant="primary" />
-        ) : ( <FlatList
+        ) : (<FlatList
           data={donorCards}
           showsVerticalScrollIndicator={false}
           ListHeaderComponent={() => <View style={{ height: 40 }} />}

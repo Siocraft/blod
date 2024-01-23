@@ -18,7 +18,7 @@ const getHospitals = async () => {
   const { data: hospitals } = await appAxios.get<HospitalFromAPI[]>(ApiQueryKeys.Hospital);
 
   hospitals.forEach(hospital => {
-    queryClient.setQueryData([QueryKeys.HOSPITAL, hospital.id], hospital);
+    queryClient.setQueryData([ QueryKeys.HOSPITAL, hospital.id ], hospital);
   });
 
   return hospitals;
@@ -26,7 +26,7 @@ const getHospitals = async () => {
 
 export const useHospitals = () => {
   return useQuery({
-    queryKey: [QueryKeys.HOSPITALS],
+    queryKey: [ QueryKeys.HOSPITALS ],
     queryFn: getHospitals,
     staleTime: 1000 * 60 * 60 * 24,
     cacheTime: 1000 * 60 * 60 * 24,

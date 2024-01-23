@@ -21,7 +21,7 @@ export const BirthDateModal: FC<BirthDateModalProps> = ({
   birthDateValue,
   setFieldValue,
 }) => {
-  const [selectedDate, setSelectedDate] = useState(
+  const [ selectedDate, setSelectedDate ] = useState(
     new Date(birthDateValue ?? Date.now())
   );
 

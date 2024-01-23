@@ -55,7 +55,7 @@ export const useThirdPartyHospitals = ({
   kilometers
 }: Omit<GetThirdPartyHospitalsByPage, "pageParam">) => {
   return useInfiniteQuery({
-    queryKey: [QueryKeys.THIRD_PARTY_HOSPITALS, QueryKeys.GET_ALL, latitude, longitude, kilometers],
+    queryKey: [ QueryKeys.THIRD_PARTY_HOSPITALS, QueryKeys.GET_ALL, latitude, longitude, kilometers ],
     queryFn: ({ pageParam }) => getThirdPartyHospitalsByPage({ pageParam, latitude, longitude, kilometers }),
     getNextPageParam: (lastPage) => lastPage.nextPage,
     cacheTime: 1000 * 60 * 60 * 24 * 7, // 1 week

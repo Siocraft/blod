@@ -5,7 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 export const useUser = (userId?: string) => {
 
   return useQuery({
-    queryKey: [QueryKeys.USER, userId],
+    queryKey: [ QueryKeys.USER, userId ],
     queryFn: () => {
       return getUser(userId);
     },

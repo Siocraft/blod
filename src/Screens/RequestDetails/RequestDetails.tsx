@@ -22,7 +22,7 @@ export const RequestDetails: FC<RequestDetailsProps> = ({
   const { data: donationRequest } = useDonationRequest(requestId);
   const { data: hospital } = useHospital(donationRequest?.hospitalId ?? "");
 
-  if(!donationRequest || !hospital) return null;
+  if (!donationRequest || !hospital) return null;
 
   const { coordinates } = hospital;
 
