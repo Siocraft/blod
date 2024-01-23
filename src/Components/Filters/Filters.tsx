@@ -32,14 +32,17 @@ export const Filters: FC<FiltersProps> = ({
     },
   });
 
+  const setRadioButtonBloodType = (bloodType: string) => {
+    setFieldValue("bloodType", bloodType);
+  };
+
   const onSaveFilters = () => {
     handleSubmit();
     setFiltersVisibility?.(false);
   };
 
   const onClearFilters = () => {
-    setFieldValue("bloodType", "");
-    setFieldValue("city", "");
+    setRadioButtonBloodType("");
     handleSubmit();
     setFiltersVisibility?.(false);
   };
@@ -57,7 +60,7 @@ export const Filters: FC<FiltersProps> = ({
       <ChooseBloodType
         variant={variant}
         selectedBloodType={values.bloodType}
-        setSelectedBloodType={(bloodType) => setFieldValue("bloodType", bloodType)}
+        setSelectedBloodType={setRadioButtonBloodType}
       />
       {/* <ChooseCity
         variant={variant}
