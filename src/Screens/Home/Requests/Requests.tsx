@@ -1,11 +1,10 @@
 import { FilterButton, Filters } from "@components";
-import { AntDesign } from "@expo/vector-icons";
-import { useAppNavigation, useDonationRequests } from "@hooks";
+import { useAppSelector, useDonationRequests, useUser } from "@hooks";
 import { ColorsEnum } from "@theme";
 import { LinearGradient } from "expo-linear-gradient";
 import React, { FC, useState } from "react";
-import { FlatList, StyleSheet, TouchableOpacity, View } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { FlatList, StyleSheet, View } from "react-native";
+import { CreateRequestButton } from "../CreateRequestButton";
 import { RequestCard } from "../RequestCard";
 
 interface RequestsProps {
@@ -13,9 +12,11 @@ interface RequestsProps {
 }
 
 export const Requests: FC<RequestsProps> = ({ setIsContactModalVisible }) => {
+
+  const { bloodType } = useAppSelector(state => state.donationRequestsFilter);
+  const { data: user } = useUser();
   
   const [filtersVisibility, setFiltersVisibility] = useState(false);
-  const { navigateToCreateDonationRequest } = useAppNavigation();
 
   const onToggleFilters = () => {
     setFiltersVisibility(prev => !prev);
@@ -25,9 +26,7 @@ export const Requests: FC<RequestsProps> = ({ setIsContactModalVisible }) => {
     setIsContactModalVisible(true);
   };
 
-  const { data: donationRequests, fetchNextPage, isFetching, refetch } = useDonationRequests();
-
-  const { bottom } = useSafeAreaInsets();
+  const { data: donationRequests, fetchNextPage, isFetching, refetch } = useDonationRequests(bloodType);
 
   return (
     <View style={styles.container}>
@@ -42,13 +41,13 @@ export const Requests: FC<RequestsProps> = ({ setIsContactModalVisible }) => {
       </LinearGradient>
       {
         filtersVisibility ? (
-          <Filters variant="secondary" />
+          <Filters variant="secondary" setFiltersVisibility={setFiltersVisibility} />
         ) : <FlatList
           onRefresh={refetch}
           refreshing={isFetching}
           data={donationRequests?.pages.flatMap(page => page.pageDonationRequests)}
           showsVerticalScrollIndicator={false}
-          ListHeaderComponent={() => <View style={{ height: 40 }} />}
+          ListHeaderComponent={() => <View style={{ height: 48 }} />}
           contentContainerStyle={{ padding: 16, paddingTop: 0 }}
           renderItem={({ item }) => (
             <RequestCard
@@ -61,15 +60,7 @@ export const Requests: FC<RequestsProps> = ({ setIsContactModalVisible }) => {
           onEndReached={() => fetchNextPage()}
         />
       }
-      <AntDesign name="plus" size={32} color={ColorsEnum.white} />
-      <TouchableOpacity style={[
-        styles.floatingButton,
-        {
-          bottom: bottom + 54,
-        }
-      ]} onPress={navigateToCreateDonationRequest}>
-        <AntDesign name="plus" size={32} color={ColorsEnum.white} />
-      </TouchableOpacity>
+      {filtersVisibility || user === null ? null : <CreateRequestButton />}
     </View>
   );
 };
@@ -86,13 +77,6 @@ const styles = StyleSheet.create({
     zIndex: 1,
     width: "100%",
     height: 48,
-    top: 8,
+    top: 8
   },
-  floatingButton: {
-    position: "absolute",
-    right: 16,
-    backgroundColor: ColorsEnum.secondary,
-    padding: 8,
-    borderRadius: 40,
-  }
 });

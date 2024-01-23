@@ -1,20 +1,27 @@
-import { Ionicons } from "@expo/vector-icons";
+import { AntDesign } from "@expo/vector-icons";
 import { useAppNavigation } from "@hooks";
 import { ColorsEnum } from "@theme";
 import React, { FC } from "react";
-import { Pressable, StyleSheet } from "react-native";
+import { StyleSheet, TouchableOpacity } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export const CreateRequestButton: FC = () => {
   const { navigateToCreateDonationRequest } = useAppNavigation();
+  const { bottom } = useSafeAreaInsets();
 
   const onCreateRequest = () => {
     navigateToCreateDonationRequest();
   };
 
   return (
-    <Pressable onPress={onCreateRequest} style={styles.button}>
-      <Ionicons name="add" size={32} color="white" />
-    </Pressable>
+    <TouchableOpacity style={[
+      styles.floatingButton,
+      {
+        bottom: bottom + 54,
+      }
+    ]} onPress={onCreateRequest}>
+      <AntDesign name="plus" size={32} color={ColorsEnum.white} />
+    </TouchableOpacity>
   );
 };
 
@@ -33,4 +40,11 @@ const styles = StyleSheet.create({
   text: {
     color: "white",
   },
+  floatingButton: {
+    position: "absolute",
+    right: 16,
+    backgroundColor: ColorsEnum.secondary,
+    padding: 8,
+    borderRadius: 40,
+  }
 });
