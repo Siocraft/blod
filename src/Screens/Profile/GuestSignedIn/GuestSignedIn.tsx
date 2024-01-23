@@ -1,8 +1,7 @@
-import { BText } from "@components";
+import { BButton, BText } from "@components";
 import { useSignOut } from "@hooks";
-import { ColorsEnum } from "@theme";
 import React, { FC } from "react";
-import { Pressable, View, StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 export const GuestSignedIn: FC = () => {
   const { signOutFromApp } = useSignOut();
@@ -16,19 +15,12 @@ export const GuestSignedIn: FC = () => {
       <BText color="black" size="large" bold>
         Ingresa a tu cuenta para ver tu información
       </BText>
-      <Pressable
+      <BButton
         onPress={handleOnLoginPressed}
-        style={{
-          backgroundColor: ColorsEnum.secondary,
-          padding: 8,
-          borderRadius: 8,
-          marginTop: 16,
-          width: "100%",
-          alignItems: "center",
-        }}
-      >
-        <BText color="white">Ir al inicio de sesión</BText>
-      </Pressable>
+        variant="secondary"
+        title="Ir al inicio de sesión"
+        style={styles.loginButton}
+      />
     </View>
   );
 };
@@ -40,4 +32,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     padding: 16,
   },
+  loginButton: {
+    marginTop: 16,
+    width: "100%",
+  }
 });

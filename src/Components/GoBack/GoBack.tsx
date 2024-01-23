@@ -1,4 +1,4 @@
-import { ArrowLeftSvg } from "@assets";
+import { Feather } from "@expo/vector-icons";
 import { useAppNavigation } from "@hooks";
 import { ColorsEnum } from "@theme";
 import { LinearGradient } from "expo-linear-gradient";
@@ -26,7 +26,7 @@ export const GoBack: FC<GoBackProps> = () => {
       ColorsEnum.whiteTransparent,
     ]} style={styles.gradient}>
       <Pressable style={styles.container} onPress={onGoBack}>
-        <ArrowLeftSvg />
+        <Feather name="chevron-left" size={24} color={ColorsEnum.secondary} />
         <View style={{ width: 8 }} />
         <BText style={{ lineHeight: 24 }} color="secondary" bold>Regresar</BText>
       </Pressable>
