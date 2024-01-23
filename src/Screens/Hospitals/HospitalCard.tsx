@@ -63,7 +63,7 @@ export const HospitalCard: FC<HospitalCardProps> = ({
 
   return <View style={styles.card}>
     <View style={styles.row}>
-      <BText color="black" bold style={{ marginBottom: 1 }}>
+      <BText color="black" bold style={styles.hospitalNameText}>
         {hospital.name}
         <BText color="darkGray"> en {city}</BText>
       </BText>
@@ -156,5 +156,10 @@ const styles = StyleSheet.create({
   },
   openMapsButton: {
     marginBottom: 16,
+  },
+  hospitalNameText: {
+    marginBottom: 1,
+    flex: 1,
+    flexWrap: "wrap"
   }
 });
