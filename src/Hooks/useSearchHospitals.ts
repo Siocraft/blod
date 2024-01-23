@@ -14,7 +14,7 @@ const searchHospitalsByName = async (name: string) => {
 
 export const useSearchHospitals = (name: string) => {
   return useQuery({
-    queryKey: [QueryKeys.HOSPITALS, name],
+    queryKey: [ QueryKeys.HOSPITALS, name ],
     queryFn: () => searchHospitalsByName(name),
     cacheTime: Infinity,
   });

@@ -44,7 +44,7 @@ export const BTextInput: FC<Props> = ({
         style={[
           styles.inputContainer,
           styles[variant],
-          error && { borderColor: ColorsEnum.error },
+          error && { borderColor: ColorsEnum.primary },
           disabled && {
             backgroundColor: ColorsEnum.gray,
             borderColor: ColorsEnum.gray,

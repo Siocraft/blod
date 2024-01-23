@@ -2,7 +2,7 @@ import { LocationObjectCoords, getCurrentPositionAsync, useForegroundPermissions
 import { useEffect, useState } from "react";
 
 export const useUserLocation = () => {
-  const [location, setLocation] = useState<LocationObjectCoords>({
+  const [ location, setLocation ] = useState<LocationObjectCoords>({
     latitude: 0,
     longitude: 0,
     accuracy: 0,
@@ -12,14 +12,14 @@ export const useUserLocation = () => {
     altitudeAccuracy: 0,
   });
 
-  const [status] = useForegroundPermissions();
+  const [ status ] = useForegroundPermissions();
 
   useEffect(() => {
     (async () => {
       const { coords } = await getCurrentPositionAsync();
       setLocation(coords);
     })();
-  }, [status]);
+  }, [ status ]);
 
   return location;
 };

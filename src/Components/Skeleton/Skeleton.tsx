@@ -40,8 +40,8 @@ export const Skeleton: FC<SkeletonProps> = ({
   };
 
   const translateX = animatedValue.interpolate({
-    inputRange: [0, 1],
-    outputRange: [-300, 400]
+    inputRange: [ 0, 1 ],
+    outputRange: [ -300, 400 ]
   });
 
   useEffect(() => {
@@ -55,7 +55,7 @@ export const Skeleton: FC<SkeletonProps> = ({
       ColorsEnum.whitesmoke,
       ColorsEnum.silver,
     ]}
-    start={[0, 1]} end={[1, 1]}
+    start={[ 0, 1 ]} end={[ 1, 1 ]}
     style={StyleSheet.flatten([
       styles[variant],
       styles.container,
@@ -63,7 +63,7 @@ export const Skeleton: FC<SkeletonProps> = ({
     ])}>
     <Animated.View style={StyleSheet.flatten([
       styles.animatedView,
-      { transform: [{ translateX }] },
+      { transform: [ { translateX } ] },
       { backgroundColor: skeletonColors[color] }
     ])}>
       <LinearGradient
@@ -75,7 +75,7 @@ export const Skeleton: FC<SkeletonProps> = ({
           ColorsEnum.whiteTransparent,
         ]}
         style={{ height: "100%" }}
-        start={[0, 1]} end={[1, 1]}
+        start={[ 0, 1 ]} end={[ 1, 1 ]}
       />
     </Animated.View>
   </LinearGradient>;

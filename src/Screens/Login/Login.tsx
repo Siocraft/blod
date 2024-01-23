@@ -68,7 +68,7 @@ export const Login: FC = () => {
         value={values.email}
         error={emailError}
         errorMessage={errors.email}
-        icon={() => <Entypo name="email" size={16} color={emailError ? ColorsEnum.error : ColorsEnum.secondary} />}
+        icon={() => <Entypo name="email" size={16} color={emailError ? ColorsEnum.primary : ColorsEnum.secondary} />}
       />
       <View style={{ height: 16 }} />
       <BTextInput
@@ -80,7 +80,7 @@ export const Login: FC = () => {
         value={values.password}
         error={passwordError}
         errorMessage={errors.password}
-        icon={() => <MaterialCommunityIcons name="form-textbox-password" size={16} color={passwordError ? ColorsEnum.error : ColorsEnum.secondary} />}
+        icon={() => <MaterialCommunityIcons name="form-textbox-password" size={16} color={passwordError ? ColorsEnum.primary : ColorsEnum.secondary} />}
       />
       <View style={{ height: 16 }} />
       <BButton

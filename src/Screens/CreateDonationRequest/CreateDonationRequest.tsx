@@ -42,9 +42,9 @@ export const CreateDonationRequest: FC = () => {
     isError: isErrorUser,
   } = useUser(user?.uid);
   const { showLoading, hideLoading } = useContext(LoadingContext);
-  const [bloodTypeModalVisible, setBloodTypeModalVisible] = useState(false);
-  const [hospitalModalVisible, setHospitalModalVisible] = useState(false);
-  const [birthdateModalVisible, setBirthDateModalVisible] = useState(false);
+  const [ bloodTypeModalVisible, setBloodTypeModalVisible ] = useState(false);
+  const [ hospitalModalVisible, setHospitalModalVisible ] = useState(false);
+  const [ birthdateModalVisible, setBirthDateModalVisible ] = useState(false);
   const { data: hospitals } = useHospitals();
 
   const onPressShowBloodTypeModal = () => {
@@ -72,12 +72,12 @@ export const CreateDonationRequest: FC = () => {
   };
 
   useEffect(() => {
-    if(isLoadingUser) {
+    if (isLoadingUser) {
       showLoading("Cargando información del usuario...");
     } else {
       hideLoading();
     }
-  }, [isLoadingUser]);
+  }, [ isLoadingUser ]);
 
   const {
     mutate: createDonationRequest,
@@ -126,10 +126,10 @@ export const CreateDonationRequest: FC = () => {
     const id = hospitals?.find(hospital => hospital.name === hospitalName)?.id ?? "";
     setFieldValue("city", city);
     setFieldValue("hospitalId", id);
-  }, [hospitals]);
+  }, [ hospitals ]);
 
   const displayBirthDate = useMemo(() => {
-    if(values.birthDate !== undefined) {
+    if (values.birthDate !== undefined) {
       const date = new Date(values.birthDate);
       const day = date.getDate();
       const month = date.getMonth() + 1;
@@ -137,21 +137,21 @@ export const CreateDonationRequest: FC = () => {
       return `${day}/${month}/${year}`;
     }
     return undefined;
-  }, [values.birthDate]);
+  }, [ values.birthDate ]);
 
   const age = useMemo(() => {
-    if(values.birthDate !== undefined) {
+    if (values.birthDate !== undefined) {
       const date = new Date(values.birthDate);
       const today = new Date();
       const age = today.getFullYear() - date.getFullYear();
       const month = today.getMonth() - date.getMonth();
-      if(month < 0 || (month === 0 && today.getDate() < date.getDate())) {
+      if (month < 0 || (month === 0 && today.getDate() < date.getDate())) {
         return age - 1;
       }
       return age;
     }
     return 0;
-  }, [values.birthDate]);
+  }, [ values.birthDate ]);
 
   if (!user) return null;
   if (isLoadingUser) return null;
@@ -220,7 +220,7 @@ export const CreateDonationRequest: FC = () => {
             placeholder="Nombre"
             value={values.firstName}
             onChangeText={(text) => setValues({ ...values, firstName: text })}
-            icon={() => <Ionicons name="person-circle" size={24} color={!!errors.firstName && !!touched.firstName ? ColorsEnum.error : ColorsEnum.secondary} />}
+            icon={() => <Ionicons name="person-circle" size={24} color={!!errors.firstName && !!touched.firstName ? ColorsEnum.primary : ColorsEnum.secondary} />}
           />
           <View style={{ height: 8 }} />
           <BTextInput
@@ -230,7 +230,7 @@ export const CreateDonationRequest: FC = () => {
             placeholder="Apellido"
             value={values.lastName}
             onChangeText={(text) => setValues({ ...values, lastName: text })}
-            icon={() => <Ionicons name="person-circle" size={24} color={!!errors.lastName && !!touched.lastName ? ColorsEnum.error : ColorsEnum.secondary} />}
+            icon={() => <Ionicons name="person-circle" size={24} color={!!errors.lastName && !!touched.lastName ? ColorsEnum.primary : ColorsEnum.secondary} />}
           />
           <View style={{ height: 8 }} />
           <BTextInput
@@ -241,7 +241,7 @@ export const CreateDonationRequest: FC = () => {
             placeholder="Teléfono"
             value={values.contact}
             onChangeText={(text) => setValues({ ...values, contact: text })}
-            icon={() => <Ionicons name="phone-portrait" size={24} color={!!errors.contact && !!touched.contact ? ColorsEnum.error : ColorsEnum.secondary} />}
+            icon={() => <Ionicons name="phone-portrait" size={24} color={!!errors.contact && !!touched.contact ? ColorsEnum.primary : ColorsEnum.secondary} />}
           />
           <View style={{ height: 8 }} />
           <BTextInput
@@ -253,7 +253,7 @@ export const CreateDonationRequest: FC = () => {
             value={values.description}
             onChangeText={(text) => setValues({ ...values, description: text })}
             style={{ height: 100 }}
-            icon={() => <MaterialIcons name="description" size={24} color={!!errors.description && !!touched.description ? ColorsEnum.error : ColorsEnum.secondary} />}
+            icon={() => <MaterialIcons name="description" size={24} color={!!errors.description && !!touched.description ? ColorsEnum.primary : ColorsEnum.secondary} />}
           />
           <View style={{ height: 8 }} />
           <BDropdown
@@ -262,7 +262,7 @@ export const CreateDonationRequest: FC = () => {
             label="Fecha de Nacimiento"
             text={displayBirthDate ?? "Fecha de nacimiento"}
             onPress={onPressShowBirthDateModal}
-            iconLeft={() => <Fontisto name="date" size={24} color={!!errors.birthDate && touched.birthDate ? ColorsEnum.error : ColorsEnum.secondary} />}
+            iconLeft={() => <Fontisto name="date" size={24} color={!!errors.birthDate && touched.birthDate ? ColorsEnum.primary : ColorsEnum.secondary} />}
           />
           <View style={{ height: 8 }} />
           <BDropdown
@@ -275,7 +275,7 @@ export const CreateDonationRequest: FC = () => {
                 : values.bloodType) || "Elige el tipo de sangre"
             }
             onPress={onPressShowBloodTypeModal}
-            iconLeft={() => <Fontisto name="blood-drop" size={24} color={!!errors.bloodType && touched.bloodType ? ColorsEnum.error : ColorsEnum.secondary} />}
+            iconLeft={() => <Fontisto name="blood-drop" size={24} color={!!errors.bloodType && touched.bloodType ? ColorsEnum.primary : ColorsEnum.secondary} />}
           />
           <View style={{ height: 8 }} />
           <BDropdown
@@ -284,7 +284,7 @@ export const CreateDonationRequest: FC = () => {
             label="Hospital"
             text={values.hospital || "Elige un hospital"}
             onPress={onPressShowHospitalModal}
-            iconLeft={() => <Fontisto name="blood-drop" size={24} color={!!errors.hospital && touched.hospital ? ColorsEnum.error : ColorsEnum.secondary} />}
+            iconLeft={() => <Fontisto name="blood-drop" size={24} color={!!errors.hospital && touched.hospital ? ColorsEnum.primary : ColorsEnum.secondary} />}
           />
           <View style={{ height: 16 }} />
           <BButton

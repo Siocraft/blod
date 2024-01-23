@@ -16,7 +16,7 @@ export const Requests: FC<RequestsProps> = ({ setIsContactModalVisible }) => {
   const { bloodType } = useAppSelector(state => state.donationRequestsFilter);
   const { data: user } = useUser();
   
-  const [filtersVisibility, setFiltersVisibility] = useState(false);
+  const [ filtersVisibility, setFiltersVisibility ] = useState(false);
 
   const onToggleFilters = () => {
     setFiltersVisibility(prev => !prev);

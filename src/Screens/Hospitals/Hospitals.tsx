@@ -44,7 +44,9 @@ export const Hospitals: FC = () => {
   const { data: searchedHospitals } = useSearchHospitals(searchString);
 
   const noHospitalsFound = searchedHospitals?.length === 0 && searchString.length >= 3;
-  const noHospitalsInRange = flatListData.length === 0 && searchString.length < 3;
+  
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const _noHospitalsInRange = flatListData.length === 0 && searchString.length < 3;
 
   return (
     <SafeAreaView>
@@ -110,9 +112,8 @@ export const Hospitals: FC = () => {
         // ListHeaderComponent={() => <View style={{ height: 40 }} />}
         contentContainerStyle={{ paddingBottom: 16 }}
         renderItem={({ item: hospital }) => {
-
           // eslint-disable-next-line @typescript-eslint/no-unused-vars
-          const [_street, _neighborhood, zipAndCity, _state ] = hospital.formatted_address.split(", ");
+          const [ _street, _neighborhood, zipAndCity, _state ] = hospital.formatted_address.split(", ");
           // eslint-disable-next-line @typescript-eslint/no-unused-vars
           const [ _zipCode, city ] = zipAndCity.split(" ");
           return (

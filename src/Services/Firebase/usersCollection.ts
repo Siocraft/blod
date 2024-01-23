@@ -60,7 +60,7 @@ export const createUser = async ({
   }
 };
 
-export const updateUser = async (id: string | undefined, data: any) => {
+export const updateUser = async (id: string | undefined, data: Record<string, unknown>) => {
   if (!id) return null;
   Object.keys(data).forEach(key =>
     data[key] === undefined ? delete data[key] : {}

@@ -20,11 +20,11 @@ import { GuestSignedIn } from "../Profile/GuestSignedIn";
 
 export const EditProfile: FC = () => {
   const { user: authUser } = useAuth();
-  const { data: user, isError: isErrorUser, error } = useUser(authUser?.uid);
+  const { data: user, isError: isErrorUser } = useUser(authUser?.uid);
 
-  const [bloodTypeModalVisible, setBloodTypeModalVisible] = useState(false);
-  const [cityModalVisible, setCityModalVisible] = useState(false);
-  const [birthdayModalVisible, setBirthdayModalVisible] = useState(false);
+  const [ bloodTypeModalVisible, setBloodTypeModalVisible ] = useState(false);
+  const [ cityModalVisible, setCityModalVisible ] = useState(false);
+  const [ birthdayModalVisible, setBirthdayModalVisible ] = useState(false);
   const { goBack } = useAppNavigation();
 
   const updateUserMutation = useUpdateUser(authUser?.uid ?? "");

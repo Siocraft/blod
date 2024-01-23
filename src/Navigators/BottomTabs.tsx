@@ -19,7 +19,7 @@ const FluidTabBar: FC = () => {
     navigateToInformation,
   } = useAppNavigation();
 
-  const [tabsTintColor, setTabsTintColor] = useState<string>(
+  const [ tabsTintColor, setTabsTintColor ] = useState<string>(
     ColorsEnum.secondary
   );
 

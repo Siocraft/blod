@@ -10,7 +10,7 @@ const getDonationRequestsByPage = async ({
   bloodType?: string;
 }) => {
 
-  const { data: pageDonationRequests} =
+  const { data: pageDonationRequests } =
     await appAxios.get<DonationRequest[]>(
       ApiQueryKeys.DonationRequests,
       {
@@ -29,7 +29,7 @@ const getDonationRequestsByPage = async ({
 
 export const useDonationRequests = (bloodType?: string) => {
   return useInfiniteQuery({
-    queryKey: [QueryKeys.DONATION_REQUESTS, QueryKeys.GET_ALL, bloodType],
+    queryKey: [ QueryKeys.DONATION_REQUESTS, QueryKeys.GET_ALL, bloodType ],
     queryFn: ({ pageParam }) => getDonationRequestsByPage({ pageParam, bloodType }),
     getNextPageParam: (lastPage) => lastPage.nextPage,
   });

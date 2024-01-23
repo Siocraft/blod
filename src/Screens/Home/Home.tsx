@@ -13,15 +13,15 @@ import { Tabs } from "./Tabs";
 export const Home: FC = () => {
   const insets = useSafeAreaInsets();
 
-  const [isContactModaVisible, setIsContactModalVisible] = useState(false);
+  const [ isContactModaVisible, setIsContactModalVisible ] = useState(false);
 
-  const [selectedTab, setSelectedTab] = useState<"donors" | "requests">(
+  const [ selectedTab, setSelectedTab ] = useState<"donors" | "requests">(
     "requests"
   );
 
   return (
     <SafeAreaView
-      style={[styles.homeContainer, { paddingBottom: -insets.bottom }]}
+      style={[ styles.homeContainer, { paddingBottom: -insets.bottom } ]}
     >
       <Tabs selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
       {selectedTab === "requests" && (

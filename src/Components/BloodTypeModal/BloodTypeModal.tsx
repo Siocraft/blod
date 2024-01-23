@@ -25,7 +25,7 @@ export const BloodTypeModal: FC<BloodTypeModalProps> = ({
   cb,
   chooseMultipleBloodTypes = false,
 }) => {
-  const [selectedBloodType, setSelectedBloodType] = useState<BloodTypesArray | BloodType | "Tipo de sangre">(bloodTypeValue);
+  const [ selectedBloodType, setSelectedBloodType ] = useState<BloodTypesArray | BloodType | "Tipo de sangre">(bloodTypeValue);
 
   const onPressBloodType = (bloodType: BloodType) => {
     if (!chooseMultipleBloodTypes) {
@@ -33,7 +33,7 @@ export const BloodTypeModal: FC<BloodTypeModalProps> = ({
     } else if (Array.isArray(selectedBloodType) && selectedBloodType.includes(bloodType)) {
       setSelectedBloodType(selectedBloodType.filter((bt) => bt !== bloodType));
     } else if (Array.isArray(selectedBloodType)) {
-      setSelectedBloodType([...selectedBloodType, bloodType]);
+      setSelectedBloodType([ ...selectedBloodType, bloodType ]);
     }
   };
 

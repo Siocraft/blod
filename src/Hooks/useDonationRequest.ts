@@ -14,7 +14,7 @@ const getDonationRequest = async (id: string) => {
 
 export const useDonationRequest = (id: string) => {
   return useQuery({
-    queryKey: [QueryKeys.DONATION_REQUESTS, id],
+    queryKey: [ QueryKeys.DONATION_REQUESTS, id ],
     queryFn: () => getDonationRequest(id),
   });
 };

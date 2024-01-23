@@ -16,7 +16,7 @@ export const useAppNavigation = () => {
       navigation.reset({
         index: 0,
         // @ts-expect-error Some navigation types are wrong
-        routes: [{ name: NavigationConstants.Root.Authentication }],
+        routes: [ { name: NavigationConstants.Root.Authentication } ],
       }),
     // @ts-expect-error Some navigation types are wrong
     navigateToLogin: () => navigate(NavigationConstants.Screens.Login),

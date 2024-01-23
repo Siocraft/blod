@@ -29,7 +29,7 @@ export const useCreateDonationRequest = () => {
   const { navigateToRequestDetails } = useAppNavigation();
 
   return useMutation({
-    mutationKey: [QueryKeys.DONATION_REQUESTS, QueryKeys.CREATE],
+    mutationKey: [ QueryKeys.DONATION_REQUESTS, QueryKeys.CREATE ],
     mutationFn: createDonationRequest,
     onSuccess: (data) => {
       navigateToRequestDetails(data.id);

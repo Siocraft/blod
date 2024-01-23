@@ -16,7 +16,7 @@ export const InformationPiece: FC<InformationPieceProps> = ({
     <BText color="secondary" bold>
       {title}
     </BText>
-    <BText numberOfLines={1} style={{ maxWidth: "70%"}} color="darkGray">
+    <BText numberOfLines={1} style={{ maxWidth: "70%" }} color="darkGray">
       {value}
     </BText>
   </View>;

@@ -11,22 +11,22 @@ import { LoadingContext } from "../Context";
 import { RootStackNavigator } from "../Navigators";
 import { Loading } from "../Screens/Loading";
 import { store } from "../Services/Redux";
-LogBox.ignoreLogs(["Warning: ..."]); // Ignore log notification by message
-LogBox.ignoreLogs(["Setting a timer for a long period"]);
-LogBox.ignoreLogs(["Animated: `useNativeDriver` was not specified."]);
-LogBox.ignoreLogs(["(ADVICE) View ..."]);
-LogBox.ignoreAllLogs(); //Ignore all log notifications
+LogBox.ignoreLogs([ "Warning: ..." ]); // Ignore log notification by message
+LogBox.ignoreLogs([ "Setting a timer for a long period" ]);
+LogBox.ignoreLogs([ "Animated: `useNativeDriver` was not specified." ]);
+LogBox.ignoreLogs([ "(ADVICE) View ..." ]);
+LogBox.ignoreAllLogs(); // Ignore all log notifications
 
 export const App = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [loadingMessage, setIsLoadingMessage] = useState("");
-  const [status, requestPermission] = useForegroundPermissions();
+  const [ isLoading, setIsLoading ] = useState(false);
+  const [ loadingMessage, setIsLoadingMessage ] = useState("");
+  const [ status, requestPermission ] = useForegroundPermissions();
 
   useEffect(() => {
     if (status !== null && status.canAskAgain && !status.granted) {
       requestPermission();
     }
-  }, [status]);
+  }, [ status ]);
 
   return (
     <Provider store={store}>

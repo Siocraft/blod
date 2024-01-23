@@ -34,8 +34,8 @@ export const ProfileImage: FC<ProfileImageProps> = ({
   editable = false,
 }) => {
   const { showLoading, hideLoading } = useContext(LoadingContext);
-  const [image, setImage] = useState<string | null>(null);
-  const [imageFullScreen, setImageFullScreen] = useState(false);
+  const [ image, setImage ] = useState<string | null>(null);
+  const [ imageFullScreen, setImageFullScreen ] = useState(false);
   const { user: authUser } = useAuth();
 
   const imageContainerStyle = StyleSheet.flatten([
@@ -52,7 +52,7 @@ export const ProfileImage: FC<ProfileImageProps> = ({
     launchImageLibraryAsync({
       mediaTypes: MediaTypeOptions.Images,
       allowsEditing: true,
-      aspect: [4, 3],
+      aspect: [ 4, 3 ],
       quality: 1,
     })
       .then(async pickedImage => {
@@ -102,7 +102,7 @@ export const ProfileImage: FC<ProfileImageProps> = ({
     await updateUser(authUser?.uid, {
       avatar: image,
     });
-    queryClient.invalidateQueries([QueryKeys.USER, authUser?.uid]);
+    queryClient.invalidateQueries([ QueryKeys.USER, authUser?.uid ]);
     setImage(null);
     hideLoading();
   };

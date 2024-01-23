@@ -1,12 +1,12 @@
 import { queryClient, QueryKeys } from "@config";
+import { LoadingContext } from "@context";
 import { updateUser } from "@services";
 import { useMutation } from "@tanstack/react-query";
-import { LoadingContext } from "@context";
 import { useContext } from "react";
 
 type updateUserMutationParams = {
   id: string;
-  data: any;
+  data: Record<string, unknown>;
 };
 
 export const useUpdateUser = (uid: string) => {
@@ -19,7 +19,7 @@ export const useUpdateUser = (uid: string) => {
     },
     {
       onSettled: () => {
-        queryClient.invalidateQueries([QueryKeys.USER, uid]);
+        queryClient.invalidateQueries([ QueryKeys.USER, uid ]);
         hideLoading();
       },
     }
