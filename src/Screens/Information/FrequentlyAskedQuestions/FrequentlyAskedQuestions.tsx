@@ -79,7 +79,7 @@ export const FrequentlyAskedQuestions: FC = () => {
     </ScrollView>
     <FloatingInformation
       link="https://www.donarsangre.org/todo-sobre-la-sangre/preguntas-frecuentes/"
-      text="Consulta más preguntas frecuentes aquí "
+      text="Consulta más preguntas frecuentes aquí"
     />
   </SafeAreaView>;
 };

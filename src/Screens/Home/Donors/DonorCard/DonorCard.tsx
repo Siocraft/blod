@@ -1,5 +1,5 @@
-import { BloodSvg, DonorHeartSvg, LocationSvg } from "@assets";
-import { BButton, BCard, BText } from "@components";
+import { DonorHeartSvg, LocationSvg } from "@assets";
+import { BBloodType, BButton, BCard, BText } from "@components";
 import { createBlodAvatar } from "@services";
 import { ColorsEnum } from "@theme";
 import React, { FC } from "react";
@@ -50,10 +50,7 @@ export const DonorCard: FC<DonorCardProps> = ({ donor, onContact }) => {
         </View>
         <View style={{ flex: 1 }} />
         <View style={styles.bloodType}>
-          <BloodSvg />
-          <BText superBold size="title" style={{ position: "absolute" }}>
-            {donor.bloodType}
-          </BText>
+          <BBloodType bloodType={donor.bloodType} />
         </View>
       </View>
       <BText color="black" style={styles.description}>

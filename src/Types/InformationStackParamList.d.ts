@@ -3,4 +3,5 @@ type InformationStackParamList = {
   DonationRequirements: undefined;
   DonationTypes: undefined;
   FrequentlyAskedQuestions: undefined;
+  BloodGroupCompatibility: undefined;
 };

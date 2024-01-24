@@ -11,18 +11,19 @@ export const Information: FC = () => {
     navigateToDonationRequirements,
     navigateToDonationTypes,
     navigateToFrequentlyAskedQuestions,
+    navigateBloodGroupCompatibility,
   } = useAppNavigation();
 
   return <SafeAreaView style={styles.safeAreaView}>
     <ScrollView style={styles.container}>
-      <BText size="title" bold color="secondary">
+      <BText style={styles.titleText} size="title" bold color="secondary">
         Información
       </BText>
       <View style={{ height: 32 }} />
       <BText size="large" color="black" style={styles.text}>
-        Blod es una aplicación hecha con el propósito de facilitar la búsqueda de donadores de sangre.
-        Tenemos la intención de fomentar que las personas participen en la donación de sangre pues actualmente en México solo el 3% dona voluntariamente y el resto es llamado por reposición o por un familiar.
-        <BText size="large" color="black" bold> ¡Animate a salvar vidas! ¡Tu apoyo puede hacer la diferencia!</BText>
+        <BText size="large" color="secondary" style={styles.text}>Blod</BText> es una aplicación hecha con el propósito de facilitar la <BText size="large" color="secondary" style={styles.text}>búsqueda de donadores de sangre</BText>.
+        Tenemos la intención de fomentar que las personas participen en la donación de sangre pues actualmente en México <BText size="large" color="secondary" style={styles.text}>solo el 3% dona voluntariamente</BText> y el resto es llamado por reposición o por un familiar.
+        <BText size="large" color="secondary" style={styles.text}> ¡Animate a salvar vidas! ¡Tu apoyo puede hacer la diferencia!</BText>
       </BText>
 
       <View style={{ height: 32 }} />
@@ -31,6 +32,8 @@ export const Information: FC = () => {
       <InformationButton onPress={navigateToDonationTypes} title="Tipos de donación de sangre" />
       <View style={{ height: 16 }} />
       <InformationButton onPress={() => { return; }} title="Proceso de donación" />
+      <View style={{ height: 16 }} />
+      <InformationButton onPress={navigateBloodGroupCompatibility} title="Compatibilidad entre grupos sanguineos" />
       <View style={{ height: 16 }} />
       <InformationButton onPress={navigateToFrequentlyAskedQuestions} title="Preguntas frecuentes al donar" />
     </ScrollView>
@@ -44,7 +47,11 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    padding: 42
+    padding: 16
+  },
+  titleText: {
+    fontSize: 24,
+    lineHeight: 32
   },
   text: {
     fontWeight: "500",

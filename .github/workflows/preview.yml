@@ -1,10 +1,14 @@
 name: preview
+# Trigger the workflow on push or pull request to main branch
 on:
+  push:
+    branches:
+      - main
   pull_request:
     branches:
       - main
     types: [opened, synchronize]
-
+    
 jobs:
   update:
     name: EAS Update
