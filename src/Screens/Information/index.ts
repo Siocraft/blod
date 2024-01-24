@@ -1,5 +1,5 @@
 export * from "./DonationTypes";
-export * from "./FAQ";
+export * from "./FrequentlyAskedQuestions";
 export * from "./Information";
 export * from "./Requirements";
 

@@ -10,7 +10,7 @@ export const Information: FC = () => {
   const {
     navigateToDonationRequirements,
     navigateToDonationTypes,
-    navigateToFAQ,
+    navigateToFrequentlyAskedQuestions,
   } = useAppNavigation();
 
   return <SafeAreaView style={styles.safeAreaView}>
@@ -32,7 +32,7 @@ export const Information: FC = () => {
       <View style={{ height: 16 }} />
       <InformationButton onPress={() => { return; }} title="Proceso de donación" />
       <View style={{ height: 16 }} />
-      <InformationButton onPress={navigateToFAQ} title="Preguntas frecuentes al donar" />
+      <InformationButton onPress={navigateToFrequentlyAskedQuestions} title="Preguntas frecuentes al donar" />
     </ScrollView>
   </SafeAreaView>;
 };

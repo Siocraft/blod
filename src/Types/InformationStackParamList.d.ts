@@ -2,5 +2,5 @@ type InformationStackParamList = {
   Information: undefined;
   DonationRequirements: undefined;
   DonationTypes: undefined;
-  FAQ: undefined;
+  FrequentlyAskedQuestions: undefined;
 };

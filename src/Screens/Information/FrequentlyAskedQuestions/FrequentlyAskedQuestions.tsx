@@ -25,7 +25,7 @@ const getHighlightedText = (text: string, searchString: string) => {
 
 
 
-export const FAQ: FC = () => {
+export const FrequentlyAskedQuestions: FC = () => {
 
   const [ searchString, setSearchString ] = useState("");
 

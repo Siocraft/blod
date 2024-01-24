@@ -1,5 +1,5 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { DonationTypes, FAQ, Information, Requirements } from "@screens";
+import { DonationTypes, FrequentlyAskedQuestions, Information, Requirements } from "@screens";
 import React from "react";
 
 const Stack = createNativeStackNavigator<InformationStackParamList>();
@@ -14,7 +14,7 @@ export const InformationStack = () => {
       <Stack.Screen name="Information" component={Information} />
       <Stack.Screen name="DonationRequirements" component={Requirements} />
       <Stack.Screen name="DonationTypes" component={DonationTypes} />
-      <Stack.Screen name="FAQ" component={FAQ} />
+      <Stack.Screen name="FrequentlyAskedQuestions" component={FrequentlyAskedQuestions} />
     </Stack.Navigator>
   );
 };

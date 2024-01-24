@@ -51,7 +51,7 @@ export const useAppNavigation = () => {
     // @ts-expect-error Some navigation types are wrong
     navigateToDonationTypes: () => navigate(NavigationConstants.Screens.DonationTypes),
     // @ts-expect-error Some navigation types are wrong
-    navigateToFAQ: () => navigate(NavigationConstants.Screens.FAQ),
+    navigateToFrequentlyAskedQuestions: () => navigate(NavigationConstants.Screens.FrequentlyAskedQuestions),
     goBack,
     canGoBack,
   };
