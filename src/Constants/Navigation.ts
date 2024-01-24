@@ -23,5 +23,6 @@ export const NavigationConstants = {
     DonationRequirements: "DonationRequirements",
     RequestDetails: "RequestDetails",
     DonationTypes: "DonationTypes",
+    FAQ: "FAQ",
   },
 };
