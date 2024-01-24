@@ -7,7 +7,11 @@ import { InformationButton } from "./InformationButton";
 
 export const Information: FC = () => {
 
-  const { navigateToDonationRequirements, navigateToDonationTypes } = useAppNavigation();
+  const {
+    navigateToDonationRequirements,
+    navigateToDonationTypes,
+    navigateToFrequentlyAskedQuestions,
+  } = useAppNavigation();
 
   return <SafeAreaView style={styles.safeAreaView}>
     <ScrollView style={styles.container}>
@@ -28,7 +32,7 @@ export const Information: FC = () => {
       <View style={{ height: 16 }} />
       <InformationButton onPress={() => { return; }} title="Proceso de donación" />
       <View style={{ height: 16 }} />
-      <InformationButton onPress={() => { return; }} title="Preguntas frecuentes al donar" />
+      <InformationButton onPress={navigateToFrequentlyAskedQuestions} title="Preguntas frecuentes al donar" />
     </ScrollView>
   </SafeAreaView>;
 };
