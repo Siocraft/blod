@@ -1,5 +1,5 @@
-import { BloodSvg, HospitalSvg, LocationSvg } from "@assets";
-import { BButton, BCard, BText } from "@components";
+import { HospitalSvg, LocationSvg } from "@assets";
+import { BBloodType, BButton, BCard, BText } from "@components";
 import { useAppNavigation } from "@hooks";
 import { createBlodAvatar } from "@services";
 import moment from "moment";
@@ -71,15 +71,7 @@ export const RequestCard: FC<RequestCardProps> = ({
           return <View key={
             requestDonation.id + "_" + singleBloodType
           } style={styles.bloodType}>
-            <BloodSvg variant="secondary" />
-            <BText
-              color="secondary"
-              superBold
-              size="title"
-              style={{ position: "absolute" }}
-            >
-              {singleBloodType}
-            </BText>
+            <BBloodType variant="secondary" bloodType={singleBloodType} />
           </View>;
         })}
       </View>
