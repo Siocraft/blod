@@ -1,3 +1,4 @@
+export * from "./BloodGroupCompatibility";
 export * from "./DonationTypes";
 export * from "./FrequentlyAskedQuestions";
 export * from "./Information";

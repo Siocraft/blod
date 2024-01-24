@@ -11,6 +11,7 @@ export const Information: FC = () => {
     navigateToDonationRequirements,
     navigateToDonationTypes,
     navigateToFrequentlyAskedQuestions,
+    navigateBloodGroupCompatibility,
   } = useAppNavigation();
 
   return <SafeAreaView style={styles.safeAreaView}>
@@ -31,6 +32,8 @@ export const Information: FC = () => {
       <InformationButton onPress={navigateToDonationTypes} title="Tipos de donación de sangre" />
       <View style={{ height: 16 }} />
       <InformationButton onPress={() => { return; }} title="Proceso de donación" />
+      <View style={{ height: 16 }} />
+      <InformationButton onPress={navigateBloodGroupCompatibility} title="Compatibilidad entre grupos sanguineos" />
       <View style={{ height: 16 }} />
       <InformationButton onPress={navigateToFrequentlyAskedQuestions} title="Preguntas frecuentes al donar" />
     </ScrollView>

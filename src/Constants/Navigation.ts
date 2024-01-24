@@ -24,5 +24,6 @@ export const NavigationConstants = {
     RequestDetails: "RequestDetails",
     DonationTypes: "DonationTypes",
     FrequentlyAskedQuestions: "FrequentlyAskedQuestions",
+    BloodGroupCompatibility: "BloodGroupCompatibility",
   },
 };
