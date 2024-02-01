@@ -1,7 +1,12 @@
 import { useAppDispatch, useAppSelector } from "@hooks";
-import { setBloodTypeDonationRequestsFilter, setBloodTypeDonatorsFilter, setCityDonationRequestsFilter, setCityDonatorsFilter } from "@services";
+import {
+  setBloodTypeDonationRequestsFilter,
+  setBloodTypeDonorsFilter,
+  setCityDonationRequestsFilter,
+  setCityDonorsFilter,
+} from "@services";
 import { useFormik } from "formik";
-import React, { FC } from "react";
+import React, { FC, useMemo } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { BButton } from "../BButton";
@@ -20,23 +25,24 @@ export const Filters: FC<FiltersProps> = ({
 }) => {
 
   const { city, bloodType } = useAppSelector(state => state.donationRequestsFilter);
+  const { donorsFiltersCity, donorsFiltersBloodType } = useAppSelector(state => state.donorsFilter);
+
   const dispatch = useAppDispatch();
   const { bottom } = useSafeAreaInsets();
 
   const { values, setFieldValue, handleSubmit } = useFormik({
     initialValues: {
-      bloodType,
-      city,
+      bloodType: location === "donationRequests" ? bloodType : donorsFiltersBloodType,
+      city: location === "donationRequests" ? city : donorsFiltersCity,
     },
     onSubmit: (values) => {
       if (location === "donationRequests") {
         dispatch(setBloodTypeDonationRequestsFilter(values.bloodType));
         dispatch(setCityDonationRequestsFilter(values.city));
       } else {
-        dispatch(setBloodTypeDonatorsFilter(values.bloodType));
-        dispatch(setCityDonatorsFilter(values.city));
+        dispatch(setBloodTypeDonorsFilter(values.bloodType));
+        dispatch(setCityDonorsFilter(values.city));
       }
-      setFiltersVisibility?.(false);
     },
   });
 
@@ -55,7 +61,11 @@ export const Filters: FC<FiltersProps> = ({
     setFiltersVisibility?.(false);
   };
 
-  const disableSaveButton = values.bloodType === bloodType && values.city === city;
+  const disableSaveButton = useMemo(() => {
+    const localBloodType = location === "donationRequests" ? bloodType : donorsFiltersBloodType;
+    const localCity = location === "donationRequests" ? city : donorsFiltersCity;
+    return values.bloodType === localBloodType && values.city === localCity;
+  }, [ values.bloodType, values.city ]);
 
   const clearFiltersButtonTestVisible = disableSaveButton && (values.bloodType !== "" || values.city !== "");
 

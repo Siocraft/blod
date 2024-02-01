@@ -1,9 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { DonationRequestsFiltersSlice } from "./slices";
+import { DonationRequestsFiltersSlice, DonorsFiltersSlice } from "./slices";
 
 export const store = configureStore({
   reducer: {
     donationRequestsFilter: DonationRequestsFiltersSlice.reducer,
+    donorsFilter: DonorsFiltersSlice.reducer,
   },
 });
 

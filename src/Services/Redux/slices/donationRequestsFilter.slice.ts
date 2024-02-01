@@ -22,20 +22,12 @@ export const DonationRequestsFiltersSlice = createSlice({
     setCityDonationRequestsFilter: (state, action: PayloadAction<string>) => {
       state.city = action.payload;
     },
-    setBloodTypeDonatorsFilter: (state, action: PayloadAction<FiltersState["bloodType"]>) => {
-      state.bloodType = action.payload;
-    },
-    setCityDonatorsFilter: (state, action: PayloadAction<string>) => {
-      state.city = action.payload;
-    },
   },
 });
 
 export const {
   setBloodTypeDonationRequestsFilter,
-  setCityDonationRequestsFilter,
-  setBloodTypeDonatorsFilter,
-  setCityDonatorsFilter
+  setCityDonationRequestsFilter
 } = DonationRequestsFiltersSlice.actions;
 
 export default DonationRequestsFiltersSlice.reducer;

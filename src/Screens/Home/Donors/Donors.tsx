@@ -5,6 +5,7 @@ import React, { FC, useState } from "react";
 import { FlatList, StyleSheet, View } from "react-native";
 import { donorCards } from "../../../Data/Donors";
 import { DonorCard } from "./DonorCard";
+import { useAppSelector } from "@hooks";
 
 interface DonorsProps {
   setIsContactModalVisible: (value: boolean) => void;
@@ -14,6 +15,10 @@ export const Donors: FC<DonorsProps> = ({ setIsContactModalVisible }) => {
   const onContact = () => {
     setIsContactModalVisible(true);
   };
+
+  const { donorsFiltersBloodType } = useAppSelector(state => state.donorsFilter);
+
+  console.log(donorsFiltersBloodType);
 
   const onToggleFilters = () => {
     setFiltersVisibility(prev => !prev);
