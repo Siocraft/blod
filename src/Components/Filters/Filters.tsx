@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from "@hooks";
-import { setBloodTypeDonationRequestsFilter, setCityDonationRequestsFilter } from "@services";
+import { setBloodTypeDonationRequestsFilter, setBloodTypeDonatorsFilter, setCityDonationRequestsFilter, setCityDonatorsFilter } from "@services";
 import { useFormik } from "formik";
 import React, { FC } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
@@ -10,11 +10,13 @@ import { ChooseBloodType } from "../ChooseBloodType";
 interface FiltersProps {
   variant: "primary" | "secondary";
   setFiltersVisibility?: (value: boolean) => void;
+  location: "donationRequests" | "donors";
 }
 
 export const Filters: FC<FiltersProps> = ({
   variant,
   setFiltersVisibility,
+  location,
 }) => {
 
   const { city, bloodType } = useAppSelector(state => state.donationRequestsFilter);
@@ -27,8 +29,14 @@ export const Filters: FC<FiltersProps> = ({
       city,
     },
     onSubmit: (values) => {
-      dispatch(setBloodTypeDonationRequestsFilter(values.bloodType));
-      dispatch(setCityDonationRequestsFilter(values.city));
+      if (location === "donationRequests") {
+        dispatch(setBloodTypeDonationRequestsFilter(values.bloodType));
+        dispatch(setCityDonationRequestsFilter(values.city));
+      } else {
+        dispatch(setBloodTypeDonatorsFilter(values.bloodType));
+        dispatch(setCityDonatorsFilter(values.city));
+      }
+      setFiltersVisibility?.(false);
     },
   });
 
@@ -71,13 +79,13 @@ export const Filters: FC<FiltersProps> = ({
         disabled={disableSaveButton}
         onPress={onSaveFilters}
         style={styles.saveButton}
-        variant={disableSaveButton ? "disabled" : "secondary"}
+        variant={disableSaveButton ? "disabled" : variant}
         title="Guardar"
       />}
       {clearFiltersButtonTestVisible ? <BButton
         onPress={onClearFilters}
         style={styles.saveButton}
-        variant="secondary"
+        variant={variant}
         title="Quitar filtros"
       /> : null}
       <View style={{ height: 30 }} />

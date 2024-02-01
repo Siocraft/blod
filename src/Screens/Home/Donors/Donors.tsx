@@ -34,7 +34,11 @@ export const Donors: FC<DonorsProps> = ({ setIsContactModalVisible }) => {
       </LinearGradient>
       {
         filtersVisibility ? (
-          <Filters variant="primary" />
+          <Filters
+            variant="primary"
+            location="donors"
+            setFiltersVisibility={setFiltersVisibility}
+          />
         ) : (<FlatList
           data={donorCards}
           showsVerticalScrollIndicator={false}

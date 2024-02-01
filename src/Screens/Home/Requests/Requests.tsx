@@ -41,7 +41,11 @@ export const Requests: FC<RequestsProps> = ({ setIsContactModalVisible }) => {
       </LinearGradient>
       {
         filtersVisibility ? (
-          <Filters variant="secondary" setFiltersVisibility={setFiltersVisibility} />
+          <Filters
+            location="donationRequests"
+            variant="secondary"
+            setFiltersVisibility={setFiltersVisibility}
+          />
         ) : <FlatList
           onRefresh={refetch}
           refreshing={isFetching}
