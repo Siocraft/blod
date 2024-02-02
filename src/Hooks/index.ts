@@ -6,6 +6,7 @@ export * from "./useCreateDonationRequest";
 export * from "./useDistanceFromTwoCoordinates";
 export * from "./useDonationRequest";
 export * from "./useDonationRequests";
+export * from "./useDonors";
 export * from "./useHospital";
 export * from "./useHospitals";
 export * from "./useSearchHospitals";
