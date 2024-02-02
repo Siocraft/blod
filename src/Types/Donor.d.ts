@@ -1,15 +1,13 @@
-interface DonationRequest {
+interface Donor {
   id: string;
   lastName: string;
   firstName: string;
   age: number;
-  bloodType: BloodTypesArray;
+  bloodType: BloodType;
   city: string;
   hospital: string;
   contact: string;
   litersDonated: number;
   avatar: string;
   description?: string;
-  createdAt: string;
-  hospitalId: string;
 }

@@ -11,6 +11,7 @@ export const ApiQueryKeys = {
   DonationRequests: "/DonationRequests",
   ThirdPartyHospitals: "/Third-party/Hospital",
   GetDonationRequest: (id: string) => `/DonationRequest/${id}`,
+  Donors: "/Donors",
 } as const;
 
 export const appAxios = axios.create({

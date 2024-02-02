@@ -1,11 +1,11 @@
 import { FilterButton, Filters } from "@components";
+import { useAppSelector, useDonors } from "@hooks";
 import { ColorsEnum } from "@theme";
 import { LinearGradient } from "expo-linear-gradient";
 import React, { FC, useState } from "react";
 import { FlatList, StyleSheet, View } from "react-native";
 import { donorCards } from "../../../Data/Donors";
 import { DonorCard } from "./DonorCard";
-import { useAppSelector } from "@hooks";
 
 interface DonorsProps {
   setIsContactModalVisible: (value: boolean) => void;
@@ -18,7 +18,8 @@ export const Donors: FC<DonorsProps> = ({ setIsContactModalVisible }) => {
 
   const { donorsFiltersBloodType } = useAppSelector(state => state.donorsFilter);
 
-  console.log(donorsFiltersBloodType);
+
+  const { _data } = useDonors(donorsFiltersBloodType);
 
   const onToggleFilters = () => {
     setFiltersVisibility(prev => !prev);

@@ -9,4 +9,6 @@ enum BloodTypes {
   "O-" = "O-",
 }
 
+type BloodTypesArray = BloodType[]
+
 type BloodType = keyof typeof BloodTypes;
