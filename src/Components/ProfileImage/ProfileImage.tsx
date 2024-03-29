@@ -1,5 +1,4 @@
 import { QueryKeys, queryClient } from "@config";
-import { LoadingContext } from "@context";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useAuth } from "@hooks";
 import { ErrorReporting, updateUser, uploadImageAsync } from "@services";
@@ -10,7 +9,7 @@ import {
   MediaTypeOptions,
   launchImageLibraryAsync,
 } from "expo-image-picker";
-import React, { FC, useContext, useState } from "react";
+import React, { FC, useState } from "react";
 import {
   Image,
   ImagePickerResult,
@@ -33,7 +32,6 @@ export const ProfileImage: FC<ProfileImageProps> = ({
   borderRadius = 8,
   editable = false,
 }) => {
-  const { showLoading, hideLoading } = useContext(LoadingContext);
   const [ image, setImage ] = useState<string | null>(null);
   const [ imageFullScreen, setImageFullScreen ] = useState(false);
   const { user: authUser } = useAuth();
@@ -48,7 +46,6 @@ export const ProfileImage: FC<ProfileImageProps> = ({
   ]);
 
   const onEditImage = () => {
-    showLoading("Abriendo galería");
     launchImageLibraryAsync({
       mediaTypes: MediaTypeOptions.Images,
       allowsEditing: true,
@@ -59,7 +56,6 @@ export const ProfileImage: FC<ProfileImageProps> = ({
         await handleImagePicked(pickedImage);
       })
       .catch(ErrorReporting)
-      .finally(hideLoading);
   };
 
   const handleImagePicked = async (
@@ -69,7 +65,6 @@ export const ProfileImage: FC<ProfileImageProps> = ({
       | ImagePickerCancelledResult
   ) => {
     try {
-      showLoading("Subiendo imagen");
 
       if (pickerResult.cancelled === false) {
         const uploadUrl = await uploadImageAsync(
@@ -80,8 +75,6 @@ export const ProfileImage: FC<ProfileImageProps> = ({
       }
     } catch (e) {
       ErrorReporting(e);
-    } finally {
-      hideLoading();
     }
   };
 
@@ -98,13 +91,11 @@ export const ProfileImage: FC<ProfileImageProps> = ({
   };
 
   const onPressConfirmImage = async () => {
-    showLoading("Actualizando imagen");
     await updateUser(authUser?.uid, {
       avatar: image,
     });
     queryClient.invalidateQueries([ QueryKeys.USER, authUser?.uid ]);
     setImage(null);
-    hideLoading();
   };
 
   return (
