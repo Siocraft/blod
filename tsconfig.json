@@ -14,7 +14,8 @@
       "@constants": ["src/Constants"],
       "@context": ["src/Context"],
       "@utils": ["src/Utils"],
-      "@assets": ["src/Assets"]
+      "@assets": ["src/Assets"],
+      "@wrappers": ["src/Wrappers"],
     },
     "resolveJsonModule": true,
     "skipLibCheck": true

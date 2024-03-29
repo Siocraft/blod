@@ -1,10 +1,9 @@
 import { BButton, BCard, BDropdown, BText, BTextInput, BirthDateModal, BloodTypeModal, GoBack, HospitalModal } from "@components";
-import { LoadingContext } from "@context";
 import { Fontisto, Ionicons, MaterialIcons } from "@expo/vector-icons";
 import { useAppNavigation, useAuth, useCreateDonationRequest, useHospitals, useUser } from "@hooks";
 import { ColorsEnum } from "@theme";
 import { useFormik } from "formik";
-import React, { FC, useCallback, useContext, useEffect, useMemo, useState } from "react";
+import React, { FC, useCallback, useMemo, useState } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import * as yup from "yup";
@@ -41,7 +40,6 @@ export const CreateDonationRequest: FC = () => {
     isLoading: isLoadingUser,
     isError: isErrorUser,
   } = useUser(user?.uid);
-  const { showLoading, hideLoading } = useContext(LoadingContext);
   const [ bloodTypeModalVisible, setBloodTypeModalVisible ] = useState(false);
   const [ hospitalModalVisible, setHospitalModalVisible ] = useState(false);
   const [ birthdateModalVisible, setBirthDateModalVisible ] = useState(false);
@@ -70,14 +68,6 @@ export const CreateDonationRequest: FC = () => {
   const onPressHideBirthDateModal = () => {
     setBirthDateModalVisible(false);
   };
-
-  useEffect(() => {
-    if (isLoadingUser) {
-      showLoading("Cargando información del usuario...");
-    } else {
-      hideLoading();
-    }
-  }, [ isLoadingUser ]);
 
   const {
     mutate: createDonationRequest,
