@@ -19,7 +19,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import * as Yup from "yup";
 
 export type CompleteSignupProps = NativeStackScreenProps<
-  RootStackParamList,
+  AuthStackParamList,
   "CompleteSignup"
 >;
 
