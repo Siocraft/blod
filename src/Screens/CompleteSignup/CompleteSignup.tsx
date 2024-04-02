@@ -52,7 +52,6 @@ export const CompleteSignup: FC<CompleteSignupProps> = ({ route }) => {
     },
     validationSchema: SignupSchema,
     onSubmit: submittedValues => {
-      console.log(submittedValues);
       createUserWithEmailAndPassword(
         firebaseAuth,
         signupValues.email,
