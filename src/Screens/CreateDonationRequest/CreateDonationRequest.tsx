@@ -1,6 +1,7 @@
 import { BButton, BCard, BDropdown, BText, BTextInput, BirthDateModal, BloodTypeModal, GoBack, HospitalModal } from "@components";
 import { Fontisto, Ionicons, MaterialIcons } from "@expo/vector-icons";
-import { useAppNavigation, useAuth, useCreateDonationRequest, useHospitals, useUser } from "@hooks";
+import { useAppNavigation, useCreateDonationRequest, useHospitals, useUser } from "@hooks";
+import { useFirebaseUser } from "@services";
 import { ColorsEnum } from "@theme";
 import { useFormik } from "formik";
 import React, { FC, useCallback, useMemo, useState } from "react";
@@ -34,7 +35,7 @@ const requestSchema = yup.object().shape({
 });
 
 export const CreateDonationRequest: FC = () => {
-  const { user } = useAuth();
+  const user = useFirebaseUser();
   const {
     data: userData,
     isLoading: isLoadingUser,

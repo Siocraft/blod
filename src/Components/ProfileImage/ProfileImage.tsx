@@ -1,7 +1,6 @@
 import { QueryKeys, queryClient } from "@config";
 import { MaterialIcons } from "@expo/vector-icons";
-import { useAuth } from "@hooks";
-import { ErrorReporting, updateUser, uploadImageAsync } from "@services";
+import { ErrorReporting, updateUser, uploadImageAsync, useFirebaseUser } from "@services";
 import { ColorsEnum } from "@theme";
 import {
   ImageInfo,
@@ -34,7 +33,7 @@ export const ProfileImage: FC<ProfileImageProps> = ({
 }) => {
   const [ image, setImage ] = useState<string | null>(null);
   const [ imageFullScreen, setImageFullScreen ] = useState(false);
-  const { user: authUser } = useAuth();
+  const user = useFirebaseUser();
 
   const imageContainerStyle = StyleSheet.flatten([
     styles.imageContainer,
@@ -69,7 +68,7 @@ export const ProfileImage: FC<ProfileImageProps> = ({
       if (pickerResult.cancelled === false) {
         const uploadUrl = await uploadImageAsync(
           pickerResult.uri,
-          authUser?.uid
+          user?.uid
         );
         setImage(uploadUrl);
       }
@@ -91,10 +90,10 @@ export const ProfileImage: FC<ProfileImageProps> = ({
   };
 
   const onPressConfirmImage = async () => {
-    await updateUser(authUser?.uid, {
+    await updateUser(user?.uid, {
       avatar: image,
     });
-    queryClient.invalidateQueries([ QueryKeys.USER, authUser?.uid ]);
+    queryClient.invalidateQueries([ QueryKeys.USER, user?.uid ]);
     setImage(null);
   };
 
