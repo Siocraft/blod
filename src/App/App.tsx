@@ -3,7 +3,8 @@ import { useForegroundPermissions } from "expo-location";
 import React, { useEffect } from "react";
 import { LogBox } from "react-native";
 import "../Config/firebase";
-import { RootStackNavigator } from "../Navigators";
+import { AuthStackNavigator, BottomTabs } from "../Navigators";
+import { useFirebaseUser } from "@services";
 LogBox.ignoreLogs([ "Warning: ..." ]); // Ignore log notification by message
 LogBox.ignoreLogs([ "Setting a timer for a long period" ]);
 LogBox.ignoreLogs([ "Animated: `useNativeDriver` was not specified." ]);
@@ -19,9 +20,13 @@ export const InnerApp = () => {
     }
   }, [ status ]);
 
-  return (
-    <RootStackNavigator />
-  );
+  const user = useFirebaseUser();
+
+  if (!user) {
+    return <AuthStackNavigator />;
+  }
+
+  return <BottomTabs />;
 };
 
 export const App = withRedux(withReactQuery(withNavigation(InnerApp)));
