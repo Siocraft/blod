@@ -1,20 +1,18 @@
-import { BText, ProfileData, ProfileImage } from "@components";
-import { useAuth, useUser } from "@hooks";
+import { useFirebaseUser } from "@services";
 import { ColorsEnum } from "@theme";
-import { calculateAgeFromDate } from "@utils";
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { ErrorScreen } from "../Error";
 import { ButtonHub } from "./ButtonHub";
 import { GuestSignedIn } from "./GuestSignedIn";
+import { useUser } from "@hooks";
+import { BText, ProfileData, ProfileImage } from "@components";
+import { calculateAgeFromDate } from "@utils";
 
 export const Profile = () => {
-  const { user: authUser } = useAuth();
-  const { data: user, isError: isErrorUser } = useUser(authUser?.uid);
-
-  if (!authUser) return <GuestSignedIn />;
-  if (isErrorUser) return <ErrorScreen />;
+  const firebaseUser = useFirebaseUser();
+  const { data: user, isError: isErrorUser } = useUser(firebaseUser?.uid);
+  if (!user) return <GuestSignedIn />;
   if (!user) return null;
 
   return (

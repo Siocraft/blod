@@ -1,4 +1,5 @@
-import { useAuth, useSignOut } from "@hooks";
+import { useSignOut } from "@hooks";
+import { useFirebaseUser } from "@services";
 import React, { FC } from "react";
 import { BButton, BButtonProps } from "../BButton";
 
@@ -8,7 +9,7 @@ export const SignOutButton: FC<SignOutButtonProps> = ({
   ...buttonProps
 }) => {
 
-  const { user } = useAuth();
+  const user = useFirebaseUser();
   const { signOutFromApp } = useSignOut();
 
   return user ? (

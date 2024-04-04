@@ -19,7 +19,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import * as Yup from "yup";
 
 export type CompleteSignupProps = NativeStackScreenProps<
-  RootStackParamList,
+  AuthStackParamList,
   "CompleteSignup"
 >;
 
@@ -52,7 +52,6 @@ export const CompleteSignup: FC<CompleteSignupProps> = ({ route }) => {
     },
     validationSchema: SignupSchema,
     onSubmit: submittedValues => {
-      console.log(submittedValues);
       createUserWithEmailAndPassword(
         firebaseAuth,
         signupValues.email,

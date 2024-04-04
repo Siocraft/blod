@@ -1,6 +1,6 @@
-import { QueryKeys } from "@config";
-import { ApiQueryKeys, appAxios } from "@services";
+import { QueryKeys, firebaseDatabase } from "@config";
 import { useInfiniteQuery } from "@tanstack/react-query";
+import { get, ref } from "firebase/database";
 
 const getDonationRequestsByPage = async ({
   pageParam = 0,
@@ -10,16 +10,26 @@ const getDonationRequestsByPage = async ({
   bloodType?: string;
 }) => {
 
-  const { data: pageDonationRequests } =
-    await appAxios.get<DonationRequest[]>(
-      ApiQueryKeys.DonationRequests,
-      {
-        params: {
-          page: pageParam,
-          bloodType,
-        }
-      }
-    );
+  const donationRequestsRef = ref(firebaseDatabase, '/donationRequests')
+
+  const snapshot = await get(donationRequestsRef)
+
+  if (!snapshot.exists()) {
+    return {
+      pageDonationRequests: [],
+      nextPage: pageParam + 1
+    };
+  }
+
+  const donationRequests: DonationRequest[] = Object.values(snapshot.val())
+
+  const pageDonationRequests = donationRequests
+    .sort((a, b) => {
+      const aDate = new Date(a.createdAt).getTime();
+      const bDate = new Date(b.createdAt).getTime();
+      return bDate - aDate;
+    })
+    .slice(pageParam * 10, pageParam * 10 + 10);
 
   return {
     pageDonationRequests,

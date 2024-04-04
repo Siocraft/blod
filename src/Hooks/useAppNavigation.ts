@@ -12,12 +12,6 @@ export const useAppNavigation = () => {
       navigate(NavigationConstants.Screens.OtherProfile, { userId }),
     navigateToApp: () =>
       navigation.dispatch(StackActions.replace(NavigationConstants.Root.App)),
-    navigateToAuth: () =>
-      navigation.reset({
-        index: 0,
-        // @ts-expect-error Some navigation types are wrong
-        routes: [ { name: NavigationConstants.Root.Authentication } ],
-      }),
     // @ts-expect-error Some navigation types are wrong
     navigateToLogin: () => navigate(NavigationConstants.Screens.Login),
     // @ts-expect-error Some navigation types are wrong

@@ -1,5 +1,5 @@
 import { BButton, BText } from "@components";
-import { useAppNavigation, useAuth } from "@hooks";
+import { useAppNavigation } from "@hooks";
 import React, { FC } from "react";
 import { StyleSheet, View } from "react-native";
 
@@ -18,10 +18,6 @@ export const Authentication: FC = () => {
   const onGuestPressed = () => {
     navigateToApp();
   };
-
-  const { user } = useAuth();
-
-  if (user) navigateToApp();
 
   return (
     <View style={styles.authenticationContainer}>

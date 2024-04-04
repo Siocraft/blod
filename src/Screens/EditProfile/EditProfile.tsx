@@ -6,7 +6,8 @@ import {
   ProfileImage,
 } from "@components";
 import { Entypo, Fontisto, MaterialIcons } from "@expo/vector-icons";
-import { useAppNavigation, useAuth, useUpdateUser, useUser } from "@hooks";
+import { useAppNavigation, useUpdateUser, useUser } from "@hooks";
+import { useFirebaseUser } from "@services";
 import { ColorsEnum } from "@theme";
 import { isoDateToDayMonthYear } from "@utils";
 import { useFormik } from "formik";
@@ -19,7 +20,7 @@ import { ErrorScreen } from "../Error";
 import { GuestSignedIn } from "../Profile/GuestSignedIn";
 
 export const EditProfile: FC = () => {
-  const { user: authUser } = useAuth();
+  const authUser = useFirebaseUser();
   const { data: user, isError: isErrorUser } = useUser(authUser?.uid);
 
   const [ bloodTypeModalVisible, setBloodTypeModalVisible ] = useState(false);
