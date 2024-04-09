@@ -35,7 +35,7 @@ const requestSchema = yup.object().shape({
 });
 
 export const CreateDonationRequest: FC = () => {
-  const user = useFirebaseUser();
+  const { user } = useFirebaseUser();
   const {
     data: userData,
     isLoading: isLoadingUser,

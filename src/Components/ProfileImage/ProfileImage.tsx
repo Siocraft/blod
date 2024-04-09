@@ -33,7 +33,7 @@ export const ProfileImage: FC<ProfileImageProps> = ({
 }) => {
   const [ image, setImage ] = useState<string | null>(null);
   const [ imageFullScreen, setImageFullScreen ] = useState(false);
-  const user = useFirebaseUser();
+  const { user } = useFirebaseUser();
 
   const imageContainerStyle = StyleSheet.flatten([
     styles.imageContainer,

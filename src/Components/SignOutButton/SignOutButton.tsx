@@ -9,7 +9,7 @@ export const SignOutButton: FC<SignOutButtonProps> = ({
   ...buttonProps
 }) => {
 
-  const user = useFirebaseUser();
+  const { user } = useFirebaseUser();
   const { signOutFromApp } = useSignOut();
 
   return user ? (

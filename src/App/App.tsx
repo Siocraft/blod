@@ -20,7 +20,7 @@ export const InnerApp = () => {
     }
   }, [ status ]);
 
-  const user = useFirebaseUser();
+  const { user } = useFirebaseUser();
 
   if (!user) {
     return <AuthStackNavigator />;
