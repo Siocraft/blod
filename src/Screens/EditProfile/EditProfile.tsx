@@ -20,7 +20,7 @@ import { ErrorScreen } from "../Error";
 import { GuestSignedIn } from "../Profile/GuestSignedIn";
 
 export const EditProfile: FC = () => {
-  const authUser = useFirebaseUser();
+  const { user: authUser } = useFirebaseUser();
   const { data: user, isError: isErrorUser } = useUser(authUser?.uid);
 
   const [ bloodTypeModalVisible, setBloodTypeModalVisible ] = useState(false);

@@ -5,38 +5,45 @@ import { StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ButtonHub } from "./ButtonHub";
 import { GuestSignedIn } from "./GuestSignedIn";
-import { useUser } from "@hooks";
 import { BText, ProfileData, ProfileImage } from "@components";
 import { calculateAgeFromDate } from "@utils";
+import { Chase } from "react-native-animated-spinkit";
 
 export const Profile = () => {
-  const firebaseUser = useFirebaseUser();
-  const { data: user, isError: isErrorUser } = useUser(firebaseUser?.uid);
-  if (!user) return <GuestSignedIn />;
-  if (!user) return null;
+  const { userData, isLoading } = useFirebaseUser();
+
+  if (isLoading) return <View style={{
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  }}>
+    <Chase size={80} color={ColorsEnum.secondary} />
+  </View>;
+
+  if (!userData) return <GuestSignedIn />;
 
   return (
     <SafeAreaView style={styles.container}>
-      <ProfileImage avatar={user.avatar} editable />
+      <ProfileImage avatar={userData.avatar} editable />
       <BText size="title" superBold color="secondary">
-        {user.name}, {calculateAgeFromDate(user.birthDate)}
+        {userData.name}, {calculateAgeFromDate(userData.birthDate)}
       </BText>
       <View style={styles.divider} />
       <ProfileData
-        bloodType={user.bloodType}
-        location={user.location}
-        litersDonated={user.litersDonated}
-        contact={user.contact}
+        bloodType={userData.bloodType}
+        location={userData.location}
+        litersDonated={userData.litersDonated}
+        contact={userData.contact}
       />
 
       <View style={styles.divider} />
-      {user.description && (
+      {userData.description && (
         <View style={styles.description}>
           <BText size="title" bold color="secondary">
             Acerca de
           </BText>
           <BText color="black" style={{ marginTop: 8 }}>
-            {user.description}
+            {userData.description}
           </BText>
         </View>
       )}

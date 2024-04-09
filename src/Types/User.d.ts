@@ -10,4 +10,5 @@ interface User {
   litersDonated: number;
   avatar: string;
   description?: string;
+  birthDate?: string;
 }
